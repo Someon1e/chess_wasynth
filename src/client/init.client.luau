@@ -4,7 +4,7 @@ local line = {}
 
 local messageListener: (string) -> ...any? = print
 
-local rust = require(game:GetService("ReplicatedStorage").engine)({
+local rust = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("engine"))({
 	env = {
 		func_list = {
 			time = os.clock,
