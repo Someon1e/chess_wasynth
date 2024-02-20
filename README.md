@@ -1,6 +1,8 @@
 # chess_wasynth
 Chess engine written in rust, compiled to webassembly, then into luau.
 
+![image](image.png)
+
 ## Getting Started
 To build the place from scratch, use:
 
