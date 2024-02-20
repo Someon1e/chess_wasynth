@@ -1,5 +1,5 @@
 # chess_wasynth
-Chess engine written in rust, compiled to webassembly, then into luau.
+[Chess engine written in rust](https://github.com/Someon1e/chess), compiled to webassembly, [then into luau](https://github.com/Rerumu/Wasynth).
 
 ![image](image.png)
 
