@@ -69,6 +69,13 @@ for x = 0, 7 do
 	end
 end
 
+local function uciFrom(uciNotation)
+	return SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 1, 2)]
+end
+local function uciTo(uciNotation)
+	return SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 3, 4)]
+end
+
 local line = {}
 
 local messageListener: (string) -> ...any? = print
@@ -535,12 +542,12 @@ local function makeGui(initialFen)
 
 	local function highlightLegalMoves(from)
 		for _, legalMove in legalMoves do
-			local legalMoveFrom = SQUARE_NAME_TO_NUMBER[string.sub(legalMove, 1, 2)]
+			local legalMoveFrom = uciFrom(legalMove)
 			if legalMoveFrom ~= from then
 				continue
 			end
 
-			local legalMoveTo = SQUARE_NAME_TO_NUMBER[string.sub(legalMove, 3, 4)]
+			local legalMoveTo = uciTo(legalMove)
 			if buffer.readu8(state.board, legalMoveTo) ~= 0 then
 				labels[legalMoveTo].BackgroundColor3 = CAN_CAPTURE_SQUARE_COLOUR
 			else
@@ -602,8 +609,8 @@ local function makeGui(initialFen)
 	local function playMove(moveNotation)
 		state.enPassantSquare = nil
 
-		local squareMoveFrom = SQUARE_NAME_TO_NUMBER[string.sub(moveNotation, 1, 2)]
-		local squareMoveTo = SQUARE_NAME_TO_NUMBER[string.sub(moveNotation, 3, 4)]
+		local squareMoveFrom = uciFrom(moveNotation)
+		local squareMoveTo = uciTo(moveNotation)
 
 		local movingPiece = buffer.readu8(state.board, squareMoveFrom)
 		assert(movingPiece ~= 0)
@@ -766,12 +773,12 @@ local function makeGui(initialFen)
 		then
 			local legal = false
 			for _, legalMove in legalMoves do
-				local legalMoveFrom = SQUARE_NAME_TO_NUMBER[string.sub(legalMove, 1, 2)]
+				local legalMoveFrom = uciFrom(legalMove)
 				if legalMoveFrom ~= squareMoveFrom then
 					continue
 				end
 
-				local legalMoveTo = SQUARE_NAME_TO_NUMBER[string.sub(legalMove, 3, 4)]
+				local legalMoveTo = uciTo(legalMove)
 				if legalMoveTo ~= squareMoveTo then
 					continue
 				end
