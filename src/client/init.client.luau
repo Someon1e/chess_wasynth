@@ -59,7 +59,6 @@ local PIECE_NAME_TO_ENUM = {
 }
 
 local FILE_NUMBER_TO_NAME = buffer.fromstring("abcdefgh")
-local FILE_NAME_TO_NUMBER = { a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7 }
 
 local SQUARE_NUMBER_TO_NAME = table.create(63)
 local SQUARE_NAME_TO_NUMBER = {}
