@@ -254,7 +254,6 @@ local function toFEN(state: boardState)
 		result[index] = " b "
 	end
 
-	-- Add castling ability
 	if
 		state.whiteCanCastleKingSide
 		or state.whiteCanCastleQueenSide
@@ -441,6 +440,10 @@ local function squareRank(square: number)
 end
 local function squareFile(square: number)
 	return square % 8
+end
+
+local function waitForRender()
+	return task.wait() + task.wait() + task.wait()
 end
 
 local function makeGui(initialFen)
@@ -647,8 +650,8 @@ local function makeGui(initialFen)
 
 		if movingPiece == WHITE_KING or movingPiece == BLACK_KING then
 			local fileDistance = math.abs(squareFile(squareMoveFrom) - squareFile(squareMoveTo))
-			if fileDistance == 2 then
-				-- Castle
+			local isCastle = fileDistance == 2
+			if isCastle then
 				local isKingSide = squareFile(squareMoveTo) == 6
 				local rookToOffset = if isKingSide then -1 else 1
 				local rookFromOffset = if isKingSide then 1 else -2
@@ -715,7 +718,7 @@ local function makeGui(initialFen)
 			evalBar.Visible = true
 			local blackEvaluation = if state.whiteToPlay then -evaluation else evaluation
 			blackEvalFill.Size = UDim2.fromScale(1, 0.5 + blackEvaluation / 2000)
-			task.wait()
+			waitForRender()
 		end, aiMoveTimeInMilliseconds)
 	end
 
@@ -825,7 +828,7 @@ local function makeGui(initialFen)
 		table.insert(stateHistory, table.clone(state))
 		stateHistory[#stateHistory].board = buffer.fromstring(buffer.tostring(state.board))
 		playMove(notation)
-		task.wait(0.1) -- Let it render before heavy computation
+		waitForRender()
 
 		local response = getAIResponse()
 		if response then
