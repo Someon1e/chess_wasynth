@@ -443,7 +443,6 @@ local function makeGui(initialFen)
 
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "Chess"
-	gui.IgnoreGuiInset = true
 
 	local boardFrame, boardGridLayout = makeBoardFrame()
 	local labels = makeSquareGui(boardFrame, state)
