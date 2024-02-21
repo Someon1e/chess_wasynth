@@ -97,6 +97,9 @@ local function sendInput(input)
 	rust.func_list.send_input(string.byte("\n"))
 end
 
+-- Only used because the type checker is wrong
+local unneeded_assert = assert
+
 local UserInputService = game:GetService("UserInputService")
 local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
@@ -652,7 +655,7 @@ local function makeGui(initialFen)
 				elseif squareMoveTo == state.enPassantSquare then
 					buffer.writeu8(
 						state.board,
-						state.enPassantSquare - (if movingPiece == WHITE_PAWN then 8 else -8),
+						unneeded_assert(state.enPassantSquare) - (if movingPiece == WHITE_PAWN then 8 else -8),
 						0
 					)
 				end
@@ -755,9 +758,9 @@ local function makeGui(initialFen)
 			return
 		end
 
-		local notation = SQUARE_NUMBER_TO_NAME[squareMoveFrom] .. SQUARE_NUMBER_TO_NAME[squareMoveTo]
+		local notation = SQUARE_NUMBER_TO_NAME[unneeded_assert(squareMoveFrom)] .. SQUARE_NUMBER_TO_NAME[squareMoveTo]
 		if
-			buffer.readu8(state.board, squareMoveFrom) == 1 + pieceColourOffset
+			buffer.readu8(state.board, unneeded_assert(squareMoveFrom)) == 1 + pieceColourOffset
 			and (squareRank(squareMoveTo) == 0 or squareRank(squareMoveTo) == 7)
 		then
 			local legal = false
@@ -826,7 +829,7 @@ local function makeGui(initialFen)
 		if piece ~= 0 and if state.whiteToPlay then piece > 6 else 7 > piece then
 			squareMoveFrom = hoveringSquare
 
-			dragStart(input.Position, label)
+			dragStart(input.Position, unneeded_assert(label))
 
 			highlightLegalMoves(squareMoveFrom)
 		end
