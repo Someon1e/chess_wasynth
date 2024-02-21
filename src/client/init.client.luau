@@ -1,9 +1,30 @@
 --!strict
 
+local LIGHT_SQUARE_COLOUR, DARK_SQUARE_COLOUR = Color3.fromRGB(234, 233, 210), Color3.fromRGB(75, 115, 153)
+
+local CAN_MOVE_TO_SQUARE_COLOUR = Color3.fromRGB(255, 85, 0)
+local CAN_CAPTURE_SQUARE_COLOUR = Color3.fromRGB(255, 0, 0)
+
 local WHITE_PAWN = 7
 local BLACK_PAWN = 1
 local WHITE_KING = 12
 local BLACK_KING = 6
+local PIECE_TEXTURES = {
+	[BLACK_PAWN] = "rbxassetid://7079123026",
+	[2] = "rbxassetid://7079118362",
+	[3] = "rbxassetid://7079123704",
+	[4] = "rbxassetid://7079124677",
+	[5] = "rbxassetid://7079118808",
+	[BLACK_KING] = "rbxassetid://7079124193",
+
+	[WHITE_PAWN] = "rbxassetid://7079118994",
+	[8] = "rbxassetid://7079116513",
+	[9] = "rbxassetid://7079123407",
+	[10] = "rbxassetid://7079124389",
+	[11] = "rbxassetid://7079118641",
+	[WHITE_KING] = "rbxassetid://7079123896",
+}
+
 local PIECE_ENUM_TO_NAME = {
 	[BLACK_PAWN] = "p",
 	[2] = "r",
@@ -34,26 +55,6 @@ local PIECE_NAME_TO_ENUM = {
 	Q = 11,
 	K = WHITE_KING,
 }
-
-local PIECE_TEXTURES = {
-	[BLACK_PAWN] = "rbxassetid://7079123026",
-	[2] = "rbxassetid://7079118362",
-	[3] = "rbxassetid://7079123704",
-	[4] = "rbxassetid://7079124677",
-	[5] = "rbxassetid://7079118808",
-	[BLACK_KING] = "rbxassetid://7079124193",
-
-	[WHITE_PAWN] = "rbxassetid://7079118994",
-	[8] = "rbxassetid://7079116513",
-	[9] = "rbxassetid://7079123407",
-	[10] = "rbxassetid://7079124389",
-	[11] = "rbxassetid://7079118641",
-	[WHITE_KING] = "rbxassetid://7079123896",
-}
-local LIGHT_SQUARE_COLOUR, DARK_SQUARE_COLOUR = Color3.fromRGB(234, 233, 210), Color3.fromRGB(75, 115, 153)
-
-local CAN_MOVE_TO_SQUARE_COLOUR = Color3.fromRGB(255, 85, 0)
-local CAN_CAPTURE_SQUARE_COLOUR = Color3.fromRGB(255, 0, 0)
 
 local FILE_NUMBER_TO_NAME = buffer.fromstring("abcdefgh")
 local FILE_NAME_TO_NUMBER = { a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7 }
