@@ -778,16 +778,16 @@ local function makeGui(initialFen)
 
 				local thread = coroutine.running()
 				promotionFrame.Visible = true
-				local connections = {}
+				local connections: {RBXScriptConnection}? = {}
 				for button, promotion in promotionButtons do
 					table.insert(
-						connections,
+						unneeded_assert(connections),
 						button.Activated:Connect(function()
 							notation ..= promotion
-							for _, connection in connections do
+							for _, connection in unneeded_assert(connections) do
 								connection:Disconnect()
 							end
-							table.clear(connections)
+							connections = nil
 							promotionFrame.Visible = false
 							task.spawn(thread)
 						end)
