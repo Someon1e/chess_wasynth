@@ -235,24 +235,20 @@ local function toFEN(state: boardState)
 		end
 	end
 
+	index += 1
 	if state.whiteToPlay then
-		index += 1
 		result[index] = " w "
 	else
-		index += 1
 		result[index] = " b "
 	end
 
 	-- Add castling ability
 	if
-		not state.whiteCanCastleKingSide
-		and not state.whiteCanCastleQueenSide
-		and not state.blackCanCastleKingSide
-		and not state.blackCanCastleQueenSide
+		state.whiteCanCastleKingSide
+		or state.whiteCanCastleQueenSide
+		or state.blackCanCastleKingSide
+		or state.blackCanCastleQueenSide
 	then
-		index += 1
-		result[index] = "-"
-	else
 		if state.whiteCanCastleKingSide then
 			index += 1
 			result[index] = "K"
@@ -269,17 +265,28 @@ local function toFEN(state: boardState)
 			index += 1
 			result[index] = "q"
 		end
-	end
-
-	if state.enPassantSquare then
-		index += 1
-		result[index] = " " .. SQUARE_NUMBER_TO_NAME[state.enPassantSquare] .. " "
 	else
 		index += 1
+		result[index] = "-"
+	end
+
+	index += 1
+	if state.enPassantSquare then
+		result[index] = " " .. SQUARE_NUMBER_TO_NAME[state.enPassantSquare] .. " "
+	else
 		result[index] = " - "
 	end
 
-	return table.concat(result) .. state.halfMoveClock .. " " .. state.fullMoveCounter
+	index += 1
+	result[index] = state.halfMoveClock
+
+	index += 1
+	result[index] = " "
+
+	index += 1
+	result[index] = state.fullMoveCounter
+
+	return table.concat(result)
 end
 
 local function getLegalMoves(state)
