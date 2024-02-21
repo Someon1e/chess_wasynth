@@ -775,6 +775,39 @@ local function makeGui(initialFen)
 	promotionFrame.Visible = false
 	promotionFrame.Parent = gui
 
+	local function tryAskPromotion(squareMoveTo)
+		for _, legalMove in legalMoves do
+			local legalMoveFrom = uciFrom(legalMove)
+			if legalMoveFrom ~= squareMoveFrom then
+				continue
+			end
+
+			local legalMoveTo = uciTo(legalMove)
+			if legalMoveTo ~= squareMoveTo then
+				continue
+			end
+
+			local thread = coroutine.running()
+			promotionFrame.Visible = true
+			local connections: { RBXScriptConnection }? = {}
+			for button, promotion in promotionButtons do
+				table.insert(
+					unneeded_assert(connections),
+					button.Activated:Connect(function()
+						for _, connection in unneeded_assert(connections) do
+							connection:Disconnect()
+						end
+						connections = nil
+						promotionFrame.Visible = false
+						task.spawn(thread, promotion)
+					end)
+				)
+			end
+			return coroutine.yield()
+		end
+		return nil
+	end
+
 	local function humanMadeMove(input)
 		local squareMoveTo = getHoveringSquare(input)
 		if not squareMoveTo then
@@ -785,44 +818,13 @@ local function makeGui(initialFen)
 		end
 
 		local notation = SQUARE_NUMBER_TO_NAME[unneeded_assert(squareMoveFrom)] .. SQUARE_NUMBER_TO_NAME[squareMoveTo]
-		if
-			buffer.readu8(state.board, unneeded_assert(squareMoveFrom)) == 1 + pieceColourOffset
+		local isPromotionRank = buffer.readu8(state.board, unneeded_assert(squareMoveFrom)) == 1 + pieceColourOffset
 			and (squareRank(squareMoveTo) == 0 or squareRank(squareMoveTo) == 7)
-		then
-			local legal = false
-			for _, legalMove in legalMoves do
-				local legalMoveFrom = uciFrom(legalMove)
-				if legalMoveFrom ~= squareMoveFrom then
-					continue
-				end
-
-				local legalMoveTo = uciTo(legalMove)
-				if legalMoveTo ~= squareMoveTo then
-					continue
-				end
-
-				local thread = coroutine.running()
-				promotionFrame.Visible = true
-				local connections: { RBXScriptConnection }? = {}
-				for button, promotion in promotionButtons do
-					table.insert(
-						unneeded_assert(connections),
-						button.Activated:Connect(function()
-							notation ..= promotion
-							for _, connection in unneeded_assert(connections) do
-								connection:Disconnect()
-							end
-							connections = nil
-							promotionFrame.Visible = false
-							task.spawn(thread)
-						end)
-					)
-				end
-				coroutine.yield()
-				legal = true
-				break
-			end
-			if not legal then
+		if isPromotionRank then
+			local promotion = tryAskPromotion(squareMoveTo)
+			if promotion then
+				notation ..= promotion
+			else
 				return
 			end
 		elseif not table.find(legalMoves, notation) then
