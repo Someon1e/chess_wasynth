@@ -85,8 +85,8 @@ local rust = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared")
 	env = {
 		func_list = {
 			time = os.clock,
-			print_char = function(a)
-				local character = string.char(a)
+			print_char = function(byte)
+				local character = string.char(byte)
 				if character == "\n" then
 					messageListener(table.concat(line))
 					table.clear(line)
@@ -136,32 +136,32 @@ local function fromFEN(fen): boardState
 
 	local file = 0
 	local rank = 7
-	local i = 0
+	local index = 0
 
 	while true do
-		i += 1
-		local char = string.sub(position, i, i)
-		local pieceEnum = PIECE_NAME_TO_ENUM[char]
+		index += 1
+		local character = string.sub(position, index, index)
+		local pieceEnum = PIECE_NAME_TO_ENUM[character]
 		if pieceEnum then
 			buffer.writeu8(board, file + rank * 8, pieceEnum)
 			file += 1
-		elseif char == "8" then
+		elseif character == "8" then
 			file += 8
-		elseif char == "4" then
+		elseif character == "4" then
 			file += 4
-		elseif char == "3" then
+		elseif character == "3" then
 			file += 3
-		elseif char == "1" then
+		elseif character == "1" then
 			file += 1
-		elseif char == "2" then
+		elseif character == "2" then
 			file += 2
-		elseif char == "7" then
+		elseif character == "7" then
 			file += 7
-		elseif char == "5" then
+		elseif character == "5" then
 			file += 5
-		elseif char == "6" then
+		elseif character == "6" then
 			file += 6
-		elseif char ~= "/" then
+		elseif character ~= "/" then
 			error("Invalid position")
 		end
 		if file == 8 then
