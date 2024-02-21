@@ -577,46 +577,6 @@ local function makeGui(initialFen)
 
 	local squareMoveFrom: number?
 
-	local draggedFrom: ImageLabel?
-	local pieceDragImage = Instance.new("ImageLabel")
-	pieceDragImage.Name = "Drag"
-	pieceDragImage.BackgroundTransparency = 1
-	pieceDragImage.AnchorPoint = Vector2.new(0.5, 0.5)
-	boardFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
-		pieceDragImage.Size = UDim2.fromOffset(boardFrame.AbsoluteSize.X / 8, boardFrame.AbsoluteSize.Y / 8)
-	end)
-	pieceDragImage.Size = UDim2.fromOffset(boardFrame.AbsoluteSize.X / 8, boardFrame.AbsoluteSize.Y / 8)
-	pieceDragImage.ZIndex = 3
-	pieceDragImage.Parent = gui
-
-	local function dragEnd()
-		if not draggedFrom then
-			return
-		end
-		pieceDragImage.Visible = false
-		draggedFrom.Image = pieceDragImage.Image
-		draggedFrom = nil
-	end
-	local function dragStart(position, from)
-		resetLabels()
-		pieceDragImage.Image = from.Image
-		from.Image = ""
-
-		pieceDragImage.Position = UDim2.fromOffset(position.X, position.Y)
-		pieceDragImage.Visible = true
-		draggedFrom = from
-	end
-	UserInputService.InputChanged:Connect(function(input)
-		if
-			pieceDragImage.Visible
-			and (
-				input.UserInputType == Enum.UserInputType.MouseMovement
-				or input.UserInputType == Enum.UserInputType.Touch
-			)
-		then
-			pieceDragImage.Position = UDim2.fromOffset(input.Position.X, input.Position.Y)
-		end
-	end)
 	local function teleportPiece(squareMoveFrom, squareMoveTo)
 		buffer.writeu8(state.board, squareMoveTo, buffer.readu8(state.board, squareMoveFrom))
 		labels[squareMoveTo].Image = labels[squareMoveFrom].Image
@@ -842,7 +802,54 @@ local function makeGui(initialFen)
 		end
 		squareMoveFrom = nil
 	end
+
+	local draggedFrom: ImageLabel?
+	local pieceDragImage = Instance.new("ImageLabel")
+	pieceDragImage.Name = "Drag"
+	pieceDragImage.BackgroundTransparency = 1
+	pieceDragImage.AnchorPoint = Vector2.new(0.5, 0.5)
+	boardFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+		pieceDragImage.Size = UDim2.fromOffset(boardFrame.AbsoluteSize.X / 8, boardFrame.AbsoluteSize.Y / 8)
+	end)
+	pieceDragImage.Size = UDim2.fromOffset(boardFrame.AbsoluteSize.X / 8, boardFrame.AbsoluteSize.Y / 8)
+	pieceDragImage.ZIndex = 3
+	pieceDragImage.Parent = gui
+
+	local function dragEnd()
+		if not draggedFrom then
+			return
+		end
+		pieceDragImage.Visible = false
+		draggedFrom.Image = pieceDragImage.Image
+		draggedFrom = nil
+	end
+	local function dragStart(position, from)
+		resetLabels()
+		pieceDragImage.Image = from.Image
+		from.Image = ""
+
+		pieceDragImage.Position = UDim2.fromOffset(position.X, position.Y)
+		pieceDragImage.Visible = true
+		draggedFrom = from
+	end
+	UserInputService.InputChanged:Connect(function(input)
+		if aiSelfPlaying then
+			return
+		end
+		if
+			pieceDragImage.Visible
+			and (
+				input.UserInputType == Enum.UserInputType.MouseMovement
+				or input.UserInputType == Enum.UserInputType.Touch
+			)
+		then
+			pieceDragImage.Position = UDim2.fromOffset(input.Position.X, input.Position.Y)
+		end
+	end)
 	UserInputService.InputBegan:Connect(function(input)
+		if aiSelfPlaying then
+			return
+		end
 		if
 			input.UserInputType ~= Enum.UserInputType.MouseButton1
 			and input.UserInputType ~= Enum.UserInputType.Touch
@@ -863,6 +870,9 @@ local function makeGui(initialFen)
 		end
 	end)
 	UserInputService.InputEnded:Connect(function(input)
+		if aiSelfPlaying then
+			return
+		end
 		if
 			input.UserInputType ~= Enum.UserInputType.MouseButton1
 			and input.UserInputType ~= Enum.UserInputType.Touch
