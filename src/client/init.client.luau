@@ -1,5 +1,7 @@
 --!strict
 
+local DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS = 3000
+
 local LIGHT_SQUARE_COLOUR, DARK_SQUARE_COLOUR = Color3.fromRGB(234, 233, 210), Color3.fromRGB(75, 115, 153)
 
 local CAN_MOVE_TO_SQUARE_COLOUR = Color3.fromRGB(255, 85, 0)
@@ -505,7 +507,7 @@ local function makeGui(initialFen)
 	end)
 	fenBox.Parent = gui
 
-	local aiMoveTimeInMilliseconds = 5000
+	local aiMoveTimeInMilliseconds = DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS
 
 	local aiMoveTimeBox = Instance.new("TextBox")
 	aiMoveTimeBox.Name = "AIMoveTime"
