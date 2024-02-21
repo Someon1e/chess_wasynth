@@ -128,6 +128,10 @@ type boardState = {
 	fullMoveCounter: number,
 }
 
+--[[
+	FEN (Forsynth Edward's Notation) is a string that describes a chess position
+	https://chessprogrammingwiki.netlify.app/forsythedwards_notation/
+]]
 local function fromFEN(fen): boardState
 	local sections = string.split(fen, " ")
 	local position = sections[1]
@@ -302,7 +306,7 @@ end
 
 local function getLegalMoves(state)
 	-- Use perft to get legal moves
-	-- Very disgusting
+	-- https://chessprogrammingwiki.netlify.app/perft/
 
 	local legalMoves: { string } = {}
 	messageListener = function(output)
