@@ -70,6 +70,8 @@ for x = 0, 7 do
 	end
 end
 
+-- UCI (Universal Chess Interface) is a protocol for communciation between the engine and gui
+-- https://chessprogrammingwiki.netlify.app/uci/
 local function uciFrom(uciNotation)
 	return SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 1, 2)]
 end
