@@ -349,18 +349,17 @@ local function getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
 	return result
 end
 
-local function squareRank(square: number)
-	return square // 8
-end
-local function squareFile(square: number)
-	return square % 8
+local function constrain(object, aspectRatio)
+	local constraint = Instance.new("UIAspectRatioConstraint")
+	constraint.AspectRatio = aspectRatio
+	constraint.Parent = object
 end
 
 local function makeBoardFrame()
 	local boardFrame = Instance.new("Frame")
 	boardFrame.Name = "Board"
 
-	Instance.new("UIAspectRatioConstraint", boardFrame)
+	constrain(boardFrame, 1)
 
 	local gridLayout = Instance.new("UIGridLayout")
 	gridLayout.CellSize = UDim2.fromScale(1 / 8, 1 / 8)
@@ -432,7 +431,16 @@ local function makeButton(name)
 	button.BackgroundColor3 = Color3.fromRGB(0, 0, 30)
 	button.TextColor3 = Color3.fromRGB(232, 232, 232)
 	button.Name = name
+	constrain(button, 2)
+
 	return button
+end
+
+local function squareRank(square: number)
+	return square // 8
+end
+local function squareFile(square: number)
+	return square % 8
 end
 
 local function makeGui(initialFen)
@@ -482,6 +490,7 @@ local function makeGui(initialFen)
 	fenBox.BackgroundColor3 = Color3.fromRGB(0, 0, 30)
 	fenBox.TextColor3 = Color3.fromRGB(232, 232, 232)
 	fenBox.Position = UDim2.fromScale(0.75, 0.5)
+	constrain(fenBox, 4)
 
 	fenBox.FocusLost:Connect(function()
 		local isValid, newState = pcall(fromFEN, fenBox.Text)
@@ -511,12 +520,12 @@ local function makeGui(initialFen)
 	aiMoveTimeBox.Name = "AIMoveTime"
 	aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
 	aiMoveTimeBox.TextScaled = true
-	aiMoveTimeBox.Size = UDim2.fromScale(0.1, 0.05)
+	aiMoveTimeBox.Size = UDim2.fromScale(0.07, 0.07)
 	aiMoveTimeBox.ClearTextOnFocus = false
 	aiMoveTimeBox.ZIndex = 2
 	aiMoveTimeBox.BackgroundColor3 = Color3.fromRGB(0, 0, 30)
 	aiMoveTimeBox.TextColor3 = Color3.fromRGB(232, 232, 232)
-	aiMoveTimeBox.Position = UDim2.fromScale(0.85, 0.795)
+	aiMoveTimeBox.Position = UDim2.fromScale(0.85, 0.797)
 	aiMoveTimeBox.FocusLost:Connect(function()
 		local number = tonumber(aiMoveTimeBox.Text)
 		if not number then
@@ -527,10 +536,12 @@ local function makeGui(initialFen)
 		aiMoveTimeInMilliseconds = clamped
 		aiMoveTimeBox.Text = tostring(clamped)
 	end)
+	constrain(aiMoveTimeBox, 3)
+
 	local aiMoveTimeLabel = Instance.new("TextLabel")
 	aiMoveTimeLabel.Text = "AI Move Time"
 	aiMoveTimeLabel.TextScaled = true
-	aiMoveTimeLabel.Size = UDim2.fromScale(0.5, 0.5)
+	aiMoveTimeLabel.Size = UDim2.fromScale(0.6, 0.5)
 	aiMoveTimeLabel.Position = UDim2.fromScale(0, 1.1)
 	aiMoveTimeLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 30)
 	aiMoveTimeLabel.TextColor3 = Color3.fromRGB(232, 232, 232)
@@ -751,7 +762,7 @@ local function makeGui(initialFen)
 
 		promotionButtons[button] = PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
 	end
-	Instance.new("UIAspectRatioConstraint", promotionFrame).AspectRatio = 4
+	constrain(promotionFrame, 4)
 	promotionFrame.Position = UDim2.fromScale(0.03, 0.3)
 	promotionFrame.Size = UDim2.fromScale(0.2, 0.2)
 	promotionFrame.Visible = false
@@ -785,7 +796,7 @@ local function makeGui(initialFen)
 
 				local thread = coroutine.running()
 				promotionFrame.Visible = true
-				local connections: {RBXScriptConnection}? = {}
+				local connections: { RBXScriptConnection }? = {}
 				for button, promotion in promotionButtons do
 					table.insert(
 						unneeded_assert(connections),
