@@ -1,37 +1,5 @@
 --!strict
 
-local line = {}
-
-local messageListener: (string) -> ...any? = print
-
-local rust = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("engine"))({
-	env = {
-		func_list = {
-			time = os.clock,
-			print_char = function(a)
-				local character = string.char(a)
-				if character == "\n" then
-					messageListener(table.concat(line))
-					table.clear(line)
-					return
-				end
-				table.insert(line, character)
-			end,
-		},
-	},
-})
-
-local function sendInput(input)
-	for i = 1, #input do
-		local character = string.byte(input, i, i)
-		rust.func_list.send_input(character)
-	end
-	rust.func_list.send_input(string.byte("\n"))
-end
-
-local UserInputService = game:GetService("UserInputService")
-local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-
 local WHITE_PAWN = 7
 local BLACK_PAWN = 1
 local WHITE_KING = 12
@@ -67,12 +35,31 @@ local PIECE_NAME_TO_ENUM = {
 	K = WHITE_KING,
 }
 
+local PIECE_TEXTURES = {
+	[BLACK_PAWN] = "rbxassetid://7079123026",
+	[2] = "rbxassetid://7079118362",
+	[3] = "rbxassetid://7079123704",
+	[4] = "rbxassetid://7079124677",
+	[5] = "rbxassetid://7079118808",
+	[BLACK_KING] = "rbxassetid://7079124193",
+
+	[WHITE_PAWN] = "rbxassetid://7079118994",
+	[8] = "rbxassetid://7079116513",
+	[9] = "rbxassetid://7079123407",
+	[10] = "rbxassetid://7079124389",
+	[11] = "rbxassetid://7079118641",
+	[WHITE_KING] = "rbxassetid://7079123896",
+}
+local LIGHT_SQUARE_COLOUR, DARK_SQUARE_COLOUR = Color3.fromRGB(234, 233, 210), Color3.fromRGB(75, 115, 153)
+
+local CAN_MOVE_TO_SQUARE_COLOUR = Color3.fromRGB(255, 85, 0)
+local CAN_CAPTURE_SQUARE_COLOUR = Color3.fromRGB(255, 0, 0)
+
 local FILE_NUMBER_TO_NAME = buffer.fromstring("abcdefgh")
 local FILE_NAME_TO_NUMBER = { a = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7 }
 
 local SQUARE_NUMBER_TO_NAME = table.create(63)
 local SQUARE_NAME_TO_NUMBER = {}
-
 for x = 0, 7 do
 	for y = 0, 7 do
 		local name = buffer.readstring(FILE_NUMBER_TO_NAME, x, 1) .. y + 1
@@ -80,6 +67,38 @@ for x = 0, 7 do
 		SQUARE_NAME_TO_NUMBER[name] = x + y * 8
 	end
 end
+
+local line = {}
+
+local messageListener: (string) -> ...any? = print
+
+local rust = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("engine"))({
+	env = {
+		func_list = {
+			time = os.clock,
+			print_char = function(a)
+				local character = string.char(a)
+				if character == "\n" then
+					messageListener(table.concat(line))
+					table.clear(line)
+					return
+				end
+				table.insert(line, character)
+			end,
+		},
+	},
+})
+
+local function sendInput(input)
+	for i = 1, #input do
+		local character = string.byte(input, i, i)
+		rust.func_list.send_input(character)
+	end
+	rust.func_list.send_input(string.byte("\n"))
+end
+
+local UserInputService = game:GetService("UserInputService")
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
 type boardState = {
 	board: buffer,
@@ -310,26 +329,6 @@ local function getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
 
 	return result
 end
-
-local PIECE_TEXTURES = {
-	[BLACK_PAWN] = "rbxassetid://7079123026",
-	[2] = "rbxassetid://7079118362",
-	[3] = "rbxassetid://7079123704",
-	[4] = "rbxassetid://7079124677",
-	[5] = "rbxassetid://7079118808",
-	[BLACK_KING] = "rbxassetid://7079124193",
-
-	[WHITE_PAWN] = "rbxassetid://7079118994",
-	[8] = "rbxassetid://7079116513",
-	[9] = "rbxassetid://7079123407",
-	[10] = "rbxassetid://7079124389",
-	[11] = "rbxassetid://7079118641",
-	[WHITE_KING] = "rbxassetid://7079123896",
-}
-local LIGHT_SQUARE_COLOUR, DARK_SQUARE_COLOUR = Color3.fromRGB(234, 233, 210), Color3.fromRGB(75, 115, 153)
-
-local CAN_MOVE_TO_SQUARE_COLOUR = Color3.fromRGB(255, 85, 0)
-local CAN_CAPTURE_SQUARE_COLOUR = Color3.fromRGB(255, 0, 0)
 
 local function squareRank(square: number)
 	return square // 8
