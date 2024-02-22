@@ -390,7 +390,7 @@ local function makeSquareGui(boardFrame, state)
 			label.BackgroundColor3 = if (y + x) % 2 == 0 then LIGHT_SQUARE_COLOUR else DARK_SQUARE_COLOUR
 
 			local piece = buffer.readu8(state.board, x + y * 8)
-			label.Active = piece ~= nil
+			label.Active = piece ~= 0
 			label.Image = PIECE_TEXTURES[piece] or ""
 
 			label.BorderSizePixel = 0
