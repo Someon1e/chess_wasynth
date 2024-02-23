@@ -225,7 +225,7 @@ local function fromFEN(fen): boardState
 end
 
 local function toFEN(state: boardState)
-	local result: { string | number }, index = {}, 0
+	local result: { string | number } = table.create(87)
 
 	for y = 7, 0, -1 do
 		local empty = 0
@@ -233,31 +233,26 @@ local function toFEN(state: boardState)
 			local piece = buffer.readu8(state.board, x + y * 8)
 			if piece ~= 0 then
 				if empty ~= 0 then
-					index += 1
-					result[index] = empty
+					table.insert(result, empty)
 					empty = 0
 				end
-				index += 1
-				result[index] = PIECE_ENUM_TO_NAME[piece]
+				table.insert(result, PIECE_ENUM_TO_NAME[piece])
 			else
 				empty += 1
 			end
 		end
 		if empty ~= 0 then
-			index += 1
-			result[index] = empty
+			table.insert(result, empty)
 		end
 		if y ~= 0 then
-			index += 1
-			result[index] = "/"
+			table.insert(result, "/")
 		end
 	end
 
-	index += 1
 	if state.whiteToPlay then
-		result[index] = " w "
+		table.insert(result, " w ")
 	else
-		result[index] = " b "
+		table.insert(result, " b ")
 	end
 
 	if
@@ -267,41 +262,32 @@ local function toFEN(state: boardState)
 		or state.blackCanCastleQueenSide
 	then
 		if state.whiteCanCastleKingSide then
-			index += 1
-			result[index] = "K"
+			table.insert(result, "K")
 		end
 		if state.whiteCanCastleQueenSide then
-			index += 1
-			result[index] = "Q"
+			table.insert(result, "Q")
 		end
 		if state.blackCanCastleKingSide then
-			index += 1
-			result[index] = "k"
+			table.insert(result, "k")
 		end
 		if state.blackCanCastleQueenSide then
-			index += 1
-			result[index] = "q"
+			table.insert(result, "q")
 		end
 	else
-		index += 1
-		result[index] = "-"
+		table.insert(result, "-")
 	end
 
-	index += 1
 	if state.enPassantSquare then
-		result[index] = " " .. SQUARE_NUMBER_TO_NAME[state.enPassantSquare] .. " "
+		table.insert(result, " " .. SQUARE_NUMBER_TO_NAME[state.enPassantSquare] .. " ")
 	else
-		result[index] = " - "
+		table.insert(result, " - ")
 	end
 
-	index += 1
-	result[index] = state.halfMoveClock
+	table.insert(result, state.halfMoveClock)
 
-	index += 1
-	result[index] = " "
+	table.insert(result, " ")
 
-	index += 1
-	result[index] = state.fullMoveCounter
+	table.insert(result, state.fullMoveCounter)
 
 	return table.concat(result)
 end
