@@ -442,10 +442,10 @@ local function makeButton(name)
 end
 
 local function squareRank(square: number)
-	return square // 8
+	return bit32.rshift(square, 3)
 end
 local function squareFile(square: number)
-	return square % 8
+	return bit32.band(square, 0b111)
 end
 
 local function waitForRender()
