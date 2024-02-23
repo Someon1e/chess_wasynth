@@ -301,10 +301,8 @@ local function getLegalMoves(state)
 		local prefix = string.match(output, "(.+):")
 		if prefix == "Nodes searched" then
 			messageListener = print
-		else
-			if prefix then
-				table.insert(legalMoves, prefix)
-			end
+		elseif prefix then
+			table.insert(legalMoves, prefix)
 		end
 	end
 	sendInput("position fen " .. toFEN(state))
