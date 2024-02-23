@@ -334,11 +334,7 @@ local function getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
 
 		local move = string.match(output, "bestmove (.+)")
 		if move then
-			if move == "a1a1" then
-				result = nil
-			else
-				result = move
-			end
+			result = if move == "a1a1" then nil else move
 			messageListener = print
 		else
 			local eval = tonumber(string.match(output, "cp ([^ ]+)"))
@@ -568,11 +564,9 @@ local function makeGui(initialFen)
 			end
 
 			local legalMoveTo = uciTo(legalMove)
-			if buffer.readu8(state.board, legalMoveTo) ~= 0 then
-				labels[legalMoveTo].BackgroundColor3 = CAN_CAPTURE_SQUARE_COLOUR
-			else
-				labels[legalMoveTo].BackgroundColor3 = CAN_MOVE_TO_SQUARE_COLOUR
-			end
+			labels[legalMoveTo].BackgroundColor3 = if buffer.readu8(state.board, legalMoveTo) ~= 0
+				then CAN_CAPTURE_SQUARE_COLOUR
+				else CAN_MOVE_TO_SQUARE_COLOUR
 			labels[legalMoveTo].Active = true
 		end
 	end
