@@ -565,6 +565,7 @@ local function makeGui(initialFen)
 		labels[squareMoveFrom].Image = ""
 	end
 	local function playMove(moveNotation)
+		local oldEnPassantSquare = state.enPassantSquare
 		state.enPassantSquare = nil
 
 		local squareMoveFrom = uciFrom(moveNotation)
@@ -618,12 +619,10 @@ local function makeGui(initialFen)
 				local rankDistance = math.abs(squareRank(squareMoveFrom) - squareRank(squareMoveTo))
 				if rankDistance == 2 then
 					state.enPassantSquare = squareMoveFrom + (if movingPiece == WHITE_PAWN then 8 else -8)
-				elseif squareMoveTo == state.enPassantSquare then
-					buffer.writeu8(
-						state.board,
-						unneeded_assert(state.enPassantSquare) - (if movingPiece == WHITE_PAWN then 8 else -8),
-						0
-					)
+				elseif squareMoveTo == oldEnPassantSquare then
+					local captureSquare = unneeded_assert(oldEnPassantSquare) - (if movingPiece == WHITE_PAWN then 8 else -8)
+					buffer.writeu8(state.board, captureSquare, 0)
+					labels[captureSquare].Image = ""
 				end
 			end
 		end
