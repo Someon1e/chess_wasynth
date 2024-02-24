@@ -212,12 +212,12 @@ local function makeGui(initialFen)
 
 	local function highlightLegalMoves(from)
 		for _, legalMove in legalMoves do
-			local legalMoveFrom = Notation.UciFrom(legalMove)
+			local legalMoveFrom = Notation.uciFrom(legalMove)
 			if legalMoveFrom ~= from then
 				continue
 			end
 
-			local legalMoveTo = Notation.UciTo(legalMove)
+			local legalMoveTo = Notation.uciTo(legalMove)
 			labels[legalMoveTo].BackgroundColor3 = if buffer.readu8(state.board, legalMoveTo) ~= 0
 				then Config.CAN_CAPTURE_SQUARE_COLOUR
 				else Config.CAN_MOVE_TO_SQUARE_COLOUR
@@ -238,8 +238,8 @@ local function makeGui(initialFen)
 		local oldEnPassantSquare = state.enPassantSquare
 		state.enPassantSquare = nil
 
-		local squareMoveFrom = Notation.UciFrom(moveNotation)
-		local squareMoveTo = Notation.UciTo(moveNotation)
+		local squareMoveFrom = Notation.uciFrom(moveNotation)
+		local squareMoveTo = Notation.uciTo(moveNotation)
 
 		local movingPiece = buffer.readu8(state.board, squareMoveFrom)
 		assert(movingPiece ~= 0)
@@ -386,12 +386,12 @@ local function makeGui(initialFen)
 
 	local function tryAskPromotion(squareMoveTo)
 		for _, legalMove in legalMoves do
-			local legalMoveFrom = Notation.UciFrom(legalMove)
+			local legalMoveFrom = Notation.uciFrom(legalMove)
 			if legalMoveFrom ~= squareMoveFrom then
 				continue
 			end
 
-			local legalMoveTo = Notation.UciTo(legalMove)
+			local legalMoveTo = Notation.uciTo(legalMove)
 			if legalMoveTo ~= squareMoveTo then
 				continue
 			end

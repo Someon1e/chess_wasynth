@@ -15,10 +15,10 @@ end
 
 -- UCI (Universal Chess Interface) is a protocol for communciation between the engine and gui
 -- https://chessprogrammingwiki.netlify.app/uci/
-function Notation.UciFrom(uciNotation)
+function Notation.uciFrom(uciNotation)
 	return Notation.SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 1, 2)]
 end
-function Notation.UciTo(uciNotation)
+function Notation.uciTo(uciNotation)
 	return Notation.SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 3, 4)]
 end
 
