@@ -4,23 +4,23 @@ local WASM = require(script:WaitForChild("wasm"))
 
 local Engine = {}
 
-function Engine.getLegalMoves(fen)
-	-- Use perft to get legal moves
+function Engine.perft(out, fen: string, moves, depth)
 	-- https://chessprogrammingwiki.netlify.app/perft/
 
-	local legalMoves: { string } = {}
 	WASM.setListener(function(output)
 		local prefix = string.match(output, "(.+):")
 		if prefix == "Nodes searched" then
 			WASM.setListener(print)
 		elseif prefix then
-			table.insert(legalMoves, prefix)
+			out(prefix)
 		end
 	end)
-	WASM.sendInput("position fen " .. fen)
-	WASM.sendInput("go perft 1")
+	WASM.sendInput("position fen " .. fen .. " moves " .. moves)
+	WASM.sendInput("go perft "..tostring(depth))
+end
 
-	return legalMoves
+function Engine.getLegalMoves(out, fen, moves)	
+	Engine.perft(out, fen, moves, 1)
 end
 
 function Engine.getBestMove(initialFen: string, moves, updateEval, aiMoveTime)

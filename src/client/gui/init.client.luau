@@ -109,7 +109,6 @@ local function makeGui(initialFen)
 	local state = Board.fromFEN(initialFen)
 	local moveHistory = {}
 	local stateHistory = {}
-	local legalMoves = Engine.getLegalMoves(Board.toFEN(state))
 
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "Chess"
@@ -169,7 +168,6 @@ local function makeGui(initialFen)
 		fenBox.Text = initialFen
 		table.clear(moveHistory)
 		table.clear(stateHistory)
-		legalMoves = Engine.getLegalMoves(Board.toFEN(state))
 		for square, label in labels do
 			local piece = buffer.readu8(state.board, square)
 			label.Image = Config.PIECE_TEXTURES[piece] or ""
@@ -216,10 +214,10 @@ local function makeGui(initialFen)
 	gui.Parent = playerGui
 
 	local function highlightLegalMoves(from)
-		for _, legalMove in legalMoves do
+		Engine.getLegalMoves(function(legalMove)
 			local legalMoveFrom = Notation.uciFrom(legalMove)
 			if legalMoveFrom ~= from then
-				continue
+				return
 			end
 
 			local legalMoveTo = Notation.uciTo(legalMove)
@@ -227,7 +225,7 @@ local function makeGui(initialFen)
 				then Config.CAN_CAPTURE_SQUARE_COLOUR
 				else Config.CAN_MOVE_TO_SQUARE_COLOUR
 			labels[legalMoveTo].Active = true
-		end
+		end, initialFen, table.concat(moveHistory, " "))
 	end
 
 	local squareMoveFrom: number?
@@ -244,7 +242,6 @@ local function makeGui(initialFen)
 			labels[captureSquare].Image = ""
 		end)
 
-		legalMoves = Engine.getLegalMoves(Board.toFEN(state))
 		resetLabels()
 
 		fenBox.Text = Board.toFEN(state)
@@ -268,7 +265,6 @@ local function makeGui(initialFen)
 			local piece = buffer.readu8(state.board, square)
 			label.Image = Config.PIECE_TEXTURES[piece] or ""
 		end
-		legalMoves = Engine.getLegalMoves(Board.toFEN(state))
 		resetLabels()
 	end)
 	undoButton.Parent = gui
@@ -332,19 +328,28 @@ local function makeGui(initialFen)
 	promotionFrame.Parent = gui
 
 	local function tryAskPromotion(squareMoveTo)
-		for _, legalMove in legalMoves do
+		local thread = coroutine.running()
+
+		local found = false
+		Engine.getLegalMoves(function(legalMove)
+			if found then
+				return
+			end
+
 			local legalMoveFrom = Notation.uciFrom(legalMove)
 			if legalMoveFrom ~= squareMoveFrom then
-				continue
+				return
 			end
 
 			local legalMoveTo = Notation.uciTo(legalMove)
 			if legalMoveTo ~= squareMoveTo then
-				continue
+				return
 			end
 
-			local thread = coroutine.running()
+			found = true
+
 			promotionFrame.Visible = true
+
 			local connections: { RBXScriptConnection }? = {}
 			for button, promotion in promotionButtons do
 				table.insert(
@@ -359,9 +364,9 @@ local function makeGui(initialFen)
 					end)
 				)
 			end
-			return coroutine.yield()
-		end
-		return nil
+		end, initialFen, table.concat(moveHistory, " "))
+
+		return coroutine.yield()
 	end
 
 	local function humanMadeMove(input)
@@ -384,8 +389,16 @@ local function makeGui(initialFen)
 			else
 				return
 			end
-		elseif not table.find(legalMoves, notation) then
-			return
+		else
+			local legal
+			Engine.getLegalMoves(function(legalMove)
+				if legalMove == notation then
+					legal = true
+				end
+			end, initialFen, table.concat(moveHistory, " "))
+			if not legal then
+				return
+			end
 		end
 
 		table.insert(stateHistory, table.clone(state))
