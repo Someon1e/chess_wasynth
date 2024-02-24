@@ -253,4 +253,4 @@ function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, on
 	end
 end
 
-return Board
+return table.freeze(Board)

@@ -35,4 +35,4 @@ function WASM.setListener(newMessageListener)
 	messageListener = newMessageListener
 end
 
-return WASM
+return table.freeze(WASM)

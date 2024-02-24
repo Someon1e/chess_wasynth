@@ -46,4 +46,4 @@ function Engine.getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
 	return result
 end
 
-return Engine
+return table.freeze(Engine)
