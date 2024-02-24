@@ -22,4 +22,48 @@ function Notation.UciTo(uciNotation)
 	return Notation.SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 3, 4)]
 end
 
+Notation.BLACK_PAWN = 1
+Notation.BLACK_ROOK = 2
+Notation.BLACK_KNIGHT = 3
+Notation.BLACK_BISHOP = 4
+Notation.BLACK_QUEEN = 5
+Notation.BLACK_KING = 6
+
+Notation.WHITE_PAWN = 7
+Notation.WHITE_ROOK = 8
+Notation.WHITE_KNIGHT = 9
+Notation.WHITE_BISHOP = 10
+Notation.WHITE_QUEEN = 11
+Notation.WHITE_KING = 12
+Notation.PIECE_ENUM_TO_NAME = {
+	[Notation.BLACK_PAWN] = "p",
+	[Notation.BLACK_ROOK] = "r",
+	[Notation.BLACK_KNIGHT] = "n",
+	[Notation.BLACK_BISHOP] = "b",
+	[Notation.BLACK_QUEEN] = "q",
+	[Notation.BLACK_KING] = "k",
+
+	[Notation.WHITE_PAWN] = "P",
+	[Notation.WHITE_ROOK] = "R",
+	[Notation.WHITE_KNIGHT] = "N",
+	[Notation.WHITE_BISHOP] = "B",
+	[Notation.WHITE_QUEEN] = "Q",
+	[Notation.WHITE_KING] = "K",
+}
+Notation.PIECE_NAME_TO_ENUM = {
+	p = Notation.BLACK_PAWN,
+	r = Notation.BLACK_ROOK,
+	n = Notation.BLACK_KNIGHT,
+	b = Notation.BLACK_BISHOP,
+	q = Notation.BLACK_QUEEN,
+	k = Notation.BLACK_KING,
+
+	P = Notation.WHITE_PAWN,
+	R = Notation.WHITE_ROOK,
+	N = Notation.WHITE_KNIGHT,
+	B = Notation.WHITE_BISHOP,
+	Q = Notation.WHITE_QUEEN,
+	K = Notation.WHITE_KING,
+}
+
 return table.freeze(Notation)

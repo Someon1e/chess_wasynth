@@ -4,7 +4,7 @@ local WASM = script:WaitForChild("wasm")
 
 local Engine = {}
 
-function Engine.GetLegalMoves(fen)
+function Engine.getLegalMoves(fen)
 	-- Use perft to get legal moves
 	-- https://chessprogrammingwiki.netlify.app/perft/
 
@@ -23,7 +23,7 @@ function Engine.GetLegalMoves(fen)
 	return legalMoves
 end
 
-function Engine.GetBestMove(initialFen: string, moves, updateEval, aiMoveTime)
+function Engine.getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
 	local result: string?
 	WASM.setListener(function(output)
 		print(output)

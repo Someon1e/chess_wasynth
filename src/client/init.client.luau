@@ -1,191 +1,15 @@
 --!strict
+
 local Config = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("config"))
 local Engine = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("engine"))
 local Notation = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("notation"))
+local Board = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("board"))
 
 -- Only used because the type checker is wrong
 local unneeded_assert = assert
 
 local UserInputService = game:GetService("UserInputService")
 local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-
-type boardState = {
-	board: buffer,
-	whiteToPlay: boolean,
-
-	whiteCanCastleKingSide: boolean,
-	whiteCanCastleQueenSide: boolean,
-
-	blackCanCastleKingSide: boolean,
-	blackCanCastleQueenSide: boolean,
-
-	enPassantSquare: number?,
-
-	halfMoveClock: number,
-	fullMoveCounter: number,
-}
-
---[[
-	FEN (Forsynth Edward's Notation) is a string that describes a chess position
-	https://chessprogrammingwiki.netlify.app/forsythedwards_notation/
-]]
-local function fromFEN(fen): boardState
-	local sections = string.split(fen, " ")
-	local position = sections[1]
-
-	local board = buffer.create(64)
-
-	local file = 0
-	local rank = 7
-	local index = 0
-
-	while true do
-		index += 1
-		local character = string.sub(position, index, index)
-		local pieceEnum = Config.PIECE_NAME_TO_ENUM[character]
-		if pieceEnum then
-			buffer.writeu8(board, file + rank * 8, pieceEnum)
-			file += 1
-		elseif character == "8" then
-			file += 8
-		elseif character == "4" then
-			file += 4
-		elseif character == "3" then
-			file += 3
-		elseif character == "1" then
-			file += 1
-		elseif character == "2" then
-			file += 2
-		elseif character == "7" then
-			file += 7
-		elseif character == "5" then
-			file += 5
-		elseif character == "6" then
-			file += 6
-		elseif character ~= "/" then
-			error("Invalid position")
-		end
-		if file == 8 then
-			if rank == 0 then
-				break
-			end
-			rank -= 1
-			file = 0
-		end
-	end
-
-	local whiteCanCastleKingSide, whiteCanCastleQueenSide = false, false
-	local blackCanCastleKingSide, blackCanCastleQueenSide = false, false
-
-	local whiteToPlay = sections[2] == "w"
-
-	local castling = sections[3]
-	if string.find(castling, "K") then
-		whiteCanCastleKingSide = true
-	end
-	if string.find(castling, "k") then
-		blackCanCastleKingSide = true
-	end
-	if string.find(castling, "Q") then
-		whiteCanCastleQueenSide = true
-	end
-	if string.find(castling, "q") then
-		blackCanCastleQueenSide = true
-	end
-
-	local enPassantSquare
-	local enPassant = sections[4]
-	if enPassant ~= "-" then
-		enPassantSquare = Notation.SQUARE_NAME_TO_NUMBER[enPassant]
-	end
-
-	local halfMoveClock = tonumber(sections[5])
-	local fullMoveCounter = tonumber(sections[6])
-
-	return {
-		board = board,
-		whiteToPlay = whiteToPlay,
-
-		whiteCanCastleKingSide = whiteCanCastleKingSide,
-		whiteCanCastleQueenSide = whiteCanCastleQueenSide,
-
-		blackCanCastleKingSide = blackCanCastleKingSide,
-		blackCanCastleQueenSide = blackCanCastleQueenSide,
-
-		enPassantSquare = enPassantSquare,
-
-		halfMoveClock = halfMoveClock or 0,
-		fullMoveCounter = fullMoveCounter or 1,
-	}
-end
-
-local function toFEN(state: boardState)
-	local result: { string | number } = table.create(87)
-
-	for y = 7, 0, -1 do
-		local empty = 0
-		for x = 0, 7 do
-			local piece = buffer.readu8(state.board, x + y * 8)
-			if piece ~= 0 then
-				if empty ~= 0 then
-					table.insert(result, empty)
-					empty = 0
-				end
-				table.insert(result, Config.PIECE_ENUM_TO_NAME[piece])
-			else
-				empty += 1
-			end
-		end
-		if empty ~= 0 then
-			table.insert(result, empty)
-		end
-		if y ~= 0 then
-			table.insert(result, "/")
-		end
-	end
-
-	if state.whiteToPlay then
-		table.insert(result, " w ")
-	else
-		table.insert(result, " b ")
-	end
-
-	if
-		state.whiteCanCastleKingSide
-		or state.whiteCanCastleQueenSide
-		or state.blackCanCastleKingSide
-		or state.blackCanCastleQueenSide
-	then
-		if state.whiteCanCastleKingSide then
-			table.insert(result, "K")
-		end
-		if state.whiteCanCastleQueenSide then
-			table.insert(result, "Q")
-		end
-		if state.blackCanCastleKingSide then
-			table.insert(result, "k")
-		end
-		if state.blackCanCastleQueenSide then
-			table.insert(result, "q")
-		end
-	else
-		table.insert(result, "-")
-	end
-
-	if state.enPassantSquare then
-		table.insert(result, " " .. Notation.SQUARE_NUMBER_TO_NAME[state.enPassantSquare] .. " ")
-	else
-		table.insert(result, " - ")
-	end
-
-	table.insert(result, state.halfMoveClock)
-
-	table.insert(result, " ")
-
-	table.insert(result, state.fullMoveCounter)
-
-	return table.concat(result)
-end
 
 local function constrain(object, aspectRatio)
 	local constraint = Instance.new("UIAspectRatioConstraint")
@@ -286,10 +110,10 @@ local function waitForRender()
 end
 
 local function makeGui(initialFen)
-	local state = fromFEN(initialFen)
+	local state = Board.fromFEN(initialFen)
 	local moveHistory = {}
 	local stateHistory = {}
-	local legalMoves = Engine.GetLegalMoves(toFEN(state))
+	local legalMoves = Engine.getLegalMoves(Board.toFEN(state))
 
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "Chess"
@@ -335,7 +159,7 @@ local function makeGui(initialFen)
 	constrain(fenBox, 4)
 
 	fenBox.FocusLost:Connect(function()
-		local isValid, newState = pcall(fromFEN, fenBox.Text)
+		local isValid, newState = pcall(Board.fromFEN, fenBox.Text)
 		if not isValid then
 			warn("Invalid FEN")
 			fenBox.Text = initialFen
@@ -343,11 +167,11 @@ local function makeGui(initialFen)
 		end
 		evalBar.Visible = false
 		state = newState
-		initialFen = toFEN(state)
+		initialFen = Board.toFEN(state)
 		fenBox.Text = initialFen
 		table.clear(moveHistory)
 		table.clear(stateHistory)
-		legalMoves = Engine.GetLegalMoves(toFEN(state))
+		legalMoves = Engine.getLegalMoves(Board.toFEN(state))
 		for square, label in labels do
 			local piece = buffer.readu8(state.board, square)
 			label.Image = Config.PIECE_TEXTURES[piece] or ""
@@ -427,16 +251,16 @@ local function makeGui(initialFen)
 		local movingPiece = buffer.readu8(state.board, squareMoveFrom)
 		assert(movingPiece ~= 0)
 
-		if movingPiece == Config.WHITE_KING or squareMoveFrom == 0 or squareMoveTo == 0 then
+		if movingPiece == Notation.WHITE_KING or squareMoveFrom == 0 or squareMoveTo == 0 then
 			state.whiteCanCastleQueenSide = false
 		end
-		if movingPiece == Config.WHITE_KING or squareMoveFrom == 7 or squareMoveTo == 7 then
+		if movingPiece == Notation.WHITE_KING or squareMoveFrom == 7 or squareMoveTo == 7 then
 			state.whiteCanCastleKingSide = false
 		end
-		if movingPiece == Config.BLACK_KING or squareMoveFrom == 56 or squareMoveTo == 56 then
+		if movingPiece == Notation.BLACK_KING or squareMoveFrom == 56 or squareMoveTo == 56 then
 			state.blackCanCastleQueenSide = false
 		end
-		if movingPiece == Config.BLACK_KING or squareMoveFrom == 63 or squareMoveTo == 63 then
+		if movingPiece == Notation.BLACK_KING or squareMoveFrom == 63 or squareMoveTo == 63 then
 			state.blackCanCastleKingSide = false
 		end
 
@@ -446,7 +270,7 @@ local function makeGui(initialFen)
 
 		teleportPiece(squareMoveFrom, squareMoveTo)
 
-		if movingPiece == Config.WHITE_KING or movingPiece == Config.BLACK_KING then
+		if movingPiece == Notation.WHITE_KING or movingPiece == Notation.BLACK_KING then
 			local fileDistance = math.abs(squareFile(squareMoveFrom) - squareFile(squareMoveTo))
 			local isCastle = fileDistance == 2
 			if isCastle then
@@ -457,7 +281,7 @@ local function makeGui(initialFen)
 				local rookTo = squareMoveTo + rookToOffset
 				teleportPiece(rookFrom, rookTo)
 			end
-		elseif movingPiece == Config.WHITE_PAWN or movingPiece == Config.BLACK_PAWN then
+		elseif movingPiece == Notation.WHITE_PAWN or movingPiece == Notation.BLACK_PAWN then
 			local promotion = string.sub(moveNotation, 5, 5)
 			if promotion ~= "" then
 				local promotionIncrease = assert(({
@@ -471,19 +295,19 @@ local function makeGui(initialFen)
 			else
 				local rankDistance = math.abs(squareRank(squareMoveFrom) - squareRank(squareMoveTo))
 				if rankDistance == 2 then
-					state.enPassantSquare = squareMoveFrom + (if movingPiece == Config.WHITE_PAWN then 8 else -8)
+					state.enPassantSquare = squareMoveFrom + (if movingPiece == Notation.WHITE_PAWN then 8 else -8)
 				elseif squareMoveTo == oldEnPassantSquare then
-					local captureSquare = unneeded_assert(oldEnPassantSquare) - (if movingPiece == Config.WHITE_PAWN then 8 else -8)
+					local captureSquare = unneeded_assert(oldEnPassantSquare) - (if movingPiece == Notation.WHITE_PAWN then 8 else -8)
 					buffer.writeu8(state.board, captureSquare, 0)
 					labels[captureSquare].Image = ""
 				end
 			end
 		end
 
-		legalMoves = Engine.GetLegalMoves(toFEN(state))
+		legalMoves = Engine.getLegalMoves(Board.toFEN(state))
 		resetLabels()
 
-		fenBox.Text = toFEN(state)
+		fenBox.Text = Board.toFEN(state)
 	end
 
 	local undoButton = makeButton("Undo")
@@ -504,13 +328,13 @@ local function makeGui(initialFen)
 			local piece = buffer.readu8(state.board, square)
 			label.Image = Config.PIECE_TEXTURES[piece] or ""
 		end
-		legalMoves = Engine.GetLegalMoves(toFEN(state))
+		legalMoves = Engine.getLegalMoves(Board.toFEN(state))
 		resetLabels()
 	end)
 	undoButton.Parent = gui
 
 	local function getAIResponse()
-		return Engine.GetBestMove(initialFen, table.concat(moveHistory, " "), function(evaluation)
+		return Engine.getBestMove(initialFen, table.concat(moveHistory, " "), function(evaluation)
 			evalBar.Visible = true
 			local blackEvaluation = if state.whiteToPlay then -evaluation else evaluation
 			blackEvalFill.Size = UDim2.fromScale(1, 0.5 + blackEvaluation / 2000)
@@ -553,13 +377,13 @@ local function makeGui(initialFen)
 	local pieceColourOffset = if state.whiteToPlay then 6 else 0
 	for piece = 2 + pieceColourOffset, 5 + pieceColourOffset do
 		local button = Instance.new("ImageButton")
-		button.Name = Config.PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
+		button.Name = Notation.PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
 		button.Image = Config.PIECE_TEXTURES[piece]
 		button.Size = UDim2.fromScale(1 / 4, 1)
 		button.Position = UDim2.fromScale((piece - 2 - pieceColourOffset) / 4, 0)
 		button.Parent = promotionFrame
 
-		promotionButtons[button] = Config.PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
+		promotionButtons[button] = Notation.PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
 	end
 	constrain(promotionFrame, 4)
 	promotionFrame.Position = UDim2.fromScale(0.03, 0.3)
