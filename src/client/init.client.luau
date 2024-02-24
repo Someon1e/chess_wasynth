@@ -1,6 +1,6 @@
 --!strict
 local Config = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("config"))
-local WASM = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("engine"):WaitForChild("wasm"))
+local Engine = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("engine"))
 
 local FILE_NUMBER_TO_NAME = buffer.fromstring("abcdefgh")
 
@@ -207,48 +207,6 @@ local function toFEN(state: boardState)
 	return table.concat(result)
 end
 
-local function getLegalMoves(state)
-	-- Use perft to get legal moves
-	-- https://chessprogrammingwiki.netlify.app/perft/
-
-	local legalMoves: { string } = {}
-	WASM.setListener(function(output)
-		local prefix = string.match(output, "(.+):")
-		if prefix == "Nodes searched" then
-			WASM.setListener(print)
-		elseif prefix then
-			table.insert(legalMoves, prefix)
-		end
-	end)
-	WASM.sendInput("position fen " .. toFEN(state))
-	WASM.sendInput("go perft 1")
-
-	return legalMoves
-end
-
-local function getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
-	local result: string?
-	WASM.setListener(function(output)
-		print(output)
-
-		local move = string.match(output, "bestmove (.+)")
-		if move then
-			result = if move == "a1a1" then nil else move
-			WASM.setListener(print)
-		else
-			local eval = tonumber(string.match(output, "cp ([^ ]+)"))
-			if not eval then
-				return
-			end
-			updateEval(eval)
-		end
-	end)
-	WASM.sendInput("position fen " .. initialFen .. " moves " .. moves)
-	WASM.sendInput("go movetime " .. tostring(aiMoveTime))
-
-	return result
-end
-
 local function constrain(object, aspectRatio)
 	local constraint = Instance.new("UIAspectRatioConstraint")
 	constraint.AspectRatio = aspectRatio
@@ -351,7 +309,7 @@ local function makeGui(initialFen)
 	local state = fromFEN(initialFen)
 	local moveHistory = {}
 	local stateHistory = {}
-	local legalMoves = getLegalMoves(state)
+	local legalMoves = Engine.GetLegalMoves(toFEN(state))
 
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "Chess"
@@ -409,7 +367,7 @@ local function makeGui(initialFen)
 		fenBox.Text = initialFen
 		table.clear(moveHistory)
 		table.clear(stateHistory)
-		legalMoves = getLegalMoves(state)
+		legalMoves = Engine.GetLegalMoves(toFEN(state))
 		for square, label in labels do
 			local piece = buffer.readu8(state.board, square)
 			label.Image = Config.PIECE_TEXTURES[piece] or ""
@@ -542,7 +500,7 @@ local function makeGui(initialFen)
 			end
 		end
 
-		legalMoves = getLegalMoves(state)
+		legalMoves = Engine.GetLegalMoves(toFEN(state))
 		resetLabels()
 
 		fenBox.Text = toFEN(state)
@@ -566,13 +524,13 @@ local function makeGui(initialFen)
 			local piece = buffer.readu8(state.board, square)
 			label.Image = Config.PIECE_TEXTURES[piece] or ""
 		end
-		legalMoves = getLegalMoves(state)
+		legalMoves = Engine.GetLegalMoves(toFEN(state))
 		resetLabels()
 	end)
 	undoButton.Parent = gui
 
 	local function getAIResponse()
-		return getBestMove(initialFen, table.concat(moveHistory, " "), function(evaluation)
+		return Engine.GetBestMove(initialFen, table.concat(moveHistory, " "), function(evaluation)
 			evalBar.Visible = true
 			local blackEvaluation = if state.whiteToPlay then -evaluation else evaluation
 			blackEvalFill.Size = UDim2.fromScale(1, 0.5 + blackEvaluation / 2000)
