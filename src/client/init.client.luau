@@ -1,27 +1,7 @@
 --!strict
 local Config = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("config"))
-local Engine = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("engine"))
-
-local FILE_NUMBER_TO_NAME = buffer.fromstring("abcdefgh")
-
-local SQUARE_NUMBER_TO_NAME = table.create(63)
-local SQUARE_NAME_TO_NUMBER = {}
-for x = 0, 7 do
-	for y = 0, 7 do
-		local name = buffer.readstring(FILE_NUMBER_TO_NAME, x, 1) .. y + 1
-		SQUARE_NUMBER_TO_NAME[x + y * 8] = name
-		SQUARE_NAME_TO_NUMBER[name] = x + y * 8
-	end
-end
-
--- UCI (Universal Chess Interface) is a protocol for communciation between the engine and gui
--- https://chessprogrammingwiki.netlify.app/uci/
-local function uciFrom(uciNotation)
-	return SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 1, 2)]
-end
-local function uciTo(uciNotation)
-	return SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 3, 4)]
-end
+local Engine = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("engine"))
+local Notation = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("notation"))
 
 -- Only used because the type checker is wrong
 local unneeded_assert = assert
@@ -116,7 +96,7 @@ local function fromFEN(fen): boardState
 	local enPassantSquare
 	local enPassant = sections[4]
 	if enPassant ~= "-" then
-		enPassantSquare = SQUARE_NAME_TO_NUMBER[enPassant]
+		enPassantSquare = Notation.SQUARE_NAME_TO_NUMBER[enPassant]
 	end
 
 	local halfMoveClock = tonumber(sections[5])
@@ -193,7 +173,7 @@ local function toFEN(state: boardState)
 	end
 
 	if state.enPassantSquare then
-		table.insert(result, " " .. SQUARE_NUMBER_TO_NAME[state.enPassantSquare] .. " ")
+		table.insert(result, " " .. Notation.SQUARE_NUMBER_TO_NAME[state.enPassantSquare] .. " ")
 	else
 		table.insert(result, " - ")
 	end
@@ -239,7 +219,7 @@ local function makeSquareGui(boardFrame, state)
 			local label = Instance.new("ImageLabel")
 
 			label.LayoutOrder = y * 8 + x
-			label.Name = SQUARE_NUMBER_TO_NAME[x + y * 8]
+			label.Name = Notation.SQUARE_NUMBER_TO_NAME[x + y * 8]
 			label.BackgroundColor3 = if (y + x) % 2 == 0 then Config.LIGHT_SQUARE_COLOUR else Config.DARK_SQUARE_COLOUR
 
 			local piece = buffer.readu8(state.board, x + y * 8)
@@ -250,7 +230,7 @@ local function makeSquareGui(boardFrame, state)
 
 			local corner = Instance.new("TextLabel")
 			corner.ZIndex = 2
-			corner.Text = SQUARE_NUMBER_TO_NAME[x + y * 8]
+			corner.Text = Notation.SQUARE_NUMBER_TO_NAME[x + y * 8]
 			corner.TextScaled = true
 			corner.Size = UDim2.fromScale(0.2, 0.2)
 			corner.Position = UDim2.fromScale(0.7, 0.8)
@@ -415,12 +395,12 @@ local function makeGui(initialFen)
 
 	local function highlightLegalMoves(from)
 		for _, legalMove in legalMoves do
-			local legalMoveFrom = uciFrom(legalMove)
+			local legalMoveFrom = Notation.UciFrom(legalMove)
 			if legalMoveFrom ~= from then
 				continue
 			end
 
-			local legalMoveTo = uciTo(legalMove)
+			local legalMoveTo = Notation.UciTo(legalMove)
 			labels[legalMoveTo].BackgroundColor3 = if buffer.readu8(state.board, legalMoveTo) ~= 0
 				then Config.CAN_CAPTURE_SQUARE_COLOUR
 				else Config.CAN_MOVE_TO_SQUARE_COLOUR
@@ -441,8 +421,8 @@ local function makeGui(initialFen)
 		local oldEnPassantSquare = state.enPassantSquare
 		state.enPassantSquare = nil
 
-		local squareMoveFrom = uciFrom(moveNotation)
-		local squareMoveTo = uciTo(moveNotation)
+		local squareMoveFrom = Notation.UciFrom(moveNotation)
+		local squareMoveTo = Notation.UciTo(moveNotation)
 
 		local movingPiece = buffer.readu8(state.board, squareMoveFrom)
 		assert(movingPiece ~= 0)
@@ -589,12 +569,12 @@ local function makeGui(initialFen)
 
 	local function tryAskPromotion(squareMoveTo)
 		for _, legalMove in legalMoves do
-			local legalMoveFrom = uciFrom(legalMove)
+			local legalMoveFrom = Notation.UciFrom(legalMove)
 			if legalMoveFrom ~= squareMoveFrom then
 				continue
 			end
 
-			local legalMoveTo = uciTo(legalMove)
+			local legalMoveTo = Notation.UciTo(legalMove)
 			if legalMoveTo ~= squareMoveTo then
 				continue
 			end
@@ -629,7 +609,7 @@ local function makeGui(initialFen)
 			return
 		end
 
-		local notation = SQUARE_NUMBER_TO_NAME[unneeded_assert(squareMoveFrom)] .. SQUARE_NUMBER_TO_NAME[squareMoveTo]
+		local notation = Notation.SQUARE_NUMBER_TO_NAME[unneeded_assert(squareMoveFrom)] .. Notation.SQUARE_NUMBER_TO_NAME[squareMoveTo]
 		local isPromotionRank = buffer.readu8(state.board, unneeded_assert(squareMoveFrom)) == 1 + pieceColourOffset
 			and (squareRank(squareMoveTo) == 0 or squareRank(squareMoveTo) == 7)
 		if isPromotionRank then
