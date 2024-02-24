@@ -1,5 +1,6 @@
 --!strict
 local Config = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("config"))
+local WASM = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("engine"):WaitForChild("wasm"))
 
 local FILE_NUMBER_TO_NAME = buffer.fromstring("abcdefgh")
 
@@ -20,35 +21,6 @@ local function uciFrom(uciNotation)
 end
 local function uciTo(uciNotation)
 	return SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 3, 4)]
-end
-
-local line = {}
-
-local messageListener: (string) -> ...any? = print
-
-local rust = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("engine"):WaitForChild("wasm"))({
-	env = {
-		func_list = {
-			time = os.clock,
-			print_char = function(byte)
-				local character = string.char(byte)
-				if character == "\n" then
-					messageListener(table.concat(line))
-					table.clear(line)
-					return
-				end
-				table.insert(line, character)
-			end,
-		},
-	},
-})
-
-local function sendInput(input)
-	for i = 1, #input do
-		local character = string.byte(input, i, i)
-		rust.func_list.send_input(character)
-	end
-	rust.func_list.send_input(string.byte("\n"))
 end
 
 -- Only used because the type checker is wrong
@@ -240,29 +212,29 @@ local function getLegalMoves(state)
 	-- https://chessprogrammingwiki.netlify.app/perft/
 
 	local legalMoves: { string } = {}
-	messageListener = function(output)
+	WASM.setListener(function(output)
 		local prefix = string.match(output, "(.+):")
 		if prefix == "Nodes searched" then
-			messageListener = print
+			WASM.setListener(print)
 		elseif prefix then
 			table.insert(legalMoves, prefix)
 		end
-	end
-	sendInput("position fen " .. toFEN(state))
-	sendInput("go perft 1")
+	end)
+	WASM.sendInput("position fen " .. toFEN(state))
+	WASM.sendInput("go perft 1")
 
 	return legalMoves
 end
 
 local function getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
 	local result: string?
-	messageListener = function(output)
+	WASM.setListener(function(output)
 		print(output)
 
 		local move = string.match(output, "bestmove (.+)")
 		if move then
 			result = if move == "a1a1" then nil else move
-			messageListener = print
+			WASM.setListener(print)
 		else
 			local eval = tonumber(string.match(output, "cp ([^ ]+)"))
 			if not eval then
@@ -270,9 +242,9 @@ local function getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
 			end
 			updateEval(eval)
 		end
-	end
-	sendInput("position fen " .. initialFen .. " moves " .. moves)
-	sendInput("go movetime " .. tostring(aiMoveTime))
+	end)
+	WASM.sendInput("position fen " .. initialFen .. " moves " .. moves)
+	WASM.sendInput("go movetime " .. tostring(aiMoveTime))
 
 	return result
 end
