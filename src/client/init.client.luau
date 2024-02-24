@@ -1,62 +1,5 @@
 --!strict
-
-local DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS = 3000
-
-local LIGHT_SQUARE_COLOUR, DARK_SQUARE_COLOUR = Color3.fromRGB(234, 233, 210), Color3.fromRGB(75, 115, 153)
-
-local CAN_MOVE_TO_SQUARE_COLOUR = Color3.fromRGB(255, 85, 0)
-local CAN_CAPTURE_SQUARE_COLOUR = Color3.fromRGB(255, 0, 0)
-
-local WHITE_PAWN = 7
-local BLACK_PAWN = 1
-local WHITE_KING = 12
-local BLACK_KING = 6
-local PIECE_TEXTURES = {
-	[BLACK_PAWN] = "rbxassetid://7079123026",
-	[2] = "rbxassetid://7079118362",
-	[3] = "rbxassetid://7079123704",
-	[4] = "rbxassetid://7079124677",
-	[5] = "rbxassetid://7079118808",
-	[BLACK_KING] = "rbxassetid://7079124193",
-
-	[WHITE_PAWN] = "rbxassetid://7079118994",
-	[8] = "rbxassetid://7079116513",
-	[9] = "rbxassetid://7079123407",
-	[10] = "rbxassetid://7079124389",
-	[11] = "rbxassetid://7079118641",
-	[WHITE_KING] = "rbxassetid://7079123896",
-}
-
-local PIECE_ENUM_TO_NAME = {
-	[BLACK_PAWN] = "p",
-	[2] = "r",
-	[3] = "n",
-	[4] = "b",
-	[5] = "q",
-	[BLACK_KING] = "k",
-
-	[WHITE_PAWN] = "P",
-	[8] = "R",
-	[9] = "N",
-	[10] = "B",
-	[11] = "Q",
-	[WHITE_KING] = "K",
-}
-local PIECE_NAME_TO_ENUM = {
-	p = BLACK_PAWN,
-	r = 2,
-	n = 3,
-	b = 4,
-	q = 5,
-	k = BLACK_KING,
-
-	P = WHITE_PAWN,
-	R = 8,
-	N = 9,
-	B = 10,
-	Q = 11,
-	K = WHITE_KING,
-}
+local Config = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("config"))
 
 local FILE_NUMBER_TO_NAME = buffer.fromstring("abcdefgh")
 
@@ -147,7 +90,7 @@ local function fromFEN(fen): boardState
 	while true do
 		index += 1
 		local character = string.sub(position, index, index)
-		local pieceEnum = PIECE_NAME_TO_ENUM[character]
+		local pieceEnum = Config.PIECE_NAME_TO_ENUM[character]
 		if pieceEnum then
 			buffer.writeu8(board, file + rank * 8, pieceEnum)
 			file += 1
@@ -236,7 +179,7 @@ local function toFEN(state: boardState)
 					table.insert(result, empty)
 					empty = 0
 				end
-				table.insert(result, PIECE_ENUM_TO_NAME[piece])
+				table.insert(result, Config.PIECE_ENUM_TO_NAME[piece])
 			else
 				empty += 1
 			end
@@ -367,11 +310,11 @@ local function makeSquareGui(boardFrame, state)
 
 			label.LayoutOrder = y * 8 + x
 			label.Name = SQUARE_NUMBER_TO_NAME[x + y * 8]
-			label.BackgroundColor3 = if (y + x) % 2 == 0 then LIGHT_SQUARE_COLOUR else DARK_SQUARE_COLOUR
+			label.BackgroundColor3 = if (y + x) % 2 == 0 then Config.LIGHT_SQUARE_COLOUR else Config.DARK_SQUARE_COLOUR
 
 			local piece = buffer.readu8(state.board, x + y * 8)
 			label.Active = piece ~= 0
-			label.Image = PIECE_TEXTURES[piece] or ""
+			label.Image = Config.PIECE_TEXTURES[piece] or ""
 
 			label.BorderSizePixel = 0
 
@@ -448,7 +391,7 @@ local function makeGui(initialFen)
 		for y = 7, 0, -1 do
 			for x = 0, 7 do
 				local label = labels[x + y * 8]
-				label.BackgroundColor3 = if (y + x) % 2 == 0 then LIGHT_SQUARE_COLOUR else DARK_SQUARE_COLOUR
+				label.BackgroundColor3 = if (y + x) % 2 == 0 then Config.LIGHT_SQUARE_COLOUR else Config.DARK_SQUARE_COLOUR
 				label.Active = buffer.readu8(state.board, x + y * 8) ~= 0
 			end
 		end
@@ -497,13 +440,13 @@ local function makeGui(initialFen)
 		legalMoves = getLegalMoves(state)
 		for square, label in labels do
 			local piece = buffer.readu8(state.board, square)
-			label.Image = PIECE_TEXTURES[piece] or ""
+			label.Image = Config.PIECE_TEXTURES[piece] or ""
 		end
 		resetLabels()
 	end)
 	fenBox.Parent = gui
 
-	local aiMoveTimeInMilliseconds = DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS
+	local aiMoveTimeInMilliseconds = Config.DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS
 
 	local aiMoveTimeBox = Instance.new("TextBox")
 	aiMoveTimeBox.Name = "AIMoveTime"
@@ -549,8 +492,8 @@ local function makeGui(initialFen)
 
 			local legalMoveTo = uciTo(legalMove)
 			labels[legalMoveTo].BackgroundColor3 = if buffer.readu8(state.board, legalMoveTo) ~= 0
-				then CAN_CAPTURE_SQUARE_COLOUR
-				else CAN_MOVE_TO_SQUARE_COLOUR
+				then Config.CAN_CAPTURE_SQUARE_COLOUR
+				else Config.CAN_MOVE_TO_SQUARE_COLOUR
 			labels[legalMoveTo].Active = true
 		end
 	end
@@ -574,16 +517,16 @@ local function makeGui(initialFen)
 		local movingPiece = buffer.readu8(state.board, squareMoveFrom)
 		assert(movingPiece ~= 0)
 
-		if movingPiece == WHITE_KING or squareMoveFrom == 0 or squareMoveTo == 0 then
+		if movingPiece == Config.WHITE_KING or squareMoveFrom == 0 or squareMoveTo == 0 then
 			state.whiteCanCastleQueenSide = false
 		end
-		if movingPiece == WHITE_KING or squareMoveFrom == 7 or squareMoveTo == 7 then
+		if movingPiece == Config.WHITE_KING or squareMoveFrom == 7 or squareMoveTo == 7 then
 			state.whiteCanCastleKingSide = false
 		end
-		if movingPiece == BLACK_KING or squareMoveFrom == 56 or squareMoveTo == 56 then
+		if movingPiece == Config.BLACK_KING or squareMoveFrom == 56 or squareMoveTo == 56 then
 			state.blackCanCastleQueenSide = false
 		end
-		if movingPiece == BLACK_KING or squareMoveFrom == 63 or squareMoveTo == 63 then
+		if movingPiece == Config.BLACK_KING or squareMoveFrom == 63 or squareMoveTo == 63 then
 			state.blackCanCastleKingSide = false
 		end
 
@@ -593,7 +536,7 @@ local function makeGui(initialFen)
 
 		teleportPiece(squareMoveFrom, squareMoveTo)
 
-		if movingPiece == WHITE_KING or movingPiece == BLACK_KING then
+		if movingPiece == Config.WHITE_KING or movingPiece == Config.BLACK_KING then
 			local fileDistance = math.abs(squareFile(squareMoveFrom) - squareFile(squareMoveTo))
 			local isCastle = fileDistance == 2
 			if isCastle then
@@ -604,7 +547,7 @@ local function makeGui(initialFen)
 				local rookTo = squareMoveTo + rookToOffset
 				teleportPiece(rookFrom, rookTo)
 			end
-		elseif movingPiece == WHITE_PAWN or movingPiece == BLACK_PAWN then
+		elseif movingPiece == Config.WHITE_PAWN or movingPiece == Config.BLACK_PAWN then
 			local promotion = string.sub(moveNotation, 5, 5)
 			if promotion ~= "" then
 				local promotionIncrease = assert(({
@@ -614,13 +557,13 @@ local function makeGui(initialFen)
 					q = 4,
 				})[promotion])
 				buffer.writeu8(state.board, squareMoveTo, movingPiece + promotionIncrease)
-				labels[squareMoveTo].Image = PIECE_TEXTURES[movingPiece + promotionIncrease]
+				labels[squareMoveTo].Image = Config.PIECE_TEXTURES[movingPiece + promotionIncrease]
 			else
 				local rankDistance = math.abs(squareRank(squareMoveFrom) - squareRank(squareMoveTo))
 				if rankDistance == 2 then
-					state.enPassantSquare = squareMoveFrom + (if movingPiece == WHITE_PAWN then 8 else -8)
+					state.enPassantSquare = squareMoveFrom + (if movingPiece == Config.WHITE_PAWN then 8 else -8)
 				elseif squareMoveTo == oldEnPassantSquare then
-					local captureSquare = unneeded_assert(oldEnPassantSquare) - (if movingPiece == WHITE_PAWN then 8 else -8)
+					local captureSquare = unneeded_assert(oldEnPassantSquare) - (if movingPiece == Config.WHITE_PAWN then 8 else -8)
 					buffer.writeu8(state.board, captureSquare, 0)
 					labels[captureSquare].Image = ""
 				end
@@ -649,7 +592,7 @@ local function makeGui(initialFen)
 		table.remove(moveHistory)
 		for square, label in labels do
 			local piece = buffer.readu8(state.board, square)
-			label.Image = PIECE_TEXTURES[piece] or ""
+			label.Image = Config.PIECE_TEXTURES[piece] or ""
 		end
 		legalMoves = getLegalMoves(state)
 		resetLabels()
@@ -700,13 +643,13 @@ local function makeGui(initialFen)
 	local pieceColourOffset = if state.whiteToPlay then 6 else 0
 	for piece = 2 + pieceColourOffset, 5 + pieceColourOffset do
 		local button = Instance.new("ImageButton")
-		button.Name = PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
-		button.Image = PIECE_TEXTURES[piece]
+		button.Name = Config.PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
+		button.Image = Config.PIECE_TEXTURES[piece]
 		button.Size = UDim2.fromScale(1 / 4, 1)
 		button.Position = UDim2.fromScale((piece - 2 - pieceColourOffset) / 4, 0)
 		button.Parent = promotionFrame
 
-		promotionButtons[button] = PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
+		promotionButtons[button] = Config.PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
 	end
 	constrain(promotionFrame, 4)
 	promotionFrame.Position = UDim2.fromScale(0.03, 0.3)
