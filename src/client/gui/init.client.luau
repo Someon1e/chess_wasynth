@@ -1,6 +1,6 @@
 --!strict
 
-local Config = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("config"))
+local Config = require(script:WaitForChild("config"))
 local Engine = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("engine"))
 local Notation = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("notation"))
 local Board = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("board"))

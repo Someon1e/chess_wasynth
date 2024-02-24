@@ -2,7 +2,7 @@
 
 local Config = {}
 
-local Notation = require(script.Parent:WaitForChild("chess"):WaitForChild("notation"))
+local Notation = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("notation"))
 
 Config.DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS = 3000
 
