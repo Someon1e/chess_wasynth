@@ -1,6 +1,6 @@
 --!strict
 
-local WASM = script:WaitForChild("wasm")
+local WASM = require(script:WaitForChild("wasm"))
 
 local Engine = {}
 
