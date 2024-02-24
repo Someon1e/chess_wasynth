@@ -2,6 +2,9 @@ local Board = {}
 
 local Notation = require(script.Parent:WaitForChild("notation"))
 
+-- Only used because the type checker is wrong
+local unneeded_assert = assert
+
 type boardState = {
 	board: buffer,
 	whiteToPlay: boolean,
@@ -178,6 +181,76 @@ function Board.toFEN(state: boardState)
 	table.insert(result, state.fullMoveCounter)
 
 	return table.concat(result)
+end
+
+function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, onEnPassant)
+	local function teleportPiece(squareMoveFrom, squareMoveTo)
+		buffer.writeu8(state.board, squareMoveTo, buffer.readu8(state.board, squareMoveFrom))
+		buffer.writeu8(state.board, squareMoveFrom, 0)
+
+		onMove(squareMoveFrom, squareMoveTo)
+	end
+
+	local oldEnPassantSquare = state.enPassantSquare
+	state.enPassantSquare = nil
+
+	local squareMoveFrom = Notation.uciFrom(moveNotation)
+	local squareMoveTo = Notation.uciTo(moveNotation)
+
+	local movingPiece = buffer.readu8(state.board, squareMoveFrom)
+	assert(movingPiece ~= 0)
+
+	if movingPiece == Notation.WHITE_KING or squareMoveFrom == 0 or squareMoveTo == 0 then
+		state.whiteCanCastleQueenSide = false
+	end
+	if movingPiece == Notation.WHITE_KING or squareMoveFrom == 7 or squareMoveTo == 7 then
+		state.whiteCanCastleKingSide = false
+	end
+	if movingPiece == Notation.BLACK_KING or squareMoveFrom == 56 or squareMoveTo == 56 then
+		state.blackCanCastleQueenSide = false
+	end
+	if movingPiece == Notation.BLACK_KING or squareMoveFrom == 63 or squareMoveTo == 63 then
+		state.blackCanCastleKingSide = false
+	end
+
+	state.whiteToPlay = not state.whiteToPlay
+
+	teleportPiece(squareMoveFrom, squareMoveTo)
+
+	if movingPiece == Notation.WHITE_KING or movingPiece == Notation.BLACK_KING then
+		local fileDistance = math.abs(Notation.squareFile(squareMoveFrom) - Notation.squareFile(squareMoveTo))
+		local isCastle = fileDistance == 2
+		if isCastle then
+			local isKingSide = Notation.squareFile(squareMoveTo) == 6
+			local rookToOffset = if isKingSide then -1 else 1
+			local rookFromOffset = if isKingSide then 1 else -2
+			local rookFrom = squareMoveTo + rookFromOffset
+			local rookTo = squareMoveTo + rookToOffset
+			teleportPiece(rookFrom, rookTo)
+		end
+	elseif movingPiece == Notation.WHITE_PAWN or movingPiece == Notation.BLACK_PAWN then
+		local promotion = string.sub(moveNotation, 5, 5)
+		if promotion ~= "" then
+			local promotionIncrease = assert(({
+				r = 1,
+				n = 2,
+				b = 3,
+				q = 4,
+			})[promotion])
+			buffer.writeu8(state.board, squareMoveTo, movingPiece + promotionIncrease)
+			onPromotion(squareMoveTo, movingPiece + promotionIncrease)
+		else
+			local rankDistance = math.abs(Notation.squareRank(squareMoveFrom) - Notation.squareRank(squareMoveTo))
+			if rankDistance == 2 then
+				state.enPassantSquare = squareMoveFrom + (if movingPiece == Notation.WHITE_PAWN then 8 else -8)
+			elseif squareMoveTo == oldEnPassantSquare then
+				local captureSquare = unneeded_assert(oldEnPassantSquare)
+					- (if movingPiece == Notation.WHITE_PAWN then 8 else -8)
+				buffer.writeu8(state.board, captureSquare, 0)
+				onEnPassant(captureSquare)
+			end
+		end
+	end
 end
 
 return Board

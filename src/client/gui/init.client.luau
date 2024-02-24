@@ -1,9 +1,12 @@
 --!strict
 
 local Config = require(script:WaitForChild("config"))
-local Engine = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("engine"))
-local Notation = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("notation"))
-local Board = require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("board"))
+local Engine =
+	require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("engine"))
+local Notation =
+	require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("notation"))
+local Board =
+	require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("board"))
 
 -- Only used because the type checker is wrong
 local unneeded_assert = assert
@@ -118,7 +121,9 @@ local function makeGui(initialFen)
 		for y = 7, 0, -1 do
 			for x = 0, 7 do
 				local label = labels[x + y * 8]
-				label.BackgroundColor3 = if (y + x) % 2 == 0 then Config.LIGHT_SQUARE_COLOUR else Config.DARK_SQUARE_COLOUR
+				label.BackgroundColor3 = if (y + x) % 2 == 0
+					then Config.LIGHT_SQUARE_COLOUR
+					else Config.DARK_SQUARE_COLOUR
 				label.Active = buffer.readu8(state.board, x + y * 8) ~= 0
 			end
 		end
@@ -227,75 +232,17 @@ local function makeGui(initialFen)
 
 	local squareMoveFrom: number?
 
-	local function teleportPiece(squareMoveFrom, squareMoveTo)
-		buffer.writeu8(state.board, squareMoveTo, buffer.readu8(state.board, squareMoveFrom))
-		labels[squareMoveTo].Image = labels[squareMoveFrom].Image
-
-		buffer.writeu8(state.board, squareMoveFrom, 0)
-		labels[squareMoveFrom].Image = ""
-	end
 	local function playMove(moveNotation)
-		local oldEnPassantSquare = state.enPassantSquare
-		state.enPassantSquare = nil
-
-		local squareMoveFrom = Notation.uciFrom(moveNotation)
-		local squareMoveTo = Notation.uciTo(moveNotation)
-
-		local movingPiece = buffer.readu8(state.board, squareMoveFrom)
-		assert(movingPiece ~= 0)
-
-		if movingPiece == Notation.WHITE_KING or squareMoveFrom == 0 or squareMoveTo == 0 then
-			state.whiteCanCastleQueenSide = false
-		end
-		if movingPiece == Notation.WHITE_KING or squareMoveFrom == 7 or squareMoveTo == 7 then
-			state.whiteCanCastleKingSide = false
-		end
-		if movingPiece == Notation.BLACK_KING or squareMoveFrom == 56 or squareMoveTo == 56 then
-			state.blackCanCastleQueenSide = false
-		end
-		if movingPiece == Notation.BLACK_KING or squareMoveFrom == 63 or squareMoveTo == 63 then
-			state.blackCanCastleKingSide = false
-		end
-
 		table.insert(moveHistory, moveNotation)
 
-		state.whiteToPlay = not state.whiteToPlay
-
-		teleportPiece(squareMoveFrom, squareMoveTo)
-
-		if movingPiece == Notation.WHITE_KING or movingPiece == Notation.BLACK_KING then
-			local fileDistance = math.abs(Notation.squareFile(squareMoveFrom) - Notation.squareFile(squareMoveTo))
-			local isCastle = fileDistance == 2
-			if isCastle then
-				local isKingSide = Notation.squareFile(squareMoveTo) == 6
-				local rookToOffset = if isKingSide then -1 else 1
-				local rookFromOffset = if isKingSide then 1 else -2
-				local rookFrom = squareMoveTo + rookFromOffset
-				local rookTo = squareMoveTo + rookToOffset
-				teleportPiece(rookFrom, rookTo)
-			end
-		elseif movingPiece == Notation.WHITE_PAWN or movingPiece == Notation.BLACK_PAWN then
-			local promotion = string.sub(moveNotation, 5, 5)
-			if promotion ~= "" then
-				local promotionIncrease = assert(({
-					r = 1,
-					n = 2,
-					b = 3,
-					q = 4,
-				})[promotion])
-				buffer.writeu8(state.board, squareMoveTo, movingPiece + promotionIncrease)
-				labels[squareMoveTo].Image = Config.PIECE_TEXTURES[movingPiece + promotionIncrease]
-			else
-				local rankDistance = math.abs(Notation.squareRank(squareMoveFrom) - Notation.squareRank(squareMoveTo))
-				if rankDistance == 2 then
-					state.enPassantSquare = squareMoveFrom + (if movingPiece == Notation.WHITE_PAWN then 8 else -8)
-				elseif squareMoveTo == oldEnPassantSquare then
-					local captureSquare = unneeded_assert(oldEnPassantSquare) - (if movingPiece == Notation.WHITE_PAWN then 8 else -8)
-					buffer.writeu8(state.board, captureSquare, 0)
-					labels[captureSquare].Image = ""
-				end
-			end
-		end
+		Board.makeMove(state, moveNotation, function(squareMoveFrom, squareMoveTo)
+			labels[squareMoveTo].Image = labels[squareMoveFrom].Image
+			labels[squareMoveFrom].Image = ""
+		end, function(promotionSquare, promoteInto)
+			labels[promotionSquare].Image = Config.PIECE_TEXTURES[promoteInto]
+		end, function(captureSquare)
+			labels[captureSquare].Image = ""
+		end)
 
 		legalMoves = Engine.getLegalMoves(Board.toFEN(state))
 		resetLabels()
@@ -426,7 +373,8 @@ local function makeGui(initialFen)
 			return
 		end
 
-		local notation = Notation.SQUARE_NUMBER_TO_NAME[unneeded_assert(squareMoveFrom)] .. Notation.SQUARE_NUMBER_TO_NAME[squareMoveTo]
+		local notation = Notation.SQUARE_NUMBER_TO_NAME[unneeded_assert(squareMoveFrom)]
+			.. Notation.SQUARE_NUMBER_TO_NAME[squareMoveTo]
 		local isPromotionRank = buffer.readu8(state.board, unneeded_assert(squareMoveFrom)) == 1 + pieceColourOffset
 			and (Notation.squareRank(squareMoveTo) == 0 or Notation.squareRank(squareMoveTo) == 7)
 		if isPromotionRank then

@@ -32,7 +32,7 @@ function WASM.sendInput(input)
 end
 
 function WASM.setListener(newMessageListener)
-    messageListener = newMessageListener
+	messageListener = newMessageListener
 end
 
 return WASM
