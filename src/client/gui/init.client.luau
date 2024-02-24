@@ -98,13 +98,6 @@ local function makeButton(name)
 	return button
 end
 
-local function squareRank(square: number)
-	return bit32.rshift(square, 3)
-end
-local function squareFile(square: number)
-	return bit32.band(square, 0b111)
-end
-
 local function waitForRender()
 	return task.wait() + task.wait() + task.wait()
 end
@@ -271,10 +264,10 @@ local function makeGui(initialFen)
 		teleportPiece(squareMoveFrom, squareMoveTo)
 
 		if movingPiece == Notation.WHITE_KING or movingPiece == Notation.BLACK_KING then
-			local fileDistance = math.abs(squareFile(squareMoveFrom) - squareFile(squareMoveTo))
+			local fileDistance = math.abs(Notation.squareFile(squareMoveFrom) - Notation.squareFile(squareMoveTo))
 			local isCastle = fileDistance == 2
 			if isCastle then
-				local isKingSide = squareFile(squareMoveTo) == 6
+				local isKingSide = Notation.squareFile(squareMoveTo) == 6
 				local rookToOffset = if isKingSide then -1 else 1
 				local rookFromOffset = if isKingSide then 1 else -2
 				local rookFrom = squareMoveTo + rookFromOffset
@@ -293,7 +286,7 @@ local function makeGui(initialFen)
 				buffer.writeu8(state.board, squareMoveTo, movingPiece + promotionIncrease)
 				labels[squareMoveTo].Image = Config.PIECE_TEXTURES[movingPiece + promotionIncrease]
 			else
-				local rankDistance = math.abs(squareRank(squareMoveFrom) - squareRank(squareMoveTo))
+				local rankDistance = math.abs(Notation.squareRank(squareMoveFrom) - Notation.squareRank(squareMoveTo))
 				if rankDistance == 2 then
 					state.enPassantSquare = squareMoveFrom + (if movingPiece == Notation.WHITE_PAWN then 8 else -8)
 				elseif squareMoveTo == oldEnPassantSquare then
@@ -435,7 +428,7 @@ local function makeGui(initialFen)
 
 		local notation = Notation.SQUARE_NUMBER_TO_NAME[unneeded_assert(squareMoveFrom)] .. Notation.SQUARE_NUMBER_TO_NAME[squareMoveTo]
 		local isPromotionRank = buffer.readu8(state.board, unneeded_assert(squareMoveFrom)) == 1 + pieceColourOffset
-			and (squareRank(squareMoveTo) == 0 or squareRank(squareMoveTo) == 7)
+			and (Notation.squareRank(squareMoveTo) == 0 or Notation.squareRank(squareMoveTo) == 7)
 		if isPromotionRank then
 			local promotion = tryAskPromotion(squareMoveTo)
 			if promotion then

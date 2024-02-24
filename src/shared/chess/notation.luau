@@ -22,6 +22,13 @@ function Notation.UciTo(uciNotation)
 	return Notation.SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 3, 4)]
 end
 
+function Notation.squareRank(square: number)
+	return bit32.rshift(square, 3)
+end
+function Notation.squareFile(square: number)
+	return bit32.band(square, 0b111)
+end
+
 Notation.BLACK_PAWN = 1
 Notation.BLACK_ROOK = 2
 Notation.BLACK_KNIGHT = 3
