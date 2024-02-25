@@ -2,12 +2,9 @@
 
 local Config = require(script:WaitForChild("config"))
 local chess = game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess")
-local Engine =
-	require(chess:WaitForChild("engine"))
-local Notation =
-	require(chess:WaitForChild("notation"))
-local Board =
-	require(chess:WaitForChild("board"))
+local Engine = require(chess:WaitForChild("engine"))
+local Notation = require(chess:WaitForChild("notation"))
+local Board = require(chess:WaitForChild("board"))
 
 local pieceMoveSound = Instance.new("Sound")
 pieceMoveSound.SoundId = Config.PIECE_MOVE_SOUND
@@ -276,13 +273,16 @@ local function makeGui(initialFen)
 	end)
 	undoButton.Parent = gui
 
+	local isAITurn = false
+
 	local function getAIResponse()
-		return Engine.getBestMove(initialFen, table.concat(moveHistory, " "), function(evaluation)
+		local result = Engine.getBestMove(initialFen, table.concat(moveHistory, " "), function(evaluation)
 			evalBar.Visible = true
 			local blackEvaluation = if state.whiteToPlay then -evaluation else evaluation
 			blackEvalFill.Size = UDim2.fromScale(1, 0.5 + blackEvaluation / 1800)
 			waitForRender()
 		end, aiMoveTimeInMilliseconds)
+		return result
 	end
 
 	local aiSelfPlayButton = makeButton("AISelfPlay")
@@ -291,6 +291,7 @@ local function makeGui(initialFen)
 	local aiSelfPlaying = false
 	aiSelfPlayButton.Activated:Connect(function()
 		aiSelfPlaying = not aiSelfPlaying
+		isAITurn = aiSelfPlaying
 		while aiSelfPlaying do
 			local move = getAIResponse()
 			if not move then
@@ -414,6 +415,7 @@ local function makeGui(initialFen)
 		playMove(notation)
 		waitForRender()
 
+		isAITurn = true
 		local response = getAIResponse()
 		if response then
 			playMove(response)
@@ -452,7 +454,7 @@ local function makeGui(initialFen)
 		draggedFrom = from
 	end
 	UserInputService.InputChanged:Connect(function(input)
-		if aiSelfPlaying then
+		if isAITurn then
 			return
 		end
 		if
@@ -466,7 +468,7 @@ local function makeGui(initialFen)
 		end
 	end)
 	UserInputService.InputBegan:Connect(function(input)
-		if aiSelfPlaying then
+		if isAITurn then
 			return
 		end
 		if
@@ -491,7 +493,7 @@ local function makeGui(initialFen)
 		end
 	end)
 	UserInputService.InputEnded:Connect(function(input)
-		if aiSelfPlaying then
+		if isAITurn then
 			return
 		end
 		if
