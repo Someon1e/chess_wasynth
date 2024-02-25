@@ -1,12 +1,13 @@
 --!strict
 
 local Config = require(script:WaitForChild("config"))
+local chess = game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess")
 local Engine =
-	require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("engine"))
+	require(chess:WaitForChild("engine"))
 local Notation =
-	require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("notation"))
+	require(chess:WaitForChild("notation"))
 local Board =
-	require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("board"))
+	require(chess:WaitForChild("board"))
 
 local pieceMoveSound = Instance.new("Sound")
 pieceMoveSound.SoundId = Config.PIECE_MOVE_SOUND
