@@ -444,7 +444,6 @@ local function makeGui(initialFen)
 	local function dragStart(position, from)
 		dragEnd()
 
-		resetLabels()
 		pieceDragImage.Image = from.Image
 		from.Image = ""
 
@@ -485,6 +484,7 @@ local function makeGui(initialFen)
 			dragStart(input.Position, label)
 
 			if hoveringSquare ~= squareMoveFrom then
+				resetLabels()
 				squareMoveFrom = hoveringSquare
 				highlightLegalMoves(squareMoveFrom)
 			end
