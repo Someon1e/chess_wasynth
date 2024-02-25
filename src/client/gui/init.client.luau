@@ -476,16 +476,17 @@ local function makeGui(initialFen)
 			return
 		end
 		local hoveringSquare, label = getHoveringSquare(input)
-		if not hoveringSquare then
+		if not hoveringSquare or not label then
 			return
 		end
 		local piece = buffer.readu8(state.board, hoveringSquare)
 		if piece ~= 0 and if state.whiteToPlay then piece > 6 else 7 > piece then
-			squareMoveFrom = hoveringSquare
+			dragStart(input.Position, label)
 
-			dragStart(input.Position, unneeded_assert(label))
-
-			highlightLegalMoves(squareMoveFrom)
+			if hoveringSquare ~= squareMoveFrom then
+				squareMoveFrom = hoveringSquare
+				highlightLegalMoves(squareMoveFrom)
+			end
 		end
 	end)
 	UserInputService.InputEnded:Connect(function(input)
