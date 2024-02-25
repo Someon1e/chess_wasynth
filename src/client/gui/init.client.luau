@@ -273,7 +273,7 @@ local function makeGui(initialFen)
 		return Engine.getBestMove(initialFen, table.concat(moveHistory, " "), function(evaluation)
 			evalBar.Visible = true
 			local blackEvaluation = if state.whiteToPlay then -evaluation else evaluation
-			blackEvalFill.Size = UDim2.fromScale(1, 0.5 + blackEvaluation / 2000)
+			blackEvalFill.Size = UDim2.fromScale(1, 0.5 + blackEvaluation / 1700)
 			waitForRender()
 		end, aiMoveTimeInMilliseconds)
 	end
