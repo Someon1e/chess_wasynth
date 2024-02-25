@@ -109,6 +109,8 @@ end
 
 local function makeGui(initialFen)
 	local state = Board.fromFEN(initialFen)
+	local sideOfHuman: boolean? = state.whiteToPlay
+
 	local moveHistory = {}
 	local stateHistory = {}
 
@@ -273,8 +275,6 @@ local function makeGui(initialFen)
 	end)
 	undoButton.Parent = gui
 
-	local isAITurn = false
-
 	local function getAIResponse()
 		local result = Engine.getBestMove(initialFen, table.concat(moveHistory, " "), function(evaluation)
 			evalBar.Visible = true
@@ -290,8 +290,8 @@ local function makeGui(initialFen)
 	aiSelfPlayButton.Text = "AI vs AI"
 	local aiSelfPlaying = false
 	aiSelfPlayButton.Activated:Connect(function()
+		sideOfHuman = nil
 		aiSelfPlaying = not aiSelfPlaying
-		isAITurn = aiSelfPlaying
 		while aiSelfPlaying do
 			local move = getAIResponse()
 			if not move then
@@ -415,7 +415,6 @@ local function makeGui(initialFen)
 		playMove(notation)
 		waitForRender()
 
-		isAITurn = true
 		local response = getAIResponse()
 		if response then
 			playMove(response)
@@ -454,7 +453,7 @@ local function makeGui(initialFen)
 		draggedFrom = from
 	end
 	UserInputService.InputChanged:Connect(function(input)
-		if isAITurn then
+		if state.whiteToPlay ~= sideOfHuman then
 			return
 		end
 		if
@@ -468,7 +467,7 @@ local function makeGui(initialFen)
 		end
 	end)
 	UserInputService.InputBegan:Connect(function(input)
-		if isAITurn then
+		if state.whiteToPlay ~= sideOfHuman then
 			return
 		end
 		if
@@ -482,7 +481,7 @@ local function makeGui(initialFen)
 			return
 		end
 		local piece = buffer.readu8(state.board, hoveringSquare)
-		if piece ~= 0 and if state.whiteToPlay then piece > 6 else 7 > piece then
+		if piece ~= 0 and if sideOfHuman then piece > 6 else 7 > piece then
 			dragStart(input.Position, label)
 
 			if hoveringSquare ~= squareMoveFrom then
@@ -493,7 +492,7 @@ local function makeGui(initialFen)
 		end
 	end)
 	UserInputService.InputEnded:Connect(function(input)
-		if isAITurn then
+		if state.whiteToPlay ~= sideOfHuman then
 			return
 		end
 		if
