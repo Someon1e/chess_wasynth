@@ -301,13 +301,14 @@ local function makeGui(initialFen)
 	aiSelfPlayButton.Parent = gui
 
 	local function getHoveringSquare(input): (number?, ImageLabel?)
-		for _, label in playerGui:GetGuiObjectsAtPosition(input.Position.X, input.Position.Y) do
-			local squareMoveTo = table.find(labels, label)
-			if squareMoveTo then
+		for squareMoveTo, label in labels do
+			if
+				label.AbsolutePosition.X <= input.Position.X
+				and input.Position.X <= label.AbsolutePosition.X + label.AbsoluteSize.X
+				and label.AbsolutePosition.Y <= input.Position.Y
+				and input.Position.Y <= label.AbsolutePosition.Y + label.AbsoluteSize.Y
+			then
 				return squareMoveTo, label
-			end
-			if labels[0] == label then
-				return 0, label
 			end
 		end
 		return nil, nil
