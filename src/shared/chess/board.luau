@@ -1,3 +1,5 @@
+--!strict
+
 local Board = {}
 
 local Notation = require(script.Parent:WaitForChild("notation"))
@@ -94,6 +96,8 @@ function Board.fromFEN(fen): boardState
 	if enPassant ~= "-" then
 		enPassantSquare = Notation.SQUARE_NAME_TO_NUMBER[enPassant]
 	end
+
+	print(sections)
 
 	local halfMoveClock = tonumber(sections[5])
 	local fullMoveCounter = tonumber(sections[6])
@@ -200,6 +204,12 @@ function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, on
 	local movingPiece = buffer.readu8(state.board, squareMoveFrom)
 	assert(movingPiece ~= 0)
 
+	if buffer.readu8(state.board, squareMoveTo) ~= 0 then
+		state.halfMoveClock = 0
+	else
+		state.halfMoveClock += 1
+	end
+
 	if movingPiece == Notation.WHITE_KING or squareMoveFrom == 0 or squareMoveTo == 0 then
 		state.whiteCanCastleQueenSide = false
 	end
@@ -229,6 +239,8 @@ function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, on
 			teleportPiece(rookFrom, rookTo)
 		end
 	elseif movingPiece == Notation.WHITE_PAWN or movingPiece == Notation.BLACK_PAWN then
+		state.halfMoveClock = 0
+
 		local promotion = string.sub(moveNotation, 5, 5)
 		if promotion ~= "" then
 			local promotionIncrease = assert(({
@@ -247,6 +259,7 @@ function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, on
 				local captureSquare = unneeded_assert(oldEnPassantSquare)
 					- (if movingPiece == Notation.WHITE_PAWN then 8 else -8)
 				buffer.writeu8(state.board, captureSquare, 0)
+				state.halfMoveClock = 0
 				onEnPassant(captureSquare)
 			end
 		end
