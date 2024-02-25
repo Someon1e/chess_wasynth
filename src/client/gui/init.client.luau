@@ -440,6 +440,8 @@ local function makeGui(initialFen)
 		draggedFrom = nil
 	end
 	local function dragStart(position, from)
+		dragEnd()
+
 		resetLabels()
 		pieceDragImage.Image = from.Image
 		from.Image = ""
