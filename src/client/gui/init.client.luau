@@ -8,6 +8,10 @@ local Notation =
 local Board =
 	require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("board"))
 
+local pieceMoveSound = Instance.new("Sound")
+pieceMoveSound.SoundId = Config.PIECE_MOVE_SOUND
+pieceMoveSound.Parent = workspace
+
 -- Only used because the type checker is wrong
 local unneeded_assert = assert
 
@@ -231,6 +235,8 @@ local function makeGui(initialFen)
 	local squareMoveFrom: number?
 
 	local function playMove(moveNotation)
+		pieceMoveSound:Play()
+
 		table.insert(moveHistory, moveNotation)
 
 		Board.makeMove(state, moveNotation, function(squareMoveFrom, squareMoveTo)
