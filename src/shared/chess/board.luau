@@ -204,7 +204,7 @@ function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, on
 	local squareMoveTo = Notation.uciTo(moveNotation)
 
 	local movingPiece = buffer.readu8(state.board, squareMoveFrom)
-	assert(movingPiece ~= 0)
+	assert(movingPiece ~= 0, "Missing moving piece")
 
 	if buffer.readu8(state.board, squareMoveTo) ~= 0 then
 		state.halfMoveClock = 0
@@ -250,7 +250,7 @@ function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, on
 				n = 2,
 				b = 3,
 				q = 4,
-			})[promotion])
+			})[promotion], "Invalid promotion")
 			buffer.writeu8(state.board, squareMoveTo, movingPiece + promotionIncrease)
 			onPromotion(squareMoveTo, movingPiece + promotionIncrease)
 		else

@@ -257,7 +257,7 @@ local function makeGui(initialFen)
 	undoButton.Position = UDim2.fromScale(0.75, 0.9)
 	undoButton.Text = "Undo"
 	undoButton.Activated:Connect(function()
-		assert(#moveHistory % 2 == 0)
+		assert(#moveHistory % 2 == 0, "Incomplete turn")
 		local prevState = table.remove(stateHistory)
 		if not prevState then
 			return
