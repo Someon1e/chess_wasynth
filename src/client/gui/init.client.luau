@@ -120,16 +120,36 @@ local function makeGui(initialFen)
 	local boardFrame, boardGridLayout = makeBoardFrame()
 	local labels = makeSquareGui(boardFrame, state)
 
+	local usedCircles: { Frame }, unusedCircles = table.create(27), table.create(27)
+	do
+		for index = 1, 27 do
+			local circle = Instance.new("Frame")
+			circle.Name = "Circle"
+			circle.Size = UDim2.fromScale(0.4, 0.4)
+			circle.AnchorPoint = Vector2.new(0.5, 0.5)
+			circle.Position = UDim2.fromScale(0.5, 0.5)
+			circle.BackgroundTransparency = 0.5
+
+			local corner = Instance.new("UICorner")
+			corner.CornerRadius = UDim.new(1)
+			corner.Parent = circle
+
+			unusedCircles[index] = circle
+		end
+	end
+
 	local function resetLabels()
 		for y = 7, 0, -1 do
 			for x = 0, 7 do
 				local label = labels[x + y * 8]
-				label.BackgroundColor3 = if (y + x) % 2 == 0
-					then Config.LIGHT_SQUARE_COLOUR
-					else Config.DARK_SQUARE_COLOUR
 				label.Active = buffer.readu8(state.board, x + y * 8) ~= 0
 			end
 		end
+		for _, circle in usedCircles do
+			circle.Parent = nil
+			table.insert(unusedCircles, circle)
+		end
+		table.clear(usedCircles)
 	end
 
 	local evalBar, blackEvalFill = makeEvalBar()
@@ -225,9 +245,16 @@ local function makeGui(initialFen)
 			end
 
 			local legalMoveTo = Notation.uciTo(legalMove)
-			labels[legalMoveTo].BackgroundColor3 = if buffer.readu8(state.board, legalMoveTo) ~= 0
-				then Config.CAN_CAPTURE_SQUARE_COLOUR
-				else Config.CAN_MOVE_TO_SQUARE_COLOUR
+
+			local circle = assert(table.remove(unusedCircles), "Exceeded piece max possible moves")
+			if buffer.readu8(state.board, legalMoveTo) ~= 0 then
+				circle.BackgroundColor3 = Config.CAN_CAPTURE_SQUARE_COLOUR
+			else
+				circle.BackgroundColor3 = Config.CAN_MOVE_TO_SQUARE_COLOUR
+			end
+			circle.Parent = labels[legalMoveTo]
+			table.insert(usedCircles, circle)
+
 			labels[legalMoveTo].Active = true
 		end, initialFen, table.concat(moveHistory, " "))
 	end
