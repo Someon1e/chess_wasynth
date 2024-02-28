@@ -6,7 +6,24 @@ local Engine = {}
 
 function Engine.perft(out, fen: string, moves, depth)
 	-- https://chessprogrammingwiki.netlify.app/perft/
+	local moveCount
 
+	WASM.setListener(function(output)
+		local prefix, suffix = string.match(output, "(.+): (%d+)")
+		if prefix == "Nodes searched" then
+			moveCount = tonumber(suffix)
+			WASM.setListener(print)
+		elseif prefix then
+			out(prefix, suffix)
+		end
+	end)
+	WASM.sendInput("position fen " .. fen .. " moves " .. moves)
+	WASM.sendInput("go perft " .. tostring(depth))
+
+	return assert(moveCount)
+end
+
+function Engine.getLegalMoves(out, fen: string, moves: string)
 	WASM.setListener(function(output)
 		local prefix = string.match(output, "(.+):")
 		if prefix == "Nodes searched" then
@@ -16,11 +33,7 @@ function Engine.perft(out, fen: string, moves, depth)
 		end
 	end)
 	WASM.sendInput("position fen " .. fen .. " moves " .. moves)
-	WASM.sendInput("go perft "..tostring(depth))
-end
-
-function Engine.getLegalMoves(out, fen, moves)	
-	Engine.perft(out, fen, moves, 1)
+	WASM.sendInput("go perft 1")
 end
 
 function Engine.getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
