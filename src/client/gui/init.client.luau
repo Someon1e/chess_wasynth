@@ -60,6 +60,7 @@ local function makeSquareGui(boardFrame, state)
 			local corner = Instance.new("TextLabel")
 			corner.ZIndex = 2
 			corner.Text = Notation.SQUARE_NUMBER_TO_NAME[x + y * 8]
+			corner.FontFace = Config.FONT
 			corner.TextScaled = true
 			corner.Size = UDim2.fromScale(0.2, 0.2)
 			corner.Position = UDim2.fromScale(0.7, 0.8)
@@ -157,6 +158,7 @@ local function makeGui(initialFen)
 
 	local rotateButton = makeButton("Rotate")
 	rotateButton.Text = "Rotate"
+	rotateButton.FontFace = Config.FONT
 	rotateButton.Position = UDim2.fromScale(0.85, 0.9)
 	rotateButton.Activated:Connect(function()
 		if boardGridLayout.StartCorner == Enum.StartCorner.BottomLeft then
@@ -170,6 +172,7 @@ local function makeGui(initialFen)
 	local fenBox = Instance.new("TextBox")
 	fenBox.Name = "FEN"
 	fenBox.Text = initialFen
+	fenBox.FontFace = Config.FONT
 	fenBox.TextScaled = true
 	fenBox.Size = UDim2.fromScale(0.2, 0.08)
 	fenBox.ClearTextOnFocus = false
@@ -205,6 +208,7 @@ local function makeGui(initialFen)
 	local aiMoveTimeBox = Instance.new("TextBox")
 	aiMoveTimeBox.Name = "AIMoveTime"
 	aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
+	aiMoveTimeBox.FontFace = Config.FONT
 	aiMoveTimeBox.TextScaled = true
 	aiMoveTimeBox.Size = UDim2.fromScale(0.07, 0.07)
 	aiMoveTimeBox.ClearTextOnFocus = false
@@ -226,6 +230,7 @@ local function makeGui(initialFen)
 
 	local aiMoveTimeLabel = Instance.new("TextLabel")
 	aiMoveTimeLabel.Text = "AI Move Time"
+	aiMoveTimeLabel.FontFace = Config.FONT
 	aiMoveTimeLabel.TextScaled = true
 	aiMoveTimeLabel.Size = UDim2.fromScale(0.6, 0.5)
 	aiMoveTimeLabel.Position = UDim2.fromScale(0, 1.1)
@@ -283,6 +288,7 @@ local function makeGui(initialFen)
 	local undoButton = makeButton("Undo")
 	undoButton.Position = UDim2.fromScale(0.75, 0.9)
 	undoButton.Text = "Undo"
+	undoButton.FontFace = Config.FONT
 	undoButton.Activated:Connect(function()
 		assert(#moveHistory % 2 == 0, "Incomplete turn")
 		local prevState = table.remove(stateHistory)
@@ -315,6 +321,7 @@ local function makeGui(initialFen)
 	local aiSelfPlayButton = makeButton("AISelfPlay")
 	aiSelfPlayButton.Position = UDim2.fromScale(0.75, 0.8)
 	aiSelfPlayButton.Text = "AI vs AI"
+	aiSelfPlayButton.FontFace = Config.FONT
 	local aiSelfPlaying = false
 	aiSelfPlayButton.Activated:Connect(function()
 		sideOfHuman = nil
