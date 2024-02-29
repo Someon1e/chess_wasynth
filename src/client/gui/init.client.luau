@@ -174,13 +174,13 @@ local function makeGui(initialFen)
 	fenBox.Text = initialFen
 	fenBox.FontFace = Config.FONT
 	fenBox.TextScaled = true
-	fenBox.Size = UDim2.fromScale(0.2, 0.08)
+	fenBox.Size = UDim2.fromScale(0.2, 0.06)
 	fenBox.ClearTextOnFocus = false
 	fenBox.ZIndex = 2
 	fenBox.BackgroundColor3 = Color3.fromRGB(0, 0, 30)
 	fenBox.TextColor3 = Color3.fromRGB(232, 232, 232)
 	fenBox.Position = UDim2.fromScale(0.75, 0.5)
-	constrain(fenBox, 4)
+	constrain(fenBox, 6)
 
 	fenBox.FocusLost:Connect(function()
 		local isValid, newState = pcall(Board.fromFEN, fenBox.Text)
