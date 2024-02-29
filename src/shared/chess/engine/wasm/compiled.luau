@@ -1519,7 +1519,7 @@ FUNC_LIST[4] = function(loc_0)
 									end
 								end
 								loc_3 = load_i32(memory_at_0, 1078536)
-								if loc_0 <= loc_3 then
+								if loc_3 >= loc_0 then
 									desired = 1
 									break
 								end
@@ -1912,7 +1912,15 @@ FUNC_LIST[6] = function(loc_0, loc_1)
 					while true do
 						if band_i32(loc_6, 3) == 0 then
 							while true do
-								if bor_i32(bor_i32((if loc_2 < 256 then 1 else 0), (if loc_3 < bor_i32(loc_2, 4) then 1 else 0)), (if sub_i32(loc_3, loc_2) >= 131073 then 1 else 0)) ~= 0 then
+								if loc_2 < 256 then
+									desired = 4
+									break
+								end
+								if loc_3 < bor_i32(loc_2, 4) then
+									desired = 4
+									break
+								end
+								if sub_i32(loc_3, loc_2) >= 131073 then
 									desired = 4
 									break
 								end
@@ -1927,7 +1935,7 @@ FUNC_LIST[6] = function(loc_0, loc_1)
 							end
 						end
 						loc_7 = sub_i32(loc_0, 8)
-						loc_8 = add_i32(loc_7, loc_3)
+						loc_8 = add_i32(loc_3, loc_7)
 						while true do
 							while true do
 								while true do
@@ -2082,7 +2090,7 @@ FUNC_LIST[6] = function(loc_0, loc_1)
 						break
 					end
 					loc_4 = load_i32(memory_at_0, loc_5)
-					loc_4 = add_i32((if band_i32(loc_4, 3) ~= 0 then 4294967292 else 4294967288), band_i32(loc_4, 4294967288))
+					loc_4 = add_i32(band_i32(loc_4, 4294967288), (if band_i32(loc_4, 3) ~= 0 then 4294967292 else 4294967288))
 					reg_0 = FUNC_LIST[107](loc_2, loc_0, (if loc_1 > loc_4 then loc_4 else loc_1))
 					loc_4 = reg_0
 					FUNC_LIST[4](loc_0)
@@ -2315,7 +2323,7 @@ FUNC_LIST[7] = function(loc_0)
 																while true do
 																	while true do
 																		loc_0 = load_i32(memory_at_0, loc_2 + 12)
-																		if loc_2 == loc_0 then
+																		if loc_0 == loc_2 then
 																			while true do
 																				loc_0 = add_i32(loc_2, 20)
 																				loc_3 = load_i32(memory_at_0, loc_0)
@@ -2351,10 +2359,9 @@ FUNC_LIST[7] = function(loc_0)
 																	while true do
 																		loc_6 = loc_3
 																		loc_0 = loc_1
-																		loc_1 = add_i32(loc_0, 20)
-																		reg_0 = loc_1
-																		loc_1 = load_i32(memory_at_0, loc_1)
-																		loc_3 = (if loc_1 ~= 0 then reg_0 else add_i32(loc_0, 16))
+																		loc_3 = add_i32(loc_0, 20)
+																		loc_1 = load_i32(memory_at_0, loc_3)
+																		loc_3 = (if loc_1 ~= 0 then loc_3 else add_i32(loc_0, 16))
 																		loc_1 = load_i32(memory_at_0, add_i32(loc_0, (if loc_1 ~= 0 then 20 else 16)))
 																		if loc_1 ~= 0 then
 																			continue
@@ -2414,10 +2421,9 @@ FUNC_LIST[7] = function(loc_0)
 																end
 																break
 															end
-															loc_1 = sub_i32(band_i32(load_i32(memory_at_0, loc_0 + 4), 4294967288), loc_5)
-															reg_0 = loc_1
-															loc_1 = (if loc_1 < loc_4 then 1 else 0)
-															loc_4 = (if loc_1 ~= 0 then reg_0 else loc_4)
+															loc_3 = sub_i32(band_i32(load_i32(memory_at_0, loc_0 + 4), 4294967288), loc_5)
+															loc_1 = (if loc_3 < loc_4 then 1 else 0)
+															loc_4 = (if loc_1 ~= 0 then loc_3 else loc_4)
 															loc_2 = (if loc_1 ~= 0 then loc_0 else loc_2)
 															loc_1 = loc_0
 															continue
@@ -2436,7 +2442,7 @@ FUNC_LIST[7] = function(loc_0)
 												end
 												while true do
 													loc_3 = shl_i32(2, loc_0)
-													loc_0 = ctz_i32(band_i32(bor_i32(loc_3, sub_i32(0, loc_3)), shl_i32(loc_1, loc_0)))
+													loc_0 = ctz_i32(band_i32(bor_i32(sub_i32(0, loc_3), loc_3), shl_i32(loc_1, loc_0)))
 													loc_1 = shl_i32(loc_0, 3)
 													loc_3 = add_i32(loc_1, 1078240)
 													loc_1 = load_i32(memory_at_0, add_i32(loc_1, 1078248))
@@ -2643,7 +2649,7 @@ FUNC_LIST[7] = function(loc_0)
 										while true do
 											loc_2 = 0
 											loc_0 = shl_i32(2, loc_7)
-											loc_0 = band_i32(bor_i32(loc_0, sub_i32(0, loc_0)), loc_8)
+											loc_0 = band_i32(bor_i32(sub_i32(0, loc_0), loc_0), loc_8)
 											if loc_0 == 0 then
 												desired = 5
 												break
@@ -2671,14 +2677,28 @@ FUNC_LIST[7] = function(loc_0)
 									break
 								end
 								while true do
-									loc_3 = band_i32(load_i32(memory_at_0, loc_0 + 4), 4294967288)
-									loc_6 = sub_i32(loc_3, loc_5)
+									loc_1 = band_i32(load_i32(memory_at_0, loc_0 + 4), 4294967288)
+									loc_6 = sub_i32(loc_1, loc_5)
 									loc_7 = (if loc_6 < loc_4 then 1 else 0)
-									loc_8 = (if loc_7 ~= 0 then loc_0 else loc_2)
+									loc_3 = (if loc_1 < loc_5 then 1 else 0)
+									loc_2 = (if loc_3 ~= 0 then loc_2 else (if loc_7 ~= 0 then loc_0 else loc_2))
+									loc_4 = (if loc_3 ~= 0 then loc_4 else (if loc_7 ~= 0 then loc_6 else loc_4))
 									loc_1 = load_i32(memory_at_0, loc_0 + 16)
-									if loc_1 == 0 then
+									if loc_1 ~= 0 then
 										while true do
-											loc_1 = load_i32(memory_at_0, add_i32(loc_0, 20))
+											reg_0 = loc_1
+											break
+										end
+										if desired then
+											if desired == 7 then
+												desired = nil
+												continue
+											end
+											break
+										end
+									else
+										while true do
+											reg_0 = load_i32(memory_at_0, add_i32(loc_0, 20))
 											break
 										end
 										if desired then
@@ -2689,10 +2709,7 @@ FUNC_LIST[7] = function(loc_0)
 											break
 										end
 									end
-									loc_0 = (if loc_3 < loc_5 then 1 else 0)
-									loc_2 = (if loc_0 ~= 0 then loc_2 else loc_8)
-									loc_4 = (if loc_0 ~= 0 then loc_4 else (if loc_7 ~= 0 then loc_6 else loc_4))
-									loc_0 = loc_1
+									loc_0 = reg_0
 									if loc_0 ~= 0 then
 										continue
 									end
@@ -2723,7 +2740,7 @@ FUNC_LIST[7] = function(loc_0)
 							while true do
 								while true do
 									loc_0 = load_i32(memory_at_0, loc_2 + 12)
-									if loc_2 == loc_0 then
+									if loc_0 == loc_2 then
 										while true do
 											loc_0 = add_i32(loc_2, 20)
 											loc_3 = load_i32(memory_at_0, loc_0)
@@ -2759,10 +2776,9 @@ FUNC_LIST[7] = function(loc_0)
 								while true do
 									loc_6 = loc_3
 									loc_0 = loc_1
-									loc_1 = add_i32(loc_0, 20)
-									reg_0 = loc_1
-									loc_1 = load_i32(memory_at_0, loc_1)
-									loc_3 = (if loc_1 ~= 0 then reg_0 else add_i32(loc_0, 16))
+									loc_3 = add_i32(loc_0, 20)
+									loc_1 = load_i32(memory_at_0, loc_3)
+									loc_3 = (if loc_1 ~= 0 then loc_3 else add_i32(loc_0, 16))
 									loc_1 = load_i32(memory_at_0, add_i32(loc_0, (if loc_1 ~= 0 then 20 else 16)))
 									if loc_1 ~= 0 then
 										continue
@@ -2884,7 +2900,7 @@ FUNC_LIST[7] = function(loc_0)
 																		end
 																	end
 																	loc_0 = load_i32(memory_at_0, 1078540)
-																	if (if loc_0 <= loc_2 then loc_0 else 0) == 0 then
+																	if band_i32((if loc_0 ~= 0 then 1 else 0), (if loc_0 <= loc_2 then 1 else 0)) == 0 then
 																		while true do
 																			store_i32(memory_at_0, 1078540, loc_2)
 																			break
@@ -2979,7 +2995,10 @@ FUNC_LIST[7] = function(loc_0)
 																	end
 																	break
 																end
-																if bor_i32((if loc_2 <= loc_3 then 1 else 0), (if loc_1 > loc_3 then 1 else 0)) ~= 0 then
+																if loc_2 <= loc_3 then
+																	break
+																end
+																if loc_1 > loc_3 then
 																	break
 																end
 																if load_i32(memory_at_0, loc_0 + 12) == 0 then
@@ -3095,7 +3114,7 @@ FUNC_LIST[7] = function(loc_0)
 																while true do
 																	store_i32(memory_at_0, loc_0, 7)
 																	loc_0 = add_i32(loc_0, 4)
-																	if loc_0 < loc_6 then
+																	if loc_6 > loc_0 then
 																		continue
 																	end
 																	break
@@ -3531,7 +3550,7 @@ FUNC_LIST[9] = function(loc_0)
 					while true do
 						if loc_0 == 10 then
 							while true do
-								loc_2 = 1
+								loc_4 = 1
 								while true do
 									if band_i32(loc_1, 1) == 0 then
 										while true do
@@ -3539,7 +3558,7 @@ FUNC_LIST[9] = function(loc_0)
 											store_i32(memory_at_0, 1070684, 1)
 											store_i32(memory_at_0, 1070680, 0)
 											store_i32(memory_at_0, 1070688, 0)
-											loc_1 = 1
+											loc_2 = 1
 											reg_0 = 0
 											desired = 6
 											break
@@ -3556,18 +3575,18 @@ FUNC_LIST[9] = function(loc_0)
 										desired = 3
 										break
 									end
-									loc_1 = add_i32(loc_0, 1)
-									loc_2 = load_i32(memory_at_0, 1070684)
+									loc_2 = add_i32(loc_0, 1)
+									loc_4 = load_i32(memory_at_0, 1070684)
 									reg_0 = load_i32(memory_at_0, 1070688)
 									break
 								end
 								if desired then
 									break
 								end
-								loc_3 = reg_0
+								loc_1 = reg_0
 								loc_0 = 0
-								store_i32(memory_at_0, 1070676, loc_1)
-								FUNC_LIST[10](loc_2, loc_3)
+								store_i32(memory_at_0, 1070676, loc_2)
+								FUNC_LIST[10](loc_4, loc_1)
 								loc_1 = sub_i32(load_i32(memory_at_0, 1070676), 1)
 								store_i32(memory_at_0, 1070676, loc_1)
 								if loc_1 ~= 0 then
@@ -3619,28 +3638,28 @@ FUNC_LIST[9] = function(loc_0)
 						while true do
 							if lt_i32(extend_i32_n8(loc_0), 0) then
 								while true do
-									loc_3 = bor_i32(band_i32(loc_0, 63), 4294967168)
-									loc_4 = bor_i32(shr_u32(loc_0, 6), 4294967232)
+									loc_4 = bor_i32(band_i32(loc_0, 63), 4294967168)
+									loc_2 = bor_i32(shr_u32(loc_0, 6), 4294967232)
+									loc_1 = load_i32(memory_at_0, 1070680)
 									loc_0 = load_i32(memory_at_0, 1070688)
-									if sub_i32(load_i32(memory_at_0, 1070680), loc_0) <= 1 then
+									if sub_i32(loc_1, loc_0) <= 1 then
 										while true do
-											loc_1 = sub_i32(GLOBAL_LIST[0].value, 32)
-											GLOBAL_LIST[0].value = loc_1
+											loc_5 = sub_i32(GLOBAL_LIST[0].value, 32)
+											GLOBAL_LIST[0].value = loc_5
 											while true do
 												while true do
-													loc_2 = add_i32(loc_0, 2)
-													if loc_0 > loc_2 then
+													loc_3 = add_i32(loc_0, 2)
+													if loc_3 < loc_0 then
 														break
 													end
-													loc_0 = load_i32(memory_at_0, 1070680)
-													loc_5 = shl_i32(loc_0, 1)
-													loc_2 = (if loc_2 < loc_5 then loc_5 else loc_2)
-													loc_2 = (if loc_2 <= 8 then 8 else loc_2)
-													loc_5 = shr_u32(bxor_i32(loc_2, 4294967295), 31)
+													loc_0 = shl_i32(loc_1, 1)
+													loc_0 = (if loc_0 > loc_3 then loc_0 else loc_3)
+													loc_3 = (if loc_0 <= 8 then 8 else loc_0)
+													loc_0 = shr_u32(bxor_i32(loc_3, 4294967295), 31)
 													while true do
-														if loc_0 == 0 then
+														if loc_1 == 0 then
 															while true do
-																store_i32(memory_at_0, loc_1 + 24, 0)
+																store_i32(memory_at_0, loc_5 + 24, 0)
 																desired = 10
 																break
 															end
@@ -3651,9 +3670,9 @@ FUNC_LIST[9] = function(loc_0)
 																break
 															end
 														end
-														store_i32(memory_at_0, loc_1 + 28, loc_0)
-														store_i32(memory_at_0, loc_1 + 24, 1)
-														store_i32(memory_at_0, loc_1 + 20, load_i32(memory_at_0, 1070684))
+														store_i32(memory_at_0, loc_5 + 28, loc_1)
+														store_i32(memory_at_0, loc_5 + 24, 1)
+														store_i32(memory_at_0, loc_5 + 20, load_i32(memory_at_0, 1070684))
 														break
 													end
 													if desired then
@@ -3662,11 +3681,11 @@ FUNC_LIST[9] = function(loc_0)
 														end
 														break
 													end
-													FUNC_LIST[5](add_i32(loc_1, 8), loc_5, loc_2, add_i32(loc_1, 20))
-													loc_0 = load_i32(memory_at_0, loc_1 + 12)
-													if load_i32(memory_at_0, loc_1 + 8) == 0 then
+													FUNC_LIST[5](add_i32(loc_5, 8), loc_0, loc_3, add_i32(loc_5, 20))
+													loc_0 = load_i32(memory_at_0, loc_5 + 12)
+													if load_i32(memory_at_0, loc_5 + 8) == 0 then
 														while true do
-															store_i32(memory_at_0, 1070680, loc_2)
+															store_i32(memory_at_0, 1070680, loc_3)
 															store_i32(memory_at_0, 1070684, loc_0)
 															desired = 8
 															break
@@ -3699,7 +3718,7 @@ FUNC_LIST[9] = function(loc_0)
 											if desired then
 												break
 											end
-											GLOBAL_LIST[0].value = add_i32(loc_1, 32)
+											GLOBAL_LIST[0].value = add_i32(loc_5, 32)
 											loc_0 = load_i32(memory_at_0, 1070688)
 											break
 										end
@@ -3707,7 +3726,7 @@ FUNC_LIST[9] = function(loc_0)
 											break
 										end
 									end
-									store_i32_n16(memory_at_0, add_i32(load_i32(memory_at_0, 1070684), loc_0), bor_i32(band_i32(loc_4, 255), shl_i32(loc_3, 8)))
+									store_i32_n16(memory_at_0, add_i32(load_i32(memory_at_0, 1070684), loc_0), bor_i32(band_i32(loc_2, 255), shl_i32(loc_4, 8)))
 									reg_1 = add_i32(loc_0, 2)
 									desired = 5
 									break
@@ -3719,26 +3738,26 @@ FUNC_LIST[9] = function(loc_0)
 									break
 								end
 							end
+							loc_1 = load_i32(memory_at_0, 1070680)
 							loc_2 = load_i32(memory_at_0, 1070688)
-							if loc_2 == load_i32(memory_at_0, 1070680) then
+							if loc_1 == loc_2 then
 								while true do
-									loc_1 = sub_i32(GLOBAL_LIST[0].value, 32)
-									GLOBAL_LIST[0].value = loc_1
+									loc_3 = sub_i32(GLOBAL_LIST[0].value, 32)
+									GLOBAL_LIST[0].value = loc_3
 									while true do
 										while true do
-											loc_2 = add_i32(loc_2, 1)
-											if loc_2 == 0 then
+											loc_4 = add_i32(loc_2, 1)
+											if loc_4 == 0 then
 												break
 											end
-											loc_3 = load_i32(memory_at_0, 1070680)
-											loc_4 = shl_i32(loc_3, 1)
-											loc_2 = (if loc_2 < loc_4 then loc_4 else loc_2)
+											loc_2 = shl_i32(loc_1, 1)
+											loc_2 = (if loc_2 > loc_4 then loc_2 else loc_4)
 											loc_4 = (if loc_2 <= 8 then 8 else loc_2)
 											loc_2 = shr_u32(bxor_i32(loc_4, 4294967295), 31)
 											while true do
-												if loc_3 == 0 then
+												if loc_1 == 0 then
 													while true do
-														store_i32(memory_at_0, loc_1 + 24, 0)
+														store_i32(memory_at_0, loc_3 + 24, 0)
 														desired = 9
 														break
 													end
@@ -3749,9 +3768,9 @@ FUNC_LIST[9] = function(loc_0)
 														break
 													end
 												end
-												store_i32(memory_at_0, loc_1 + 28, loc_3)
-												store_i32(memory_at_0, loc_1 + 24, 1)
-												store_i32(memory_at_0, loc_1 + 20, load_i32(memory_at_0, 1070684))
+												store_i32(memory_at_0, loc_3 + 28, loc_1)
+												store_i32(memory_at_0, loc_3 + 24, 1)
+												store_i32(memory_at_0, loc_3 + 20, load_i32(memory_at_0, 1070684))
 												break
 											end
 											if desired then
@@ -3760,12 +3779,12 @@ FUNC_LIST[9] = function(loc_0)
 												end
 												break
 											end
-											FUNC_LIST[5](add_i32(loc_1, 8), loc_2, loc_4, add_i32(loc_1, 20))
-											loc_2 = load_i32(memory_at_0, loc_1 + 12)
-											if load_i32(memory_at_0, loc_1 + 8) == 0 then
+											FUNC_LIST[5](add_i32(loc_3, 8), loc_2, loc_4, add_i32(loc_3, 20))
+											loc_1 = load_i32(memory_at_0, loc_3 + 12)
+											if load_i32(memory_at_0, loc_3 + 8) == 0 then
 												while true do
 													store_i32(memory_at_0, 1070680, loc_4)
-													store_i32(memory_at_0, 1070684, loc_2)
+													store_i32(memory_at_0, 1070684, loc_1)
 													desired = 7
 													break
 												end
@@ -3776,11 +3795,11 @@ FUNC_LIST[9] = function(loc_0)
 													break
 												end
 											end
-											if loc_2 == 2147483649 then
+											if loc_1 == 2147483649 then
 												desired = 7
 												break
 											end
-											if loc_2 == 0 then
+											if loc_1 == 0 then
 												break
 											end
 											error("out of code bounds")
@@ -3797,7 +3816,7 @@ FUNC_LIST[9] = function(loc_0)
 									if desired then
 										break
 									end
-									GLOBAL_LIST[0].value = add_i32(loc_1, 32)
+									GLOBAL_LIST[0].value = add_i32(loc_3, 32)
 									loc_2 = load_i32(memory_at_0, 1070688)
 									break
 								end
@@ -3869,22 +3888,22 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 	local loc_7 = i64_ZERO
 	local loc_8 = 0
 	local loc_9 = 0
-	local loc_10 = i64_ZERO
+	local loc_10 = 0
 	local loc_11 = i64_ZERO
-	local loc_12 = 0
+	local loc_12 = i64_ZERO
 	local loc_13 = 0
 	local loc_14 = i64_ZERO
 	local loc_15 = 0
-	local loc_16 = i64_ZERO
-	local loc_17 = 0.0
+	local loc_16 = 0.0
+	local loc_17 = i64_ZERO
 	local loc_18 = 0
 	local loc_19 = 0
 	local loc_20 = i64_ZERO
 	local loc_21 = 0
 	local loc_22 = i64_ZERO
-	local loc_23 = i64_ZERO
+	local loc_23 = 0
 	local loc_24 = i64_ZERO
-	local loc_25 = 0
+	local loc_25 = i64_ZERO
 	local loc_26 = 0
 	local loc_27 = 0
 	local loc_28 = i64_ZERO
@@ -3939,13 +3958,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 			loc_8 = loc_4
 			while true do
 				while true do
-					if band_i32(loc_12, 255) == 0 then
+					if band_i32(loc_13, 255) == 0 then
 						while true do
-							loc_12 = 1
+							loc_13 = 1
 							while true do
 								if loc_3 ~= loc_9 then
 									while true do
-										loc_13 = loc_5
+										loc_15 = loc_5
 										while true do
 											loc_5 = loc_3
 											loc_3 = add_i32(loc_5, 1)
@@ -3957,11 +3976,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 												end
 												loc_3 = add_i32(loc_5, 2)
 												store_i32(memory_at_0, loc_2 + 568, loc_3)
-												loc_15 = band_i32(load_i32_u8(memory_at_0, loc_5 + 1), 63)
-												loc_21 = band_i32(loc_4, 31)
+												loc_21 = band_i32(load_i32_u8(memory_at_0, loc_5 + 1), 63)
+												loc_18 = band_i32(loc_4, 31)
 												if loc_4 <= 223 then
 													while true do
-														loc_4 = bor_i32(shl_i32(loc_21, 6), loc_15)
+														loc_4 = bor_i32(shl_i32(loc_18, 6), loc_21)
 														desired = 8
 														break
 													end
@@ -3974,10 +3993,10 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 												end
 												loc_3 = add_i32(loc_5, 3)
 												store_i32(memory_at_0, loc_2 + 568, loc_3)
-												loc_15 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_5 + 2), 63), shl_i32(loc_15, 6))
+												loc_21 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_5 + 2), 63), shl_i32(loc_21, 6))
 												if loc_4 < 240 then
 													while true do
-														loc_4 = bor_i32(loc_15, shl_i32(loc_21, 12))
+														loc_4 = bor_i32(loc_21, shl_i32(loc_18, 12))
 														desired = 8
 														break
 													end
@@ -3990,12 +4009,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 												end
 												loc_3 = add_i32(loc_5, 4)
 												store_i32(memory_at_0, loc_2 + 568, loc_3)
-												loc_4 = bor_i32(band_i32(shl_i32(loc_21, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_5 + 3), 63), shl_i32(loc_15, 6)))
+												loc_4 = bor_i32(band_i32(shl_i32(loc_18, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_5 + 3), 63), shl_i32(loc_21, 6)))
 												if loc_4 ~= 1114112 then
 													break
 												end
-												loc_5 = loc_13
-												reg_0 = 1
+												loc_5 = loc_15
 												desired = 5
 												break
 											end
@@ -4006,7 +4024,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 												end
 												break
 											end
-											loc_6 = add_i32(sub_i32(loc_3, loc_5), loc_13)
+											loc_6 = add_i32(sub_i32(loc_3, loc_5), loc_15)
 											loc_5 = sub_i32(loc_4, 9)
 											if (if band_i32(shl_i32(1, loc_5), 8388639) ~= 0 then (if loc_5 <= 23 then 1 else 0) else 0) ~= 0 then
 												desired = 3
@@ -4108,7 +4126,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 												end
 												break
 											end
-											loc_13 = loc_6
+											loc_15 = loc_6
 											if loc_3 ~= loc_9 then
 												continue
 											end
@@ -4128,14 +4146,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 									end
 								end
 								loc_3 = loc_9
-								reg_0 = 1
 								break
 							end
 							if desired then
 								break
 							end
-							loc_25 = reg_0
-							loc_13 = loc_1
+							loc_26 = 1
+							loc_15 = loc_1
 							reg_0 = loc_8
 							desired = 2
 							break
@@ -4156,9 +4173,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 					end
 					break
 				end
-				loc_18 = loc_6
-				loc_12 = 0
-				loc_5 = loc_6
+				loc_13 = 0
+				loc_10 = loc_6
+				loc_5 = loc_10
 				reg_0 = loc_5
 				break
 			end
@@ -4170,7 +4187,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 				break
 			end
 			loc_4 = reg_0
-			if loc_8 == loc_13 then
+			if loc_8 == loc_15 then
 				continue
 			end
 			break
@@ -4181,14 +4198,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 			end
 			break
 		end
-		store_i32_n8(memory_at_0, loc_2 + 581, loc_25)
-		store_i32(memory_at_0, loc_2 + 552, loc_18)
+		store_i32_n8(memory_at_0, loc_2 + 581, loc_26)
+		store_i32(memory_at_0, loc_2 + 552, loc_10)
 		store_i32(memory_at_0, loc_2 + 576, loc_6)
 		loc_0 = add_i32(loc_0, loc_8)
 		while true do
 			while true do
 				while true do
-					reg_0 = 1070616
 					while true do
 						while true do
 							while true do
@@ -4210,7 +4226,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																							return { [0] = 4, 5, 3, 6, 6, 0, 1, 6, 2, }
 																						end)()
 																					end
-																					temp = br_map[2][sub_i32(sub_i32(loc_13, loc_8), 2)] or 6
+																					temp = br_map[2][sub_i32(sub_i32(loc_15, loc_8), 2)] or 6
 																					if temp < 3 then
 																						if temp < 1 then
 																							break
@@ -4243,8 +4259,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																					end
 																					break
 																				end
-																				reg_1 = FUNC_LIST[106](loc_0, 1048655, 7)
-																				if reg_1 ~= 0 then
+																				reg_0 = FUNC_LIST[106](loc_0, 1048655, 7)
+																				if reg_0 ~= 0 then
 																					desired = 13
 																					break
 																				end
@@ -4255,7 +4271,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																				end
 																				store_i32(memory_at_0, 1070616, add_i32(loc_0, 1))
 																				TABLE_LIST[0].data[load_i32(memory_at_0, 1070640)](1068537, 7)
-																				reg_1 = 4294967295
+																				reg_0 = 4294967295
 																				desired = 4
 																				break
 																			end
@@ -4338,8 +4354,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																			end
 																			break
 																		end
-																		reg_1 = FUNC_LIST[106](loc_0, 1048662, 10)
-																		if reg_1 ~= 0 then
+																		reg_0 = FUNC_LIST[106](loc_0, 1048662, 10)
+																		if reg_0 ~= 0 then
 																			desired = 13
 																			break
 																		end
@@ -4356,11 +4372,12 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																		end
 																		break
 																	end
-																	if load_i32(memory_at_0, loc_0) == 1953068401 then
+																	loc_0 = load_i32(memory_at_0, loc_0)
+																	if loc_0 == 1953068401 then
 																		desired = 2
 																		break
 																	end
-																	if load_i32(memory_at_0, loc_0) ~= 1886352499 then
+																	if loc_0 ~= 1886352499 then
 																		desired = 13
 																		break
 																	end
@@ -4386,9 +4403,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																	break
 																end
 																store_i32(memory_at_0, 1070616, 4294967295)
-																loc_8 = add_i32(loc_2, 336)
+																loc_10 = add_i32(loc_2, 336)
 																loc_21 = 0
-																loc_25 = 0
+																loc_26 = 0
 																loc_0 = 0
 																desired = 12
 																break
@@ -4399,8 +4416,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																end
 																break
 															end
-															reg_1 = FUNC_LIST[106](loc_0, 1048652, 3)
-															if reg_1 == 0 then
+															reg_0 = FUNC_LIST[106](loc_0, 1048652, 3)
+															if reg_0 == 0 then
 																desired = 11
 																break
 															end
@@ -4511,8 +4528,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																															end
 																																																															break
 																																																														end
-																																																														reg_1 = FUNC_LIST[106](loc_1, 1068063, 6)
-																																																														if reg_1 ~= 0 then
+																																																														reg_0 = FUNC_LIST[106](loc_1, 1068063, 6)
+																																																														if reg_0 ~= 0 then
 																																																															desired = 51
 																																																															break
 																																																														end
@@ -4525,13 +4542,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																														end
 																																																														break
 																																																													end
-																																																													reg_1 = FUNC_LIST[106](loc_1, 1068069, 5)
-																																																													if reg_1 == 0 then
+																																																													reg_0 = FUNC_LIST[106](loc_1, 1068069, 5)
+																																																													if reg_0 == 0 then
 																																																														desired = 41
 																																																														break
 																																																													end
-																																																													reg_1 = FUNC_LIST[106](loc_1, 1068074, 5)
-																																																													if reg_1 ~= 0 then
+																																																													reg_0 = FUNC_LIST[106](loc_1, 1068074, 5)
+																																																													if reg_0 ~= 0 then
 																																																														desired = 56
 																																																														break
 																																																													end
@@ -4550,11 +4567,12 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																													end
 																																																													break
 																																																												end
-																																																												if load_i32(memory_at_0, loc_1) == 1668180343 then
+																																																												loc_3 = load_i32(memory_at_0, loc_1)
+																																																												if loc_3 == 1668180343 then
 																																																													desired = 43
 																																																													break
 																																																												end
-																																																												if load_i32(memory_at_0, loc_1) ~= 1668180322 then
+																																																												if loc_3 ~= 1668180322 then
 																																																													desired = 54
 																																																													break
 																																																												end
@@ -4573,8 +4591,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																												end
 																																																												break
 																																																											end
-																																																											reg_1 = FUNC_LIST[106](loc_1, 1068079, 9)
-																																																											if reg_1 ~= 0 then
+																																																											reg_0 = FUNC_LIST[106](loc_1, 1068079, 9)
+																																																											if reg_0 ~= 0 then
 																																																												desired = 51
 																																																												break
 																																																											end
@@ -4593,13 +4611,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																											end
 																																																											break
 																																																										end
-																																																										reg_1 = FUNC_LIST[106](loc_1, 1068088, 5)
-																																																										if reg_1 == 0 then
+																																																										reg_0 = FUNC_LIST[106](loc_1, 1068088, 5)
+																																																										if reg_0 == 0 then
 																																																											desired = 46
 																																																											break
 																																																										end
-																																																										reg_1 = FUNC_LIST[106](loc_1, 1068093, 5)
-																																																										if reg_1 ~= 0 then
+																																																										reg_0 = FUNC_LIST[106](loc_1, 1068093, 5)
+																																																										if reg_0 ~= 0 then
 																																																											desired = 53
 																																																											break
 																																																										end
@@ -4618,12 +4636,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																										end
 																																																										break
 																																																									end
-																																																									if eq_i64(load_i64(memory_at_0, loc_1), i64_from_u32(1702260589, 1701669236)) then
+																																																									loc_7 = load_i64(memory_at_0, loc_1)
+																																																									if eq_i64(loc_7, i64_from_u32(1702260589, 1701669236)) then
 																																																										desired = 49
 																																																										break
 																																																									end
 																																																									loc_21 = 1
-																																																									if eq_i64(load_i64(memory_at_0, loc_1), i64_from_u32(1768320617, 1702127982)) then
+																																																									if eq_i64(loc_7, i64_from_u32(1768320617, 1702127982)) then
 																																																										desired = 13
 																																																										break
 																																																									end
@@ -4655,8 +4674,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																								end
 																																																								break
 																																																							end
-																																																							reg_1 = FUNC_LIST[106](loc_1, 1068098, 5)
-																																																							if reg_1 ~= 0 then
+																																																							reg_0 = FUNC_LIST[106](loc_1, 1068098, 5)
+																																																							if reg_0 ~= 0 then
 																																																								desired = 51
 																																																								break
 																																																							end
@@ -4675,8 +4694,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																							end
 																																																							break
 																																																						end
-																																																						reg_1 = FUNC_LIST[106](loc_1, 1068052, 11)
-																																																						if reg_1 == 0 then
+																																																						reg_0 = FUNC_LIST[106](loc_1, 1068052, 11)
+																																																						if reg_0 == 0 then
 																																																							desired = 13
 																																																							break
 																																																						end
@@ -5320,14 +5339,14 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																										while true do
 																																											loc_1 = load_i32(memory_at_0, 1070652)
 																																											loc_3 = load_i32(memory_at_0, 1070648)
-																																											reg_1 = FUNC_LIST[105](add_i32(loc_2, 728), 0, 96)
+																																											reg_0 = FUNC_LIST[105](add_i32(loc_2, 728), 0, 96)
 																																											loc_6 = add_i32(loc_1, loc_3)
 																																											loc_1 = 7
 																																											loc_7 = i64_ZERO
 																																											while true do
 																																												while true do
-																																													loc_9 = shl_i32(loc_1, 3)
-																																													loc_12 = 0
+																																													loc_8 = shl_i32(loc_1, 3)
+																																													loc_13 = 0
 																																													while true do
 																																														while true do
 																																															if loc_3 == loc_6 then
@@ -5360,11 +5379,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																		break
 																																																	end
 																																																end
-																																																loc_8 = band_i32(load_i32_u8(memory_at_0, loc_3 + 1), 63)
+																																																loc_10 = band_i32(load_i32_u8(memory_at_0, loc_3 + 1), 63)
 																																																loc_4 = band_i32(loc_5, 31)
 																																																if loc_5 <= 4294967263 then
 																																																	while true do
-																																																		loc_4 = bor_i32(shl_i32(loc_4, 6), loc_8)
+																																																		loc_4 = bor_i32(shl_i32(loc_4, 6), loc_10)
 																																																		loc_3 = add_i32(loc_3, 2)
 																																																		desired = 45
 																																																		break
@@ -5376,10 +5395,10 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																		break
 																																																	end
 																																																end
-																																																loc_8 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 2), 63), shl_i32(loc_8, 6))
+																																																loc_10 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 2), 63), shl_i32(loc_10, 6))
 																																																if loc_5 < 4294967280 then
 																																																	while true do
-																																																		loc_4 = bor_i32(loc_8, shl_i32(loc_4, 12))
+																																																		loc_4 = bor_i32(loc_10, shl_i32(loc_4, 12))
 																																																		loc_3 = add_i32(loc_3, 3)
 																																																		desired = 45
 																																																		break
@@ -5393,7 +5412,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																end
 																																																loc_5 = load_i32_u8(memory_at_0, loc_3 + 3)
 																																																loc_3 = add_i32(loc_3, 4)
-																																																loc_4 = bor_i32(band_i32(shl_i32(loc_4, 18), 1835008), bor_i32(band_i32(loc_5, 63), shl_i32(loc_8, 6)))
+																																																loc_4 = bor_i32(band_i32(shl_i32(loc_4, 18), 1835008), bor_i32(band_i32(loc_5, 63), shl_i32(loc_10, 6)))
 																																																if loc_4 == 1114112 then
 																																																	desired = 37
 																																																	break
@@ -5597,17 +5616,17 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																		break
 																																																	end
 																																																	loc_4 = add_i32(add_i32(loc_2, 728), shl_i32(loc_5, 3))
-																																																	reg_1 = loc_4
-																																																	reg_2 = load_i64(memory_at_0, loc_4)
-																																																	loc_4 = add_i32(loc_9, loc_12)
-																																																	store_i64(memory_at_0, reg_1, bor_i64(reg_2, shl_i64(i64_ONE, extend_i64_u32(band_i32(loc_4, 63)))))
-																																																	loc_8 = extend_i32_n8(loc_4)
+																																																	reg_0 = loc_4
+																																																	reg_1 = load_i64(memory_at_0, loc_4)
+																																																	loc_4 = add_i32(loc_8, loc_13)
+																																																	store_i64(memory_at_0, reg_0, bor_i64(reg_1, shl_i64(i64_ONE, extend_i64_u32(band_i32(loc_4, 63)))))
+																																																	loc_10 = extend_i32_n8(loc_4)
 																																																	if band_i32(loc_4, 255) >= 64 then
 																																																		desired = 43
 																																																		break
 																																																	end
-																																																	loc_7 = bxor_i64(load_i64(memory_at_0, add_i32(add_i32(shl_i32(loc_5, 9), shl_i32(loc_8, 3)), 1053688)), loc_7)
-																																																	reg_1 = 1
+																																																	loc_7 = bxor_i64(load_i64(memory_at_0, add_i32(add_i32(shl_i32(loc_5, 9), shl_i32(loc_10, 3)), 1053688)), loc_7)
+																																																	reg_0 = 1
 																																																	break
 																																																end
 																																																if desired then
@@ -5619,7 +5638,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																end
 																																															else
 																																																while true do
-																																																	reg_1 = loc_5
+																																																	reg_0 = loc_5
 																																																	break
 																																																end
 																																																if desired then
@@ -5630,8 +5649,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																	break
 																																																end
 																																															end
-																																															loc_12 = add_i32(reg_1, loc_12)
-																																															if band_i32(loc_12, 255) ~= 8 then
+																																															loc_13 = add_i32(reg_0, loc_13)
+																																															if band_i32(loc_13, 255) ~= 8 then
 																																																continue
 																																															end
 																																															break
@@ -5665,7 +5684,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																													end
 																																													break
 																																												end
-																																												FUNC_LIST[15](loc_8, 64, 1060396)
+																																												FUNC_LIST[15](loc_10, 64, 1060396)
 																																												error("out of code bounds")
 																																											end
 																																											if desired then
@@ -5757,13 +5776,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																												break
 																																											end
 																																										end
-																																										loc_8 = band_i32(load_i32_u8(memory_at_0, loc_3 + 1), 63)
+																																										loc_10 = band_i32(load_i32_u8(memory_at_0, loc_3 + 1), 63)
 																																										loc_4 = band_i32(loc_5, 31)
 																																										while true do
 																																											if loc_5 <= 4294967263 then
 																																												while true do
-																																													loc_5 = bor_i32(shl_i32(loc_4, 6), loc_8)
-																																													reg_1 = add_i32(loc_3, 2)
+																																													loc_5 = bor_i32(shl_i32(loc_4, 6), loc_10)
+																																													reg_0 = add_i32(loc_3, 2)
 																																													desired = 41
 																																													break
 																																												end
@@ -5774,11 +5793,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																													break
 																																												end
 																																											end
-																																											loc_8 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 2), 63), shl_i32(loc_8, 6))
+																																											loc_10 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 2), 63), shl_i32(loc_10, 6))
 																																											if loc_5 < 4294967280 then
 																																												while true do
-																																													loc_5 = bor_i32(loc_8, shl_i32(loc_4, 12))
-																																													reg_1 = add_i32(loc_3, 3)
+																																													loc_5 = bor_i32(loc_10, shl_i32(loc_4, 12))
+																																													reg_0 = add_i32(loc_3, 3)
 																																													desired = 41
 																																													break
 																																												end
@@ -5789,12 +5808,12 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																													break
 																																												end
 																																											end
-																																											loc_5 = bor_i32(band_i32(shl_i32(loc_4, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 3), 63), shl_i32(loc_8, 6)))
+																																											loc_5 = bor_i32(band_i32(shl_i32(loc_4, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 3), 63), shl_i32(loc_10, 6)))
 																																											if loc_5 == 1114112 then
 																																												desired = 37
 																																												break
 																																											end
-																																											reg_1 = add_i32(loc_3, 4)
+																																											reg_0 = add_i32(loc_3, 4)
 																																											break
 																																										end
 																																										if desired then
@@ -5803,7 +5822,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																											end
 																																											break
 																																										end
-																																										loc_3 = reg_1
+																																										loc_3 = reg_0
 																																										if loc_5 < 128 then
 																																											break
 																																										end
@@ -5816,7 +5835,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																															store_i32_n8(memory_at_0, loc_2 + 17402, bor_i32(band_i32(loc_5, 63), 128))
 																																															store_i32_n8(memory_at_0, loc_2 + 17400, bor_i32(shr_u32(loc_5, 12), 224))
 																																															store_i32_n8(memory_at_0, loc_2 + 17401, bor_i32(band_i32(shr_u32(loc_5, 6), 63), 128))
-																																															reg_1 = 3
+																																															reg_0 = 3
 																																															desired = 41
 																																															break
 																																														end
@@ -5828,7 +5847,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																													store_i32_n8(memory_at_0, loc_2 + 17400, bor_i32(shr_u32(loc_5, 18), 240))
 																																													store_i32_n8(memory_at_0, loc_2 + 17402, bor_i32(band_i32(shr_u32(loc_5, 6), 63), 128))
 																																													store_i32_n8(memory_at_0, loc_2 + 17401, bor_i32(band_i32(shr_u32(loc_5, 12), 63), 128))
-																																													reg_1 = 4
+																																													reg_0 = 4
 																																													desired = 41
 																																													break
 																																												end
@@ -5841,7 +5860,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																											end
 																																											store_i32_n8(memory_at_0, loc_2 + 17401, bor_i32(band_i32(loc_5, 63), 128))
 																																											store_i32_n8(memory_at_0, loc_2 + 17400, bor_i32(shr_u32(loc_5, 6), 192))
-																																											reg_1 = 2
+																																											reg_0 = 2
 																																											break
 																																										end
 																																										if desired then
@@ -5850,7 +5869,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																											end
 																																											break
 																																										end
-																																										loc_4 = reg_1
+																																										loc_4 = reg_0
 																																										loc_5 = load_i32(memory_at_0, loc_2 + 17256)
 																																										if loc_4 > sub_i32(load_i32(memory_at_0, loc_2 + 17248), loc_5) then
 																																											while true do
@@ -5865,7 +5884,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																												break
 																																											end
 																																										end
-																																										reg_1 = FUNC_LIST[107](add_i32(load_i32(memory_at_0, loc_2 + 17252), loc_5), add_i32(loc_2, 17400), loc_4)
+																																										reg_0 = FUNC_LIST[107](add_i32(load_i32(memory_at_0, loc_2 + 17252), loc_5), add_i32(loc_2, 17400), loc_4)
 																																										store_i32(memory_at_0, loc_2 + 17256, add_i32(loc_4, loc_5))
 																																										desired = 39
 																																										break
@@ -5922,13 +5941,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																						end
 																																						loc_31 = load_i32(memory_at_0, loc_2 + 17248)
 																																						loc_3 = load_i32(memory_at_0, loc_2 + 17256)
-																																						loc_15 = load_i32(memory_at_0, loc_2 + 17252)
+																																						loc_18 = load_i32(memory_at_0, loc_2 + 17252)
 																																						store_i32_n16(memory_at_0, loc_2 + 17276, 1)
 																																						store_i32(memory_at_0, loc_2 + 17272, 0)
-																																						store_i32(memory_at_0, loc_2 + 17268, add_i32(loc_3, loc_15))
-																																						store_i32(memory_at_0, loc_2 + 17264, loc_15)
+																																						store_i32(memory_at_0, loc_2 + 17268, add_i32(loc_3, loc_18))
+																																						store_i32(memory_at_0, loc_2 + 17264, loc_18)
 																																						store_i32(memory_at_0, loc_2 + 17260, loc_3)
-																																						store_i32(memory_at_0, loc_2 + 17256, loc_15)
+																																						store_i32(memory_at_0, loc_2 + 17256, loc_18)
 																																						store_i32(memory_at_0, loc_2 + 17252, loc_3)
 																																						store_i32(memory_at_0, loc_2 + 17248, 0)
 																																						FUNC_LIST[14](add_i32(loc_2, 168), add_i32(loc_2, 17248))
@@ -5958,10 +5977,10 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																if load_i32(memory_at_0, loc_2 + 172) ~= 1 then
 																																																	break
 																																																end
-																																																loc_26 = load_i32_u8(memory_at_0, loc_3)
-																																																if loc_26 ~= 119 then
+																																																loc_23 = load_i32_u8(memory_at_0, loc_3)
+																																																if loc_23 ~= 119 then
 																																																	while true do
-																																																		if loc_26 ~= 98 then
+																																																		if loc_23 ~= 98 then
 																																																			desired = 46
 																																																			break
 																																																		end
@@ -5984,7 +6003,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																loc_8 = load_i32(memory_at_0, loc_2 + 164)
 																																																if loc_8 == 1 then
 																																																	while true do
-																																																		loc_9 = 0
+																																																		loc_10 = 0
 																																																		if load_i32_u8(memory_at_0, loc_3) == 45 then
 																																																			desired = 37
 																																																			break
@@ -6004,18 +6023,18 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																	break
 																																																end
 																																																loc_1 = band_i32(add_i32(loc_3, 3), 4294967292)
-																																																loc_18 = sub_i32(loc_1, loc_3)
+																																																loc_9 = sub_i32(loc_1, loc_3)
 																																																loc_27 = (if loc_1 == loc_3 then 1 else 0)
 																																																if loc_27 ~= 0 then
 																																																	desired = 44
 																																																	break
 																																																end
-																																																loc_5 = (if loc_8 > loc_18 then loc_18 else loc_8)
+																																																loc_5 = (if loc_8 > loc_9 then loc_9 else loc_8)
 																																																if loc_5 == 0 then
 																																																	desired = 44
 																																																	break
 																																																end
-																																																loc_9 = 1
+																																																loc_10 = 1
 																																																loc_4 = loc_3
 																																																loc_6 = loc_5
 																																																while true do
@@ -6036,8 +6055,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																	end
 																																																	break
 																																																end
-																																																loc_9 = sub_i32(loc_8, 8)
-																																																if loc_5 > loc_9 then
+																																																loc_10 = sub_i32(loc_8, 8)
+																																																if loc_10 < loc_5 then
 																																																	desired = 42
 																																																	break
 																																																end
@@ -6072,7 +6091,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														end
 																																														break
 																																													end
-																																													loc_9 = sub_i32(loc_8, 8)
+																																													loc_10 = sub_i32(loc_8, 8)
 																																													loc_5 = 0
 																																													break
 																																												end
@@ -6091,7 +6110,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														break
 																																													end
 																																													loc_5 = add_i32(loc_5, 8)
-																																													if loc_5 <= loc_9 then
+																																													if loc_10 >= loc_5 then
 																																														continue
 																																													end
 																																													break
@@ -6110,15 +6129,15 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																												end
 																																												break
 																																											end
-																																											loc_9 = 0
+																																											loc_10 = 0
 																																											if loc_5 == loc_8 then
 																																												break
 																																											end
 																																											loc_4 = add_i32(loc_3, loc_5)
 																																											loc_6 = add_i32(bxor_i32(loc_5, 4294967295), loc_8)
 																																											while true do
-																																												loc_9 = (if load_i32_u8(memory_at_0, loc_4) == 75 then 1 else 0)
-																																												if loc_9 ~= 0 then
+																																												loc_10 = (if load_i32_u8(memory_at_0, loc_4) == 75 then 1 else 0)
+																																												if loc_10 ~= 0 then
 																																													desired = 41
 																																													break
 																																												end
@@ -6151,11 +6170,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														if loc_27 ~= 0 then
 																																															break
 																																														end
-																																														loc_5 = (if loc_8 > loc_18 then loc_18 else loc_8)
+																																														loc_5 = (if loc_8 > loc_9 then loc_9 else loc_8)
 																																														if loc_5 == 0 then
 																																															break
 																																														end
-																																														loc_12 = 1
+																																														loc_13 = 1
 																																														loc_4 = loc_3
 																																														loc_6 = loc_5
 																																														while true do
@@ -6176,8 +6195,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																															end
 																																															break
 																																														end
-																																														loc_12 = sub_i32(loc_8, 8)
-																																														if loc_5 > loc_12 then
+																																														loc_13 = sub_i32(loc_8, 8)
+																																														if loc_13 < loc_5 then
 																																															desired = 42
 																																															break
 																																														end
@@ -6190,7 +6209,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														end
 																																														break
 																																													end
-																																													loc_12 = sub_i32(loc_8, 8)
+																																													loc_13 = sub_i32(loc_8, 8)
 																																													loc_5 = 0
 																																													break
 																																												end
@@ -6209,7 +6228,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														break
 																																													end
 																																													loc_5 = add_i32(loc_5, 8)
-																																													if loc_5 <= loc_12 then
+																																													if loc_13 >= loc_5 then
 																																														continue
 																																													end
 																																													break
@@ -6228,15 +6247,15 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																												end
 																																												break
 																																											end
-																																											loc_12 = 0
+																																											loc_13 = 0
 																																											if loc_5 == loc_8 then
 																																												break
 																																											end
 																																											loc_4 = add_i32(loc_3, loc_5)
 																																											loc_6 = add_i32(bxor_i32(loc_5, 4294967295), loc_8)
 																																											while true do
-																																												loc_12 = (if load_i32_u8(memory_at_0, loc_4) == 81 then 1 else 0)
-																																												if loc_12 ~= 0 then
+																																												loc_13 = (if load_i32_u8(memory_at_0, loc_4) == 81 then 1 else 0)
+																																												if loc_13 ~= 0 then
 																																													desired = 41
 																																													break
 																																												end
@@ -6269,7 +6288,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														if loc_27 ~= 0 then
 																																															break
 																																														end
-																																														loc_4 = (if loc_8 > loc_18 then loc_18 else loc_8)
+																																														loc_4 = (if loc_8 > loc_9 then loc_9 else loc_8)
 																																														if loc_4 == 0 then
 																																															break
 																																														end
@@ -6281,7 +6300,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																break
 																																															end
 																																															loc_5 = add_i32(loc_5, 1)
-																																															if loc_4 ~= loc_5 then
+																																															if loc_5 ~= loc_4 then
 																																																continue
 																																															end
 																																															break
@@ -6394,7 +6413,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														if loc_27 ~= 0 then
 																																															break
 																																														end
-																																														loc_4 = (if loc_8 > loc_18 then loc_18 else loc_8)
+																																														loc_4 = (if loc_8 > loc_9 then loc_9 else loc_8)
 																																														if loc_4 == 0 then
 																																															break
 																																														end
@@ -6505,8 +6524,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																											end
 																																											break
 																																										end
-																																										loc_9 = (if loc_12 ~= 0 then bor_i32(loc_9, 2) else loc_9)
-																																										reg_1 = loc_9
+																																										loc_10 = (if loc_13 ~= 0 then bor_i32(loc_10, 2) else loc_10)
+																																										reg_0 = loc_10
 																																										if loc_19 == 0 then
 																																											desired = 38
 																																											break
@@ -6523,8 +6542,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																									loc_6 = sub_i32(loc_8, 1)
 																																									loc_4 = loc_3
 																																									while true do
-																																										loc_9 = load_i32_u8(memory_at_0, loc_4)
-																																										if loc_9 ~= 75 then
+																																										loc_10 = load_i32_u8(memory_at_0, loc_4)
+																																										if loc_10 ~= 75 then
 																																											while true do
 																																												loc_4 = add_i32(loc_4, 1)
 																																												loc_1 = loc_6
@@ -6554,8 +6573,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																									loc_6 = sub_i32(loc_8, 1)
 																																									loc_4 = loc_3
 																																									while true do
-																																										loc_18 = load_i32_u8(memory_at_0, loc_4)
-																																										if loc_18 ~= 81 then
+																																										loc_9 = load_i32_u8(memory_at_0, loc_4)
+																																										if loc_9 ~= 81 then
 																																											while true do
 																																												loc_4 = add_i32(loc_4, 1)
 																																												loc_1 = loc_6
@@ -6643,9 +6662,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																										end
 																																										break
 																																									end
-																																									loc_3 = (if loc_9 == 75 then 1 else 0)
-																																									loc_9 = (if loc_18 == 81 then bor_i32(loc_3, 2) else loc_3)
-																																									reg_1 = loc_9
+																																									loc_3 = (if loc_10 == 75 then 1 else 0)
+																																									loc_10 = (if loc_9 == 81 then bor_i32(loc_3, 2) else loc_3)
+																																									reg_0 = loc_10
 																																									if loc_1 ~= 107 then
 																																										desired = 38
 																																										break
@@ -6658,7 +6677,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																									end
 																																									break
 																																								end
-																																								reg_1 = bor_i32(loc_9, 4)
+																																								reg_0 = bor_i32(loc_10, 4)
 																																								break
 																																							end
 																																							if desired then
@@ -6667,11 +6686,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																								end
 																																								break
 																																							end
-																																							loc_9 = reg_1
+																																							loc_10 = reg_0
 																																							if loc_6 == 0 then
 																																								break
 																																							end
-																																							loc_9 = bor_i32(loc_9, 8)
+																																							loc_10 = bor_i32(loc_10, 8)
 																																							break
 																																						end
 																																						if desired then
@@ -6680,7 +6699,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																							end
 																																							break
 																																						end
-																																						loc_11 = load_i64(memory_at_0, add_i32(shl_i32(loc_9, 3), 1059832))
+																																						loc_12 = load_i64(memory_at_0, add_i32(shl_i32(loc_10, 3), 1059832))
 																																						FUNC_LIST[14](add_i32(loc_2, 152), add_i32(loc_2, 17248))
 																																						while true do
 																																							while true do
@@ -6689,8 +6708,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																										loc_3 = load_i32(memory_at_0, loc_2 + 152)
 																																										if loc_3 ~= 0 then
 																																											while true do
-																																												loc_32 = bxor_i64(loc_7, loc_11)
-																																												loc_12 = 1
+																																												loc_32 = bxor_i64(loc_7, loc_12)
+																																												loc_13 = 1
 																																												while true do
 																																													while true do
 																																														loc_4 = load_i32(memory_at_0, loc_2 + 156)
@@ -6701,7 +6720,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														if load_i32_u8(memory_at_0, loc_3) ~= 45 then
 																																															break
 																																														end
-																																														loc_12 = 0
+																																														loc_13 = 0
 																																														desired = 42
 																																														break
 																																													end
@@ -6711,8 +6730,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														end
 																																														break
 																																													end
-																																													reg_1 = FUNC_LIST[21](loc_3, loc_4)
-																																													loc_1 = reg_1
+																																													reg_0 = FUNC_LIST[21](loc_3, loc_4)
+																																													loc_1 = reg_0
 																																													loc_32 = bxor_i64(load_i64(memory_at_0, add_i32(shl_i32(band_i32(loc_1, 7), 3), 1059960)), loc_32)
 																																													break
 																																												end
@@ -6836,9 +6855,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																												end
 																																												loc_3 = add_i32(loc_3, 1)
 																																												loc_4 = sub_i32(loc_4, 1)
-																																												loc_11 = load_i64(memory_at_0, loc_2 + 128)
-																																												loc_7 = add_i64(loc_11, extend_i64_u32(loc_5))
-																																												if ge_u64(loc_7, loc_11) then
+																																												loc_12 = load_i64(memory_at_0, loc_2 + 128)
+																																												loc_7 = add_i64(loc_12, extend_i64_u32(loc_5))
+																																												if ge_u64(loc_7, loc_12) then
 																																													continue
 																																												end
 																																												break
@@ -6978,13 +6997,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																							while true do
 																																								if loc_4 >= 17 then
 																																									while true do
-																																										loc_11 = i64_ZERO
+																																										loc_12 = i64_ZERO
 																																										while true do
 																																											if loc_4 == 0 then
 																																												desired = 38
 																																												break
 																																											end
-																																											FUNC_LIST[104](add_i32(loc_2, 104), loc_11, i64_ZERO, i64_from_u32(10, 0))
+																																											FUNC_LIST[104](add_i32(loc_2, 104), loc_12, i64_ZERO, i64_from_u32(10, 0))
 																																											loc_5 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
 																																											if loc_5 > 9 then
 																																												while true do
@@ -7008,8 +7027,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																											loc_3 = add_i32(loc_3, 1)
 																																											loc_4 = sub_i32(loc_4, 1)
 																																											loc_38 = load_i64(memory_at_0, loc_2 + 104)
-																																											loc_11 = add_i64(loc_38, extend_i64_u32(loc_5))
-																																											if ge_u64(loc_11, loc_38) then
+																																											loc_12 = add_i64(loc_38, extend_i64_u32(loc_5))
+																																											if ge_u64(loc_12, loc_38) then
 																																												continue
 																																											end
 																																											break
@@ -7027,7 +7046,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																										break
 																																									end
 																																								end
-																																								loc_11 = i64_ZERO
+																																								loc_12 = i64_ZERO
 																																								loc_6 = 1
 																																								while true do
 																																									loc_5 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
@@ -7036,7 +7055,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																										break
 																																									end
 																																									loc_3 = add_i32(loc_3, 1)
-																																									loc_11 = add_i64(extend_i64_u32(loc_5), mul_i64(loc_11, i64_from_u32(10, 0)))
+																																									loc_12 = add_i64(extend_i64_u32(loc_5), mul_i64(loc_12, i64_from_u32(10, 0)))
 																																									loc_4 = sub_i32(loc_4, 1)
 																																									if loc_4 ~= 0 then
 																																										continue
@@ -7057,20 +7076,20 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																								end
 																																								break
 																																							end
-																																							reg_1 = FUNC_LIST[107](add_i32(loc_2, 616), add_i32(loc_2, 728), 96)
+																																							reg_0 = FUNC_LIST[107](add_i32(loc_2, 616), add_i32(loc_2, 728), 96)
 																																							store_i32(memory_at_0, add_i32(loc_2, 720), 0)
 																																							store_i64(memory_at_0, loc_2 + 712, i64_from_u32(0, 8))
 																																							store_i32_n8(memory_at_0, loc_2 + 611, loc_1)
-																																							store_i32_n8(memory_at_0, loc_2 + 610, loc_12)
+																																							store_i32_n8(memory_at_0, loc_2 + 610, loc_13)
 																																							store_i32_n8(memory_at_0, loc_2 + 609, 12)
-																																							store_i32_n8(memory_at_0, loc_2 + 608, loc_9)
+																																							store_i32_n8(memory_at_0, loc_2 + 608, loc_10)
 																																							store_i64(memory_at_0, loc_2 + 600, loc_32)
-																																							store_i64(memory_at_0, loc_2 + 592, loc_11)
+																																							store_i64(memory_at_0, loc_2 + 592, loc_12)
 																																							store_i64(memory_at_0, loc_2 + 584, loc_7)
-																																							store_i32_n8(memory_at_0, loc_2 + 724, (if loc_26 == 119 then 1 else 0))
+																																							store_i32_n8(memory_at_0, loc_2 + 724, (if loc_23 == 119 then 1 else 0))
 																																							if loc_31 ~= 0 then
 																																								while true do
-																																									FUNC_LIST[4](loc_15)
+																																									FUNC_LIST[4](loc_18)
 																																									break
 																																								end
 																																								if desired then
@@ -7080,8 +7099,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																									break
 																																								end
 																																							end
-																																							reg_1 = FUNC_LIST[7](31999992)
-																																							loc_3 = reg_1
+																																							reg_0 = FUNC_LIST[7](31999992)
+																																							loc_3 = reg_0
 																																							if loc_3 == 0 then
 																																								desired = 7
 																																								break
@@ -7116,38 +7135,39 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																								break
 																																							end
 																																							store_i32_n8(memory_at_0, add_i32(add_i32(loc_3, loc_4), 16), 3)
-																																							reg_1 = FUNC_LIST[7](40)
-																																							loc_18 = reg_1
-																																							if loc_18 == 0 then
+																																							reg_0 = FUNC_LIST[7](40)
+																																							loc_10 = reg_0
+																																							if loc_10 == 0 then
 																																								desired = 7
 																																								break
 																																							end
 																																							store_i32(memory_at_0, add_i32(loc_2, 748), 0)
-																																							store_i32(memory_at_0, add_i32(loc_2, 744), loc_18)
+																																							loc_1 = add_i32(loc_2, 728)
+																																							store_i32(memory_at_0, add_i32(loc_1, 16), loc_10)
 																																							store_i32_n16(memory_at_0, loc_2 + 17208, 0)
 																																							store_i64(memory_at_0, loc_2 + 736, i64_from_u32(1333333, 5))
 																																							store_i32(memory_at_0, loc_2 + 732, loc_3)
 																																							store_i32(memory_at_0, loc_2 + 728, 1333333)
 																																							store_i32(memory_at_0, loc_2 + 752, add_i32(loc_2, 584))
-																																							reg_1 = FUNC_LIST[105](add_i32(loc_2, 756), 0, 16448)
+																																							reg_0 = FUNC_LIST[105](add_i32(loc_2, 756), 0, 16448)
 																																							store_i32(memory_at_0, loc_2 + 17204, 2147483649)
-																																							loc_1 = load_i32(memory_at_0, 1070664)
-																																							if loc_1 ~= 0 then
+																																							loc_3 = load_i32(memory_at_0, 1070664)
+																																							if loc_3 ~= 0 then
 																																								while true do
-																																									loc_27 = add_i32(loc_2, 740)
-																																									loc_8 = mul_i32(loc_1, 12)
+																																									loc_27 = add_i32(loc_1, 12)
+																																									loc_8 = mul_i32(loc_3, 12)
 																																									loc_6 = add_i32(load_i32(memory_at_0, 1070660), 8)
 																																									loc_4 = 0
 																																									while true do
 																																										while true do
-																																											loc_1 = load_i32(memory_at_0, sub_i32(loc_6, 4))
-																																											reg_1 = loc_1
+																																											loc_9 = load_i32(memory_at_0, sub_i32(loc_6, 4))
+																																											reg_0 = loc_9
 																																											while true do
-																																												loc_5 = load_i32(memory_at_0, loc_6)
-																																												if loc_5 <= 2 then
+																																												loc_1 = load_i32(memory_at_0, loc_6)
+																																												if loc_1 <= 2 then
 																																													while true do
-																																														reg_2 = 2
-																																														if loc_5 == 2 then
+																																														reg_1 = 2
+																																														if loc_1 == 2 then
 																																															desired = 41
 																																															break
 																																														end
@@ -7161,15 +7181,15 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														break
 																																													end
 																																												end
-																																												if le_i32(load_i32_i8(memory_at_0, loc_1 + 2), 4294967231) then
+																																												if le_i32(load_i32_i8(memory_at_0, loc_9 + 2), 4294967231) then
 																																													desired = 1
 																																													break
 																																												end
 																																												loc_3 = load_i32(memory_at_0, loc_2 + 752)
 																																												while true do
-																																													if loc_5 <= 4 then
+																																													if loc_1 <= 4 then
 																																														while true do
-																																															if loc_5 ~= 4 then
+																																															if loc_1 ~= 4 then
 																																																desired = 42
 																																																break
 																																															end
@@ -7183,7 +7203,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																															break
 																																														end
 																																													end
-																																													if gt_i32(load_i32_i8(memory_at_0, loc_1 + 4), 4294967231) then
+																																													if gt_i32(load_i32_i8(memory_at_0, loc_9 + 4), 4294967231) then
 																																														desired = 40
 																																														break
 																																													end
@@ -7195,7 +7215,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																													end
 																																													break
 																																												end
-																																												reg_2 = loc_5
+																																												reg_1 = loc_1
 																																												break
 																																											end
 																																											if desired then
@@ -7204,7 +7224,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																												end
 																																												break
 																																											end
-																																											FUNC_LIST[22](reg_1, reg_2, 2, 4, 1067968)
+																																											FUNC_LIST[22](reg_0, reg_1, 2, 4, 1067968)
 																																											error("out of code bounds")
 																																										end
 																																										if desired then
@@ -7214,18 +7234,18 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																											end
 																																											break
 																																										end
-																																										reg_1 = FUNC_LIST[21](loc_1, 2)
-																																										loc_19 = reg_1
-																																										reg_1 = FUNC_LIST[21](add_i32(loc_1, 2), 2)
-																																										loc_12 = reg_1
+																																										reg_0 = FUNC_LIST[21](loc_9, 2)
+																																										loc_18 = reg_0
+																																										reg_0 = FUNC_LIST[21](add_i32(loc_9, 2), 2)
+																																										loc_13 = reg_0
 																																										while true do
 																																											while true do
 																																												while true do
-																																													loc_7 = shl_i64(i64_ONE, extend_i64_u32(loc_19))
-																																													if (if eq_i64(band_i64(loc_7, load_i64(memory_at_0, loc_3 + 32)), i64_ZERO) then 1 else 0) == 0 then
+																																													loc_7 = shl_i64(i64_ONE, extend_i64_u32(loc_18))
+																																													if ne_i64(band_i64(loc_7, load_i64(memory_at_0, loc_3 + 32)), i64_ZERO) then
 																																														break
 																																													end
-																																													loc_9 = 0
+																																													loc_5 = 0
 																																													if ne_i64(band_i64(load_i64(memory_at_0, add_i32(loc_3, 40)), loc_7), i64_ZERO) then
 																																														desired = 40
 																																														break
@@ -7265,7 +7285,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														desired = 40
 																																														break
 																																													end
-																																													if (if eq_i64(band_i64(load_i64(memory_at_0, add_i32(loc_3, 120)), loc_7), i64_ZERO) then 1 else 0) == 0 then
+																																													if ne_i64(band_i64(load_i64(memory_at_0, add_i32(loc_3, 120)), loc_7), i64_ZERO) then
 																																														desired = 41
 																																														break
 																																													end
@@ -7278,18 +7298,17 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																													end
 																																													break
 																																												end
-																																												loc_9 = 6
-																																												loc_15 = sub_i32(shr_i32(extend_i32_n8(loc_19), 3), shr_i32(extend_i32_n8(loc_12), 3))
-																																												reg_1 = loc_15
-																																												loc_15 = shr_i32(extend_i32_n8(loc_15), 7)
-																																												if band_i32(sub_i32(bxor_i32(reg_1, loc_15), loc_15), 255) == 2 then
+																																												loc_5 = 6
+																																												loc_23 = sub_i32(shr_i32(extend_i32_n8(loc_18), 3), shr_i32(extend_i32_n8(loc_13), 3))
+																																												loc_19 = shr_i32(extend_i32_n8(loc_23), 7)
+																																												if band_i32(sub_i32(bxor_i32(loc_19, loc_23), loc_19), 255) == 2 then
 																																													desired = 40
 																																													break
 																																												end
 																																												if load_i32_u8(memory_at_0, loc_3 + 26) ~= 0 then
 																																													while true do
-																																														loc_9 = 5
-																																														if load_i32_u8(memory_at_0, add_i32(loc_3, 27)) == band_i32(loc_12, 255) then
+																																														loc_5 = 5
+																																														if load_i32_u8(memory_at_0, add_i32(loc_3, 27)) == band_i32(loc_13, 255) then
 																																															desired = 40
 																																															break
 																																														end
@@ -7302,71 +7321,71 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														break
 																																													end
 																																												end
-																																												loc_9 = 0
-																																												loc_15 = load_i32_u8(memory_at_0, add_i32(load_i32_u8(memory_at_0, loc_1), 1053320))
-																																												if loc_5 == loc_15 then
+																																												loc_5 = 0
+																																												loc_19 = load_i32_u8(memory_at_0, add_i32(load_i32_u8(memory_at_0, loc_9), 1053320))
+																																												if loc_19 == loc_1 then
 																																													desired = 40
 																																													break
 																																												end
-																																												loc_5 = add_i32(loc_1, loc_5)
-																																												loc_1 = add_i32(loc_1, loc_15)
-																																												loc_1 = add_i32(loc_1, load_i32_u8(memory_at_0, add_i32(load_i32_u8(memory_at_0, loc_1), 1053320)))
-																																												if loc_5 == loc_1 then
+																																												loc_1 = add_i32(loc_1, loc_9)
+																																												loc_9 = add_i32(loc_9, loc_19)
+																																												loc_9 = add_i32(load_i32_u8(memory_at_0, add_i32(load_i32_u8(memory_at_0, loc_9), 1053320)), loc_9)
+																																												if loc_1 == loc_9 then
 																																													desired = 40
 																																													break
 																																												end
-																																												loc_1 = add_i32(loc_1, load_i32_u8(memory_at_0, add_i32(load_i32_u8(memory_at_0, loc_1), 1053320)))
-																																												if loc_5 == loc_1 then
+																																												loc_9 = add_i32(loc_9, load_i32_u8(memory_at_0, add_i32(load_i32_u8(memory_at_0, loc_9), 1053320)))
+																																												if loc_9 == loc_1 then
 																																													desired = 40
 																																													break
 																																												end
-																																												loc_1 = add_i32(loc_1, load_i32_u8(memory_at_0, add_i32(load_i32_u8(memory_at_0, loc_1), 1053320)))
-																																												if loc_5 == loc_1 then
+																																												loc_9 = add_i32(loc_9, load_i32_u8(memory_at_0, add_i32(load_i32_u8(memory_at_0, loc_9), 1053320)))
+																																												if loc_9 == loc_1 then
 																																													desired = 40
 																																													break
 																																												end
-																																												loc_9 = 1
+																																												while true do
+																																													loc_5 = load_i32_i8(memory_at_0, loc_9)
+																																													if ge_i32(loc_5, 0) then
+																																														while true do
+																																															reg_0 = band_i32(loc_5, 255)
+																																															desired = 42
+																																															break
+																																														end
+																																														if desired then
+																																															if desired == 42 then
+																																																desired = nil
+																																															end
+																																															break
+																																														end
+																																													end
+																																													loc_23 = band_i32(load_i32_u8(memory_at_0, loc_9 + 1), 63)
+																																													loc_19 = band_i32(loc_5, 31)
+																																													reg_0 = bor_i32(loc_23, shl_i32(loc_19, 6))
+																																													if loc_5 <= 4294967263 then
+																																														break
+																																													end
+																																													loc_23 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_9 + 2), 63), shl_i32(loc_23, 6))
+																																													reg_0 = bor_i32(loc_23, shl_i32(loc_19, 12))
+																																													if loc_5 < 4294967280 then
+																																														break
+																																													end
+																																													reg_0 = bor_i32(band_i32(shl_i32(loc_19, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_9 + 3), 63), shl_i32(loc_23, 6)))
+																																													break
+																																												end
+																																												if desired then
+																																													if desired == 41 then
+																																														desired = nil
+																																													end
+																																													break
+																																												end
+																																												loc_1 = reg_0
+																																												loc_5 = 1
 																																												while true do
 																																													while true do
 																																														while true do
 																																															while true do
 																																																while true do
-																																																	while true do
-																																																		loc_5 = load_i32_i8(memory_at_0, loc_1)
-																																																		if ge_i32(loc_5, 0) then
-																																																			while true do
-																																																				reg_1 = band_i32(loc_5, 255)
-																																																				desired = 47
-																																																				break
-																																																			end
-																																																			if desired then
-																																																				if desired == 47 then
-																																																					desired = nil
-																																																				end
-																																																				break
-																																																			end
-																																																		end
-																																																		loc_26 = band_i32(load_i32_u8(memory_at_0, loc_1 + 1), 63)
-																																																		loc_15 = band_i32(loc_5, 31)
-																																																		reg_1 = bor_i32(loc_26, shl_i32(loc_15, 6))
-																																																		if loc_5 <= 4294967263 then
-																																																			break
-																																																		end
-																																																		loc_26 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_1 + 2), 63), shl_i32(loc_26, 6))
-																																																		reg_1 = bor_i32(loc_26, shl_i32(loc_15, 12))
-																																																		if loc_5 < 4294967280 then
-																																																			break
-																																																		end
-																																																		reg_1 = bor_i32(band_i32(shl_i32(loc_15, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_1 + 3), 63), shl_i32(loc_26, 6)))
-																																																		break
-																																																	end
-																																																	if desired then
-																																																		if desired == 46 then
-																																																			desired = nil
-																																																		end
-																																																		break
-																																																	end
-																																																	loc_1 = reg_1
 																																																	if not br_map[17] then
 																																																		br_map[17] = (function()
 																																																			return { [0] = 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 6, 2, }
@@ -7402,7 +7421,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																	end
 																																																	break
 																																																end
-																																																loc_9 = 0
+																																																loc_5 = 0
 																																																if loc_1 == 1114112 then
 																																																	desired = 40
 																																																	break
@@ -7428,7 +7447,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																															end
 																																															break
 																																														end
-																																														loc_9 = 2
+																																														loc_5 = 2
 																																														desired = 40
 																																														break
 																																													end
@@ -7438,7 +7457,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														end
 																																														break
 																																													end
-																																													loc_9 = 4
+																																													loc_5 = 4
 																																													desired = 40
 																																													break
 																																												end
@@ -7448,7 +7467,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																													end
 																																													break
 																																												end
-																																												loc_9 = 3
+																																												loc_5 = 3
 																																												desired = 40
 																																												break
 																																											end
@@ -7458,9 +7477,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																												end
 																																												break
 																																											end
-																																											loc_1 = band_i32(loc_12, 7)
-																																											loc_5 = band_i32(loc_19, 7)
-																																											loc_9 = (if (if loc_1 > loc_5 then sub_i32(loc_1, loc_5) else sub_i32(loc_5, loc_1)) > 1 then 7 else 0)
+																																											loc_1 = band_i32(loc_13, 7)
+																																											loc_5 = band_i32(loc_18, 7)
+																																											loc_5 = (if (if loc_1 > loc_5 then sub_i32(loc_1, loc_5) else sub_i32(loc_5, loc_1)) > 1 then 7 else 0)
 																																											break
 																																										end
 																																										if desired then
@@ -7470,13 +7489,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																											end
 																																											break
 																																										end
-																																										store_i32_n8(memory_at_0, loc_2 + 17250, loc_12)
-																																										store_i32_n16(memory_at_0, loc_2 + 17248, bor_i32(shl_i32(loc_19, 8), loc_9))
+																																										store_i32_n8(memory_at_0, loc_2 + 17250, loc_13)
+																																										store_i32_n16(memory_at_0, loc_2 + 17248, bor_i32(shl_i32(loc_18, 8), loc_5))
 																																										loc_7 = load_i64(memory_at_0, loc_3 + 16)
 																																										if load_i32(memory_at_0, loc_2 + 740) == loc_4 then
 																																											while true do
 																																												FUNC_LIST[23](loc_27, loc_4)
-																																												loc_18 = load_i32(memory_at_0, loc_2 + 744)
+																																												loc_10 = load_i32(memory_at_0, loc_2 + 744)
 																																												loc_4 = load_i32(memory_at_0, loc_2 + 748)
 																																												loc_3 = load_i32(memory_at_0, loc_2 + 752)
 																																												break
@@ -7489,7 +7508,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																												break
 																																											end
 																																										end
-																																										store_i64(memory_at_0, add_i32(loc_18, shl_i32(loc_4, 3)), loc_7)
+																																										store_i64(memory_at_0, add_i32(loc_10, shl_i32(loc_4, 3)), loc_7)
 																																										loc_4 = add_i32(loc_4, 1)
 																																										store_i32(memory_at_0, loc_2 + 748, loc_4)
 																																										FUNC_LIST[24](loc_3, add_i32(loc_2, 17248))
@@ -7516,13 +7535,13 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																								while true do
 																																									while true do
 																																										while true do
-																																											if loc_25 == 0 then
+																																											if loc_26 == 0 then
 																																												while true do
 																																													if band_i32(loc_21, 255) ~= 0 then
 																																														desired = 41
 																																														break
 																																													end
-																																													if (if eq_i64(loc_33, i64_ZERO) then 1 else 0) == 0 then
+																																													if wrap_i32_i64(loc_33) ~= 0 then
 																																														desired = 38
 																																														break
 																																													end
@@ -7533,9 +7552,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																													end
 																																													loc_0 = sub_i32(GLOBAL_LIST[0].value, 32)
 																																													GLOBAL_LIST[0].value = loc_0
-																																													loc_14 = (if loc_1 ~= 0 then loc_16 else loc_20)
-																																													loc_10 = i64_ZERO
-																																													loc_11 = i64_ZERO
+																																													loc_11 = (if loc_1 ~= 0 then loc_17 else loc_20)
+																																													loc_14 = i64_ZERO
+																																													loc_12 = i64_ZERO
 																																													loc_3 = sub_i32(GLOBAL_LIST[0].value, 32)
 																																													GLOBAL_LIST[0].value = loc_3
 																																													while true do
@@ -7543,7 +7562,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																															while true do
 																																																while true do
 																																																	loc_7 = (if loc_1 ~= 0 then loc_22 else loc_28)
-																																																	if (if eq_i64(loc_7, i64_ZERO) then 1 else 0) == 0 then
+																																																	if ne_i64(loc_7, i64_ZERO) then
 																																																		while true do
 																																																			if lt_u64(loc_7, i64_from_u32(20, 0)) then
 																																																				desired = 45
@@ -7553,15 +7572,14 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																				desired = 46
 																																																				break
 																																																			end
-																																																			loc_16 = div_u64(loc_7, i64_from_u32(20, 0))
-																																																			loc_7 = bor_i64(shl_i64(sub_i64(loc_7, mul_i64(loc_16, i64_from_u32(20, 0))), i64_from_u32(32, 0)), shr_u64(loc_14, i64_from_u32(32, 0)))
-																																																			loc_10 = div_u64(loc_7, i64_from_u32(20, 0))
-																																																			loc_7 = bor_i64(band_i64(loc_14, i64_from_u32(4294967295, 0)), shl_i64(sub_i64(loc_7, mul_i64(loc_10, i64_from_u32(20, 0))), i64_from_u32(32, 0)))
-																																																			reg_1 = loc_7
-																																																			loc_7 = div_u64(loc_7, i64_from_u32(20, 0))
-																																																			loc_14 = sub_i64(reg_1, mul_i64(loc_7, i64_from_u32(20, 0)))
-																																																			loc_7 = bor_i64(shl_i64(loc_10, i64_from_u32(32, 0)), loc_7)
-																																																			reg_1 = bor_i64(shr_u64(loc_10, i64_from_u32(32, 0)), loc_16)
+																																																			loc_17 = div_u64(loc_7, i64_from_u32(20, 0))
+																																																			loc_7 = bor_i64(shl_i64(sub_i64(loc_7, mul_i64(loc_17, i64_from_u32(20, 0))), i64_from_u32(32, 0)), shr_u64(loc_11, i64_from_u32(32, 0)))
+																																																			loc_14 = div_u64(loc_7, i64_from_u32(20, 0))
+																																																			loc_11 = bor_i64(band_i64(loc_11, i64_from_u32(4294967295, 0)), shl_i64(sub_i64(loc_7, mul_i64(loc_14, i64_from_u32(20, 0))), i64_from_u32(32, 0)))
+																																																			loc_7 = div_u64(loc_11, i64_from_u32(20, 0))
+																																																			loc_11 = sub_i64(loc_11, mul_i64(loc_7, i64_from_u32(20, 0)))
+																																																			loc_7 = bor_i64(shl_i64(loc_14, i64_from_u32(32, 0)), loc_7)
+																																																			reg_0 = bor_i64(shr_u64(loc_14, i64_from_u32(32, 0)), loc_17)
 																																																			desired = 43
 																																																			break
 																																																		end
@@ -7572,8 +7590,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																			break
 																																																		end
 																																																	end
-																																																	loc_7 = div_u64(loc_14, i64_from_u32(20, 0))
-																																																	reg_1 = sub_i64(loc_14, mul_i64(loc_7, i64_from_u32(20, 0)))
+																																																	loc_7 = div_u64(loc_11, i64_from_u32(20, 0))
+																																																	reg_0 = sub_i64(loc_11, mul_i64(loc_7, i64_from_u32(20, 0)))
 																																																	desired = 44
 																																																	break
 																																																end
@@ -7583,10 +7601,10 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																	end
 																																																	break
 																																																end
-																																																reg_2 = loc_7
-																																																loc_7 = div_u64(loc_14, loc_7)
-																																																loc_14 = sub_i64(loc_14, mul_i64(reg_2, loc_7))
-																																																reg_1 = i64_ONE
+																																																loc_14 = loc_7
+																																																loc_7 = div_u64(loc_11, loc_14)
+																																																loc_11 = sub_i64(loc_11, mul_i64(loc_7, loc_14))
+																																																reg_0 = i64_ONE
 																																																desired = 43
 																																																break
 																																															end
@@ -7596,7 +7614,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																end
 																																																break
 																																															end
-																																															loc_16 = i64_from_u32(20, 0)
+																																															loc_17 = i64_from_u32(20, 0)
 																																															while true do
 																																																loc_6 = wrap_i32_i64(clz_i64(loc_7))
 																																																loc_6 = (if loc_6 == 59 then 63 else sub_i32(123, loc_6))
@@ -7606,9 +7624,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																			desired = 45
 																																																			break
 																																																		end
-																																																		loc_16 = extend_i64_u32(band_i32(loc_6, 63))
-																																																		loc_10 = bor_i64(shl_i64(i64_ZERO, loc_16), shr_u64(i64_from_u32(20, 0), extend_i64_u32(band_i32(sub_i32(0, loc_6), 63))))
-																																																		loc_16 = shl_i64(i64_from_u32(20, 0), loc_16)
+																																																		loc_14 = shr_u64(i64_from_u32(20, 0), extend_i64_u32(band_i32(sub_i32(0, loc_6), 63)))
+																																																		loc_17 = shl_i64(i64_from_u32(20, 0), extend_i64_u32(band_i32(loc_6, 63)))
 																																																		desired = 45
 																																																		break
 																																																	end
@@ -7619,8 +7636,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																		break
 																																																	end
 																																																end
-																																																loc_10 = shl_i64(i64_from_u32(20, 0), extend_i64_u32(band_i32(loc_6, 63)))
-																																																loc_16 = i64_ZERO
+																																																loc_14 = shl_i64(i64_from_u32(20, 0), extend_i64_u32(band_i32(loc_6, 63)))
+																																																loc_17 = i64_ZERO
 																																																break
 																																															end
 																																															if desired then
@@ -7629,23 +7646,23 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																end
 																																																break
 																																															end
-																																															store_i64(memory_at_0, loc_3, loc_16)
-																																															store_i64(memory_at_0, loc_3 + 8, loc_10)
+																																															store_i64(memory_at_0, loc_3, loc_17)
+																																															store_i64(memory_at_0, loc_3 + 8, loc_14)
 																																															loc_22 = shl_i64(i64_ONE, extend_i64_u32(band_i32(loc_6, 63)))
-																																															loc_16 = load_i64(memory_at_0, add_i32(loc_3, 8))
+																																															loc_17 = load_i64(memory_at_0, add_i32(loc_3, 8))
 																																															loc_20 = load_i64(memory_at_0, loc_3)
 																																															while true do
 																																																while true do
-																																																	loc_10 = sub_i64(sub_i64(loc_7, loc_16), extend_i64_u32((if lt_u64(loc_14, loc_20) then 1 else 0)))
-																																																	if ge_i64(loc_10, i64_ZERO) then
+																																																	loc_14 = sub_i64(sub_i64(loc_7, loc_17), extend_i64_u32((if lt_u64(loc_11, loc_20) then 1 else 0)))
+																																																	if ge_i64(loc_14, i64_ZERO) then
 																																																		while true do
-																																																			loc_14 = sub_i64(loc_14, loc_20)
-																																																			loc_11 = bor_i64(loc_11, loc_22)
-																																																			if eq_i64(loc_10, i64_ZERO) then
+																																																			loc_11 = sub_i64(loc_11, loc_20)
+																																																			loc_12 = bor_i64(loc_12, loc_22)
+																																																			if eq_i64(loc_14, i64_ZERO) then
 																																																				desired = 46
 																																																				break
 																																																			end
-																																																			loc_7 = loc_10
+																																																			loc_7 = loc_14
 																																																			break
 																																																		end
 																																																		if desired then
@@ -7655,9 +7672,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																			break
 																																																		end
 																																																	end
-																																																	loc_20 = bor_i64(shl_i64(loc_16, i64_from_u32(63, 0)), shr_u64(loc_20, i64_ONE))
+																																																	loc_20 = bor_i64(shl_i64(loc_17, i64_from_u32(63, 0)), shr_u64(loc_20, i64_ONE))
 																																																	loc_22 = shr_u64(loc_22, i64_ONE)
-																																																	loc_16 = shr_u64(loc_16, i64_ONE)
+																																																	loc_17 = shr_u64(loc_17, i64_ONE)
 																																																	desired = 45
 																																																	break
 																																																end
@@ -7676,9 +7693,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																																end
 																																																break
 																																															end
-																																															loc_10 = div_u64(loc_14, i64_from_u32(20, 0))
-																																															loc_7 = bor_i64(loc_10, loc_11)
-																																															reg_1 = sub_i64(loc_14, mul_i64(loc_10, i64_from_u32(20, 0)))
+																																															loc_14 = div_u64(loc_11, i64_from_u32(20, 0))
+																																															loc_7 = bor_i64(loc_14, loc_12)
+																																															reg_0 = sub_i64(loc_11, mul_i64(loc_14, i64_from_u32(20, 0)))
 																																															break
 																																														end
 																																														if desired then
@@ -7687,35 +7704,34 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																															end
 																																															break
 																																														end
-																																														loc_14 = reg_1
-																																														reg_1 = i64_ZERO
+																																														loc_11 = reg_0
+																																														reg_0 = i64_ZERO
 																																														break
 																																													end
 																																													if desired then
 																																														break
 																																													end
-																																													loc_10 = reg_1
-																																													store_i64(memory_at_0, loc_0 + 16, loc_14)
+																																													loc_14 = reg_0
+																																													store_i64(memory_at_0, loc_0 + 16, loc_11)
 																																													store_i64(memory_at_0, loc_0, loc_7)
 																																													store_i64(memory_at_0, add_i32(loc_0, 24), i64_ZERO)
-																																													store_i64(memory_at_0, loc_0 + 8, loc_10)
+																																													store_i64(memory_at_0, loc_0 + 8, loc_14)
 																																													GLOBAL_LIST[0].value = add_i32(loc_3, 32)
 																																													loc_7 = load_i64(memory_at_0, loc_0)
 																																													loc_3 = add_i32(loc_2, 88)
 																																													store_i64(memory_at_0, loc_3 + 8, load_i64(memory_at_0, add_i32(loc_0, 8)))
 																																													store_i64(memory_at_0, loc_3, loc_7)
 																																													GLOBAL_LIST[0].value = add_i32(loc_0, 32)
-																																													loc_7 = (if loc_1 ~= 0 then loc_29 else loc_30)
+																																													loc_11 = (if loc_1 ~= 0 then loc_24 else loc_25)
 																																													loc_0 = (if eq_i64((if loc_1 ~= 0 then loc_36 else loc_37), i64_ZERO) then 1 else 0)
-																																													loc_10 = (if loc_0 ~= 0 then i64_ZERO else bor_i64(shl_i64(loc_7, i64_from_u32(63, 0)), shr_u64((if loc_1 ~= 0 then loc_23 else loc_24), i64_ONE)))
-																																													reg_1 = add_i64(load_i64(memory_at_0, add_i32(loc_2, 96)), (if loc_0 ~= 0 then i64_ZERO else shr_u64(loc_7, i64_ONE)))
-																																													loc_7 = add_i64(loc_10, load_i64(memory_at_0, loc_2 + 88))
-																																													loc_10 = add_i64(reg_1, extend_i64_u32((if lt_u64(loc_7, loc_10) then 1 else 0)))
+																																													loc_14 = (if loc_0 ~= 0 then i64_ZERO else bor_i64(shl_i64(loc_11, i64_from_u32(63, 0)), shr_u64((if loc_1 ~= 0 then loc_29 else loc_30), i64_ONE)))
+																																													loc_7 = add_i64(loc_14, load_i64(memory_at_0, loc_2 + 88))
+																																													loc_17 = load_i64(memory_at_0, 1070624)
+																																													loc_11 = add_i64(extend_i64_u32((if lt_u64(loc_7, loc_14) then 1 else 0)), add_i64(load_i64(memory_at_0, add_i32(loc_2, 96)), (if loc_0 ~= 0 then i64_ZERO else shr_u64(loc_11, i64_ONE))))
 																																													loc_14 = load_i64(memory_at_0, 1070632)
-																																													loc_16 = load_i64(memory_at_0, 1070624)
-																																													loc_0 = (if eq_i64(loc_10, loc_14) then (if lt_u64(loc_7, loc_16) then 1 else 0) else (if lt_u64(loc_10, loc_14) then 1 else 0))
-																																													loc_14 = (if loc_0 ~= 0 then loc_10 else loc_14)
-																																													loc_10 = (if loc_0 ~= 0 then loc_7 else loc_16)
+																																													loc_0 = (if eq_i64(loc_11, loc_14) then (if lt_u64(loc_7, loc_17) then 1 else 0) else (if lt_u64(loc_11, loc_14) then 1 else 0))
+																																													loc_11 = (if loc_0 ~= 0 then loc_11 else loc_14)
+																																													loc_14 = (if loc_0 ~= 0 then loc_7 else loc_17)
 																																													desired = 38
 																																													break
 																																												end
@@ -7732,7 +7748,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																											end
 																																											loc_1 = load_i32(memory_at_0, 1070640)
 																																											store_i32(memory_at_0, loc_2 + 17388, loc_1)
-																																											store_i32_n16(memory_at_0, loc_2 + 17232, loc_13)
+																																											store_i32_n16(memory_at_0, loc_2 + 17232, loc_15)
 																																											store_i32(memory_at_0, loc_2 + 17444, 0)
 																																											loc_0 = add_i32(loc_2, 17248)
 																																											loc_3 = add_i32(loc_2, 584)
@@ -7803,8 +7819,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																											end
 																																											break
 																																										end
-																																										loc_14 = load_i64(memory_at_0, 1070632)
-																																										loc_10 = load_i64(memory_at_0, 1070624)
+																																										loc_11 = load_i64(memory_at_0, 1070632)
+																																										loc_14 = load_i64(memory_at_0, 1070624)
 																																										desired = 38
 																																										break
 																																									end
@@ -7832,76 +7848,83 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																								end
 																																								break
 																																							end
-																																							loc_0 = add_i32(loc_2, 17224)
-																																							store_i64(memory_at_0, loc_0, loc_14)
-																																							store_i64(memory_at_0, loc_2 + 17216, loc_10)
-																																							reg_2 = FUNC_LIST[1]()
-																																							loc_17 = reg_2
-																																							store_f64(memory_at_0, loc_2 + 17232, loc_17)
-																																							store_i32(memory_at_0, loc_2 + 17244, add_i32(loc_2, 17216))
+																																							loc_0 = add_i32(loc_2, 17216)
+																																							loc_1 = add_i32(loc_0, 8)
+																																							store_i64(memory_at_0, loc_1, loc_11)
+																																							store_i64(memory_at_0, loc_2 + 17216, loc_14)
+																																							reg_1 = FUNC_LIST[1]()
+																																							loc_16 = reg_1
+																																							store_f64(memory_at_0, loc_2 + 17232, loc_16)
+																																							store_i32(memory_at_0, loc_2 + 17244, loc_0)
 																																							store_i32(memory_at_0, loc_2 + 17240, add_i32(loc_2, 17232))
-																																							reg_2 = FUNC_LIST[1]()
-																																							loc_17 = ((reg_2 - loc_17) * 1e3)
-																																							FUNC_LIST[103](add_i32(loc_2, 72), loc_17)
+																																							loc_0 = add_i32(loc_2, 72)
+																																							reg_1 = FUNC_LIST[1]()
+																																							loc_16 = ((reg_1 - loc_16) * 1e3)
+																																							FUNC_LIST[103](loc_0, loc_16)
 																																							loc_3 = 0
 																																							while true do
 																																								while true do
 																																									while true do
+																																										reg_1 = load_i64(memory_at_0, add_i32(loc_0, 8))
+																																										loc_0 = (if loc_16 >= 0e0 then 1 else 0)
+																																										loc_6 = (if loc_16 > 3.4028236692093843e38 then 1 else 0)
+																																										loc_7 = (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_0 ~= 0 then reg_1 else i64_ZERO))
 																																										while true do
-																																											loc_1 = (if loc_17 >= 0e0 then 1 else 0)
-																																											loc_6 = (if loc_17 > 3.4028236692093843e38 then 1 else 0)
-																																											loc_7 = (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then load_i64(memory_at_0, add_i32(loc_2, 80)) else i64_ZERO))
-																																											loc_10 = load_i64(memory_at_0, loc_0)
-																																											if (if eq_i64(loc_7, loc_10) then (if lt_u64(load_i64(memory_at_0, loc_2 + 17216), (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then load_i64(memory_at_0, loc_2 + 72) else i64_ZERO))) then 1 else 0) else (if gt_u64(loc_7, loc_10) then 1 else 0)) ~= 0 then
+																																											loc_11 = load_i64(memory_at_0, loc_1)
+																																											if (if eq_i64(loc_7, loc_11) then (if lt_u64(load_i64(memory_at_0, loc_2 + 17216), (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_0 ~= 0 then load_i64(memory_at_0, loc_2 + 72) else i64_ZERO))) then 1 else 0) else (if lt_u64(loc_11, loc_7) then 1 else 0)) ~= 0 then
 																																												break
 																																											end
 																																											while true do
 																																												loc_3 = add_i32(loc_3, 1)
-																																												reg_1 = FUNC_LIST[30](add_i32(loc_2, 728), loc_3, 0, 0, add_i32(loc_2, 17240), 2147483649, 2147483647)
-																																												loc_17 = load_f64(memory_at_0, load_i32(memory_at_0, loc_2 + 17240))
-																																												reg_2 = FUNC_LIST[1]()
-																																												loc_17 = ((reg_2 - loc_17) * 1e3)
-																																												FUNC_LIST[103](add_i32(loc_2, 56), loc_17)
-																																												loc_0 = load_i32(memory_at_0, loc_2 + 17244)
-																																												loc_1 = (if loc_17 >= 0e0 then 1 else 0)
-																																												loc_6 = (if loc_17 > 3.4028236692093843e38 then 1 else 0)
-																																												loc_7 = (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then load_i64(memory_at_0, sub_i32(loc_2, 4294967232)) else i64_ZERO))
-																																												loc_10 = load_i64(memory_at_0, add_i32(loc_0, 8))
-																																												if (if eq_i64(loc_7, loc_10) then (if lt_u64(load_i64(memory_at_0, loc_0), (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then load_i64(memory_at_0, loc_2 + 56) else i64_ZERO))) then 1 else 0) else (if gt_u64(loc_7, loc_10) then 1 else 0)) ~= 0 then
+																																												reg_0 = FUNC_LIST[30](add_i32(loc_2, 728), loc_3, 0, 0, add_i32(loc_2, 17240), 2147483649, 2147483647)
+																																												loc_16 = load_f64(memory_at_0, load_i32(memory_at_0, loc_2 + 17240))
+																																												loc_0 = add_i32(loc_2, 56)
+																																												reg_1 = FUNC_LIST[1]()
+																																												loc_16 = ((reg_1 - loc_16) * 1e3)
+																																												FUNC_LIST[103](loc_0, loc_16)
+																																												reg_1 = load_i64(memory_at_0, add_i32(loc_0, 8))
+																																												loc_0 = (if loc_16 >= 0e0 then 1 else 0)
+																																												loc_1 = (if loc_16 > 3.4028236692093843e38 then 1 else 0)
+																																												loc_7 = (if loc_1 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_0 ~= 0 then reg_1 else i64_ZERO))
+																																												loc_6 = load_i32(memory_at_0, loc_2 + 17244)
+																																												loc_11 = load_i64(memory_at_0, add_i32(loc_6, 8))
+																																												if (if eq_i64(loc_7, loc_11) then (if lt_u64(load_i64(memory_at_0, loc_6), (if loc_1 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_0 ~= 0 then load_i64(memory_at_0, loc_2 + 56) else i64_ZERO))) then 1 else 0) else (if gt_u64(loc_7, loc_11) then 1 else 0)) ~= 0 then
 																																													desired = 41
 																																													break
 																																												end
-																																												loc_0 = load_i32_u16(memory_at_0, loc_2 + 17208)
-																																												reg_1 = 0
-																																												if loc_0 == 0 then
+																																												loc_1 = load_i32_u16(memory_at_0, loc_2 + 17208)
+																																												reg_0 = 0
+																																												if loc_1 == 0 then
 																																													desired = 40
 																																													break
 																																												end
-																																												loc_1 = load_i32(memory_at_0, loc_2 + 17204)
-																																												loc_6 = shr_i32(loc_1, 31)
-																																												if sub_i32(bxor_i32(loc_1, loc_6), loc_6) == 2147483646 then
+																																												loc_0 = load_i32(memory_at_0, loc_2 + 17204)
+																																												loc_6 = shr_i32(loc_0, 31)
+																																												if sub_i32(bxor_i32(loc_0, loc_6), loc_6) == 2147483646 then
 																																													desired = 41
 																																													break
 																																												end
 																																												store_i32_n16(memory_at_0, loc_2 + 17382, loc_3)
-																																												store_i32(memory_at_0, loc_2 + 17384, loc_1)
+																																												store_i32(memory_at_0, loc_2 + 17384, loc_0)
 																																												loc_6 = load_i32(memory_at_0, 1070640)
-																																												loc_17 = load_f64(memory_at_0, loc_2 + 17232)
-																																												reg_2 = FUNC_LIST[1]()
-																																												loc_17 = ((reg_2 - loc_17) * 1e3)
-																																												FUNC_LIST[103](add_i32(loc_2, 40), loc_17)
-																																												loc_1 = (if loc_17 >= 0e0 then 1 else 0)
-																																												loc_5 = (if loc_17 > 3.4028236692093843e38 then 1 else 0)
-																																												store_i64(memory_at_0, loc_2 + 17432, (if loc_5 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then load_i64(memory_at_0, add_i32(loc_2, 48)) else i64_ZERO)))
-																																												store_i64(memory_at_0, loc_2 + 17424, (if loc_5 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then load_i64(memory_at_0, loc_2 + 40) else i64_ZERO)))
-																																												loc_1 = shr_u32(loc_0, 12)
-																																												loc_0 = extend_i32_n16(loc_0)
-																																												if lt_i32(loc_0, 0) then
+																																												loc_16 = load_f64(memory_at_0, loc_2 + 17232)
+																																												loc_0 = add_i32(loc_2, 40)
+																																												reg_1 = FUNC_LIST[1]()
+																																												loc_16 = ((reg_1 - loc_16) * 1e3)
+																																												FUNC_LIST[103](loc_0, loc_16)
+																																												reg_2 = load_i64(memory_at_0, add_i32(loc_0, 8))
+																																												loc_0 = (if loc_16 >= 0e0 then 1 else 0)
+																																												loc_5 = (if loc_16 > 3.4028236692093843e38 then 1 else 0)
+																																												store_i64(memory_at_0, loc_2 + 17432, (if loc_5 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_0 ~= 0 then reg_2 else i64_ZERO)))
+																																												store_i64(memory_at_0, loc_2 + 17424, (if loc_5 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_0 ~= 0 then load_i64(memory_at_0, loc_2 + 40) else i64_ZERO)))
+																																												loc_0 = shr_u32(loc_1, 12)
+																																												loc_1 = extend_i32_n16(loc_1)
+																																												if lt_i32(loc_1, 0) then
 																																													desired = 39
 																																													break
 																																												end
 																																												loc_5 = add_i32(loc_2, 17444)
-																																												FUNC_LIST[31](loc_5, bor_i32(load_i32_u8(memory_at_0, add_i32(loc_1, 1064512)), bor_i32(band_i32(shl_i32(loc_0, 10), 4128768), shl_i32(band_i32(loc_0, 63), 8))))
+																																												FUNC_LIST[31](loc_5, bor_i32(load_i32_u8(memory_at_0, add_i32(loc_0, 1064512)), bor_i32(band_i32(shl_i32(loc_1, 10), 4128768), shl_i32(band_i32(loc_1, 63), 8))))
 																																												store_i32(memory_at_0, loc_2 + 17276, 4)
 																																												store_i32(memory_at_0, loc_2 + 17268, 5)
 																																												store_i32(memory_at_0, loc_2 + 17260, 6)
@@ -7944,16 +7967,18 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																														break
 																																													end
 																																												end
-																																												loc_17 = load_f64(memory_at_0, load_i32(memory_at_0, loc_2 + 17240))
-																																												reg_2 = FUNC_LIST[1]()
-																																												loc_17 = ((reg_2 - loc_17) * 1e3)
-																																												FUNC_LIST[103](add_i32(loc_2, 24), loc_17)
-																																												loc_0 = load_i32(memory_at_0, loc_2 + 17244)
-																																												loc_1 = (if loc_17 >= 0e0 then 1 else 0)
-																																												loc_6 = (if loc_17 > 3.4028236692093843e38 then 1 else 0)
-																																												loc_7 = (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then load_i64(memory_at_0, add_i32(loc_2, 32)) else i64_ZERO))
-																																												loc_10 = load_i64(memory_at_0, add_i32(loc_0, 8))
-																																												if (if eq_i64(loc_7, loc_10) then (if ge_u64(load_i64(memory_at_0, loc_0), (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then load_i64(memory_at_0, loc_2 + 24) else i64_ZERO))) then 1 else 0) else (if le_u64(loc_7, loc_10) then 1 else 0)) ~= 0 then
+																																												loc_16 = load_f64(memory_at_0, load_i32(memory_at_0, loc_2 + 17240))
+																																												loc_0 = add_i32(loc_2, 24)
+																																												reg_1 = FUNC_LIST[1]()
+																																												loc_16 = ((reg_1 - loc_16) * 1e3)
+																																												FUNC_LIST[103](loc_0, loc_16)
+																																												reg_1 = load_i64(memory_at_0, add_i32(loc_0, 8))
+																																												loc_0 = (if loc_16 >= 0e0 then 1 else 0)
+																																												loc_1 = (if loc_16 > 3.4028236692093843e38 then 1 else 0)
+																																												loc_7 = (if loc_1 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_0 ~= 0 then reg_1 else i64_ZERO))
+																																												loc_6 = load_i32(memory_at_0, loc_2 + 17244)
+																																												loc_11 = load_i64(memory_at_0, add_i32(loc_6, 8))
+																																												if (if eq_i64(loc_7, loc_11) then (if ge_u64(load_i64(memory_at_0, loc_6), (if loc_1 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_0 ~= 0 then load_i64(memory_at_0, loc_2 + 24) else i64_ZERO))) then 1 else 0) else (if le_u64(loc_7, loc_11) then 1 else 0)) ~= 0 then
 																																													continue
 																																												end
 																																												break
@@ -7972,7 +7997,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																											end
 																																											break
 																																										end
-																																										reg_1 = load_i32_u16(memory_at_0, loc_2 + 17208)
+																																										reg_0 = load_i32_u16(memory_at_0, loc_2 + 17208)
 																																										break
 																																									end
 																																									if desired then
@@ -7981,18 +8006,20 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																										end
 																																										break
 																																									end
-																																									loc_0 = reg_1
+																																									loc_0 = reg_0
 																																									loc_1 = load_i32(memory_at_0, loc_2 + 17204)
 																																									store_i32_n16(memory_at_0, loc_2 + 17382, loc_3)
 																																									store_i32(memory_at_0, loc_2 + 17384, loc_1)
 																																									loc_3 = load_i32(memory_at_0, 1070640)
-																																									loc_17 = load_f64(memory_at_0, loc_2 + 17232)
-																																									reg_2 = FUNC_LIST[1]()
-																																									loc_17 = ((reg_2 - loc_17) * 1e3)
-																																									FUNC_LIST[103](add_i32(loc_2, 8), loc_17)
-																																									loc_1 = (if loc_17 >= 0e0 then 1 else 0)
-																																									loc_6 = (if loc_17 > 3.4028236692093843e38 then 1 else 0)
-																																									store_i64(memory_at_0, loc_2 + 17432, (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then load_i64(memory_at_0, add_i32(loc_2, 16)) else i64_ZERO)))
+																																									loc_16 = load_f64(memory_at_0, loc_2 + 17232)
+																																									loc_1 = add_i32(loc_2, 8)
+																																									reg_1 = FUNC_LIST[1]()
+																																									loc_16 = ((reg_1 - loc_16) * 1e3)
+																																									FUNC_LIST[103](loc_1, loc_16)
+																																									reg_2 = load_i64(memory_at_0, add_i32(loc_1, 8))
+																																									loc_1 = (if loc_16 >= 0e0 then 1 else 0)
+																																									loc_6 = (if loc_16 > 3.4028236692093843e38 then 1 else 0)
+																																									store_i64(memory_at_0, loc_2 + 17432, (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then reg_2 else i64_ZERO)))
 																																									store_i64(memory_at_0, loc_2 + 17424, (if loc_6 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_1 ~= 0 then load_i64(memory_at_0, loc_2 + 8) else i64_ZERO)))
 																																									loc_1 = shr_u32(band_i32(loc_0, 61440), 12)
 																																									if lt_i32(extend_i32_n16(loc_0), 0) then
@@ -8004,8 +8031,10 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																									FUNC_LIST[31](loc_6, loc_0)
 																																									store_i32(memory_at_0, add_i32(loc_2, 17276), 4)
 																																									store_i32(memory_at_0, add_i32(loc_2, 17268), 5)
-																																									store_i32(memory_at_0, add_i32(loc_2, 17260), 6)
-																																									store_i64(memory_at_0, add_i32(loc_2, 17412), i64_from_u32(4, 0))
+																																									loc_1 = add_i32(loc_2, 17248)
+																																									store_i32(memory_at_0, add_i32(loc_1, 12), 6)
+																																									loc_5 = add_i32(loc_2, 17400)
+																																									store_i64(memory_at_0, add_i32(loc_5, 12), i64_from_u32(4, 0))
 																																									store_i32(memory_at_0, loc_2 + 17252, 7)
 																																									store_i32(memory_at_0, loc_2 + 17404, 4)
 																																									store_i32(memory_at_0, loc_2 + 17400, 1068656)
@@ -8013,8 +8042,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																									store_i32(memory_at_0, loc_2 + 17264, add_i32(loc_2, 17424))
 																																									store_i32(memory_at_0, loc_2 + 17256, add_i32(loc_2, 17384))
 																																									store_i32(memory_at_0, loc_2 + 17248, add_i32(loc_2, 17382))
-																																									store_i32(memory_at_0, loc_2 + 17408, add_i32(loc_2, 17248))
-																																									FUNC_LIST[29](add_i32(loc_2, 17388), add_i32(loc_2, 17400))
+																																									store_i32(memory_at_0, loc_2 + 17408, loc_1)
+																																									FUNC_LIST[29](add_i32(loc_2, 17388), loc_5)
 																																									if load_i32(memory_at_0, loc_2 + 17444) ~= 0 then
 																																										while true do
 																																											FUNC_LIST[4](load_i32(memory_at_0, loc_2 + 17448))
@@ -8117,7 +8146,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																									end
 																																									break
 																																								end
-																																								FUNC_LIST[15](loc_1, 8, 1064496)
+																																								FUNC_LIST[15](loc_0, 8, 1064496)
 																																								error("out of code bounds")
 																																							end
 																																							if desired then
@@ -8147,7 +8176,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																					end
 																																					if loc_4 >= 33 then
 																																						while true do
-																																							loc_16 = i64_ZERO
+																																							loc_17 = i64_ZERO
 																																							loc_22 = i64_ZERO
 																																							while true do
 																																								if loc_4 == 0 then
@@ -8165,7 +8194,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																									end
 																																								end
 																																								FUNC_LIST[104](add_i32(loc_2, 192), loc_22, i64_ZERO, i64_from_u32(10, 0))
-																																								FUNC_LIST[104](add_i32(loc_2, 208), loc_16, i64_ZERO, i64_from_u32(10, 0))
+																																								FUNC_LIST[104](add_i32(loc_2, 208), loc_17, i64_ZERO, i64_from_u32(10, 0))
 																																								loc_1 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
 																																								if loc_1 > 9 then
 																																									while true do
@@ -8182,19 +8211,19 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																									end
 																																								end
 																																								loc_6 = 2
-																																								loc_16 = load_i64(memory_at_0, add_i32(loc_2, 216))
-																																								loc_7 = add_i64(loc_16, load_i64(memory_at_0, loc_2 + 192))
-																																								if bor_i32((if ne_i64(load_i64(memory_at_0, loc_2 + 200), i64_ZERO) then 1 else 0), (if lt_u64(loc_7, loc_16) then 1 else 0)) ~= 0 then
+																																								loc_17 = load_i64(memory_at_0, add_i32(loc_2, 216))
+																																								loc_7 = add_i64(loc_17, load_i64(memory_at_0, loc_2 + 192))
+																																								if bor_i32((if ne_i64(load_i64(memory_at_0, loc_2 + 200), i64_ZERO) then 1 else 0), (if lt_u64(loc_7, loc_17) then 1 else 0)) ~= 0 then
 																																									desired = 35
 																																									break
 																																								end
 																																								loc_3 = add_i32(loc_3, 1)
 																																								loc_4 = sub_i32(loc_4, 1)
-																																								loc_11 = load_i64(memory_at_0, loc_2 + 208)
-																																								loc_16 = add_i64(loc_11, extend_i64_u32(loc_1))
-																																								loc_1 = (if lt_u64(loc_16, loc_11) then 1 else 0)
+																																								loc_12 = load_i64(memory_at_0, loc_2 + 208)
+																																								loc_17 = add_i64(loc_12, extend_i64_u32(loc_1))
+																																								loc_1 = (if lt_u64(loc_17, loc_12) then 1 else 0)
 																																								loc_22 = add_i64(loc_7, extend_i64_u32(loc_1))
-																																								if (if le_u64(loc_11, loc_16) then loc_1 else (if lt_u64(loc_22, loc_7) then 1 else 0)) == 0 then
+																																								if (if le_u64(loc_12, loc_17) then loc_1 else (if gt_u64(loc_7, loc_22) then 1 else 0)) == 0 then
 																																									continue
 																																								end
 																																								break
@@ -8212,7 +8241,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																							break
 																																						end
 																																					end
-																																					loc_16 = i64_ZERO
+																																					loc_17 = i64_ZERO
 																																					loc_22 = i64_ZERO
 																																					while true do
 																																						loc_1 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
@@ -8230,11 +8259,12 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																								break
 																																							end
 																																						end
-																																						FUNC_LIST[104](add_i32(loc_2, 176), loc_16, loc_22, i64_from_u32(10, 0))
+																																						loc_6 = add_i32(loc_2, 176)
+																																						FUNC_LIST[104](loc_6, loc_17, loc_22, i64_from_u32(10, 0))
 																																						loc_3 = add_i32(loc_3, 1)
 																																						loc_7 = load_i64(memory_at_0, loc_2 + 176)
-																																						loc_16 = add_i64(loc_7, extend_i64_u32(loc_1))
-																																						loc_22 = add_i64(load_i64(memory_at_0, add_i32(loc_2, 184)), extend_i64_u32((if lt_u64(loc_16, loc_7) then 1 else 0)))
+																																						loc_17 = add_i64(loc_7, extend_i64_u32(loc_1))
+																																						loc_22 = add_i64(load_i64(memory_at_0, add_i32(loc_6, 8)), extend_i64_u32((if lt_u64(loc_17, loc_7) then 1 else 0)))
 																																						loc_34 = i64_ONE
 																																						loc_4 = sub_i32(loc_4, 1)
 																																						if loc_4 ~= 0 then
@@ -8321,11 +8351,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																					end
 																																					loc_3 = add_i32(loc_3, 1)
 																																					loc_4 = sub_i32(loc_4, 1)
-																																					loc_11 = load_i64(memory_at_0, loc_2 + 264)
-																																					loc_20 = add_i64(loc_11, extend_i64_u32(loc_1))
-																																					loc_1 = (if lt_u64(loc_20, loc_11) then 1 else 0)
+																																					loc_12 = load_i64(memory_at_0, loc_2 + 264)
+																																					loc_20 = add_i64(loc_12, extend_i64_u32(loc_1))
+																																					loc_1 = (if lt_u64(loc_20, loc_12) then 1 else 0)
 																																					loc_28 = add_i64(loc_7, extend_i64_u32(loc_1))
-																																					if (if le_u64(loc_11, loc_20) then loc_1 else (if lt_u64(loc_28, loc_7) then 1 else 0)) == 0 then
+																																					if (if le_u64(loc_12, loc_20) then loc_1 else (if gt_u64(loc_7, loc_28) then 1 else 0)) == 0 then
 																																						continue
 																																					end
 																																					break
@@ -8361,11 +8391,12 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																					break
 																																				end
 																																			end
-																																			FUNC_LIST[104](add_i32(loc_2, 232), loc_20, loc_28, i64_from_u32(10, 0))
+																																			loc_6 = add_i32(loc_2, 232)
+																																			FUNC_LIST[104](loc_6, loc_20, loc_28, i64_from_u32(10, 0))
 																																			loc_3 = add_i32(loc_3, 1)
 																																			loc_7 = load_i64(memory_at_0, loc_2 + 232)
 																																			loc_20 = add_i64(loc_7, extend_i64_u32(loc_1))
-																																			loc_28 = add_i64(load_i64(memory_at_0, add_i32(loc_2, 240)), extend_i64_u32((if lt_u64(loc_20, loc_7) then 1 else 0)))
+																																			loc_28 = add_i64(load_i64(memory_at_0, add_i32(loc_6, 8)), extend_i64_u32((if lt_u64(loc_20, loc_7) then 1 else 0)))
 																																			loc_35 = i64_ONE
 																																			loc_4 = sub_i32(loc_4, 1)
 																																			if loc_4 ~= 0 then
@@ -8400,8 +8431,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																end
 																																if loc_4 >= 33 then
 																																	while true do
-																																		loc_23 = i64_ZERO
 																																		loc_29 = i64_ZERO
+																																		loc_24 = i64_ZERO
 																																		while true do
 																																			if loc_4 == 0 then
 																																				while true do
@@ -8417,8 +8448,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																					break
 																																				end
 																																			end
-																																			FUNC_LIST[104](add_i32(loc_2, 344), loc_29, i64_ZERO, i64_from_u32(10, 0))
-																																			FUNC_LIST[104](add_i32(loc_2, 360), loc_23, i64_ZERO, i64_from_u32(10, 0))
+																																			FUNC_LIST[104](add_i32(loc_2, 344), loc_24, i64_ZERO, i64_from_u32(10, 0))
+																																			FUNC_LIST[104](add_i32(loc_2, 360), loc_29, i64_ZERO, i64_from_u32(10, 0))
 																																			loc_1 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
 																																			if loc_1 > 9 then
 																																				while true do
@@ -8435,19 +8466,19 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																				end
 																																			end
 																																			loc_6 = 2
-																																			loc_23 = load_i64(memory_at_0, add_i32(loc_2, 368))
-																																			loc_7 = add_i64(loc_23, load_i64(memory_at_0, loc_2 + 344))
-																																			if bor_i32((if ne_i64(load_i64(memory_at_0, loc_2 + 352), i64_ZERO) then 1 else 0), (if lt_u64(loc_7, loc_23) then 1 else 0)) ~= 0 then
+																																			loc_24 = load_i64(memory_at_0, add_i32(loc_2, 368))
+																																			loc_7 = add_i64(loc_24, load_i64(memory_at_0, loc_2 + 344))
+																																			if bor_i32((if ne_i64(load_i64(memory_at_0, loc_2 + 352), i64_ZERO) then 1 else 0), (if lt_u64(loc_7, loc_24) then 1 else 0)) ~= 0 then
 																																				desired = 30
 																																				break
 																																			end
 																																			loc_3 = add_i32(loc_3, 1)
 																																			loc_4 = sub_i32(loc_4, 1)
-																																			loc_11 = load_i64(memory_at_0, loc_2 + 360)
-																																			loc_23 = add_i64(loc_11, extend_i64_u32(loc_1))
-																																			loc_1 = (if lt_u64(loc_23, loc_11) then 1 else 0)
-																																			loc_29 = add_i64(loc_7, extend_i64_u32(loc_1))
-																																			if (if le_u64(loc_11, loc_23) then loc_1 else (if lt_u64(loc_29, loc_7) then 1 else 0)) == 0 then
+																																			loc_12 = load_i64(memory_at_0, loc_2 + 360)
+																																			loc_29 = add_i64(loc_12, extend_i64_u32(loc_1))
+																																			loc_1 = (if lt_u64(loc_29, loc_12) then 1 else 0)
+																																			loc_24 = add_i64(loc_7, extend_i64_u32(loc_1))
+																																			if (if le_u64(loc_12, loc_29) then loc_1 else (if gt_u64(loc_7, loc_24) then 1 else 0)) == 0 then
 																																				continue
 																																			end
 																																			break
@@ -8465,8 +8496,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																		break
 																																	end
 																																end
-																																loc_23 = i64_ZERO
 																																loc_29 = i64_ZERO
+																																loc_24 = i64_ZERO
 																																while true do
 																																	loc_1 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
 																																	if loc_1 > 9 then
@@ -8483,11 +8514,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																			break
 																																		end
 																																	end
-																																	FUNC_LIST[104](add_i32(loc_2, 328), loc_23, loc_29, i64_from_u32(10, 0))
+																																	FUNC_LIST[104](add_i32(loc_2, 328), loc_29, loc_24, i64_from_u32(10, 0))
 																																	loc_3 = add_i32(loc_3, 1)
 																																	loc_7 = load_i64(memory_at_0, loc_2 + 328)
-																																	loc_23 = add_i64(loc_7, extend_i64_u32(loc_1))
-																																	loc_29 = add_i64(load_i64(memory_at_0, loc_8), extend_i64_u32((if lt_u64(loc_23, loc_7) then 1 else 0)))
+																																	loc_29 = add_i64(loc_7, extend_i64_u32(loc_1))
+																																	loc_24 = add_i64(load_i64(memory_at_0, loc_10), extend_i64_u32((if lt_u64(loc_29, loc_7) then 1 else 0)))
 																																	loc_36 = i64_ONE
 																																	loc_4 = sub_i32(loc_4, 1)
 																																	if loc_4 ~= 0 then
@@ -8531,8 +8562,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																													end
 																													if loc_4 >= 33 then
 																														while true do
-																															loc_24 = i64_ZERO
 																															loc_30 = i64_ZERO
+																															loc_25 = i64_ZERO
 																															while true do
 																																if loc_4 == 0 then
 																																	while true do
@@ -8548,8 +8579,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																		break
 																																	end
 																																end
-																																FUNC_LIST[104](add_i32(loc_2, 400), loc_30, i64_ZERO, i64_from_u32(10, 0))
-																																FUNC_LIST[104](add_i32(loc_2, 416), loc_24, i64_ZERO, i64_from_u32(10, 0))
+																																FUNC_LIST[104](add_i32(loc_2, 400), loc_25, i64_ZERO, i64_from_u32(10, 0))
+																																FUNC_LIST[104](add_i32(loc_2, 416), loc_30, i64_ZERO, i64_from_u32(10, 0))
 																																loc_1 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
 																																if loc_1 > 9 then
 																																	while true do
@@ -8566,19 +8597,19 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																	end
 																																end
 																																loc_6 = 2
-																																loc_24 = load_i64(memory_at_0, add_i32(loc_2, 424))
-																																loc_7 = add_i64(loc_24, load_i64(memory_at_0, loc_2 + 400))
-																																if bor_i32((if ne_i64(load_i64(memory_at_0, loc_2 + 408), i64_ZERO) then 1 else 0), (if lt_u64(loc_7, loc_24) then 1 else 0)) ~= 0 then
+																																loc_25 = load_i64(memory_at_0, add_i32(loc_2, 424))
+																																loc_7 = add_i64(loc_25, load_i64(memory_at_0, loc_2 + 400))
+																																if bor_i32((if ne_i64(load_i64(memory_at_0, loc_2 + 408), i64_ZERO) then 1 else 0), (if lt_u64(loc_7, loc_25) then 1 else 0)) ~= 0 then
 																																	desired = 27
 																																	break
 																																end
 																																loc_3 = add_i32(loc_3, 1)
 																																loc_4 = sub_i32(loc_4, 1)
-																																loc_11 = load_i64(memory_at_0, loc_2 + 416)
-																																loc_24 = add_i64(loc_11, extend_i64_u32(loc_1))
-																																loc_1 = (if lt_u64(loc_24, loc_11) then 1 else 0)
-																																loc_30 = add_i64(loc_7, extend_i64_u32(loc_1))
-																																if (if le_u64(loc_11, loc_24) then loc_1 else (if lt_u64(loc_30, loc_7) then 1 else 0)) == 0 then
+																																loc_12 = load_i64(memory_at_0, loc_2 + 416)
+																																loc_30 = add_i64(loc_12, extend_i64_u32(loc_1))
+																																loc_1 = (if lt_u64(loc_30, loc_12) then 1 else 0)
+																																loc_25 = add_i64(loc_7, extend_i64_u32(loc_1))
+																																if (if le_u64(loc_12, loc_30) then loc_1 else (if gt_u64(loc_7, loc_25) then 1 else 0)) == 0 then
 																																	continue
 																																end
 																																break
@@ -8596,8 +8627,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																															break
 																														end
 																													end
-																													loc_24 = i64_ZERO
 																													loc_30 = i64_ZERO
+																													loc_25 = i64_ZERO
 																													while true do
 																														loc_1 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
 																														if loc_1 > 9 then
@@ -8614,11 +8645,12 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																																break
 																															end
 																														end
-																														FUNC_LIST[104](add_i32(loc_2, 384), loc_24, loc_30, i64_from_u32(10, 0))
+																														loc_6 = add_i32(loc_2, 384)
+																														FUNC_LIST[104](loc_6, loc_30, loc_25, i64_from_u32(10, 0))
 																														loc_3 = add_i32(loc_3, 1)
 																														loc_7 = load_i64(memory_at_0, loc_2 + 384)
-																														loc_24 = add_i64(loc_7, extend_i64_u32(loc_1))
-																														loc_30 = add_i64(load_i64(memory_at_0, add_i32(loc_2, 392)), extend_i64_u32((if lt_u64(loc_24, loc_7) then 1 else 0)))
+																														loc_30 = add_i64(loc_7, extend_i64_u32(loc_1))
+																														loc_25 = add_i64(load_i64(memory_at_0, add_i32(loc_6, 8)), extend_i64_u32((if lt_u64(loc_30, loc_7) then 1 else 0)))
 																														loc_37 = i64_ONE
 																														loc_4 = sub_i32(loc_4, 1)
 																														if loc_4 ~= 0 then
@@ -8682,9 +8714,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																														end
 																														loc_3 = add_i32(loc_3, 1)
 																														loc_4 = sub_i32(loc_4, 1)
-																														loc_11 = load_i64(memory_at_0, loc_2 + 464)
-																														loc_7 = add_i64(loc_11, extend_i64_u32(loc_1))
-																														if ge_u64(loc_7, loc_11) then
+																														loc_12 = load_i64(memory_at_0, loc_2 + 464)
+																														loc_7 = add_i64(loc_12, extend_i64_u32(loc_1))
+																														if ge_u64(loc_7, loc_12) then
 																															continue
 																														end
 																														break
@@ -8752,7 +8784,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																									while true do
 																										if loc_4 >= 5 then
 																											while true do
-																												loc_13 = 0
+																												loc_15 = 0
 																												while true do
 																													if loc_4 == 0 then
 																														while true do
@@ -8773,15 +8805,15 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																														desired = 24
 																														break
 																													end
-																													loc_1 = mul_i32(band_i32(loc_13, 65535), 10)
+																													loc_1 = mul_i32(band_i32(loc_15, 65535), 10)
 																													if shr_u32(loc_1, 16) ~= 0 then
 																														desired = 24
 																														break
 																													end
 																													loc_4 = sub_i32(loc_4, 1)
 																													loc_3 = add_i32(loc_3, 1)
-																													loc_13 = add_i32(band_i32(loc_1, 65535), band_i32(loc_0, 65535))
-																													if band_i32(loc_13, 65535) == loc_13 then
+																													loc_15 = add_i32(band_i32(loc_1, 65535), band_i32(loc_0, 65535))
+																													if loc_15 == band_i32(loc_15, 65535) then
 																														continue
 																													end
 																													break
@@ -8800,7 +8832,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																												break
 																											end
 																										end
-																										loc_13 = 0
+																										loc_15 = 0
 																										while true do
 																											loc_1 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
 																											if loc_1 > 9 then
@@ -8819,7 +8851,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																											end
 																											loc_0 = 1
 																											loc_3 = add_i32(loc_3, 1)
-																											loc_13 = add_i32(mul_i32(loc_13, 10), loc_1)
+																											loc_15 = add_i32(mul_i32(loc_15, 10), loc_1)
 																											loc_4 = sub_i32(loc_4, 1)
 																											if loc_4 ~= 0 then
 																												continue
@@ -8900,9 +8932,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																									end
 																									loc_3 = add_i32(loc_3, 1)
 																									loc_4 = sub_i32(loc_4, 1)
-																									loc_11 = load_i64(memory_at_0, loc_2 + 296)
-																									loc_7 = add_i64(loc_11, extend_i64_u32(loc_1))
-																									if ge_u64(loc_7, loc_11) then
+																									loc_12 = load_i64(memory_at_0, loc_2 + 296)
+																									loc_7 = add_i64(loc_12, extend_i64_u32(loc_1))
+																									if ge_u64(loc_7, loc_12) then
 																										continue
 																									end
 																									break
@@ -8998,9 +9030,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																							end
 																							loc_3 = add_i32(loc_3, 1)
 																							loc_4 = sub_i32(loc_4, 1)
-																							loc_11 = load_i64(memory_at_0, loc_2 + 440)
-																							loc_7 = add_i64(loc_11, extend_i64_u32(loc_1))
-																							if ge_u64(loc_7, loc_11) then
+																							loc_12 = load_i64(memory_at_0, loc_2 + 440)
+																							loc_7 = add_i64(loc_12, extend_i64_u32(loc_1))
+																							if ge_u64(loc_7, loc_12) then
 																								continue
 																							end
 																							break
@@ -9067,8 +9099,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																		end
 																		if loc_4 >= 33 then
 																			while true do
-																				loc_10 = i64_ZERO
 																				loc_14 = i64_ZERO
+																				loc_11 = i64_ZERO
 																				while true do
 																					if loc_4 == 0 then
 																						while true do
@@ -9084,8 +9116,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																							break
 																						end
 																					end
-																					FUNC_LIST[104](add_i32(loc_2, 504), loc_14, i64_ZERO, i64_from_u32(10, 0))
-																					FUNC_LIST[104](add_i32(loc_2, 520), loc_10, i64_ZERO, i64_from_u32(10, 0))
+																					FUNC_LIST[104](add_i32(loc_2, 504), loc_11, i64_ZERO, i64_from_u32(10, 0))
+																					FUNC_LIST[104](add_i32(loc_2, 520), loc_14, i64_ZERO, i64_from_u32(10, 0))
 																					loc_1 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
 																					if loc_1 > 9 then
 																						while true do
@@ -9102,19 +9134,19 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																						end
 																					end
 																					loc_6 = 2
-																					loc_10 = load_i64(memory_at_0, add_i32(loc_2, 528))
-																					loc_7 = add_i64(loc_10, load_i64(memory_at_0, loc_2 + 504))
-																					if bor_i32((if ne_i64(load_i64(memory_at_0, loc_2 + 512), i64_ZERO) then 1 else 0), (if lt_u64(loc_7, loc_10) then 1 else 0)) ~= 0 then
+																					loc_11 = load_i64(memory_at_0, add_i32(loc_2, 528))
+																					loc_7 = add_i64(loc_11, load_i64(memory_at_0, loc_2 + 504))
+																					if bor_i32((if ne_i64(load_i64(memory_at_0, loc_2 + 512), i64_ZERO) then 1 else 0), (if lt_u64(loc_7, loc_11) then 1 else 0)) ~= 0 then
 																						desired = 16
 																						break
 																					end
 																					loc_3 = add_i32(loc_3, 1)
 																					loc_4 = sub_i32(loc_4, 1)
-																					loc_11 = load_i64(memory_at_0, loc_2 + 520)
-																					loc_10 = add_i64(loc_11, extend_i64_u32(loc_1))
-																					loc_1 = (if lt_u64(loc_10, loc_11) then 1 else 0)
-																					loc_14 = add_i64(loc_7, extend_i64_u32(loc_1))
-																					if (if ge_u64(loc_10, loc_11) then loc_1 else (if lt_u64(loc_14, loc_7) then 1 else 0)) == 0 then
+																					loc_12 = load_i64(memory_at_0, loc_2 + 520)
+																					loc_14 = add_i64(loc_12, extend_i64_u32(loc_1))
+																					loc_1 = (if lt_u64(loc_14, loc_12) then 1 else 0)
+																					loc_11 = add_i64(loc_7, extend_i64_u32(loc_1))
+																					if (if le_u64(loc_12, loc_14) then loc_1 else (if gt_u64(loc_7, loc_11) then 1 else 0)) == 0 then
 																						continue
 																					end
 																					break
@@ -9132,8 +9164,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																				break
 																			end
 																		end
-																		loc_10 = i64_ZERO
 																		loc_14 = i64_ZERO
+																		loc_11 = i64_ZERO
 																		while true do
 																			loc_1 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
 																			if loc_1 > 9 then
@@ -9150,11 +9182,12 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																					break
 																				end
 																			end
-																			FUNC_LIST[104](add_i32(loc_2, 488), loc_10, loc_14, i64_from_u32(10, 0))
+																			loc_6 = add_i32(loc_2, 488)
+																			FUNC_LIST[104](loc_6, loc_14, loc_11, i64_from_u32(10, 0))
 																			loc_3 = add_i32(loc_3, 1)
 																			loc_7 = load_i64(memory_at_0, loc_2 + 488)
-																			loc_10 = add_i64(loc_7, extend_i64_u32(loc_1))
-																			loc_14 = add_i64(load_i64(memory_at_0, add_i32(loc_2, 496)), extend_i64_u32((if lt_u64(loc_10, loc_7) then 1 else 0)))
+																			loc_14 = add_i64(loc_7, extend_i64_u32(loc_1))
+																			loc_11 = add_i64(load_i64(memory_at_0, add_i32(loc_6, 8)), extend_i64_u32((if lt_u64(loc_14, loc_7) then 1 else 0)))
 																			loc_33 = i64_ONE
 																			loc_4 = sub_i32(loc_4, 1)
 																			if loc_4 ~= 0 then
@@ -9200,11 +9233,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 															while true do
 																if loc_4 >= 5 then
 																	while true do
-																		loc_13 = 0
+																		loc_15 = 0
 																		while true do
 																			if loc_4 == 0 then
 																				while true do
-																					loc_25 = 1
+																					loc_26 = 1
 																					loc_0 = 1
 																					desired = 13
 																					break
@@ -9222,15 +9255,15 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																				desired = 14
 																				break
 																			end
-																			loc_1 = mul_i32(band_i32(loc_13, 65535), 10)
+																			loc_1 = mul_i32(band_i32(loc_15, 65535), 10)
 																			if shr_u32(loc_1, 16) ~= 0 then
 																				desired = 14
 																				break
 																			end
 																			loc_4 = sub_i32(loc_4, 1)
 																			loc_3 = add_i32(loc_3, 1)
-																			loc_13 = add_i32(band_i32(loc_1, 65535), band_i32(loc_0, 65535))
-																			if band_i32(loc_13, 65535) == loc_13 then
+																			loc_15 = add_i32(band_i32(loc_1, 65535), band_i32(loc_0, 65535))
+																			if loc_15 == band_i32(loc_15, 65535) then
 																				continue
 																			end
 																			break
@@ -9249,7 +9282,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																		break
 																	end
 																end
-																loc_13 = 0
+																loc_15 = 0
 																while true do
 																	loc_0 = sub_i32(load_i32_u8(memory_at_0, loc_3), 48)
 																	if loc_0 > 9 then
@@ -9266,9 +9299,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																			break
 																		end
 																	end
-																	loc_25 = 1
+																	loc_26 = 1
 																	loc_3 = add_i32(loc_3, 1)
-																	loc_13 = add_i32(mul_i32(loc_13, 10), loc_0)
+																	loc_15 = add_i32(mul_i32(loc_15, 10), loc_0)
 																	loc_4 = sub_i32(loc_4, 1)
 																	if loc_4 ~= 0 then
 																		continue
@@ -9334,7 +9367,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 												end
 												store_i32(memory_at_0, 1070616, add_i32(loc_0, 1))
 												TABLE_LIST[0].data[load_i32(memory_at_0, 1070640)](1068500, 37)
-												reg_1 = 4294967295
+												reg_0 = 4294967295
 												desired = 4
 												break
 											end
@@ -9363,7 +9396,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 										break
 									end
 									while true do
-										loc_13 = loc_3
+										loc_15 = loc_3
 										FUNC_LIST[14](loc_2, add_i32(loc_2, 552))
 										while true do
 											while true do
@@ -9402,8 +9435,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																	end
 																	break
 																end
-																reg_1 = FUNC_LIST[106](loc_0, 1068549, 3)
-																if reg_1 ~= 0 then
+																reg_0 = FUNC_LIST[106](loc_0, 1068549, 3)
+																if reg_0 ~= 0 then
 																	desired = 10
 																	break
 																end
@@ -9413,28 +9446,28 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 															if desired then
 																break
 															end
-															reg_1 = FUNC_LIST[106](loc_0, 1068544, 5)
-															if reg_1 ~= 0 then
+															reg_0 = FUNC_LIST[106](loc_0, 1068544, 5)
+															if reg_0 ~= 0 then
 																desired = 10
 																break
 															end
-															loc_9 = load_i32(memory_at_0, loc_2 + 576)
+															loc_10 = load_i32(memory_at_0, loc_2 + 576)
 															loc_8 = load_i32(memory_at_0, loc_2 + 568)
 															loc_1 = load_i32(memory_at_0, loc_2 + 552)
 															loc_27 = load_i32(memory_at_0, loc_2 + 556)
-															loc_26 = load_i32_u8(memory_at_0, loc_2 + 580)
+															loc_23 = load_i32_u8(memory_at_0, loc_2 + 580)
 															loc_18 = load_i32(memory_at_0, loc_2 + 572)
 															loc_31 = load_i32(memory_at_0, loc_2 + 560)
 															loc_0 = load_i32_u8(memory_at_0, loc_2 + 581)
-															loc_25 = loc_0
+															loc_26 = loc_0
 															while true do
-																loc_5 = loc_9
+																loc_5 = loc_10
 																loc_3 = loc_8
 																loc_4 = loc_1
-																loc_12 = loc_25
+																loc_13 = loc_26
 																while true do
-																	loc_15 = loc_4
-																	if band_i32(loc_12, 255) ~= 0 then
+																	loc_9 = loc_4
+																	if band_i32(loc_13, 255) ~= 0 then
 																		desired = 9
 																		break
 																	end
@@ -9455,11 +9488,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																								end
 																								loc_3 = add_i32(loc_5, 2)
 																								store_i32(memory_at_0, loc_2 + 568, loc_3)
-																								loc_12 = band_i32(load_i32_u8(memory_at_0, loc_5 + 1), 63)
+																								loc_13 = band_i32(load_i32_u8(memory_at_0, loc_5 + 1), 63)
 																								loc_8 = band_i32(loc_4, 31)
 																								if loc_4 <= 223 then
 																									while true do
-																										loc_4 = bor_i32(shl_i32(loc_8, 6), loc_12)
+																										loc_4 = bor_i32(shl_i32(loc_8, 6), loc_13)
 																										desired = 20
 																										break
 																									end
@@ -9472,10 +9505,10 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																								end
 																								loc_3 = add_i32(loc_5, 3)
 																								store_i32(memory_at_0, loc_2 + 568, loc_3)
-																								loc_12 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_5 + 2), 63), shl_i32(loc_12, 6))
+																								loc_13 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_5 + 2), 63), shl_i32(loc_13, 6))
 																								if loc_4 < 240 then
 																									while true do
-																										loc_4 = bor_i32(loc_12, shl_i32(loc_8, 12))
+																										loc_4 = bor_i32(loc_13, shl_i32(loc_8, 12))
 																										desired = 20
 																										break
 																									end
@@ -9488,7 +9521,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																								end
 																								loc_3 = add_i32(loc_5, 4)
 																								store_i32(memory_at_0, loc_2 + 568, loc_3)
-																								loc_4 = bor_i32(band_i32(shl_i32(loc_8, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_5 + 3), 63), shl_i32(loc_12, 6)))
+																								loc_4 = bor_i32(band_i32(shl_i32(loc_8, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_5 + 3), 63), shl_i32(loc_13, 6)))
 																								if loc_4 ~= 1114112 then
 																									break
 																								end
@@ -9504,8 +9537,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																								end
 																								break
 																							end
-																							loc_9 = add_i32(sub_i32(loc_3, loc_5), loc_6)
-																							loc_12 = 0
+																							loc_10 = add_i32(sub_i32(loc_3, loc_5), loc_6)
+																							loc_13 = 0
 																							loc_5 = sub_i32(loc_4, 9)
 																							if (if band_i32(shl_i32(1, loc_5), 8388639) ~= 0 then (if loc_5 <= 23 then 1 else 0) else 0) ~= 0 then
 																								desired = 16
@@ -9607,7 +9640,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																								end
 																								break
 																							end
-																							loc_6 = loc_9
+																							loc_6 = loc_10
 																							if loc_3 ~= loc_18 then
 																								continue
 																							end
@@ -9637,14 +9670,14 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																				break
 																			end
 																			loc_0 = 1
-																			if band_i32((if loc_26 == 0 then 1 else 0), (if loc_15 == loc_27 then 1 else 0)) ~= 0 then
+																			if band_i32((if loc_23 == 0 then 1 else 0), (if loc_9 == loc_27 then 1 else 0)) ~= 0 then
 																				desired = 9
 																				break
 																			end
-																			loc_25 = 1
-																			loc_12 = 1
+																			loc_26 = 1
+																			loc_13 = 1
 																			loc_6 = loc_27
-																			reg_1 = loc_15
+																			reg_0 = loc_9
 																			desired = 15
 																			break
 																		end
@@ -9655,9 +9688,9 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																			break
 																		end
 																		loc_8 = loc_3
-																		loc_1 = loc_9
+																		loc_1 = loc_10
 																		loc_5 = loc_1
-																		reg_1 = loc_5
+																		reg_0 = loc_5
 																		break
 																	end
 																	if desired then
@@ -9667,8 +9700,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																		end
 																		break
 																	end
-																	loc_4 = reg_1
-																	if loc_6 == loc_15 then
+																	loc_4 = reg_0
+																	if loc_6 == loc_9 then
 																		continue
 																	end
 																	break
@@ -9680,21 +9713,21 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																	end
 																	break
 																end
-																loc_6 = sub_i32(loc_6, loc_15)
+																loc_6 = sub_i32(loc_6, loc_9)
 																if ge_i32(loc_6, 0) then
 																	while true do
-																		reg_1 = FUNC_LIST[7](loc_6)
-																		loc_3 = reg_1
+																		reg_0 = FUNC_LIST[7](loc_6)
+																		loc_3 = reg_0
 																		if loc_3 == 0 then
 																			desired = 7
 																			break
 																		end
-																		reg_1 = FUNC_LIST[107](loc_3, add_i32(loc_15, loc_31), loc_6)
-																		loc_12 = reg_1
-																		reg_1 = 1070664
+																		reg_0 = FUNC_LIST[107](loc_3, add_i32(loc_9, loc_31), loc_6)
+																		loc_13 = reg_0
+																		reg_0 = 1070664
 																		if load_i32(memory_at_0, 1070656) ~= loc_19 then
 																			while true do
-																				reg_2 = loc_19
+																				reg_1 = loc_19
 																				break
 																			end
 																			if desired then
@@ -9711,11 +9744,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																							break
 																						end
 																						loc_4 = load_i32(memory_at_0, 1070656)
-																						loc_19 = shl_i32(loc_4, 1)
-																						loc_5 = (if loc_5 < loc_19 then loc_19 else loc_5)
-																						loc_19 = (if loc_5 <= 4 then 4 else loc_5)
-																						loc_5 = mul_i32(loc_19, 12)
-																						loc_21 = shl_i32((if loc_19 < 178956971 then 1 else 0), 2)
+																						loc_9 = shl_i32(loc_4, 1)
+																						loc_5 = (if loc_5 < loc_9 then loc_9 else loc_5)
+																						loc_9 = (if loc_5 <= 4 then 4 else loc_5)
+																						loc_5 = mul_i32(loc_9, 12)
+																						loc_19 = shl_i32((if loc_9 < 178956971 then 1 else 0), 2)
 																						while true do
 																							if loc_4 == 0 then
 																								while true do
@@ -9741,11 +9774,11 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																							end
 																							break
 																						end
-																						FUNC_LIST[76](add_i32(loc_3, 8), loc_21, loc_5, add_i32(loc_3, 20))
+																						FUNC_LIST[76](add_i32(loc_3, 8), loc_19, loc_5, add_i32(loc_3, 20))
 																						loc_5 = load_i32(memory_at_0, loc_3 + 12)
 																						if load_i32(memory_at_0, loc_3 + 8) == 0 then
 																							while true do
-																								store_i32(memory_at_0, 1070656, loc_19)
+																								store_i32(memory_at_0, 1070656, loc_9)
 																								store_i32(memory_at_0, 1070660, loc_5)
 																								desired = 16
 																								break
@@ -9780,19 +9813,19 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 																				end
 																				GLOBAL_LIST[0].value = add_i32(loc_3, 32)
 																				loc_21 = load_i32(memory_at_0, 1070660)
-																				reg_2 = load_i32(memory_at_0, 1070664)
+																				reg_1 = load_i32(memory_at_0, 1070664)
 																				break
 																			end
 																			if desired then
 																				break
 																			end
 																		end
-																		loc_3 = reg_2
+																		loc_3 = reg_1
 																		loc_19 = add_i32(loc_3, 1)
-																		store_i32(memory_at_0, reg_1, loc_19)
+																		store_i32(memory_at_0, reg_0, loc_19)
 																		loc_3 = add_i32(loc_21, mul_i32(loc_3, 12))
 																		store_i32(memory_at_0, loc_3 + 8, loc_6)
-																		store_i32(memory_at_0, loc_3 + 4, loc_12)
+																		store_i32(memory_at_0, loc_3 + 4, loc_13)
 																		store_i32(memory_at_0, loc_3, loc_6)
 																		desired = 13
 																		break
@@ -9820,7 +9853,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 															break
 														end
 													end
-													if band_i32(loc_13, 1) == 0 then
+													if band_i32(loc_15, 1) == 0 then
 														while true do
 															if bor_i32(load_i32(memory_at_0, 1070644), 2147483648) ~= 2147483648 then
 																while true do
@@ -9843,8 +9876,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 															break
 														end
 													end
-													reg_1 = FUNC_LIST[7](56)
-													loc_0 = reg_1
+													reg_0 = FUNC_LIST[7](56)
+													loc_0 = reg_0
 													if loc_0 == 0 then
 														desired = 7
 														break
@@ -9894,18 +9927,18 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 												end
 												break
 											end
-											loc_6 = bor_i32(loc_3, loc_13)
+											loc_6 = bor_i32(loc_3, loc_15)
 											loc_3 = 1
 											if band_i32(loc_6, 1) ~= 0 then
 												desired = 8
 												break
 											end
-											loc_13 = load_i32(memory_at_0, loc_2 + 728)
+											loc_15 = load_i32(memory_at_0, loc_2 + 728)
 											loc_3 = load_i32(memory_at_0, loc_2 + 736)
-											if loc_1 > sub_i32(loc_13, loc_3) then
+											if loc_1 > sub_i32(loc_15, loc_3) then
 												while true do
 													FUNC_LIST[17](add_i32(loc_2, 728), loc_3, loc_1)
-													loc_13 = load_i32(memory_at_0, loc_2 + 728)
+													loc_15 = load_i32(memory_at_0, loc_2 + 728)
 													loc_3 = load_i32(memory_at_0, loc_2 + 736)
 													break
 												end
@@ -9917,12 +9950,12 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 												end
 											end
 											loc_6 = load_i32(memory_at_0, loc_2 + 732)
-											reg_1 = FUNC_LIST[107](add_i32(loc_6, loc_3), loc_0, loc_1)
+											reg_0 = FUNC_LIST[107](add_i32(loc_6, loc_3), loc_0, loc_1)
 											loc_3 = add_i32(loc_1, loc_3)
 											store_i32(memory_at_0, loc_2 + 736, loc_3)
-											if loc_3 == loc_13 then
+											if loc_3 == loc_15 then
 												while true do
-													FUNC_LIST[18](add_i32(loc_2, 728), loc_13)
+													FUNC_LIST[18](add_i32(loc_2, 728), loc_15)
 													loc_6 = load_i32(memory_at_0, loc_2 + 732)
 													loc_3 = load_i32(memory_at_0, loc_2 + 736)
 													break
@@ -9949,8 +9982,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 										end
 										store_i32_n8(memory_at_0, loc_2 + 581, loc_0)
 										store_i32(memory_at_0, loc_2 + 552, loc_1)
-										store_i32(memory_at_0, loc_2 + 576, loc_9)
-										loc_3 = loc_13
+										store_i32(memory_at_0, loc_2 + 576, loc_10)
+										loc_3 = loc_15
 										continue
 									end
 									if desired then
@@ -9984,7 +10017,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 							end
 							break
 						end
-						reg_1 = 1
+						reg_0 = 1
 						break
 					end
 					if desired then
@@ -9993,7 +10026,8 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 						end
 						break
 					end
-					store_i32(memory_at_0, reg_0, add_i32(reg_1, load_i32(memory_at_0, 1070616)))
+					loc_0 = reg_0
+					store_i32(memory_at_0, 1070616, add_i32(loc_0, load_i32(memory_at_0, 1070616)))
 					break
 				end
 				if desired then
@@ -10029,7 +10063,7 @@ FUNC_LIST[10] = function(loc_0, loc_1)
 			end
 			break
 		end
-		FUNC_LIST[22](loc_1, loc_5, 0, 2, 1067952)
+		FUNC_LIST[22](loc_9, loc_1, 0, 2, 1067952)
 		error("out of code bounds")
 	end
 end
@@ -10332,9 +10366,9 @@ FUNC_LIST[14] = function(loc_0, loc_1)
 							break
 						end
 					end
-					loc_6 = loc_10
 					loc_2 = loc_8
-					if loc_6 == loc_2 then
+					loc_6 = loc_10
+					if loc_2 == loc_6 then
 						desired = 1
 						break
 					end
@@ -10374,15 +10408,17 @@ FUNC_LIST[15] = function(loc_0, loc_1, loc_2)
 		GLOBAL_LIST[0].value = loc_3
 		store_i32(memory_at_0, loc_3 + 4, loc_1)
 		store_i32(memory_at_0, loc_3, loc_0)
-		store_i64(memory_at_0, add_i32(loc_3, 20), i64_from_u32(2, 0))
-		store_i32(memory_at_0, add_i32(loc_3, 44), 3)
+		loc_0 = add_i32(loc_3, 8)
+		store_i64(memory_at_0, add_i32(loc_0, 12), i64_from_u32(2, 0))
+		loc_1 = add_i32(loc_3, 32)
+		store_i32(memory_at_0, add_i32(loc_1, 12), 3)
 		store_i32(memory_at_0, loc_3 + 12, 2)
 		store_i32(memory_at_0, loc_3 + 8, 1049348)
 		store_i32(memory_at_0, loc_3 + 36, 3)
-		store_i32(memory_at_0, loc_3 + 16, add_i32(loc_3, 32))
+		store_i32(memory_at_0, loc_3 + 16, loc_1)
 		store_i32(memory_at_0, loc_3 + 40, loc_3)
 		store_i32(memory_at_0, loc_3 + 32, add_i32(loc_3, 4))
-		FUNC_LIST[20](add_i32(loc_3, 8), loc_2)
+		FUNC_LIST[20](loc_0, loc_2)
 		error("out of code bounds")
 	end
 end
@@ -10395,15 +10431,17 @@ FUNC_LIST[16] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 		store_i32(memory_at_0, loc_5 + 8, loc_0)
 		store_i32(memory_at_0, loc_5 + 20, loc_3)
 		store_i32(memory_at_0, loc_5 + 16, loc_2)
-		store_i64(memory_at_0, add_i32(loc_5, 36), i64_from_u32(2, 0))
-		store_i32(memory_at_0, add_i32(loc_5, 60), 10)
+		loc_0 = add_i32(loc_5, 24)
+		store_i64(memory_at_0, add_i32(loc_0, 12), i64_from_u32(2, 0))
+		loc_1 = add_i32(loc_5, 48)
+		store_i32(memory_at_0, add_i32(loc_1, 12), 10)
 		store_i32(memory_at_0, loc_5 + 28, 2)
 		store_i32(memory_at_0, loc_5 + 24, 1064452)
 		store_i32(memory_at_0, loc_5 + 52, 11)
-		store_i32(memory_at_0, loc_5 + 32, add_i32(loc_5, 48))
+		store_i32(memory_at_0, loc_5 + 32, loc_1)
 		store_i32(memory_at_0, loc_5 + 56, add_i32(loc_5, 16))
 		store_i32(memory_at_0, loc_5 + 48, add_i32(loc_5, 8))
-		FUNC_LIST[20](add_i32(loc_5, 24), loc_4)
+		FUNC_LIST[20](loc_0, loc_4)
 		error("out of code bounds")
 	end
 end
@@ -10839,19 +10877,67 @@ FUNC_LIST[22] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 					while true do
 						while true do
 							loc_6 = (if loc_1 < loc_2 then 1 else 0)
-							if bor_i32(loc_6, (if loc_1 < loc_3 then 1 else 0)) == 0 then
+							if loc_6 ~= 0 then
+								break
+							end
+							if loc_1 < loc_3 then
+								break
+							end
+							if loc_2 > loc_3 then
+								desired = 4
+								break
+							end
+							while true do
 								while true do
-									if loc_2 > loc_3 then
-										desired = 5
+									if loc_2 == 0 then
+										break
+									end
+									if loc_1 <= loc_2 then
+										break
+									end
+									if lt_i32(load_i32_i8(memory_at_0, add_i32(loc_0, loc_2)), 4294967232) then
+										desired = 6
+										break
+									end
+									break
+								end
+								if desired then
+									if desired == 6 then
+										desired = nil
+									end
+									break
+								end
+								loc_2 = loc_3
+								break
+							end
+							if desired then
+								if desired == 5 then
+									desired = nil
+								end
+								break
+							end
+							store_i32(memory_at_0, loc_5 + 32, loc_2)
+							loc_3 = loc_1
+							if loc_1 > loc_2 then
+								while true do
+									loc_3 = sub_i32(loc_2, 3)
+									loc_3 = (if loc_2 >= loc_3 then loc_3 else 0)
+									loc_6 = add_i32(loc_2, 1)
+									if loc_3 > loc_6 then
+										desired = 3
 										break
 									end
 									while true do
-										if bor_i32((if loc_2 == 0 then 1 else 0), (if loc_1 <= loc_2 then 1 else 0)) == 0 then
+										if loc_3 == loc_6 then
+											break
+										end
+										loc_8 = add_i32(loc_0, loc_3)
+										loc_6 = sub_i32(add_i32(loc_0, loc_6), loc_8)
+										loc_9 = add_i32(loc_0, loc_2)
+										if gt_i32(load_i32_i8(memory_at_0, loc_9), 4294967231) then
 											while true do
-												if lt_i32(load_i32_i8(memory_at_0, add_i32(loc_0, loc_2)), 4294967232) then
-													desired = 7
-													break
-												end
+												loc_7 = sub_i32(loc_6, 1)
+												desired = 7
 												break
 											end
 											if desired then
@@ -10861,252 +10947,67 @@ FUNC_LIST[22] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 												break
 											end
 										end
-										loc_2 = loc_3
-										break
-									end
-									if desired then
-										break
-									end
-									store_i32(memory_at_0, loc_5 + 32, loc_2)
-									loc_3 = loc_1
-									if loc_3 > loc_2 then
-										while true do
-											loc_3 = sub_i32(loc_2, 3)
-											loc_3 = (if loc_2 >= loc_3 then loc_3 else 0)
-											loc_6 = add_i32(loc_2, 1)
-											if loc_3 > loc_6 then
-												desired = 4
-												break
-											end
+										if loc_2 == loc_3 then
+											break
+										end
+										loc_2 = sub_i32(loc_9, 1)
+										if gt_i32(load_i32_i8(memory_at_0, loc_2), 4294967231) then
 											while true do
-												if loc_3 == loc_6 then
-													break
-												end
-												loc_8 = add_i32(loc_0, loc_3)
-												loc_6 = sub_i32(add_i32(loc_0, loc_6), loc_8)
-												loc_9 = add_i32(loc_0, loc_2)
-												if gt_i32(load_i32_i8(memory_at_0, loc_9), 4294967231) then
-													while true do
-														loc_7 = sub_i32(loc_6, 1)
-														desired = 8
-														break
-													end
-													if desired then
-														if desired == 8 then
-															desired = nil
-														end
-														break
-													end
-												end
-												if loc_2 == loc_3 then
-													break
-												end
-												loc_2 = sub_i32(loc_9, 1)
-												if gt_i32(load_i32_i8(memory_at_0, loc_2), 4294967231) then
-													while true do
-														loc_7 = sub_i32(loc_6, 2)
-														desired = 8
-														break
-													end
-													if desired then
-														if desired == 8 then
-															desired = nil
-														end
-														break
-													end
-												end
-												if loc_2 == loc_8 then
-													break
-												end
-												loc_2 = sub_i32(loc_9, 2)
-												if gt_i32(load_i32_i8(memory_at_0, loc_2), 4294967231) then
-													while true do
-														loc_7 = sub_i32(loc_6, 3)
-														desired = 8
-														break
-													end
-													if desired then
-														if desired == 8 then
-															desired = nil
-														end
-														break
-													end
-												end
-												if loc_2 == loc_8 then
-													break
-												end
-												loc_2 = sub_i32(loc_9, 3)
-												if gt_i32(load_i32_i8(memory_at_0, loc_2), 4294967231) then
-													while true do
-														loc_7 = sub_i32(loc_6, 4)
-														desired = 8
-														break
-													end
-													if desired then
-														if desired == 8 then
-															desired = nil
-														end
-														break
-													end
-												end
-												if loc_2 == loc_8 then
-													break
-												end
-												loc_7 = sub_i32(loc_6, 5)
-												break
-											end
-											if desired then
-												break
-											end
-											loc_3 = add_i32(loc_3, loc_7)
-											break
-										end
-										if desired then
-											break
-										end
-									end
-									if loc_3 ~= 0 then
-										while true do
-											while true do
-												if loc_1 <= loc_3 then
-													while true do
-														if loc_1 == loc_3 then
-															desired = 8
-															break
-														end
-														desired = 2
-														break
-													end
-													if desired then
-														if desired == 8 then
-															desired = nil
-														end
-														break
-													end
-												end
-												if le_i32(load_i32_i8(memory_at_0, add_i32(loc_0, loc_3)), 4294967231) then
-													desired = 2
-													break
-												end
-												break
-											end
-											if desired then
-												break
-											end
-											reg_0 = sub_i32(loc_1, loc_3)
-											break
-										end
-										if desired then
-											break
-										end
-									else
-										while true do
-											reg_0 = loc_1
-											break
-										end
-										if desired then
-											break
-										end
-									end
-									if reg_0 == 0 then
-										desired = 3
-										break
-									end
-									while true do
-										while true do
-											while true do
-												loc_1 = add_i32(loc_0, loc_3)
-												loc_0 = load_i32_i8(memory_at_0, loc_1)
-												if lt_i32(loc_0, 0) then
-													while true do
-														loc_7 = band_i32(load_i32_u8(memory_at_0, loc_1 + 1), 63)
-														loc_2 = band_i32(loc_0, 31)
-														if loc_0 > 4294967263 then
-															desired = 9
-															break
-														end
-														loc_0 = bor_i32(shl_i32(loc_2, 6), loc_7)
-														desired = 8
-														break
-													end
-													if desired then
-														if desired == 9 then
-															desired = nil
-														end
-														break
-													end
-												end
-												store_i32(memory_at_0, loc_5 + 36, band_i32(loc_0, 255))
-												reg_0 = 1
+												loc_7 = sub_i32(loc_6, 2)
 												desired = 7
 												break
 											end
 											if desired then
-												if desired == 8 then
+												if desired == 7 then
 													desired = nil
 												end
 												break
 											end
-											loc_7 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_1 + 2), 63), shl_i32(loc_7, 6))
-											if loc_0 < 4294967280 then
-												while true do
-													loc_0 = bor_i32(loc_7, shl_i32(loc_2, 12))
-													desired = 8
-													break
-												end
-												if desired then
-													if desired == 8 then
-														desired = nil
-													end
-													break
-												end
-											end
-											loc_0 = bor_i32(band_i32(shl_i32(loc_2, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_1 + 3), 63), shl_i32(loc_7, 6)))
-											if loc_0 == 1114112 then
-												desired = 3
+										end
+										if loc_2 == loc_8 then
+											break
+										end
+										loc_2 = sub_i32(loc_9, 2)
+										if gt_i32(load_i32_i8(memory_at_0, loc_2), 4294967231) then
+											while true do
+												loc_7 = sub_i32(loc_6, 3)
+												desired = 7
 												break
 											end
-											break
-										end
-										if desired then
-											if desired == 7 then
-												desired = nil
+											if desired then
+												if desired == 7 then
+													desired = nil
+												end
+												break
 											end
+										end
+										if loc_2 == loc_8 then
 											break
 										end
-										store_i32(memory_at_0, loc_5 + 36, loc_0)
-										reg_0 = 1
-										if loc_0 < 128 then
+										loc_2 = sub_i32(loc_9, 3)
+										if gt_i32(load_i32_i8(memory_at_0, loc_2), 4294967231) then
+											while true do
+												loc_7 = sub_i32(loc_6, 4)
+												desired = 7
+												break
+											end
+											if desired then
+												if desired == 7 then
+													desired = nil
+												end
+												break
+											end
+										end
+										if loc_2 == loc_8 then
 											break
 										end
-										reg_0 = 2
-										if loc_0 < 2048 then
-											break
-										end
-										reg_0 = (if loc_0 < 65536 then 3 else 4)
+										loc_7 = sub_i32(loc_6, 5)
 										break
 									end
 									if desired then
 										break
 									end
-									loc_0 = reg_0
-									store_i32(memory_at_0, loc_5 + 40, loc_3)
-									store_i32(memory_at_0, loc_5 + 44, add_i32(loc_0, loc_3))
-									store_i64(memory_at_0, add_i32(loc_5, 60), i64_from_u32(5, 0))
-									store_i32(memory_at_0, add_i32(loc_5, 108), 11)
-									store_i32(memory_at_0, add_i32(loc_5, 100), 11)
-									store_i32(memory_at_0, add_i32(loc_5, 92), 18)
-									store_i32(memory_at_0, add_i32(loc_5, 84), 19)
-									store_i32(memory_at_0, loc_5 + 52, 5)
-									store_i32(memory_at_0, loc_5 + 48, 1050220)
-									store_i32(memory_at_0, loc_5 + 76, 3)
-									store_i32(memory_at_0, loc_5 + 56, add_i32(loc_5, 72))
-									store_i32(memory_at_0, loc_5 + 104, add_i32(loc_5, 24))
-									store_i32(memory_at_0, loc_5 + 96, add_i32(loc_5, 16))
-									store_i32(memory_at_0, loc_5 + 88, add_i32(loc_5, 40))
-									store_i32(memory_at_0, loc_5 + 80, add_i32(loc_5, 36))
-									store_i32(memory_at_0, loc_5 + 72, add_i32(loc_5, 32))
-									desired = 1
+									loc_3 = add_i32(loc_3, loc_7)
 									break
 								end
 								if desired then
@@ -11116,19 +11017,149 @@ FUNC_LIST[22] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 									break
 								end
 							end
-							store_i32(memory_at_0, loc_5 + 40, (if loc_6 ~= 0 then loc_2 else loc_3))
-							store_i64(memory_at_0, add_i32(loc_5, 60), i64_from_u32(3, 0))
-							store_i32(memory_at_0, add_i32(loc_5, 92), 11)
-							store_i32(memory_at_0, add_i32(loc_5, 84), 11)
-							store_i32(memory_at_0, loc_5 + 52, 3)
-							store_i32(memory_at_0, loc_5 + 48, 1050284)
+							if loc_3 ~= 0 then
+								while true do
+									while true do
+										if loc_1 <= loc_3 then
+											while true do
+												if loc_1 == loc_3 then
+													desired = 7
+													break
+												end
+												desired = 1
+												break
+											end
+											if desired then
+												if desired == 7 then
+													desired = nil
+												end
+												break
+											end
+										end
+										if le_i32(load_i32_i8(memory_at_0, add_i32(loc_0, loc_3)), 4294967231) then
+											desired = 1
+											break
+										end
+										break
+									end
+									if desired then
+										break
+									end
+									loc_1 = sub_i32(loc_1, loc_3)
+									break
+								end
+								if desired then
+									if desired == 5 then
+										desired = nil
+									end
+									break
+								end
+							end
+							if loc_1 == 0 then
+								desired = 2
+								break
+							end
+							while true do
+								while true do
+									while true do
+										loc_1 = add_i32(loc_0, loc_3)
+										loc_0 = load_i32_i8(memory_at_0, loc_1)
+										if lt_i32(loc_0, 0) then
+											while true do
+												loc_7 = band_i32(load_i32_u8(memory_at_0, loc_1 + 1), 63)
+												loc_2 = band_i32(loc_0, 31)
+												if loc_0 > 4294967263 then
+													desired = 8
+													break
+												end
+												loc_0 = bor_i32(shl_i32(loc_2, 6), loc_7)
+												desired = 7
+												break
+											end
+											if desired then
+												if desired == 8 then
+													desired = nil
+												end
+												break
+											end
+										end
+										store_i32(memory_at_0, loc_5 + 36, band_i32(loc_0, 255))
+										reg_0 = 1
+										desired = 6
+										break
+									end
+									if desired then
+										if desired == 7 then
+											desired = nil
+										end
+										break
+									end
+									loc_7 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_1 + 2), 63), shl_i32(loc_7, 6))
+									if loc_0 < 4294967280 then
+										while true do
+											loc_0 = bor_i32(loc_7, shl_i32(loc_2, 12))
+											desired = 7
+											break
+										end
+										if desired then
+											if desired == 7 then
+												desired = nil
+											end
+											break
+										end
+									end
+									loc_0 = bor_i32(band_i32(shl_i32(loc_2, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_1 + 3), 63), shl_i32(loc_7, 6)))
+									if loc_0 == 1114112 then
+										desired = 2
+										break
+									end
+									break
+								end
+								if desired then
+									if desired == 6 then
+										desired = nil
+									end
+									break
+								end
+								store_i32(memory_at_0, loc_5 + 36, loc_0)
+								reg_0 = 1
+								if loc_0 < 128 then
+									break
+								end
+								reg_0 = 2
+								if loc_0 < 2048 then
+									break
+								end
+								reg_0 = (if loc_0 < 65536 then 3 else 4)
+								break
+							end
+							if desired then
+								if desired == 5 then
+									desired = nil
+								end
+								break
+							end
+							loc_1 = reg_0
+							store_i32(memory_at_0, loc_5 + 40, loc_3)
+							store_i32(memory_at_0, loc_5 + 44, add_i32(loc_1, loc_3))
+							loc_0 = add_i32(loc_5, 48)
+							store_i64(memory_at_0, add_i32(loc_0, 12), i64_from_u32(5, 0))
+							store_i32(memory_at_0, add_i32(loc_5, 108), 11)
+							store_i32(memory_at_0, add_i32(loc_5, 100), 11)
+							store_i32(memory_at_0, add_i32(loc_5, 92), 18)
+							loc_1 = add_i32(loc_5, 72)
+							store_i32(memory_at_0, add_i32(loc_1, 12), 19)
+							store_i32(memory_at_0, loc_5 + 52, 5)
+							store_i32(memory_at_0, loc_5 + 48, 1050220)
 							store_i32(memory_at_0, loc_5 + 76, 3)
-							store_i32(memory_at_0, loc_5 + 56, add_i32(loc_5, 72))
-							store_i32(memory_at_0, loc_5 + 88, add_i32(loc_5, 24))
-							store_i32(memory_at_0, loc_5 + 80, add_i32(loc_5, 16))
-							store_i32(memory_at_0, loc_5 + 72, add_i32(loc_5, 40))
-							desired = 1
-							break
+							store_i32(memory_at_0, loc_5 + 56, loc_1)
+							store_i32(memory_at_0, loc_5 + 104, add_i32(loc_5, 24))
+							store_i32(memory_at_0, loc_5 + 96, add_i32(loc_5, 16))
+							store_i32(memory_at_0, loc_5 + 88, add_i32(loc_5, 40))
+							store_i32(memory_at_0, loc_5 + 80, add_i32(loc_5, 36))
+							store_i32(memory_at_0, loc_5 + 72, add_i32(loc_5, 32))
+							FUNC_LIST[20](loc_0, loc_4)
+							error("out of code bounds")
 						end
 						if desired then
 							if desired == 4 then
@@ -11136,20 +11167,21 @@ FUNC_LIST[22] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 							end
 							break
 						end
-						store_i32(memory_at_0, add_i32(loc_5, 100), 11)
+						store_i32(memory_at_0, loc_5 + 40, (if loc_6 ~= 0 then loc_2 else loc_3))
+						loc_0 = add_i32(loc_5, 48)
+						store_i64(memory_at_0, add_i32(loc_0, 12), i64_from_u32(3, 0))
 						store_i32(memory_at_0, add_i32(loc_5, 92), 11)
-						store_i32(memory_at_0, add_i32(loc_5, 84), 3)
-						store_i64(memory_at_0, add_i32(loc_5, 60), i64_from_u32(4, 0))
-						store_i32(memory_at_0, loc_5 + 52, 4)
-						store_i32(memory_at_0, loc_5 + 48, 1050124)
+						loc_1 = add_i32(loc_5, 72)
+						store_i32(memory_at_0, add_i32(loc_1, 12), 11)
+						store_i32(memory_at_0, loc_5 + 52, 3)
+						store_i32(memory_at_0, loc_5 + 48, 1050284)
 						store_i32(memory_at_0, loc_5 + 76, 3)
-						store_i32(memory_at_0, loc_5 + 56, add_i32(loc_5, 72))
-						store_i32(memory_at_0, loc_5 + 96, add_i32(loc_5, 24))
-						store_i32(memory_at_0, loc_5 + 88, add_i32(loc_5, 16))
-						store_i32(memory_at_0, loc_5 + 80, add_i32(loc_5, 12))
-						store_i32(memory_at_0, loc_5 + 72, add_i32(loc_5, 8))
-						desired = 1
-						break
+						store_i32(memory_at_0, loc_5 + 56, loc_1)
+						store_i32(memory_at_0, loc_5 + 88, add_i32(loc_5, 24))
+						store_i32(memory_at_0, loc_5 + 80, add_i32(loc_5, 16))
+						store_i32(memory_at_0, loc_5 + 72, add_i32(loc_5, 40))
+						FUNC_LIST[20](loc_0, loc_4)
+						error("out of code bounds")
 					end
 					if desired then
 						if desired == 3 then
@@ -11157,7 +11189,21 @@ FUNC_LIST[22] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 						end
 						break
 					end
-					FUNC_LIST[61](loc_3, loc_6, 1050336)
+					store_i32(memory_at_0, add_i32(loc_5, 100), 11)
+					store_i32(memory_at_0, add_i32(loc_5, 92), 11)
+					loc_0 = add_i32(loc_5, 72)
+					store_i32(memory_at_0, add_i32(loc_0, 12), 3)
+					loc_1 = add_i32(loc_5, 48)
+					store_i64(memory_at_0, add_i32(loc_1, 12), i64_from_u32(4, 0))
+					store_i32(memory_at_0, loc_5 + 52, 4)
+					store_i32(memory_at_0, loc_5 + 48, 1050124)
+					store_i32(memory_at_0, loc_5 + 76, 3)
+					store_i32(memory_at_0, loc_5 + 56, loc_0)
+					store_i32(memory_at_0, loc_5 + 96, add_i32(loc_5, 24))
+					store_i32(memory_at_0, loc_5 + 88, add_i32(loc_5, 16))
+					store_i32(memory_at_0, loc_5 + 80, add_i32(loc_5, 12))
+					store_i32(memory_at_0, loc_5 + 72, add_i32(loc_5, 8))
+					FUNC_LIST[20](loc_1, loc_4)
 					error("out of code bounds")
 				end
 				if desired then
@@ -11166,7 +11212,7 @@ FUNC_LIST[22] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 					end
 					break
 				end
-				FUNC_LIST[13](1068868, 43, loc_4)
+				FUNC_LIST[61](loc_3, loc_6, 1050336)
 				error("out of code bounds")
 			end
 			if desired then
@@ -11175,10 +11221,10 @@ FUNC_LIST[22] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 				end
 				break
 			end
-			FUNC_LIST[22](loc_0, loc_1, loc_3, loc_1, loc_4)
+			FUNC_LIST[13](1068868, 43, loc_4)
 			error("out of code bounds")
 		end
-		FUNC_LIST[20](add_i32(loc_5, 48), loc_4)
+		FUNC_LIST[22](loc_0, loc_1, loc_3, loc_1, loc_4)
 		error("out of code bounds")
 	end
 end
@@ -11327,37 +11373,37 @@ FUNC_LIST[24] = function(loc_0, loc_1)
 						while true do
 							loc_2 = 6
 							loc_4 = load_i64(memory_at_0, add_i32(loc_0, 80))
-							if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+							if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 								desired = 3
 								break
 							end
 							loc_2 = 7
 							loc_4 = load_i64(memory_at_0, add_i32(loc_0, 88))
-							if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+							if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 								desired = 3
 								break
 							end
 							loc_2 = 8
 							loc_4 = load_i64(memory_at_0, add_i32(loc_0, 96))
-							if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+							if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 								desired = 3
 								break
 							end
 							loc_2 = 9
 							loc_4 = load_i64(memory_at_0, add_i32(loc_0, 104))
-							if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+							if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 								desired = 3
 								break
 							end
 							loc_2 = 10
 							loc_4 = load_i64(memory_at_0, add_i32(loc_0, 112))
-							if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+							if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 								desired = 3
 								break
 							end
 							loc_2 = 11
 							loc_4 = load_i64(memory_at_0, add_i32(loc_0, 120))
-							if (if eq_i64(band_i64(loc_4, loc_3), i64_ZERO) then 1 else 0) == 0 then
+							if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 								desired = 3
 								break
 							end
@@ -11373,32 +11419,32 @@ FUNC_LIST[24] = function(loc_0, loc_1)
 					end
 					loc_2 = 0
 					loc_4 = load_i64(memory_at_0, loc_0 + 32)
-					if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+					if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 						break
 					end
 					loc_2 = 1
 					loc_4 = load_i64(memory_at_0, add_i32(loc_0, 40))
-					if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+					if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 						break
 					end
 					loc_2 = 2
 					loc_4 = load_i64(memory_at_0, add_i32(loc_0, 48))
-					if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+					if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 						break
 					end
 					loc_2 = 3
 					loc_4 = load_i64(memory_at_0, add_i32(loc_0, 56))
-					if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+					if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 						break
 					end
 					loc_2 = 4
 					loc_4 = load_i64(memory_at_0, sub_i32(loc_0, 4294967232))
-					if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+					if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 						break
 					end
 					loc_2 = 5
 					loc_4 = load_i64(memory_at_0, add_i32(loc_0, 72))
-					if eq_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+					if eq_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 						desired = 2
 						break
 					end
@@ -11483,7 +11529,19 @@ FUNC_LIST[24] = function(loc_0, loc_1)
 									reg_1 = loc_13
 									loc_13 = bor_i32((if loc_6 == 63 then 1 else 0), (if loc_5 == 63 then 1 else 0))
 									loc_5 = (if loc_13 ~= 0 then reg_0 else reg_1)
-									if bor_i32(bor_i32(loc_10, loc_11), bor_i32(loc_12, loc_13)) ~= 0 then
+									if loc_10 ~= 0 then
+										desired = 4
+										break
+									end
+									if loc_11 ~= 0 then
+										desired = 4
+										break
+									end
+									if loc_12 ~= 0 then
+										desired = 4
+										break
+									end
+									if loc_13 ~= 0 then
 										desired = 4
 										break
 									end
@@ -11613,9 +11671,10 @@ FUNC_LIST[24] = function(loc_0, loc_1)
 														break
 													end
 													loc_5 = reg_1
-													loc_10 = add_i32(loc_0, 32)
-													store_i64(memory_at_0, add_i32(loc_10, shl_i32(loc_2, 3)), band_i64(loc_4, bxor_i64(loc_3, i64_from_u32(4294967295, 4294967295))))
-													loc_2 = add_i32(loc_10, shl_i32(loc_5, 3))
+													reg_1 = shl_i32(loc_2, 3)
+													loc_2 = add_i32(loc_0, 32)
+													store_i64(memory_at_0, add_i32(reg_1, loc_2), band_i64(loc_4, bxor_i64(loc_3, i64_from_u32(4294967295, 4294967295))))
+													loc_2 = add_i32(loc_2, shl_i32(loc_5, 3))
 													loc_1 = load_i32_u8(memory_at_0, loc_1 + 2)
 													store_i64(memory_at_0, loc_2, bor_i64(load_i64(memory_at_0, loc_2), shl_i64(i64_ONE, extend_i64_u32(band_i32(loc_1, 63)))))
 													loc_2 = extend_i32_n8(loc_1)
@@ -11704,37 +11763,37 @@ FUNC_LIST[24] = function(loc_0, loc_1)
 																while true do
 																	loc_2 = 0
 																	loc_4 = load_i64(memory_at_0, loc_0 + 32)
-																	if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+																	if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																		desired = 4
 																		break
 																	end
 																	loc_2 = 1
 																	loc_4 = load_i64(memory_at_0, add_i32(loc_0, 40))
-																	if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+																	if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																		desired = 4
 																		break
 																	end
 																	loc_2 = 2
 																	loc_4 = load_i64(memory_at_0, add_i32(loc_0, 48))
-																	if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+																	if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																		desired = 4
 																		break
 																	end
 																	loc_2 = 3
 																	loc_4 = load_i64(memory_at_0, add_i32(loc_0, 56))
-																	if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+																	if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																		desired = 4
 																		break
 																	end
 																	loc_2 = 4
 																	loc_4 = load_i64(memory_at_0, sub_i32(loc_0, 4294967232))
-																	if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+																	if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																		desired = 4
 																		break
 																	end
 																	loc_2 = 5
 																	loc_4 = load_i64(memory_at_0, add_i32(loc_0, 72))
-																	if eq_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+																	if eq_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																		desired = 13
 																		break
 																	end
@@ -11750,37 +11809,37 @@ FUNC_LIST[24] = function(loc_0, loc_1)
 															end
 															loc_2 = 6
 															loc_4 = load_i64(memory_at_0, add_i32(loc_0, 80))
-															if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+															if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																desired = 4
 																break
 															end
 															loc_2 = 7
 															loc_4 = load_i64(memory_at_0, add_i32(loc_0, 88))
-															if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+															if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																desired = 4
 																break
 															end
 															loc_2 = 8
 															loc_4 = load_i64(memory_at_0, add_i32(loc_0, 96))
-															if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+															if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																desired = 4
 																break
 															end
 															loc_2 = 9
 															loc_4 = load_i64(memory_at_0, add_i32(loc_0, 104))
-															if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+															if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																desired = 4
 																break
 															end
 															loc_2 = 10
 															loc_4 = load_i64(memory_at_0, add_i32(loc_0, 112))
-															if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+															if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																desired = 4
 																break
 															end
 															loc_2 = 11
 															loc_4 = load_i64(memory_at_0, add_i32(loc_0, 120))
-															if ne_i64(band_i64(loc_4, loc_3), i64_ZERO) then
+															if ne_i64(band_i64(loc_3, loc_4), i64_ZERO) then
 																desired = 4
 																break
 															end
@@ -11850,15 +11909,15 @@ FUNC_LIST[24] = function(loc_0, loc_1)
 												desired = 1
 												break
 											end
-											loc_5 = (if loc_8 ~= 0 then 3 else 9)
-											loc_3 = bxor_i64(loc_7, load_i64(memory_at_0, add_i32(add_i32(shl_i32(loc_5, 9), shl_i32(loc_6, 3)), 1053688)))
+											loc_5 = shl_i32((if loc_8 ~= 0 then 3 else 9), 9)
+											loc_3 = bxor_i64(loc_7, load_i64(memory_at_0, add_i32(add_i32(loc_5, shl_i32(loc_6, 3)), 1053688)))
 											store_i64(memory_at_0, loc_0 + 16, loc_3)
 											loc_2 = extend_i32_n8(loc_1)
 											if band_i32(loc_1, 255) >= 64 then
 												desired = 6
 												break
 											end
-											store_i64(memory_at_0, loc_0 + 16, bxor_i64(load_i64(memory_at_0, add_i32(add_i32(shl_i32(loc_5, 9), shl_i32(loc_2, 3)), 1053688)), loc_3))
+											store_i64(memory_at_0, loc_0 + 16, bxor_i64(load_i64(memory_at_0, add_i32(add_i32(loc_5, shl_i32(loc_2, 3)), 1053688)), loc_3))
 											desired = 3
 											break
 										end
@@ -11950,22 +12009,22 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 	local loc_4 = i64_ZERO
 	local loc_5 = 0
 	local loc_6 = i64_ZERO
-	local loc_7 = 0
+	local loc_7 = i64_ZERO
 	local loc_8 = i64_ZERO
 	local loc_9 = 0
 	local loc_10 = i64_ZERO
-	local loc_11 = i64_ZERO
+	local loc_11 = 0
 	local loc_12 = i64_ZERO
-	local loc_13 = 0
+	local loc_13 = i64_ZERO
 	local loc_14 = 0
-	local loc_15 = i64_ZERO
+	local loc_15 = 0
 	local loc_16 = i64_ZERO
 	local loc_17 = i64_ZERO
 	local loc_18 = i64_ZERO
 	local loc_19 = i64_ZERO
-	local loc_20 = 0
+	local loc_20 = i64_ZERO
 	local loc_21 = i64_ZERO
-	local loc_22 = i64_ZERO
+	local loc_22 = 0
 	local loc_23 = i64_ZERO
 	local loc_24 = i64_ZERO
 	local loc_25 = 0
@@ -11979,13 +12038,13 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 	local loc_33 = i64_ZERO
 	local loc_34 = i64_ZERO
 	local loc_35 = i64_ZERO
-	local loc_36 = i64_ZERO
+	local loc_36 = 0
 	local loc_37 = i64_ZERO
-	local loc_38 = 0
-	local loc_39 = i64_ZERO
-	local loc_40 = i64_ZERO
-	local loc_41 = 0
-	local loc_42 = 0
+	local loc_38 = i64_ZERO
+	local loc_39 = 0
+	local loc_40 = 0
+	local loc_41 = i64_ZERO
+	local loc_42 = i64_ZERO
 	local loc_43 = i64_ZERO
 	local loc_44 = i64_ZERO
 	local loc_45 = i64_ZERO
@@ -11998,22 +12057,22 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 		GLOBAL_LIST[0].value = loc_2
 		loc_3 = add_i32(loc_1, 32)
 		loc_5 = load_i32_u8(memory_at_0, loc_1 + 140)
-		loc_17 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 64 else 16)))
-		loc_32 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 80 else 32)))
-		loc_26 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 48 else 0)))
+		loc_4 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 64 else 16)))
+		loc_8 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 80 else 32)))
+		loc_23 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 48 else 0)))
 		loc_21 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 56 else 8)))
-		loc_33 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 72 else 24)))
-		loc_12 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 88 else 40)))
-		loc_4 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 16 else 64)))
-		loc_34 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 32 else 80)))
-		loc_35 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 0 else 48)))
-		loc_36 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 8 else 56)))
-		loc_37 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 24 else 72)))
-		loc_22 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 40 else 88)))
-		loc_9 = wrap_i32_i64(ctz_i64(loc_22))
-		loc_41 = load_i32_u8(memory_at_0, add_i32(loc_1, 27))
-		loc_38 = load_i32_u8(memory_at_0, loc_1 + 24)
-		loc_42 = load_i32_u8(memory_at_0, loc_1 + 26)
+		loc_10 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 72 else 24)))
+		loc_7 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 88 else 40)))
+		loc_6 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 16 else 64)))
+		loc_32 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 32 else 80)))
+		loc_33 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 0 else 48)))
+		loc_34 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 8 else 56)))
+		loc_35 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 24 else 72)))
+		loc_13 = load_i64(memory_at_0, add_i32(loc_3, (if loc_5 ~= 0 then 40 else 88)))
+		loc_9 = wrap_i32_i64(ctz_i64(loc_13))
+		loc_39 = load_i32_u8(memory_at_0, add_i32(loc_1, 27))
+		loc_36 = load_i32_u8(memory_at_0, loc_1 + 24)
+		loc_40 = load_i32_u8(memory_at_0, loc_1 + 26)
 		if load_i32_u8(memory_at_0, 1077968) ~= 3 then
 			while true do
 				store_i32(memory_at_0, loc_2 + 4, 1077456)
@@ -12033,17 +12092,17 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 				while true do
 					if loc_9 <= 63 then
 						while true do
-							loc_27 = bor_i64(loc_17, loc_32)
-							loc_29 = bor_i64(bor_i64(loc_27, bor_i64(bor_i64(loc_21, loc_26), loc_33)), loc_12)
-							loc_43 = bor_i64(loc_4, loc_34)
-							loc_30 = bor_i64(bor_i64(bor_i64(bor_i64(loc_43, loc_35), loc_36), loc_37), loc_22)
-							loc_18 = bor_i64(loc_29, loc_30)
-							loc_20 = add_i32(shl_i32(loc_9, 3), 1077456)
-							loc_4 = band_i64(loc_18, load_i64(memory_at_0, loc_20))
+							loc_24 = bor_i64(loc_4, loc_8)
+							loc_27 = bor_i64(bor_i64(loc_24, bor_i64(bor_i64(loc_21, loc_23), loc_10)), loc_7)
+							loc_41 = bor_i64(loc_6, loc_32)
+							loc_28 = bor_i64(bor_i64(bor_i64(bor_i64(loc_41, loc_33), loc_34), loc_35), loc_13)
+							loc_19 = bor_i64(loc_27, loc_28)
+							loc_14 = add_i32(shl_i32(loc_9, 3), 1077456)
+							loc_4 = band_i64(loc_19, load_i64(memory_at_0, loc_14))
 							loc_1 = mul_i32(loc_9, 24)
-							loc_13 = load_i32(memory_at_0, add_i32(loc_1, 1062800))
-							loc_10 = load_i64(memory_at_0, add_i32(loc_1, 1062792))
-							loc_39 = load_i64(memory_at_0, add_i32(loc_1, 1062784))
+							loc_11 = load_i32(memory_at_0, add_i32(loc_1, 1062800))
+							loc_12 = load_i64(memory_at_0, add_i32(loc_1, 1062792))
+							loc_20 = load_i64(memory_at_0, add_i32(loc_1, 1062784))
 							if load_i32_u8(memory_at_0, 1078004) ~= 3 then
 								while true do
 									store_i32(memory_at_0, loc_2 + 4, 1077992)
@@ -12056,11 +12115,11 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 								end
 							end
 							while true do
-								loc_3 = add_i32(loc_13, wrap_i32_i64(shr_u64(mul_i64(loc_4, loc_39), loc_10)))
-								loc_1 = load_i32(memory_at_0, 1078000)
-								if loc_3 < loc_1 then
+								loc_1 = add_i32(loc_11, wrap_i32_i64(shr_u64(mul_i64(loc_4, loc_20), loc_12)))
+								loc_3 = load_i32(memory_at_0, 1078000)
+								if loc_1 < loc_3 then
 									while true do
-										loc_44 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_3, 3)))
+										loc_42 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_1, 3)))
 										if load_i32_u8(memory_at_0, 1077448) ~= 3 then
 											while true do
 												store_i32(memory_at_0, loc_2 + 4, 1076936)
@@ -12072,12 +12131,12 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 												break
 											end
 										end
-										loc_31 = add_i32(shl_i32(loc_9, 3), 1076936)
-										loc_4 = band_i64(load_i64(memory_at_0, loc_31), loc_18)
+										loc_25 = add_i32(shl_i32(loc_9, 3), 1076936)
+										loc_4 = band_i64(load_i64(memory_at_0, loc_25), loc_19)
 										loc_1 = mul_i32(loc_9, 24)
-										loc_14 = load_i32(memory_at_0, add_i32(loc_1, 1061248))
-										loc_23 = load_i64(memory_at_0, add_i32(loc_1, 1061240))
-										loc_40 = load_i64(memory_at_0, add_i32(loc_1, 1061232))
+										loc_15 = load_i32(memory_at_0, add_i32(loc_1, 1061248))
+										loc_26 = load_i64(memory_at_0, add_i32(loc_1, 1061240))
+										loc_37 = load_i64(memory_at_0, add_i32(loc_1, 1061232))
 										if load_i32_u8(memory_at_0, 1077988) ~= 3 then
 											while true do
 												store_i32(memory_at_0, loc_2 + 4, 1077976)
@@ -12089,13 +12148,13 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 												break
 											end
 										end
-										loc_3 = add_i32(loc_14, wrap_i32_i64(shr_u64(mul_i64(loc_4, loc_40), loc_23)))
-										loc_1 = load_i32(memory_at_0, 1077984)
-										if loc_3 >= loc_1 then
+										loc_1 = add_i32(loc_15, wrap_i32_i64(shr_u64(mul_i64(loc_4, loc_37), loc_26)))
+										loc_3 = load_i32(memory_at_0, 1077984)
+										if loc_1 >= loc_3 then
 											desired = 5
 											break
 										end
-										loc_45 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_3, 3)))
+										loc_43 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_1, 3)))
 										loc_1 = load_i32_u8(memory_at_0, 1072760)
 										while true do
 											if loc_5 == 0 then
@@ -12142,7 +12201,7 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 										if desired then
 											break
 										end
-										loc_46 = load_i64(memory_at_0, reg_0)
+										loc_44 = load_i64(memory_at_0, reg_0)
 										if load_i32_u8(memory_at_0, 1071208) ~= 3 then
 											while true do
 												store_i32(memory_at_0, loc_2 + 4, 1070696)
@@ -12154,11 +12213,11 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 												break
 											end
 										end
-										loc_47 = load_i64(memory_at_0, add_i32(shl_i32(loc_9, 3), 1070696))
-										loc_17 = band_i64(loc_26, (if loc_5 ~= 0 then i64_from_u32(4278124286, 4278124286) else i64_from_u32(2139062143, 2139062143)))
-										loc_4 = band_i64(loc_26, (if loc_5 ~= 0 then i64_from_u32(2139062143, 2139062143) else i64_from_u32(4278124286, 4278124286)))
-										loc_17 = (if loc_5 ~= 0 then bor_i64(shr_u64(loc_17, i64_from_u32(9, 0)), shr_u64(loc_4, i64_from_u32(7, 0))) else bor_i64(shl_i64(loc_17, i64_from_u32(9, 0)), shl_i64(loc_4, i64_from_u32(7, 0))))
-										loc_6 = loc_17
+										loc_45 = load_i64(memory_at_0, add_i32(shl_i32(loc_9, 3), 1070696))
+										loc_4 = band_i64(loc_23, (if loc_5 ~= 0 then i64_from_u32(4278124286, 4278124286) else i64_from_u32(2139062143, 2139062143)))
+										loc_6 = band_i64(loc_23, (if loc_5 ~= 0 then i64_from_u32(2139062143, 2139062143) else i64_from_u32(4278124286, 4278124286)))
+										loc_38 = (if loc_5 ~= 0 then bor_i64(shr_u64(loc_4, i64_from_u32(9, 0)), shr_u64(loc_6, i64_from_u32(7, 0))) else bor_i64(shl_i64(loc_4, i64_from_u32(9, 0)), shl_i64(loc_6, i64_from_u32(7, 0))))
+										loc_6 = loc_38
 										if eq_i64(loc_21, i64_ZERO) then
 											desired = 3
 											break
@@ -12188,9 +12247,10 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 										loc_1 = loc_3
 										loc_4 = loc_21
 										while true do
-											loc_7 = band_i32(loc_1, 255)
+											loc_16 = band_i64(sub_i64(loc_4, i64_ONE), loc_4)
+											loc_22 = band_i32(loc_1, 255)
 											loc_1 = 3
-											if loc_7 ~= 3 then
+											if loc_22 ~= 3 then
 												while true do
 													if band_i32(loc_3, 255) ~= 3 then
 														while true do
@@ -12216,8 +12276,8 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 												end
 											end
 											loc_6 = bor_i64(load_i64(memory_at_0, add_i32(shl_i32(wrap_i32_i64(ctz_i64(loc_4)), 3), 1070696)), loc_6)
-											loc_4 = band_i64(sub_i64(loc_4, i64_ONE), loc_4)
-											if (if eq_i64(loc_4, i64_ZERO) then 1 else 0) == 0 then
+											loc_4 = loc_16
+											if ne_i64(loc_4, i64_ZERO) then
 												continue
 											end
 											break
@@ -12261,8 +12321,9 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 					break
 				end
 				while true do
-					if eq_i64(loc_27, i64_ZERO) then
+					if eq_i64(loc_24, i64_ZERO) then
 						while true do
+							loc_12 = i64_ZERO
 							desired = 3
 							break
 						end
@@ -12273,9 +12334,10 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 							break
 						end
 					end
-					loc_19 = band_i64(loc_10, i64_from_u32(63, 0))
-					loc_24 = bxor_i64(loc_22, i64_from_u32(4294967295, 4294967295))
-					loc_4 = loc_27
+					loc_29 = band_i64(loc_12, i64_from_u32(63, 0))
+					loc_16 = bxor_i64(loc_13, i64_from_u32(4294967295, 4294967295))
+					loc_12 = i64_ZERO
+					loc_4 = loc_24
 					while true do
 						while true do
 							if load_i32_u8(memory_at_0, 1077968) ~= 3 then
@@ -12293,14 +12355,14 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 									break
 								end
 							end
-							loc_16 = ctz_i64(loc_4)
-							loc_1 = wrap_i32_i64(loc_16)
-							loc_3 = add_i32(shl_i32(loc_1, 3), 1077456)
-							loc_10 = band_i64(band_i64(load_i64(memory_at_0, loc_3), loc_24), loc_18)
+							loc_46 = ctz_i64(loc_4)
+							loc_1 = wrap_i32_i64(loc_46)
+							loc_22 = add_i32(shl_i32(loc_1, 3), 1077456)
+							loc_30 = band_i64(band_i64(load_i64(memory_at_0, loc_22), loc_16), loc_19)
 							loc_1 = mul_i32(loc_1, 24)
-							loc_25 = load_i32(memory_at_0, add_i32(loc_1, 1062800))
-							loc_28 = load_i64(memory_at_0, add_i32(loc_1, 1062792))
-							loc_11 = load_i64(memory_at_0, add_i32(loc_1, 1062784))
+							loc_3 = load_i32(memory_at_0, add_i32(loc_1, 1062800))
+							loc_17 = load_i64(memory_at_0, add_i32(loc_1, 1062792))
+							loc_18 = load_i64(memory_at_0, add_i32(loc_1, 1062784))
 							if load_i32_u8(memory_at_0, 1078004) ~= 3 then
 								while true do
 									store_i32(memory_at_0, loc_2 + 4, 1077992)
@@ -12316,12 +12378,12 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 									break
 								end
 							end
-							loc_7 = add_i32(loc_25, wrap_i32_i64(shr_u64(mul_i64(loc_10, loc_11), loc_28)))
-							loc_1 = load_i32(memory_at_0, 1078000)
-							if loc_7 < loc_1 then
+							loc_1 = add_i32(loc_3, wrap_i32_i64(shr_u64(mul_i64(loc_18, loc_30), loc_17)))
+							loc_31 = load_i32(memory_at_0, 1078000)
+							if loc_1 < loc_31 then
 								while true do
-									loc_8 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_7, 3)))
-									if (if eq_i64(band_i64(loc_8, loc_22), i64_ZERO) then 1 else 0) == 0 then
+									loc_30 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_1, 3)))
+									if ne_i64(band_i64(loc_30, loc_13), i64_ZERO) then
 										while true do
 											if load_i32_u8(memory_at_0, 1077968) ~= 3 then
 												while true do
@@ -12334,7 +12396,8 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 													break
 												end
 											end
-											loc_10 = band_i64(load_i64(memory_at_0, loc_3), loc_18)
+											loc_17 = band_i64(loc_17, i64_from_u32(63, 0))
+											loc_47 = band_i64(load_i64(memory_at_0, loc_22), loc_19)
 											if load_i32_u8(memory_at_0, 1078004) ~= 3 then
 												while true do
 													store_i32(memory_at_0, loc_2 + 4, 1077992)
@@ -12346,13 +12409,13 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 													break
 												end
 											end
-											loc_3 = add_i32(loc_25, wrap_i32_i64(shr_u64(mul_i64(loc_10, loc_11), loc_28)))
-											loc_1 = load_i32(memory_at_0, 1078000)
-											if loc_3 >= loc_1 then
+											loc_1 = add_i32(loc_3, wrap_i32_i64(shr_u64(mul_i64(loc_18, loc_47), loc_17)))
+											loc_3 = load_i32(memory_at_0, 1078000)
+											if loc_1 >= loc_3 then
 												desired = 2
 												break
 											end
-											loc_11 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_3, 3)))
+											loc_17 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_1, 3)))
 											if load_i32_u8(memory_at_0, 1077968) ~= 3 then
 												while true do
 													store_i32(memory_at_0, loc_2 + 4, 1077456)
@@ -12364,7 +12427,7 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 													break
 												end
 											end
-											loc_10 = band_i64(load_i64(memory_at_0, loc_20), shl_i64(i64_ONE, loc_16))
+											loc_18 = band_i64(load_i64(memory_at_0, loc_14), shl_i64(i64_ONE, loc_46))
 											if load_i32_u8(memory_at_0, 1078004) ~= 3 then
 												while true do
 													store_i32(memory_at_0, loc_2 + 4, 1077992)
@@ -12376,20 +12439,20 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 													break
 												end
 											end
-											loc_3 = add_i32(loc_13, wrap_i32_i64(shr_u64(mul_i64(loc_10, loc_39), loc_19)))
-											loc_1 = load_i32(memory_at_0, 1078000)
-											if loc_3 >= loc_1 then
+											loc_1 = add_i32(loc_11, wrap_i32_i64(shr_u64(mul_i64(loc_18, loc_20), loc_29)))
+											loc_3 = load_i32(memory_at_0, 1078000)
+											if loc_1 >= loc_3 then
 												desired = 4
 												break
 											end
-											loc_15 = bor_i64(band_i64(band_i64(loc_11, load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_3, 3)))), loc_24), loc_15)
+											loc_12 = bor_i64(band_i64(band_i64(loc_17, load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_1, 3)))), loc_16), loc_12)
 											break
 										end
 										if desired then
 											break
 										end
 									end
-									loc_6 = bor_i64(loc_6, loc_8)
+									loc_6 = bor_i64(loc_6, loc_30)
 									loc_4 = band_i64(sub_i64(loc_4, i64_ONE), loc_4)
 									if eq_i64(loc_4, i64_ZERO) then
 										desired = 3
@@ -12414,7 +12477,7 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 							end
 							break
 						end
-						FUNC_LIST[15](loc_7, loc_1, 1064320)
+						FUNC_LIST[15](loc_1, loc_31, 1064320)
 						error("out of code bounds")
 					end
 					if desired then
@@ -12434,12 +12497,12 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 				end
 				while true do
 					while true do
-						loc_10 = bor_i64(loc_32, loc_33)
-						if (if eq_i64(loc_10, i64_ZERO) then 1 else 0) == 0 then
+						loc_16 = bor_i64(loc_8, loc_10)
+						if ne_i64(loc_16, i64_ZERO) then
 							while true do
-								loc_28 = band_i64(loc_23, i64_from_u32(63, 0))
-								loc_23 = bxor_i64(loc_22, i64_from_u32(4294967295, 4294967295))
-								loc_4 = loc_10
+								loc_26 = band_i64(loc_26, i64_from_u32(63, 0))
+								loc_8 = bxor_i64(loc_13, i64_from_u32(4294967295, 4294967295))
+								loc_4 = loc_16
 								while true do
 									if load_i32_u8(memory_at_0, 1077448) ~= 3 then
 										while true do
@@ -12456,14 +12519,14 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 											break
 										end
 									end
-									loc_19 = ctz_i64(loc_4)
-									loc_1 = wrap_i32_i64(loc_19)
-									loc_3 = add_i32(shl_i32(loc_1, 3), 1076936)
-									loc_11 = band_i64(band_i64(load_i64(memory_at_0, loc_3), loc_23), loc_18)
+									loc_17 = ctz_i64(loc_4)
+									loc_1 = wrap_i32_i64(loc_17)
+									loc_11 = add_i32(shl_i32(loc_1, 3), 1076936)
+									loc_18 = band_i64(band_i64(load_i64(memory_at_0, loc_11), loc_8), loc_19)
 									loc_1 = mul_i32(loc_1, 24)
-									loc_20 = load_i32(memory_at_0, add_i32(loc_1, 1061248))
-									loc_24 = load_i64(memory_at_0, add_i32(loc_1, 1061240))
-									loc_8 = load_i64(memory_at_0, add_i32(loc_1, 1061232))
+									loc_3 = load_i32(memory_at_0, add_i32(loc_1, 1061248))
+									loc_10 = load_i64(memory_at_0, add_i32(loc_1, 1061240))
+									loc_20 = load_i64(memory_at_0, add_i32(loc_1, 1061232))
 									if load_i32_u8(memory_at_0, 1077988) ~= 3 then
 										while true do
 											store_i32(memory_at_0, loc_2 + 4, 1077976)
@@ -12479,14 +12542,14 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 											break
 										end
 									end
-									loc_7 = add_i32(loc_20, wrap_i32_i64(shr_u64(mul_i64(loc_8, loc_11), loc_24)))
-									loc_1 = load_i32(memory_at_0, 1077984)
-									if loc_7 >= loc_1 then
+									loc_1 = add_i32(loc_3, wrap_i32_i64(shr_u64(mul_i64(loc_18, loc_20), loc_10)))
+									loc_14 = load_i32(memory_at_0, 1077984)
+									if loc_1 >= loc_14 then
 										desired = 3
 										break
 									end
-									loc_16 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_7, 3)))
-									if (if eq_i64(band_i64(loc_16, loc_22), i64_ZERO) then 1 else 0) == 0 then
+									loc_18 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_1, 3)))
+									if ne_i64(band_i64(loc_18, loc_13), i64_ZERO) then
 										while true do
 											if load_i32_u8(memory_at_0, 1077448) ~= 3 then
 												while true do
@@ -12499,7 +12562,8 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 													break
 												end
 											end
-											loc_11 = band_i64(load_i64(memory_at_0, loc_3), loc_18)
+											loc_10 = band_i64(loc_10, i64_from_u32(63, 0))
+											loc_29 = band_i64(load_i64(memory_at_0, loc_11), loc_19)
 											if load_i32_u8(memory_at_0, 1077988) ~= 3 then
 												while true do
 													store_i32(memory_at_0, loc_2 + 4, 1077976)
@@ -12511,13 +12575,13 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 													break
 												end
 											end
-											loc_3 = add_i32(loc_20, wrap_i32_i64(shr_u64(mul_i64(loc_8, loc_11), loc_24)))
-											loc_1 = load_i32(memory_at_0, 1077984)
-											if loc_3 >= loc_1 then
+											loc_1 = add_i32(loc_3, wrap_i32_i64(shr_u64(mul_i64(loc_20, loc_29), loc_10)))
+											loc_3 = load_i32(memory_at_0, 1077984)
+											if loc_1 >= loc_3 then
 												desired = 1
 												break
 											end
-											loc_8 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_3, 3)))
+											loc_10 = load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_1, 3)))
 											if load_i32_u8(memory_at_0, 1077448) ~= 3 then
 												while true do
 													store_i32(memory_at_0, loc_2 + 4, 1076936)
@@ -12529,7 +12593,7 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 													break
 												end
 											end
-											loc_11 = band_i64(load_i64(memory_at_0, loc_31), shl_i64(i64_ONE, loc_19))
+											loc_20 = band_i64(load_i64(memory_at_0, loc_25), shl_i64(i64_ONE, loc_17))
 											if load_i32_u8(memory_at_0, 1077988) ~= 3 then
 												while true do
 													store_i32(memory_at_0, loc_2 + 4, 1077976)
@@ -12541,13 +12605,13 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 													break
 												end
 											end
-											loc_3 = add_i32(loc_14, wrap_i32_i64(shr_u64(mul_i64(loc_11, loc_40), loc_28)))
-											loc_1 = load_i32(memory_at_0, 1077984)
-											if loc_3 >= loc_1 then
+											loc_1 = add_i32(loc_15, wrap_i32_i64(shr_u64(mul_i64(loc_20, loc_37), loc_26)))
+											loc_3 = load_i32(memory_at_0, 1077984)
+											if loc_1 >= loc_3 then
 												desired = 1
 												break
 											end
-											loc_15 = bor_i64(band_i64(band_i64(loc_8, load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_3, 3)))), loc_23), loc_15)
+											loc_12 = bor_i64(band_i64(band_i64(loc_10, load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_1, 3)))), loc_8), loc_12)
 											break
 										end
 										if desired then
@@ -12558,9 +12622,9 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 											break
 										end
 									end
-									loc_6 = bor_i64(loc_6, loc_16)
+									loc_6 = bor_i64(loc_6, loc_18)
 									loc_4 = band_i64(sub_i64(loc_4, i64_ONE), loc_4)
-									if (if eq_i64(loc_4, i64_ZERO) then 1 else 0) == 0 then
+									if ne_i64(loc_4, i64_ZERO) then
 										continue
 									end
 									break
@@ -12575,16 +12639,16 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 							end
 						end
 						while true do
-							if eq_i64(loc_12, i64_ZERO) then
+							if eq_i64(loc_7, i64_ZERO) then
 								break
 							end
 							loc_3 = load_i32_u8(memory_at_0, 1071728)
 							if loc_3 == 3 then
 								while true do
 									while true do
-										loc_6 = bor_i64(load_i64(memory_at_0, add_i32(shl_i32(wrap_i32_i64(ctz_i64(loc_12)), 3), 1071216)), loc_6)
-										loc_12 = band_i64(sub_i64(loc_12, i64_ONE), loc_12)
-										if (if eq_i64(loc_12, i64_ZERO) then 1 else 0) == 0 then
+										loc_6 = bor_i64(load_i64(memory_at_0, add_i32(shl_i32(wrap_i32_i64(ctz_i64(loc_7)), 3), 1071216)), loc_6)
+										loc_7 = band_i64(sub_i64(loc_7, i64_ONE), loc_7)
+										if ne_i64(loc_7, i64_ZERO) then
 											continue
 										end
 										desired = 5
@@ -12604,9 +12668,10 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 							end
 							loc_1 = loc_3
 							while true do
-								loc_7 = band_i32(loc_1, 255)
+								loc_4 = band_i64(sub_i64(loc_7, i64_ONE), loc_7)
+								loc_11 = band_i32(loc_1, 255)
 								loc_1 = 3
-								if loc_7 ~= 3 then
+								if loc_11 ~= 3 then
 									while true do
 										if band_i32(loc_3, 255) ~= 3 then
 											while true do
@@ -12631,10 +12696,9 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 										break
 									end
 								end
-								loc_6 = bor_i64(load_i64(memory_at_0, add_i32(shl_i32(wrap_i32_i64(ctz_i64(loc_12)), 3), 1071216)), loc_6)
-								loc_4 = band_i64(sub_i64(loc_12, i64_ONE), loc_12)
-								loc_12 = loc_4
-								if (if eq_i64(loc_4, i64_ZERO) then 1 else 0) == 0 then
+								loc_6 = bor_i64(load_i64(memory_at_0, add_i32(shl_i32(wrap_i32_i64(ctz_i64(loc_7)), 3), 1071216)), loc_6)
+								loc_7 = loc_4
+								if ne_i64(loc_7, i64_ZERO) then
 									continue
 								end
 								break
@@ -12650,39 +12714,39 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 						if desired then
 							break
 						end
-						loc_20 = add_i32(shl_i32(loc_9, 3), 1060652)
+						loc_22 = add_i32(shl_i32(loc_9, 3), 1060652)
 						loc_14 = 0
-						loc_19 = i64_ZERO
-						loc_16 = i64_ZERO
+						loc_7 = i64_ZERO
+						loc_13 = i64_ZERO
 						while true do
 							while true do
-								loc_13 = load_i32_i8(memory_at_0, add_i32(loc_14, loc_20))
-								if le_i32(loc_13, 0) then
+								loc_15 = load_i32_i8(memory_at_0, add_i32(loc_14, loc_22))
+								if le_i32(loc_15, 0) then
 									break
 								end
 								loc_1 = (if loc_14 < 4 then 1 else 0)
-								loc_11 = (if loc_1 ~= 0 then loc_10 else loc_27)
+								loc_10 = (if loc_1 ~= 0 then loc_16 else loc_24)
 								loc_25 = load_i32_u8(memory_at_0, add_i32(loc_14, 1060644))
 								if loc_1 == 0 then
 									while true do
 										loc_1 = 1
 										loc_4 = i64_ZERO
-										loc_7 = 0
+										loc_11 = 0
 										while true do
 											loc_8 = shl_i64(i64_ONE, extend_i64_u32(band_i32(add_i32(mul_i32(loc_1, loc_25), loc_9), 63)))
 											loc_4 = bor_i64(loc_8, loc_4)
 											while true do
-												if eq_i64(band_i64(loc_8, loc_30), i64_ZERO) then
+												if eq_i64(band_i64(loc_8, loc_28), i64_ZERO) then
 													while true do
-														if eq_i64(band_i64(loc_8, loc_29), i64_ZERO) then
+														if eq_i64(band_i64(loc_8, loc_27), i64_ZERO) then
 															desired = 9
 															break
 														end
-														if eq_i64(band_i64(loc_8, loc_11), i64_ZERO) then
+														if eq_i64(band_i64(loc_8, loc_10), i64_ZERO) then
 															desired = 6
 															break
 														end
-														loc_19 = bor_i64((if band_i32(loc_7, 1) ~= 0 then loc_4 else i64_ZERO), loc_19)
+														loc_7 = bor_i64((if band_i32(loc_11, 1) ~= 0 then loc_4 else i64_ZERO), loc_7)
 														desired = 9
 														break
 													end
@@ -12693,11 +12757,11 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 														break
 													end
 												end
-												if band_i32(loc_7, 1) ~= 0 then
+												if band_i32(loc_11, 1) ~= 0 then
 													desired = 6
 													break
 												end
-												loc_7 = 1
+												loc_11 = 1
 												break
 											end
 											if desired then
@@ -12708,12 +12772,12 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 												break
 											end
 											loc_3 = extend_i32_n8(loc_1)
-											if ge_i32(loc_3, loc_13) then
+											if ge_i32(loc_3, loc_15) then
 												desired = 6
 												break
 											end
-											loc_1 = extend_i32_n8(add_i32(loc_1, (if lt_i32(loc_3, loc_13) then 1 else 0)))
-											if le_i32(loc_1, loc_13) then
+											loc_1 = extend_i32_n8(add_i32(loc_1, (if lt_i32(loc_3, loc_15) then 1 else 0)))
+											if ge_i32(loc_15, loc_1) then
 												continue
 											end
 											break
@@ -12738,7 +12802,7 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 									loc_8 = shl_i64(i64_ONE, extend_i64_u32(band_i32(add_i32(mul_i32(loc_1, loc_25), loc_9), 63)))
 									loc_4 = bor_i64(loc_8, loc_4)
 									while true do
-										if (if eq_i64(band_i64(loc_8, loc_30), i64_ZERO) then 1 else 0) == 0 then
+										if ne_i64(band_i64(loc_8, loc_28), i64_ZERO) then
 											while true do
 												reg_0 = 1
 												if band_i32(loc_3, 1) == 0 then
@@ -12755,13 +12819,13 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 												break
 											end
 										end
-										if (if eq_i64(band_i64(loc_8, loc_29), i64_ZERO) then 1 else 0) == 0 then
+										if ne_i64(band_i64(loc_8, loc_27), i64_ZERO) then
 											while true do
-												if eq_i64(band_i64(loc_8, loc_11), i64_ZERO) then
+												if eq_i64(band_i64(loc_8, loc_10), i64_ZERO) then
 													desired = 6
 													break
 												end
-												loc_16 = bor_i64((if band_i32(loc_3, 1) ~= 0 then loc_4 else i64_ZERO), loc_16)
+												loc_13 = bor_i64((if band_i32(loc_3, 1) ~= 0 then loc_4 else i64_ZERO), loc_13)
 												break
 											end
 											if desired then
@@ -12781,15 +12845,15 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 										end
 										break
 									end
-									loc_7 = reg_0
+									loc_11 = reg_0
 									loc_31 = extend_i32_n8(loc_1)
-									if ge_i32(loc_31, loc_13) then
+									if ge_i32(loc_31, loc_15) then
 										desired = 6
 										break
 									end
-									loc_3 = loc_7
-									loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_13, loc_31) then 1 else 0)))
-									if le_i32(loc_1, loc_13) then
+									loc_3 = loc_11
+									loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_15, loc_31) then 1 else 0)))
+									if ge_i32(loc_15, loc_1) then
 										continue
 									end
 									break
@@ -12819,29 +12883,29 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 							break
 						end
 						store_i32_n8(memory_at_0, loc_0 + 123, loc_5)
-						store_i32_n8(memory_at_0, loc_0 + 121, loc_42)
+						store_i32_n8(memory_at_0, loc_0 + 121, loc_40)
 						store_i32_n8(memory_at_0, loc_0 + 120, loc_9)
-						store_i64(memory_at_0, loc_0 + 24, loc_43)
-						store_i64(memory_at_0, loc_0 + 16, loc_36)
-						store_i64(memory_at_0, loc_0 + 8, loc_35)
-						store_i64(memory_at_0, loc_0, loc_30)
-						store_i64(memory_at_0, loc_0 + 64, loc_18)
-						store_i64(memory_at_0, loc_0 + 56, loc_10)
-						store_i64(memory_at_0, loc_0 + 48, loc_29)
+						store_i64(memory_at_0, loc_0 + 24, loc_41)
+						store_i64(memory_at_0, loc_0 + 16, loc_34)
+						store_i64(memory_at_0, loc_0 + 8, loc_33)
+						store_i64(memory_at_0, loc_0, loc_28)
+						store_i64(memory_at_0, loc_0 + 64, loc_19)
+						store_i64(memory_at_0, loc_0 + 56, loc_16)
+						store_i64(memory_at_0, loc_0 + 48, loc_27)
 						store_i64(memory_at_0, loc_0 + 40, loc_6)
-						store_i64(memory_at_0, loc_0 + 112, loc_17)
-						store_i64(memory_at_0, loc_0 + 88, loc_16)
-						store_i64(memory_at_0, loc_0 + 80, loc_19)
-						store_i32_n8(memory_at_0, add_i32(loc_0, 122), loc_41)
-						store_i64(memory_at_0, loc_0 + 32, bor_i64(loc_34, loc_37))
-						store_i64(memory_at_0, loc_0 + 72, bxor_i64(loc_18, i64_from_u32(4294967295, 4294967295)))
-						store_i32_n8(memory_at_0, loc_0 + 125, (if band_i32(loc_38, (if loc_5 ~= 0 then 2 else 8)) ~= 0 then 1 else 0))
-						store_i32_n8(memory_at_0, loc_0 + 124, (if band_i32(loc_38, (if loc_5 ~= 0 then 1 else 4)) ~= 0 then 1 else 0))
-						loc_4 = bor_i64(band_i64(loc_21, loc_47), bor_i64(band_i64(loc_26, loc_46), bor_i64(band_i64(loc_10, loc_45), band_i64(loc_27, loc_44))))
+						store_i64(memory_at_0, loc_0 + 112, loc_38)
+						store_i64(memory_at_0, loc_0 + 88, loc_13)
+						store_i64(memory_at_0, loc_0 + 80, loc_7)
+						store_i32_n8(memory_at_0, add_i32(loc_0, 122), loc_39)
+						store_i64(memory_at_0, loc_0 + 32, bor_i64(loc_32, loc_35))
+						store_i64(memory_at_0, loc_0 + 72, bxor_i64(loc_19, i64_from_u32(4294967295, 4294967295)))
+						store_i32_n8(memory_at_0, loc_0 + 125, (if band_i32(loc_36, (if loc_5 ~= 0 then 2 else 8)) ~= 0 then 1 else 0))
+						store_i32_n8(memory_at_0, loc_0 + 124, (if band_i32(loc_36, (if loc_5 ~= 0 then 1 else 4)) ~= 0 then 1 else 0))
+						loc_4 = bor_i64(band_i64(loc_21, loc_45), bor_i64(band_i64(loc_23, loc_44), bor_i64(band_i64(loc_16, loc_43), band_i64(loc_24, loc_42))))
 						loc_1 = wrap_i32_i64(popcnt_i64(loc_4))
 						store_i32_n8(memory_at_0, loc_0 + 127, (if loc_1 > 1 then 1 else 0))
 						store_i32_n8(memory_at_0, loc_0 + 126, (if loc_1 ~= 0 then 1 else 0))
-						store_i64(memory_at_0, loc_0 + 104, (if loc_1 ~= 0 then loc_15 else i64_from_u32(4294967295, 4294967295)))
+						store_i64(memory_at_0, loc_0 + 104, (if loc_1 ~= 0 then loc_12 else i64_from_u32(4294967295, 4294967295)))
 						store_i64(memory_at_0, loc_0 + 96, (if loc_1 ~= 0 then loc_4 else i64_from_u32(4294967295, 4294967295)))
 						GLOBAL_LIST[0].value = add_i32(loc_2, 16)
 						desired = 0
@@ -12861,7 +12925,7 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 					end
 					break
 				end
-				FUNC_LIST[15](loc_7, loc_1, 1062768)
+				FUNC_LIST[15](loc_1, loc_14, 1062768)
 				error("out of code bounds")
 			end
 			if desired then
@@ -12870,7 +12934,7 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 				end
 				break
 			end
-			FUNC_LIST[15](loc_3, loc_1, 1064320)
+			FUNC_LIST[15](loc_1, loc_3, 1064320)
 			error("out of code bounds")
 		end
 		if desired then
@@ -12879,7 +12943,7 @@ FUNC_LIST[25] = function(loc_0, loc_1)
 			end
 			break
 		end
-		FUNC_LIST[15](loc_3, loc_1, 1062768)
+		FUNC_LIST[15](loc_1, loc_3, 1062768)
 		error("out of code bounds")
 	end
 end
@@ -12900,13 +12964,13 @@ FUNC_LIST[26] = function(loc_0, loc_1)
 			if load_i32_u16(memory_at_0, loc_4) == 1 then
 				while true do
 					loc_3 = load_i32(memory_at_0, load_i32(memory_at_0, loc_0 + 4))
-					loc_4 = add_i32(loc_2, 20)
-					FUNC_LIST[31](loc_4, loc_1)
+					loc_5 = add_i32(loc_2, 20)
+					FUNC_LIST[31](loc_5, loc_1)
 					store_i64(memory_at_0, add_i32(loc_2, 60), i64_ONE)
 					store_i32(memory_at_0, loc_2 + 12, 4)
 					store_i32(memory_at_0, loc_2 + 52, 2)
 					store_i32(memory_at_0, loc_2 + 48, 1064432)
-					store_i32(memory_at_0, loc_2 + 8, loc_4)
+					store_i32(memory_at_0, loc_2 + 8, loc_5)
 					store_i32(memory_at_0, loc_2 + 56, add_i32(loc_2, 8))
 					FUNC_LIST[29](add_i32(loc_2, 36), add_i32(loc_2, 48))
 					if load_i32(memory_at_0, loc_2 + 20) ~= 0 then
@@ -12971,15 +13035,17 @@ FUNC_LIST[26] = function(loc_0, loc_1)
 			loc_0 = load_i32(memory_at_0, load_i32(memory_at_0, loc_0 + 4))
 			loc_3 = add_i32(loc_2, 36)
 			FUNC_LIST[31](loc_3, loc_1)
-			store_i32(memory_at_0, add_i32(loc_2, 32), 3)
-			store_i64(memory_at_0, add_i32(loc_2, 60), i64_from_u32(2, 0))
+			loc_1 = add_i32(loc_2, 20)
+			store_i32(memory_at_0, add_i32(loc_1, 12), 3)
+			loc_4 = add_i32(loc_2, 48)
+			store_i64(memory_at_0, add_i32(loc_4, 12), i64_from_u32(2, 0))
 			store_i32(memory_at_0, loc_2 + 24, 4)
 			store_i32(memory_at_0, loc_2 + 52, 2)
 			store_i32(memory_at_0, loc_2 + 48, 1064452)
 			store_i32(memory_at_0, loc_2 + 28, add_i32(loc_2, 4))
 			store_i32(memory_at_0, loc_2 + 20, loc_3)
-			store_i32(memory_at_0, loc_2 + 56, add_i32(loc_2, 20))
-			FUNC_LIST[29](add_i32(loc_2, 8), add_i32(loc_2, 48))
+			store_i32(memory_at_0, loc_2 + 56, loc_1)
+			FUNC_LIST[29](add_i32(loc_2, 8), loc_4)
 			if load_i32(memory_at_0, loc_2 + 36) ~= 0 then
 				while true do
 					FUNC_LIST[4](load_i32(memory_at_0, loc_2 + 40))
@@ -13071,13 +13137,13 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 						loc_11 = load_i64(memory_at_0, loc_0 + 40)
 						loc_21 = load_i64(memory_at_0, loc_0)
 						loc_5 = band_i64(loc_20, band_i64(load_i64(memory_at_0, add_i32(shl_i32(loc_10, 3), 1071216)), bxor_i64(bor_i64(loc_11, loc_21), i64_from_u32(4294967295, 4294967295))))
-						if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+						if ne_i64(loc_5, i64_ZERO) then
 							while true do
 								loc_4 = shl_i32(band_i32(loc_10, 255), 8)
 								while true do
 									TABLE_LIST[0].data[loc_2](loc_1, bor_i32(shl_i32(wrap_i32_i64(ctz_i64(loc_5)), 16), loc_4))
 									loc_5 = band_i64(sub_i64(loc_5, i64_ONE), loc_5)
-									if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+									if ne_i64(loc_5, i64_ZERO) then
 										continue
 									end
 									break
@@ -13091,7 +13157,11 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 								break
 							end
 						end
-						if bor_i32(load_i32_u8(memory_at_0, loc_0 + 126), loc_3) ~= 0 then
+						if load_i32_u8(memory_at_0, loc_0 + 126) ~= 0 then
+							desired = 1
+							break
+						end
+						if loc_3 ~= 0 then
 							desired = 1
 							break
 						end
@@ -13130,7 +13200,10 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 				break
 			end
 			loc_4 = load_i32_u8(memory_at_0, loc_0 + 123)
-			if ne_i64(bor_i64(band_i64((if loc_4 ~= 0 then i64_from_u32(14, 0) else i64_from_u32(0, 234881024)), loc_11), band_i64((if loc_4 ~= 0 then i64_from_u32(12, 0) else i64_from_u32(0, 201326592)), loc_5)), i64_ZERO) then
+			if ne_i64(band_i64((if loc_4 ~= 0 then i64_from_u32(14, 0) else i64_from_u32(0, 234881024)), loc_11), i64_ZERO) then
+				break
+			end
+			if ne_i64(band_i64((if loc_4 ~= 0 then i64_from_u32(12, 0) else i64_from_u32(0, 201326592)), loc_5), i64_ZERO) then
 				break
 			end
 			TABLE_LIST[0].data[loc_2](loc_1, bor_i32(bor_i32(shl_i32(sub_i32(loc_10, 2), 16), shl_i32(band_i32(loc_10, 255), 8)), 7))
@@ -13161,7 +13234,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 					reg_0 = loc_6
 					loc_6 = band_i64(loc_9, (if loc_8 ~= 0 then i64_from_u32(2139062143, 2139062143) else i64_from_u32(4278124286, 4278124286)))
 					loc_6 = band_i64(reg_0, (if loc_8 ~= 0 then shl_i64(loc_6, i64_from_u32(9, 0)) else shr_u64(loc_6, i64_from_u32(9, 0))))
-					if (if eq_i64(loc_6, i64_ZERO) then 1 else 0) == 0 then
+					if ne_i64(loc_6, i64_ZERO) then
 						while true do
 							loc_14 = (if loc_8 ~= 0 then 4294967287 else 9)
 							loc_9 = load_i64(memory_at_0, loc_0 + 80)
@@ -13169,14 +13242,17 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 								loc_18 = ctz_i64(loc_6)
 								loc_12 = shl_i64(i64_ONE, loc_18)
 								loc_4 = wrap_i32_i64(loc_18)
-								loc_19 = add_i32(loc_14, loc_4)
-								if band_i32((if (if eq_i64(band_i64(shr_u64(loc_9, extend_i64_u32(band_i32(loc_19, 63))), i64_ONE), i64_ZERO) then 1 else 0) == 0 then 1 else 0), (if eq_i64(band_i64(loc_9, loc_12), i64_ZERO) then 1 else 0)) == 0 then
+								loc_19 = add_i32(loc_4, loc_14)
+								if band_i32((if eq_i64(band_i64(loc_9, loc_12), i64_ZERO) then 1 else 0), wrap_i32_i64(band_i64(shr_u64(loc_9, extend_i64_u32(band_i32(loc_19, 63))), i64_ONE))) == 0 then
 									while true do
 										loc_4 = bor_i32(shl_i32(band_i32(loc_19, 255), 8), shl_i32(loc_4, 16))
 										reg_0 = loc_1
-										if eq_i64(band_i64(loc_12, loc_13), i64_ZERO) then
+										if ne_i64(band_i64(loc_12, loc_13), i64_ZERO) then
 											while true do
-												reg_1 = loc_4
+												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 1))
+												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 2))
+												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 3))
+												reg_1 = bor_i32(loc_4, 4)
 												break
 											end
 											if desired then
@@ -13184,10 +13260,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 											end
 										else
 											while true do
-												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 1))
-												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 2))
-												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 3))
-												reg_1 = bor_i32(loc_4, 4)
+												reg_1 = loc_4
 												break
 											end
 											if desired then
@@ -13206,7 +13279,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 									end
 								end
 								loc_6 = band_i64(sub_i64(loc_6, i64_ONE), loc_6)
-								if (if eq_i64(loc_6, i64_ZERO) then 1 else 0) == 0 then
+								if ne_i64(loc_6, i64_ZERO) then
 									continue
 								end
 								break
@@ -13223,7 +13296,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 							break
 						end
 					end
-					if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+					if ne_i64(loc_5, i64_ZERO) then
 						while true do
 							loc_14 = (if loc_8 ~= 0 then 4294967289 else 7)
 							loc_6 = load_i64(memory_at_0, loc_0 + 80)
@@ -13231,14 +13304,17 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 								loc_12 = ctz_i64(loc_5)
 								loc_9 = shl_i64(i64_ONE, loc_12)
 								loc_4 = wrap_i32_i64(loc_12)
-								loc_19 = add_i32(loc_14, loc_4)
-								if band_i32((if (if eq_i64(band_i64(shr_u64(loc_6, extend_i64_u32(band_i32(loc_19, 63))), i64_ONE), i64_ZERO) then 1 else 0) == 0 then 1 else 0), (if eq_i64(band_i64(loc_6, loc_9), i64_ZERO) then 1 else 0)) == 0 then
+								loc_19 = add_i32(loc_4, loc_14)
+								if band_i32((if eq_i64(band_i64(loc_6, loc_9), i64_ZERO) then 1 else 0), wrap_i32_i64(band_i64(shr_u64(loc_6, extend_i64_u32(band_i32(loc_19, 63))), i64_ONE))) == 0 then
 									while true do
 										loc_4 = bor_i32(shl_i32(band_i32(loc_19, 255), 8), shl_i32(loc_4, 16))
 										reg_0 = loc_1
-										if eq_i64(band_i64(loc_9, loc_13), i64_ZERO) then
+										if ne_i64(band_i64(loc_9, loc_13), i64_ZERO) then
 											while true do
-												reg_1 = loc_4
+												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 1))
+												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 2))
+												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 3))
+												reg_1 = bor_i32(loc_4, 4)
 												break
 											end
 											if desired then
@@ -13246,10 +13322,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 											end
 										else
 											while true do
-												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 1))
-												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 2))
-												TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 3))
-												reg_1 = bor_i32(loc_4, 4)
+												reg_1 = loc_4
 												break
 											end
 											if desired then
@@ -13268,7 +13341,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 									end
 								end
 								loc_5 = band_i64(sub_i64(loc_5, i64_ONE), loc_5)
-								if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+								if ne_i64(loc_5, i64_ZERO) then
 									continue
 								end
 								break
@@ -13373,11 +13446,11 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 										while true do
 											loc_22 = ctz_i64(loc_5)
 											loc_23 = shl_i64(i64_ONE, loc_22)
-											if band_i32((if (if eq_i64(band_i64(loc_23, loc_9), i64_ZERO) then 1 else 0) == 0 then 1 else 0), (if eq_i64(loc_12, i64_ZERO) then 1 else 0)) ~= 0 then
+											if band_i32((if eq_i64(loc_12, i64_ZERO) then 1 else 0), (if ne_i64(band_i64(loc_23, loc_9), i64_ZERO) then 1 else 0)) ~= 0 then
 												break
 											end
 											loc_27 = wrap_i32_i64(loc_22)
-											if bxor_i32(loc_10, loc_27) <= 7 then
+											if bxor_i32(loc_27, loc_10) <= 7 then
 												while true do
 													if load_i32_u8(memory_at_0, 1077448) ~= 3 then
 														while true do
@@ -13405,13 +13478,13 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 															break
 														end
 													end
-													loc_4 = add_i32(loc_4, wrap_i32_i64(shr_u64(mul_i64(loc_22, loc_28), loc_23)))
 													loc_29 = load_i32(memory_at_0, 1077984)
-													if loc_4 >= loc_29 then
+													loc_4 = add_i32(loc_4, wrap_i32_i64(shr_u64(mul_i64(loc_22, loc_28), loc_23)))
+													if loc_29 <= loc_4 then
 														desired = 5
 														break
 													end
-													if (if eq_i64(band_i64(load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_4, 3))), loc_18), i64_ZERO) then 1 else 0) == 0 then
+													if ne_i64(band_i64(load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_4, 3))), loc_18), i64_ZERO) then
 														desired = 9
 														break
 													end
@@ -13435,7 +13508,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 											break
 										end
 										loc_5 = band_i64(sub_i64(loc_5, i64_ONE), loc_5)
-										if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+										if ne_i64(loc_5, i64_ZERO) then
 											continue
 										end
 										break
@@ -13498,21 +13571,21 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 							end
 						end
 						loc_3 = (if loc_8 ~= 0 then 4294967288 else 8)
+						reg_0 = loc_13
+						loc_13 = load_i64(memory_at_0, loc_0 + 104)
 						loc_12 = load_i64(memory_at_0, loc_0 + 72)
 						loc_5 = band_i64(loc_15, bxor_i64(loc_9, i64_from_u32(4294967295, 4294967295)))
 						loc_15 = band_i64(loc_12, (if loc_8 ~= 0 then shl_i64(loc_5, i64_from_u32(8, 0)) else shr_u64(loc_5, i64_from_u32(8, 0))))
-						reg_0 = loc_13
-						loc_13 = load_i64(memory_at_0, loc_0 + 104)
-						loc_6 = band_i64(loc_15, loc_13)
+						loc_6 = band_i64(loc_13, loc_15)
 						loc_5 = band_i64(reg_0, loc_6)
 						loc_6 = bxor_i64(loc_5, loc_6)
-						if (if eq_i64(loc_6, i64_ZERO) then 1 else 0) == 0 then
+						if ne_i64(loc_6, i64_ZERO) then
 							while true do
 								while true do
 									loc_18 = ctz_i64(loc_6)
 									loc_4 = wrap_i32_i64(loc_18)
-									loc_10 = add_i32(loc_3, loc_4)
-									if band_i32((if (if eq_i64(band_i64(shr_u64(loc_11, extend_i64_u32(band_i32(loc_10, 63))), i64_ONE), i64_ZERO) then 1 else 0) == 0 then 1 else 0), (if eq_i64(band_i64(shr_u64(loc_11, loc_18), i64_ONE), i64_ZERO) then 1 else 0)) == 0 then
+									loc_10 = add_i32(loc_4, loc_3)
+									if band_i32(wrap_i32_i64(band_i64(shr_u64(loc_11, extend_i64_u32(band_i32(loc_10, 63))), i64_ONE)), (if eq_i64(band_i64(shr_u64(loc_11, loc_18), i64_ONE), i64_ZERO) then 1 else 0)) == 0 then
 										while true do
 											TABLE_LIST[0].data[loc_2](loc_1, bor_i32(shl_i32(band_i32(loc_10, 255), 8), shl_i32(loc_4, 16)))
 											break
@@ -13526,7 +13599,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 										end
 									end
 									loc_6 = band_i64(sub_i64(loc_6, i64_ONE), loc_6)
-									if (if eq_i64(loc_6, i64_ZERO) then 1 else 0) == 0 then
+									if ne_i64(loc_6, i64_ZERO) then
 										continue
 									end
 									break
@@ -13543,13 +13616,13 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 								break
 							end
 						end
-						if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+						if ne_i64(loc_5, i64_ZERO) then
 							while true do
 								while true do
 									loc_6 = ctz_i64(loc_5)
 									loc_4 = wrap_i32_i64(loc_6)
-									loc_10 = add_i32(loc_3, loc_4)
-									if band_i32((if (if eq_i64(band_i64(shr_u64(loc_11, extend_i64_u32(band_i32(loc_10, 63))), i64_ONE), i64_ZERO) then 1 else 0) == 0 then 1 else 0), (if eq_i64(band_i64(shr_u64(loc_11, loc_6), i64_ONE), i64_ZERO) then 1 else 0)) == 0 then
+									loc_10 = add_i32(loc_4, loc_3)
+									if band_i32(wrap_i32_i64(band_i64(shr_u64(loc_11, extend_i64_u32(band_i32(loc_10, 63))), i64_ONE)), (if eq_i64(band_i64(shr_u64(loc_11, loc_6), i64_ONE), i64_ZERO) then 1 else 0)) == 0 then
 										while true do
 											loc_4 = bor_i32(shl_i32(band_i32(loc_10, 255), 8), shl_i32(loc_4, 16))
 											TABLE_LIST[0].data[loc_2](loc_1, bor_i32(loc_4, 1))
@@ -13567,7 +13640,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 										end
 									end
 									loc_5 = band_i64(sub_i64(loc_5, i64_ONE), loc_5)
-									if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+									if ne_i64(loc_5, i64_ZERO) then
 										continue
 									end
 									break
@@ -13592,8 +13665,8 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 						while true do
 							loc_6 = ctz_i64(loc_5)
 							loc_4 = wrap_i32_i64(loc_6)
-							loc_8 = add_i32(loc_3, loc_4)
-							if band_i32((if (if eq_i64(band_i64(shr_u64(loc_11, extend_i64_u32(band_i32(loc_8, 63))), i64_ONE), i64_ZERO) then 1 else 0) == 0 then 1 else 0), (if eq_i64(band_i64(shr_u64(loc_11, loc_6), i64_ONE), i64_ZERO) then 1 else 0)) == 0 then
+							loc_8 = add_i32(loc_4, loc_3)
+							if band_i32(wrap_i32_i64(band_i64(shr_u64(loc_11, extend_i64_u32(band_i32(loc_8, 63))), i64_ONE)), (if eq_i64(band_i64(shr_u64(loc_11, loc_6), i64_ONE), i64_ZERO) then 1 else 0)) == 0 then
 								while true do
 									TABLE_LIST[0].data[loc_2](loc_1, bor_i32(bor_i32(shl_i32(band_i32(loc_8, 255), 8), shl_i32(loc_4, 16)), 6))
 									break
@@ -13607,7 +13680,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 								end
 							end
 							loc_5 = band_i64(sub_i64(loc_5, i64_ONE), loc_5)
-							if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+							if ne_i64(loc_5, i64_ZERO) then
 								continue
 							end
 							break
@@ -13629,7 +13702,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 					loc_15 = bxor_i64(loc_21, i64_from_u32(4294967295, 4294967295))
 					loc_13 = bor_i64(loc_13, loc_16)
 					loc_6 = band_i64(load_i64(memory_at_0, loc_0 + 16), bxor_i64(bor_i64(loc_9, loc_11), i64_from_u32(4294967295, 4294967295)))
-					if (if eq_i64(loc_6, i64_ZERO) then 1 else 0) == 0 then
+					if ne_i64(loc_6, i64_ZERO) then
 						while true do
 							while true do
 								if load_i32_u8(memory_at_0, 1071208) ~= 3 then
@@ -13649,13 +13722,13 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 								end
 								loc_3 = wrap_i32_i64(ctz_i64(loc_6))
 								loc_5 = band_i64(band_i64(band_i64(load_i64(memory_at_0, add_i32(shl_i32(loc_3, 3), 1070696)), loc_15), loc_20), loc_13)
-								if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+								if ne_i64(loc_5, i64_ZERO) then
 									while true do
 										loc_3 = shl_i32(loc_3, 8)
 										while true do
 											TABLE_LIST[0].data[loc_2](loc_1, bor_i32(shl_i32(wrap_i32_i64(ctz_i64(loc_5)), 16), loc_3))
 											loc_5 = band_i64(sub_i64(loc_5, i64_ONE), loc_5)
-											if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+											if ne_i64(loc_5, i64_ZERO) then
 												continue
 											end
 											break
@@ -13674,7 +13747,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 									end
 								end
 								loc_6 = band_i64(sub_i64(loc_6, i64_ONE), loc_6)
-								if (if eq_i64(loc_6, i64_ZERO) then 1 else 0) == 0 then
+								if ne_i64(loc_6, i64_ZERO) then
 									continue
 								end
 								break
@@ -13692,7 +13765,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 						end
 					end
 					loc_6 = band_i64(load_i64(memory_at_0, loc_0 + 24), loc_17)
-					if (if eq_i64(loc_6, i64_ZERO) then 1 else 0) == 0 then
+					if ne_i64(loc_6, i64_ZERO) then
 						while true do
 							loc_16 = load_i64(memory_at_0, loc_0 + 64)
 							while true do
@@ -13740,7 +13813,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 									break
 								end
 								loc_5 = band_i64(band_i64(band_i64(band_i64(load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_4, 3))), (if eq_i64(band_i64(shr_u64(loc_9, loc_5), i64_ONE), i64_ZERO) then i64_from_u32(4294967295, 4294967295) else loc_9)), loc_15), loc_20), loc_13)
-								if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+								if ne_i64(loc_5, i64_ZERO) then
 									while true do
 										loc_3 = shl_i32(loc_3, 8)
 										while true do
@@ -13765,7 +13838,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 									end
 								end
 								loc_6 = band_i64(sub_i64(loc_6, i64_ONE), loc_6)
-								if (if eq_i64(loc_6, i64_ZERO) then 1 else 0) == 0 then
+								if ne_i64(loc_6, i64_ZERO) then
 									continue
 								end
 								break
@@ -13833,7 +13906,7 @@ FUNC_LIST[27] = function(loc_0, loc_1, loc_2, loc_3)
 						end
 						loc_6 = band_i64(sub_i64(loc_6, i64_ONE), loc_6)
 						loc_5 = band_i64(band_i64(band_i64(band_i64(load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_3, 3))), (if eq_i64(band_i64(shr_u64(loc_11, loc_5), i64_ONE), i64_ZERO) then i64_from_u32(4294967295, 4294967295) else loc_11)), loc_15), loc_20), loc_13)
-						if (if eq_i64(loc_5, i64_ZERO) then 1 else 0) == 0 then
+						if ne_i64(loc_5, i64_ZERO) then
 							while true do
 								loc_0 = shl_i32(loc_0, 8)
 								while true do
@@ -14122,8 +14195,8 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 	local loc_34 = 0
 	local loc_35 = 0
 	local loc_36 = 0
-	local loc_37 = i64_ZERO
-	local loc_38 = 0
+	local loc_37 = 0
+	local loc_38 = i64_ZERO
 	local loc_39 = 0
 	local loc_40 = 0
 	local loc_41 = 0
@@ -14150,22 +14223,24 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 		loc_8 = sub_i32(GLOBAL_LIST[0].value, 3680)
 		GLOBAL_LIST[0].value = loc_8
 		loc_16 = load_f64(memory_at_0, load_i32(memory_at_0, loc_4))
+		loc_13 = add_i32(loc_8, 40)
 		reg_1 = FUNC_LIST[1]()
 		loc_16 = ((reg_1 - loc_16) * 1e3)
-		FUNC_LIST[103](add_i32(loc_8, 40), loc_16)
+		FUNC_LIST[103](loc_13, loc_16)
+		reg_1 = load_i64(memory_at_0, add_i32(loc_13, 8))
+		loc_13 = (if loc_16 >= 0e0 then 1 else 0)
+		loc_15 = (if loc_16 > 3.4028236692093843e38 then 1 else 0)
+		loc_20 = (if loc_15 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_13 ~= 0 then reg_1 else i64_ZERO))
+		loc_12 = load_i32(memory_at_0, loc_4 + 4)
+		loc_14 = load_i64(memory_at_0, add_i32(loc_12, 8))
 		while true do
 			while true do
 				while true do
-					loc_12 = load_i32(memory_at_0, loc_4 + 4)
-					loc_13 = (if loc_16 >= 0e0 then 1 else 0)
-					loc_15 = (if loc_16 > 3.4028236692093843e38 then 1 else 0)
-					loc_20 = (if loc_15 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_13 ~= 0 then load_i64(memory_at_0, add_i32(loc_8, 48)) else i64_ZERO))
-					loc_14 = load_i64(memory_at_0, add_i32(loc_12, 8))
-					if (if eq_i64(loc_14, loc_20) then (if lt_u64(load_i64(memory_at_0, loc_12), (if loc_15 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_13 ~= 0 then load_i64(memory_at_0, loc_8 + 40) else i64_ZERO))) then 1 else 0) else (if gt_u64(loc_20, loc_14) then 1 else 0)) ~= 0 then
+					if (if eq_i64(loc_14, loc_20) then (if lt_u64(load_i64(memory_at_0, loc_12), (if loc_15 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_13 ~= 0 then load_i64(memory_at_0, loc_8 + 40) else i64_ZERO))) then 1 else 0) else (if lt_u64(loc_14, loc_20) then 1 else 0)) ~= 0 then
 						break
 					end
-					loc_12 = load_i32(memory_at_0, loc_0 + 24)
-					loc_20 = load_i64(memory_at_0, loc_12 + 16)
+					loc_13 = load_i32(memory_at_0, loc_0 + 24)
+					loc_20 = load_i64(memory_at_0, loc_13 + 16)
 					while true do
 						if band_i32(loc_2, 65535) == 0 then
 							break
@@ -14221,8 +14296,8 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									while true do
 										loc_22 = (wrap_i32_i64(loc_20) % loc_7)
 										loc_7 = add_i32(load_i32(memory_at_0, loc_0 + 4), mul_i32(loc_22, 24))
-										loc_13 = load_i32_u8(memory_at_0, loc_7 + 16)
-										if loc_13 == 3 then
+										loc_15 = load_i32_u8(memory_at_0, loc_7 + 16)
+										if loc_15 == 3 then
 											break
 										end
 										if ne_i64(load_i64(memory_at_0, loc_7), loc_20) then
@@ -14242,7 +14317,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 															return { [0] = 0, 1, }
 														end)()
 													end
-													temp = br_map[1][sub_i32(loc_13, 1)] or 8
+													temp = br_map[1][sub_i32(loc_15, 1)] or 8
 													if temp < 1 then
 														break
 													elseif temp > 1 then
@@ -14296,7 +14371,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									reg_0 = FUNC_LIST[92](loc_0, loc_5, loc_6)
 									loc_7 = reg_0
 									loc_1 = load_i32(memory_at_0, loc_0 + 8)
-									if loc_22 >= loc_1 then
+									if loc_1 <= loc_22 then
 										desired = 6
 										break
 									end
@@ -14314,8 +14389,12 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									end
 									break
 								end
-								FUNC_LIST[25](add_i32(loc_8, 56), loc_12)
-								if bor_i32((if loc_3 == 0 then 1 else 0), (if band_i32(loc_1, 65535) < 3 then 1 else 0)) ~= 0 then
+								FUNC_LIST[25](add_i32(loc_8, 56), loc_13)
+								if band_i32(loc_1, 65535) < 3 then
+									desired = 4
+									break
+								end
+								if loc_3 == 0 then
 									desired = 4
 									break
 								end
@@ -14327,13 +14406,14 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									desired = 4
 									break
 								end
-								loc_12 = add_i32(loc_8, 1952)
+								loc_7 = add_i32(loc_8, 1928)
+								loc_13 = add_i32(loc_7, 24)
 								loc_3 = load_i32(memory_at_0, loc_0 + 24)
-								store_i64(memory_at_0, loc_12, load_i64(memory_at_0, add_i32(loc_3, 24)))
-								loc_13 = add_i32(loc_8, 1944)
-								store_i64(memory_at_0, loc_13, load_i64(memory_at_0, add_i32(loc_3, 16)))
-								loc_15 = add_i32(loc_8, 1936)
-								store_i64(memory_at_0, loc_15, load_i64(memory_at_0, add_i32(loc_3, 8)))
+								store_i64(memory_at_0, loc_13, load_i64(memory_at_0, add_i32(loc_3, 24)))
+								loc_15 = add_i32(loc_7, 16)
+								store_i64(memory_at_0, loc_15, load_i64(memory_at_0, add_i32(loc_3, 16)))
+								loc_12 = add_i32(loc_7, 8)
+								store_i64(memory_at_0, loc_12, load_i64(memory_at_0, add_i32(loc_3, 8)))
 								store_i64(memory_at_0, loc_8 + 1928, load_i64(memory_at_0, loc_3))
 								loc_11 = load_i32(memory_at_0, add_i32(loc_3, 136))
 								if loc_11 == load_i32(memory_at_0, loc_3 + 128) then
@@ -14352,9 +14432,9 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 								store_i32(memory_at_0, loc_3 + 136, add_i32(loc_11, 1))
 								loc_7 = add_i32(load_i32(memory_at_0, add_i32(loc_3, 132)), shl_i32(loc_11, 5))
 								store_i64(memory_at_0, loc_7, load_i64(memory_at_0, loc_8 + 1928))
-								store_i64(memory_at_0, add_i32(loc_7, 8), load_i64(memory_at_0, loc_15))
-								store_i64(memory_at_0, add_i32(loc_7, 16), load_i64(memory_at_0, loc_13))
-								store_i64(memory_at_0, add_i32(loc_7, 24), load_i64(memory_at_0, loc_12))
+								store_i64(memory_at_0, add_i32(loc_7, 8), load_i64(memory_at_0, loc_12))
+								store_i64(memory_at_0, add_i32(loc_7, 16), load_i64(memory_at_0, loc_15))
+								store_i64(memory_at_0, add_i32(loc_7, 24), load_i64(memory_at_0, loc_13))
 								store_i32_n8(memory_at_0, loc_3 + 140, bxor_i32(load_i32_u8(memory_at_0, loc_3 + 140), 1))
 								loc_14 = bxor_i64(load_i64(memory_at_0, loc_3 + 16), i64_from_u32(4095246069, 424779229))
 								store_i64(memory_at_0, loc_3 + 16, loc_14)
@@ -14372,7 +14452,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 								end
 								store_i32_n8(memory_at_0, loc_3 + 26, 0)
 								reg_0 = FUNC_LIST[30](loc_0, sub_i32(loc_1, 2), add_i32(loc_2, 1), 0, loc_4, sub_i32(0, loc_6), sub_i32(1, loc_6))
-								loc_12 = reg_0
+								loc_13 = reg_0
 								loc_3 = load_i32(memory_at_0, loc_0 + 24)
 								loc_7 = load_i32(memory_at_0, add_i32(loc_3, 136))
 								if loc_7 == 0 then
@@ -14382,8 +14462,8 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 								loc_7 = sub_i32(loc_7, 1)
 								store_i32(memory_at_0, loc_3 + 136, loc_7)
 								loc_7 = add_i32(load_i32(memory_at_0, add_i32(loc_3, 132)), shl_i32(loc_7, 5))
-								loc_13 = load_i32_u8(memory_at_0, loc_7 + 26)
-								if loc_13 == 2 then
+								loc_15 = load_i32_u8(memory_at_0, loc_7 + 26)
+								if loc_15 == 2 then
 									desired = 5
 									break
 								end
@@ -14391,27 +14471,29 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 								store_i32_n16(memory_at_0, add_i32(loc_3, 24), load_i32_u16(memory_at_0, add_i32(loc_7, 24)))
 								store_i64(memory_at_0, add_i32(loc_3, 16), load_i64(memory_at_0, add_i32(loc_7, 16)))
 								store_i64(memory_at_0, add_i32(loc_3, 8), load_i64(memory_at_0, add_i32(loc_7, 8)))
-								loc_15 = load_i32_u8(memory_at_0, add_i32(loc_7, 31))
+								loc_12 = load_i32_u8(memory_at_0, add_i32(loc_7, 31))
 								loc_7 = load_i32(memory_at_0, loc_7 + 27)
 								store_i32_n8(memory_at_0, loc_3 + 140, bxor_i32(load_i32_u8(memory_at_0, loc_3 + 140), 1))
-								store_i32_n8(memory_at_0, loc_3 + 26, loc_13)
+								store_i32_n8(memory_at_0, loc_3 + 26, loc_15)
 								store_i32(memory_at_0, loc_3 + 27, loc_7)
-								store_i32_n8(memory_at_0, add_i32(loc_3, 31), loc_15)
+								store_i32_n8(memory_at_0, add_i32(loc_3, 31), loc_12)
 								loc_16 = load_f64(memory_at_0, load_i32(memory_at_0, loc_4))
+								loc_3 = add_i32(loc_8, 24)
 								reg_1 = FUNC_LIST[1]()
 								loc_16 = ((reg_1 - loc_16) * 1e3)
-								FUNC_LIST[103](add_i32(loc_8, 24), loc_16)
+								FUNC_LIST[103](loc_3, loc_16)
 								loc_7 = 0
-								loc_3 = load_i32(memory_at_0, loc_4 + 4)
-								loc_13 = (if loc_16 >= 0e0 then 1 else 0)
+								reg_1 = load_i64(memory_at_0, add_i32(loc_3, 8))
+								loc_3 = (if loc_16 >= 0e0 then 1 else 0)
 								loc_15 = (if loc_16 > 3.4028236692093843e38 then 1 else 0)
-								loc_14 = (if loc_15 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_13 ~= 0 then load_i64(memory_at_0, add_i32(loc_8, 32)) else i64_ZERO))
-								loc_17 = load_i64(memory_at_0, add_i32(loc_3, 8))
-								if (if eq_i64(loc_14, loc_17) then (if lt_u64(load_i64(memory_at_0, loc_3), (if loc_15 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_13 ~= 0 then load_i64(memory_at_0, loc_8 + 24) else i64_ZERO))) then 1 else 0) else (if gt_u64(loc_14, loc_17) then 1 else 0)) ~= 0 then
+								loc_14 = (if loc_15 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_3 ~= 0 then reg_1 else i64_ZERO))
+								loc_12 = load_i32(memory_at_0, loc_4 + 4)
+								loc_17 = load_i64(memory_at_0, add_i32(loc_12, 8))
+								if (if eq_i64(loc_14, loc_17) then (if lt_u64(load_i64(memory_at_0, loc_12), (if loc_15 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_3 ~= 0 then load_i64(memory_at_0, loc_8 + 24) else i64_ZERO))) then 1 else 0) else (if gt_u64(loc_14, loc_17) then 1 else 0)) ~= 0 then
 									desired = 3
 									break
 								end
-								if gt_i32(loc_6, sub_i32(0, loc_12)) then
+								if gt_i32(loc_6, sub_i32(0, loc_13)) then
 									desired = 4
 									break
 								end
@@ -14446,8 +14528,9 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 					loc_9 = 0
 					loc_11 = add_i32(loc_8, 1928)
 					loc_13 = add_i32(loc_8, 56)
+					loc_12 = loc_0
 					loc_28 = band_i32(loc_2, 65535)
-					loc_7 = (if loc_28 ~= 0 then loc_10 else load_i32_u16(memory_at_0, loc_0 + 16480))
+					loc_7 = (if loc_28 ~= 0 then loc_10 else load_i32_u16(memory_at_0, loc_12 + 16480))
 					if loc_28 < 32 then
 						while true do
 							reg_0 = load_i32_u16(memory_at_0, add_i32(add_i32(loc_0, shl_i32(loc_28, 1)), 28))
@@ -14471,21 +14554,21 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 							break
 						end
 					end
-					loc_12 = reg_0
-					loc_3 = sub_i32(GLOBAL_LIST[0].value, 1776)
-					GLOBAL_LIST[0].value = loc_3
-					store_i32_n16(memory_at_0, loc_3 + 2, loc_12)
-					store_i32_n16(memory_at_0, loc_3, loc_7)
-					loc_7 = 0
+					loc_3 = reg_0
+					loc_0 = sub_i32(GLOBAL_LIST[0].value, 1776)
+					GLOBAL_LIST[0].value = loc_0
+					store_i32_n16(memory_at_0, loc_0 + 2, loc_3)
+					store_i32_n16(memory_at_0, loc_0, loc_7)
+					loc_3 = 0
 					while true do
-						loc_15 = add_i32(loc_3, 4)
-						loc_12 = add_i32(loc_15, loc_7)
-						store_i32(memory_at_0, loc_12, 0)
-						store_i32_n16(memory_at_0, add_i32(loc_12, 12), 0)
-						store_i32(memory_at_0, add_i32(loc_12, 8), 0)
-						store_i32_n16(memory_at_0, add_i32(loc_12, 4), 0)
-						loc_7 = add_i32(loc_7, 16)
-						if loc_7 ~= 1744 then
+						loc_15 = add_i32(loc_0, 4)
+						loc_7 = add_i32(loc_15, loc_3)
+						store_i32(memory_at_0, loc_7, 0)
+						store_i32_n16(memory_at_0, add_i32(loc_7, 12), 0)
+						store_i32(memory_at_0, add_i32(loc_7, 8), 0)
+						store_i32_n16(memory_at_0, add_i32(loc_7, 4), 0)
+						loc_3 = add_i32(loc_3, 16)
+						if loc_3 ~= 1744 then
 							continue
 						end
 						break
@@ -14496,24 +14579,24 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 						end
 						break
 					end
-					store_i32(memory_at_0, loc_3 + 1748, 0)
-					store_i32(memory_at_0, loc_3 + 1768, loc_13)
-					store_i32(memory_at_0, loc_3 + 1764, loc_0)
-					store_i32(memory_at_0, loc_3 + 1772, add_i32(loc_3, 2))
-					store_i32(memory_at_0, loc_3 + 1760, loc_3)
-					store_i32(memory_at_0, loc_3 + 1756, add_i32(loc_3, 1748))
-					store_i32(memory_at_0, loc_3 + 1752, loc_15)
-					FUNC_LIST[27](loc_13, add_i32(loc_3, 1752), 22, 0)
+					store_i32(memory_at_0, loc_0 + 1748, 0)
+					store_i32(memory_at_0, loc_0 + 1768, loc_13)
+					store_i32(memory_at_0, loc_0 + 1764, loc_12)
+					store_i32(memory_at_0, loc_0 + 1772, add_i32(loc_0, 2))
+					store_i32(memory_at_0, loc_0 + 1760, loc_0)
+					store_i32(memory_at_0, loc_0 + 1756, add_i32(loc_0, 1748))
+					store_i32(memory_at_0, loc_0 + 1752, loc_15)
+					FUNC_LIST[27](loc_13, add_i32(loc_0, 1752), 22, 0)
 					reg_0 = FUNC_LIST[107](loc_11, loc_15, 1744)
-					store_i32(memory_at_0, reg_0 + 1744, load_i32(memory_at_0, loc_3 + 1748))
-					GLOBAL_LIST[0].value = add_i32(loc_3, 1776)
+					store_i32(memory_at_0, reg_0 + 1744, load_i32(memory_at_0, loc_0 + 1748))
+					GLOBAL_LIST[0].value = add_i32(loc_0, 1776)
 					reg_0 = FUNC_LIST[107](add_i32(loc_8, 184), loc_11, 1744)
 					while true do
 						while true do
 							while true do
 								while true do
-									loc_13 = load_i32(memory_at_0, loc_8 + 3672)
-									if loc_13 == 0 then
+									loc_0 = load_i32(memory_at_0, loc_8 + 3672)
+									if loc_0 == 0 then
 										while true do
 											if load_i32_u8(memory_at_0, loc_8 + 182) ~= 0 then
 												desired = 7
@@ -14524,7 +14607,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 												desired = 3
 												break
 											end
-											store_i32(memory_at_0, loc_0 + 16476, 0)
+											store_i32(memory_at_0, loc_12 + 16476, 0)
 											desired = 3
 											break
 										end
@@ -14535,21 +14618,21 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 											break
 										end
 									end
-									loc_12 = sub_i32(loc_13, 1)
-									if loc_13 > 218 then
+									loc_13 = sub_i32(loc_0, 1)
+									if loc_0 > 218 then
 										desired = 6
 										break
 									end
-									loc_15 = add_i32(add_i32(loc_8, 184), shl_i32(loc_12, 3))
-									if loc_12 == 0 then
+									loc_15 = add_i32(add_i32(loc_8, 184), shl_i32(loc_13, 3))
+									if loc_13 == 0 then
 										desired = 4
 										break
 									end
-									loc_3 = band_i32(loc_12, 3)
+									loc_3 = band_i32(loc_13, 3)
 									loc_10 = load_i32(memory_at_0, loc_15)
-									if sub_i32(loc_13, 2) < 3 then
+									if sub_i32(loc_0, 2) < 3 then
 										while true do
-											loc_7 = loc_12
+											loc_7 = loc_13
 											desired = 5
 											break
 										end
@@ -14560,9 +14643,9 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 											break
 										end
 									end
-									loc_21 = band_i32(loc_12, 4294967292)
+									loc_21 = band_i32(loc_13, 4294967292)
 									loc_11 = add_i32(loc_8, 184)
-									loc_7 = loc_12
+									loc_7 = loc_13
 									while true do
 										reg_4 = loc_7
 										loc_7 = load_i32(memory_at_0, loc_11)
@@ -14582,7 +14665,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 										loc_10 = (if loc_18 ~= 0 then loc_23 else loc_10)
 										loc_11 = add_i32(loc_11, 32)
 										loc_9 = add_i32(loc_9, 4)
-										if loc_9 ~= loc_21 then
+										if loc_21 ~= loc_9 then
 											continue
 										end
 										break
@@ -14607,7 +14690,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									desired = 3
 									break
 								end
-								store_i32(memory_at_0, loc_0 + 16476, 2147483650)
+								store_i32(memory_at_0, loc_12 + 16476, 2147483650)
 								desired = 3
 								break
 							end
@@ -14617,7 +14700,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 								end
 								break
 							end
-							FUNC_LIST[15](loc_12, 218, 1067732)
+							FUNC_LIST[15](loc_13, 218, 1067732)
 							error("out of code bounds")
 						end
 						if desired then
@@ -14654,7 +14737,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 								break
 							end
 						end
-						if loc_7 == loc_12 then
+						if loc_7 == loc_13 then
 							break
 						end
 						if loc_7 >= 218 then
@@ -14679,32 +14762,32 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 						loc_3 = extend_i32_n16(loc_3)
 						if ge_i32(loc_3, 0) then
 							while true do
-								loc_21 = sub_i32(loc_13, 3)
-								loc_38 = sub_i32(0, loc_6)
-								loc_39 = sub_i32(loc_1, 1)
+								loc_21 = sub_i32(loc_0, 3)
+								loc_39 = sub_i32(0, loc_6)
+								loc_40 = sub_i32(loc_1, 1)
 								loc_23 = add_i32(loc_2, 1)
-								loc_40 = sub_i32(loc_1, 2)
-								loc_41 = add_i32(loc_0, 12)
+								loc_41 = sub_i32(loc_1, 2)
+								loc_42 = add_i32(loc_12, 12)
 								loc_18 = 2
-								loc_13 = 2147483649
-								loc_42 = (if band_i32(loc_1, 65535) < 3 then 1 else 0)
+								loc_0 = 2147483649
+								loc_43 = (if band_i32(loc_1, 65535) < 3 then 1 else 0)
 								loc_15 = 0
 								while true do
-									loc_43 = shr_u32(loc_3, 6)
-									loc_44 = band_i32(loc_43, 63)
-									store_i32_n8(memory_at_0, loc_8 + 3678, loc_44)
-									loc_45 = load_i32_u8(memory_at_0, add_i32(loc_9, 1064512))
+									loc_44 = shr_u32(loc_3, 6)
+									loc_45 = band_i32(loc_44, 63)
+									store_i32_n8(memory_at_0, loc_8 + 3678, loc_45)
+									loc_47 = load_i32_u8(memory_at_0, add_i32(loc_9, 1064512))
 									loc_46 = band_i32(loc_3, 63)
-									store_i32_n16(memory_at_0, loc_8 + 3676, bor_i32(loc_45, shl_i32(loc_46, 8)))
+									store_i32_n16(memory_at_0, loc_8 + 3676, bor_i32(loc_47, shl_i32(loc_46, 8)))
 									loc_26 = load_i64(memory_at_0, loc_8 + 104)
-									loc_10 = load_i32(memory_at_0, loc_0 + 24)
+									loc_10 = load_i32(memory_at_0, loc_12 + 24)
 									loc_14 = load_i64(memory_at_0, loc_10 + 16)
-									loc_9 = load_i32(memory_at_0, loc_0 + 20)
-									if loc_9 == load_i32(memory_at_0, loc_0 + 12) then
+									loc_9 = load_i32(memory_at_0, loc_12 + 20)
+									if loc_9 == load_i32(memory_at_0, loc_12 + 12) then
 										while true do
-											FUNC_LIST[23](loc_41, loc_9)
-											loc_10 = load_i32(memory_at_0, loc_0 + 24)
-											loc_9 = load_i32(memory_at_0, loc_0 + 20)
+											FUNC_LIST[23](loc_42, loc_9)
+											loc_10 = load_i32(memory_at_0, loc_12 + 24)
+											loc_9 = load_i32(memory_at_0, loc_12 + 20)
 											break
 										end
 										if desired then
@@ -14715,17 +14798,16 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 											break
 										end
 									end
-									store_i32(memory_at_0, loc_0 + 20, add_i32(loc_9, 1))
-									store_i64(memory_at_0, add_i32(load_i32(memory_at_0, loc_0 + 16), shl_i32(loc_9, 3)), loc_14)
+									store_i32(memory_at_0, loc_12 + 20, add_i32(loc_9, 1))
+									store_i64(memory_at_0, add_i32(load_i32(memory_at_0, loc_12 + 16), shl_i32(loc_9, 3)), loc_14)
 									FUNC_LIST[24](loc_10, add_i32(loc_8, 3676))
 									while true do
-										loc_7 = load_i32(memory_at_0, loc_0 + 24)
-										loc_47 = load_i32_u8(memory_at_0, loc_7 + 140)
-										if loc_47 == 0 then
+										loc_7 = load_i32(memory_at_0, loc_12 + 24)
+										loc_48 = load_i32_u8(memory_at_0, loc_7 + 140)
+										if loc_48 == 0 then
 											while true do
 												loc_10 = add_i32(loc_7, 80)
 												loc_11 = 5
-												loc_9 = 3
 												loc_19 = 2
 												loc_27 = 1
 												loc_31 = 0
@@ -14734,7 +14816,8 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 												loc_34 = 9
 												loc_35 = 8
 												loc_36 = 7
-												reg_0 = 4
+												loc_37 = 4
+												reg_0 = 3
 												desired = 7
 												break
 											end
@@ -14747,7 +14830,6 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 										end
 										loc_10 = add_i32(loc_7, 32)
 										loc_11 = 11
-										loc_9 = 9
 										loc_19 = 8
 										loc_27 = 7
 										loc_31 = 6
@@ -14756,7 +14838,8 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 										loc_34 = 3
 										loc_35 = 2
 										loc_36 = 1
-										reg_0 = 10
+										loc_37 = 10
+										reg_0 = 9
 										break
 									end
 									if desired then
@@ -14766,10 +14849,10 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 										end
 										break
 									end
-									loc_48 = reg_0
+									loc_9 = reg_0
 									loc_7 = add_i32(loc_7, 32)
 									loc_25 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_19, 3)))
-									loc_14 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_48, 3)))
+									loc_14 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_37, 3)))
 									loc_29 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_36, 3)))
 									loc_30 = load_i64(memory_at_0, loc_10)
 									loc_49 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_35, 3)))
@@ -14778,7 +14861,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									loc_52 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_11, 3)))
 									loc_17 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_31, 3)))
 									loc_24 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_27, 3)))
-									loc_37 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_9, 3)))
+									loc_38 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_9, 3)))
 									loc_53 = load_i64(memory_at_0, add_i32(loc_7, shl_i32(loc_32, 3)))
 									loc_7 = wrap_i32_i64(ctz_i64(loc_53))
 									loc_9 = load_i32_u8(memory_at_0, 1072760)
@@ -14789,7 +14872,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 													while true do
 														while true do
 															while true do
-																if loc_47 == 0 then
+																if loc_48 == 0 then
 																	while true do
 																		if loc_9 ~= 3 then
 																			while true do
@@ -14845,7 +14928,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																break
 															end
 															loc_9 = reg_0
-															loc_26 = band_i64(shl_i64(i64_ONE, extend_i64_u32(loc_43)), loc_26)
+															loc_26 = band_i64(shl_i64(i64_ONE, extend_i64_u32(loc_44)), loc_26)
 															while true do
 																while true do
 																	if ne_i64(band_i64(load_i64(memory_at_0, loc_9), loc_17), i64_ZERO) then
@@ -14869,8 +14952,9 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																	if ne_i64(band_i64(load_i64(memory_at_0, add_i32(loc_9, 1070696)), loc_24), i64_ZERO) then
 																		break
 																	end
-																	loc_25 = bor_i64(loc_14, loc_25)
-																	loc_17 = bor_i64(loc_25, bor_i64(bor_i64(bor_i64(bor_i64(bor_i64(bor_i64(bor_i64(bor_i64(bor_i64(loc_29, loc_30), loc_49), loc_50), loc_51), loc_52), loc_53), loc_17), loc_24), loc_37))
+																	reg_0 = bor_i64(bor_i64(bor_i64(bor_i64(bor_i64(bor_i64(bor_i64(bor_i64(bor_i64(loc_29, loc_30), loc_49), loc_50), loc_51), loc_52), loc_53), loc_17), loc_24), loc_38)
+																	loc_24 = bor_i64(loc_14, loc_25)
+																	loc_17 = bor_i64(reg_0, loc_24)
 																	if load_i32_u8(memory_at_0, 1077968) ~= 3 then
 																		while true do
 																			store_i32(memory_at_0, loc_8 + 1928, 1077456)
@@ -14885,7 +14969,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																			break
 																		end
 																	end
-																	loc_24 = band_i64(load_i64(memory_at_0, add_i32(loc_9, 1077456)), loc_17)
+																	loc_25 = band_i64(load_i64(memory_at_0, add_i32(loc_9, 1077456)), loc_17)
 																	loc_7 = mul_i32(loc_7, 24)
 																	loc_10 = load_i32(memory_at_0, add_i32(loc_7, 1062800))
 																	loc_29 = load_i64(memory_at_0, add_i32(loc_7, 1062792))
@@ -14904,13 +14988,13 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																			break
 																		end
 																	end
-																	loc_10 = add_i32(loc_10, wrap_i32_i64(shr_u64(mul_i64(loc_24, loc_30), loc_29)))
+																	loc_10 = add_i32(loc_10, wrap_i32_i64(shr_u64(mul_i64(loc_25, loc_30), loc_29)))
 																	loc_11 = load_i32(memory_at_0, 1078000)
 																	if loc_10 >= loc_11 then
 																		desired = 10
 																		break
 																	end
-																	if ne_i64(band_i64(load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_10, 3))), loc_25), i64_ZERO) then
+																	if ne_i64(band_i64(load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077996), shl_i32(loc_10, 3))), loc_24), i64_ZERO) then
 																		break
 																	end
 																	if load_i32_u8(memory_at_0, 1077448) ~= 3 then
@@ -14951,7 +15035,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																		desired = 9
 																		break
 																	end
-																	if eq_i64(band_i64(load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_7, 3))), bor_i64(loc_14, loc_37)), i64_ZERO) then
+																	if eq_i64(band_i64(load_i64(memory_at_0, add_i32(load_i32(memory_at_0, 1077980), shl_i32(loc_7, 3))), bor_i64(loc_14, loc_38)), i64_ZERO) then
 																		desired = 13
 																		break
 																	end
@@ -14976,13 +15060,21 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 															end
 															loc_9 = 0
 															loc_10 = sub_i32(0, loc_5)
-															if bor_i32(bor_i32(loc_42, (if loc_12 < 3 then 1 else 0)), (if ne_i64(loc_26, i64_ZERO) then 1 else 0)) ~= 0 then
+															if loc_43 ~= 0 then
 																desired = 8
 																break
 															end
-															reg_2 = FUNC_LIST[30](loc_0, loc_40, loc_23, 1, loc_4, bxor_i32(loc_5, 4294967295), loc_10)
-															loc_7 = sub_i32(0, reg_2)
-															if lt_i32(loc_5, loc_7) then
+															if loc_13 < 3 then
+																desired = 8
+																break
+															end
+															if ne_i64(loc_26, i64_ZERO) then
+																desired = 8
+																break
+															end
+															reg_1 = FUNC_LIST[30](loc_12, loc_41, loc_23, 1, loc_4, bxor_i32(loc_5, 4294967295), loc_10)
+															loc_7 = sub_i32(0, reg_1)
+															if gt_i32(loc_7, loc_5) then
 																desired = 8
 																break
 															end
@@ -15031,7 +15123,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 											end
 											break
 										end
-										reg_1 = FUNC_LIST[30](loc_0, add_i32(loc_9, loc_39), loc_23, 1, loc_4, loc_38, loc_10)
+										reg_1 = FUNC_LIST[30](loc_12, add_i32(loc_9, loc_40), loc_23, 1, loc_4, loc_39, loc_10)
 										loc_7 = sub_i32(0, reg_1)
 										break
 									end
@@ -15042,11 +15134,11 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 										end
 										break
 									end
-									loc_19 = load_i32(memory_at_0, loc_0 + 24)
+									loc_19 = load_i32(memory_at_0, loc_12 + 24)
 									FUNC_LIST[80](loc_19, add_i32(loc_8, 3676))
-									loc_11 = load_i32(memory_at_0, loc_0 + 20)
+									loc_11 = load_i32(memory_at_0, loc_12 + 20)
 									loc_9 = shl_i32(loc_11, 3)
-									loc_10 = load_i32(memory_at_0, loc_0 + 16)
+									loc_10 = load_i32(memory_at_0, loc_12 + 16)
 									loc_14 = load_i64(memory_at_0, loc_19 + 16)
 									while true do
 										while true do
@@ -15072,12 +15164,12 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 															break
 														end
 														loc_9 = shr_u32(sub_i32(loc_19, loc_10), 3)
-														if loc_11 <= loc_9 then
+														if loc_9 >= loc_11 then
 															desired = 10
 															break
 														end
 														loc_11 = sub_i32(loc_11, 1)
-														store_i32(memory_at_0, loc_0 + 20, loc_11)
+														store_i32(memory_at_0, loc_12 + 20, loc_11)
 														store_i64(memory_at_0, add_i32(loc_10, shl_i32(loc_9, 3)), load_i64(memory_at_0, add_i32(loc_10, shl_i32(loc_11, 3))))
 														break
 													end
@@ -15088,23 +15180,25 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 														break
 													end
 													loc_16 = load_f64(memory_at_0, load_i32(memory_at_0, loc_4))
+													loc_9 = add_i32(loc_8, 8)
 													reg_1 = FUNC_LIST[1]()
 													loc_16 = ((reg_1 - loc_16) * 1e3)
-													FUNC_LIST[103](add_i32(loc_8, 8), loc_16)
-													loc_9 = load_i32(memory_at_0, loc_4 + 4)
-													loc_10 = (if loc_16 >= 0e0 then 1 else 0)
-													loc_11 = (if loc_16 > 3.4028236692093843e38 then 1 else 0)
-													loc_14 = (if loc_11 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_10 ~= 0 then load_i64(memory_at_0, add_i32(loc_8, 16)) else i64_ZERO))
-													loc_17 = load_i64(memory_at_0, add_i32(loc_9, 8))
-													if (if eq_i64(loc_14, loc_17) then (if lt_u64(load_i64(memory_at_0, loc_9), (if loc_11 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_10 ~= 0 then load_i64(memory_at_0, loc_8 + 8) else i64_ZERO))) then 1 else 0) else (if gt_u64(loc_14, loc_17) then 1 else 0)) == 0 then
+													FUNC_LIST[103](loc_9, loc_16)
+													reg_1 = load_i64(memory_at_0, add_i32(loc_9, 8))
+													loc_9 = (if loc_16 >= 0e0 then 1 else 0)
+													loc_10 = (if loc_16 > 3.4028236692093843e38 then 1 else 0)
+													loc_14 = (if loc_10 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_9 ~= 0 then reg_1 else i64_ZERO))
+													loc_11 = load_i32(memory_at_0, loc_4 + 4)
+													loc_17 = load_i64(memory_at_0, add_i32(loc_11, 8))
+													if (if eq_i64(loc_14, loc_17) then (if lt_u64(load_i64(memory_at_0, loc_11), (if loc_10 ~= 0 then i64_from_u32(4294967295, 4294967295) else (if loc_9 ~= 0 then load_i64(memory_at_0, loc_8 + 8) else i64_ZERO))) then 1 else 0) else (if gt_u64(loc_14, loc_17) then 1 else 0)) == 0 then
 														while true do
-															if le_i32(loc_7, loc_13) then
+															if ge_i32(loc_0, loc_7) then
 																desired = 9
 																break
 															end
 															if ge_i32(loc_5, loc_7) then
 																while true do
-																	loc_13 = loc_7
+																	loc_0 = loc_7
 																	desired = 9
 																	break
 																end
@@ -15114,8 +15208,8 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 															end
 															if band_i32(loc_2, 65535) == 0 then
 																while true do
-																	store_i32(memory_at_0, loc_0 + 16476, loc_7)
-																	store_i32_n16(memory_at_0, loc_0 + 16480, loc_3)
+																	store_i32(memory_at_0, loc_12 + 16476, loc_7)
+																	store_i32_n16(memory_at_0, loc_12 + 16480, loc_3)
 																	break
 																end
 																if desired then
@@ -15126,8 +15220,8 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 															if gt_i32(loc_6, loc_7) then
 																while true do
 																	loc_15 = loc_3
-																	loc_13 = loc_7
-																	loc_5 = loc_7
+																	loc_0 = loc_7
+																	loc_5 = loc_0
 																	desired = 9
 																	break
 																end
@@ -15140,17 +15234,21 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																desired = 8
 																break
 															end
-															if bor_i32((if band_i32(loc_2, 65535) > 31 then 1 else 0), loc_45) == 0 then
-																while true do
-																	store_i32_n16(memory_at_0, add_i32(add_i32(loc_0, shl_i32(loc_28, 1)), 28), loc_3)
+															while true do
+																if band_i32(loc_2, 65535) > 31 then
 																	break
 																end
-																if desired then
+																if loc_47 ~= 0 then
 																	break
 																end
+																store_i32_n16(memory_at_0, add_i32(add_i32(loc_12, shl_i32(loc_28, 1)), 28), loc_3)
+																break
 															end
-															loc_2 = add_i32(add_i32(add_i32(add_i32(loc_0, shl_i32(load_i32_u8(memory_at_0, load_i32(memory_at_0, loc_0 + 24) + 140), 13)), shl_i32(loc_46, 7)), shl_i32(loc_44, 1)), 92)
-															store_i32_n16(memory_at_0, loc_2, add_i32(load_i32_u16(memory_at_0, loc_2), mul_i32(loc_1, loc_1)))
+															if desired then
+																break
+															end
+															loc_0 = add_i32(add_i32(add_i32(add_i32(loc_12, shl_i32(load_i32_u8(memory_at_0, load_i32(memory_at_0, loc_12 + 24) + 140), 13)), shl_i32(loc_46, 7)), shl_i32(loc_45, 1)), 92)
+															store_i32_n16(memory_at_0, loc_0, add_i32(load_i32_u16(memory_at_0, loc_0), mul_i32(loc_1, loc_1)))
 															desired = 8
 															break
 														end
@@ -15175,15 +15273,17 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 												GLOBAL_LIST[0].value = loc_0
 												store_i32(memory_at_0, loc_0 + 4, loc_11)
 												store_i32(memory_at_0, loc_0, loc_9)
-												store_i64(memory_at_0, add_i32(loc_0, 20), i64_from_u32(2, 0))
-												store_i32(memory_at_0, add_i32(loc_0, 44), 3)
+												loc_1 = add_i32(loc_0, 8)
+												store_i64(memory_at_0, add_i32(loc_1, 12), i64_from_u32(2, 0))
+												loc_2 = add_i32(loc_0, 32)
+												store_i32(memory_at_0, add_i32(loc_2, 12), 3)
 												store_i32(memory_at_0, loc_0 + 12, 3)
 												store_i32(memory_at_0, loc_0 + 8, 1049080)
 												store_i32(memory_at_0, loc_0 + 36, 3)
-												store_i32(memory_at_0, loc_0 + 16, add_i32(loc_0, 32))
+												store_i32(memory_at_0, loc_0 + 16, loc_2)
 												store_i32(memory_at_0, loc_0 + 40, add_i32(loc_0, 4))
 												store_i32(memory_at_0, loc_0 + 32, loc_0)
-												FUNC_LIST[20](add_i32(loc_0, 8), 1053248)
+												FUNC_LIST[20](loc_1, 1053248)
 												error("out of code bounds")
 											end
 											if desired then
@@ -15192,12 +15292,12 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 												end
 												break
 											end
-											if loc_12 ~= 0 then
+											if loc_13 ~= 0 then
 												desired = 7
 												break
 											end
 											loc_3 = loc_15
-											loc_7 = loc_13
+											loc_7 = loc_0
 											break
 										end
 										if desired then
@@ -15206,12 +15306,12 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 											end
 											break
 										end
-										loc_2 = load_i32(memory_at_0, loc_0 + 8)
-										if loc_22 >= loc_2 then
+										loc_0 = load_i32(memory_at_0, loc_12 + 8)
+										if loc_0 <= loc_22 then
 											desired = 4
 											break
 										end
-										loc_0 = add_i32(load_i32(memory_at_0, loc_0 + 4), mul_i32(loc_22, 24))
+										loc_0 = add_i32(load_i32(memory_at_0, loc_12 + 4), mul_i32(loc_22, 24))
 										store_i32_n8(memory_at_0, loc_0 + 16, loc_18)
 										store_i32_n16(memory_at_0, loc_0 + 14, loc_3)
 										store_i32_n16(memory_at_0, loc_0 + 12, loc_1)
@@ -15228,15 +15328,15 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 										break
 									end
 									loc_11 = add_i32(loc_8, 184)
-									loc_12 = sub_i32(loc_12, 1)
-									loc_3 = add_i32(loc_11, shl_i32(loc_12, 3))
+									loc_13 = sub_i32(loc_13, 1)
+									loc_3 = add_i32(loc_11, shl_i32(loc_13, 3))
 									while true do
-										if loc_12 == 0 then
+										if loc_13 == 0 then
 											break
 										end
 										loc_10 = load_i32(memory_at_0, loc_3)
 										loc_9 = 0
-										loc_7 = loc_12
+										loc_7 = loc_13
 										while true do
 											while true do
 												loc_19 = load_i32(memory_at_0, loc_11)
@@ -15270,7 +15370,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 											end
 											break
 										end
-										if loc_7 == loc_12 then
+										if loc_7 == loc_13 then
 											break
 										end
 										if loc_7 >= 218 then
@@ -15320,7 +15420,7 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 						end
 						break
 					end
-					FUNC_LIST[15](loc_22, loc_2, 1067920)
+					FUNC_LIST[15](loc_22, loc_0, 1067920)
 					error("out of code bounds")
 				end
 				if desired then
@@ -15360,6 +15460,7 @@ FUNC_LIST[31] = function(loc_0, loc_1)
 	local loc_4 = 0
 	local loc_5 = 0
 	local loc_6 = 0
+	local loc_7 = 0
 	local reg_0
 	local desired
 	local br_map = {}
@@ -15379,16 +15480,19 @@ FUNC_LIST[31] = function(loc_0, loc_1)
 							loc_5 = shr_u32(loc_1, 8)
 							store_i32(memory_at_0, loc_2 + 32, add_i32(band_i32(loc_5, 7), 97))
 							store_i32_n8(memory_at_0, loc_2 + 39, add_i32(shr_u32(extend_i32_n8(loc_5), 3), 1))
-							store_i64(memory_at_0, add_i32(loc_2, 52), i64_from_u32(2, 0))
-							store_i32(memory_at_0, add_i32(loc_2, 76), 13)
+							loc_5 = add_i32(loc_2, 40)
+							store_i64(memory_at_0, add_i32(loc_5, 12), i64_from_u32(2, 0))
+							loc_6 = sub_i32(loc_2, 4294967232)
+							store_i32(memory_at_0, add_i32(loc_6, 12), 13)
 							store_i32(memory_at_0, loc_2 + 44, 2)
 							store_i32(memory_at_0, loc_2 + 40, 1060276)
 							store_i32(memory_at_0, loc_2 + 68, 14)
-							store_i32(memory_at_0, loc_2 + 48, sub_i32(loc_2, 4294967232))
+							store_i32(memory_at_0, loc_2 + 48, loc_6)
 							store_i32(memory_at_0, loc_2 + 72, add_i32(loc_2, 39))
 							store_i32(memory_at_0, loc_2 + 64, add_i32(loc_2, 32))
-							FUNC_LIST[29](add_i32(loc_2, 20), add_i32(loc_2, 40))
+							FUNC_LIST[29](add_i32(loc_2, 20), loc_5)
 							loc_6 = load_i32(memory_at_0, loc_2 + 24)
+							loc_7 = shr_u32(band_i32(loc_1, 16711680), 16)
 							loc_5 = load_i32(memory_at_0, loc_2 + 28)
 							if loc_5 >= 5 then
 								while true do
@@ -15413,18 +15517,19 @@ FUNC_LIST[31] = function(loc_0, loc_1)
 									break
 								end
 							end
-							loc_5 = shr_u32(band_i32(loc_1, 16711680), 16)
-							store_i32(memory_at_0, loc_2 + 32, add_i32(band_i32(loc_5, 7), 97))
-							store_i32_n8(memory_at_0, loc_2 + 39, add_i32(shr_u32(extend_i32_n8(loc_5), 3), 1))
-							store_i64(memory_at_0, add_i32(loc_2, 52), i64_from_u32(2, 0))
-							store_i32(memory_at_0, add_i32(loc_2, 76), 13)
+							store_i32(memory_at_0, loc_2 + 32, add_i32(band_i32(loc_7, 7), 97))
+							store_i32_n8(memory_at_0, loc_2 + 39, add_i32(shr_u32(extend_i32_n8(loc_7), 3), 1))
+							loc_5 = add_i32(loc_2, 40)
+							store_i64(memory_at_0, add_i32(loc_5, 12), i64_from_u32(2, 0))
+							loc_6 = sub_i32(loc_2, 4294967232)
+							store_i32(memory_at_0, add_i32(loc_6, 12), 13)
 							store_i32(memory_at_0, loc_2 + 44, 2)
 							store_i32(memory_at_0, loc_2 + 40, 1060276)
 							store_i32(memory_at_0, loc_2 + 68, 14)
-							store_i32(memory_at_0, loc_2 + 48, sub_i32(loc_2, 4294967232))
+							store_i32(memory_at_0, loc_2 + 48, loc_6)
 							store_i32(memory_at_0, loc_2 + 72, add_i32(loc_2, 39))
 							store_i32(memory_at_0, loc_2 + 64, add_i32(loc_2, 32))
-							FUNC_LIST[29](add_i32(loc_2, 20), add_i32(loc_2, 40))
+							FUNC_LIST[29](add_i32(loc_2, 20), loc_5)
 							loc_6 = load_i32(memory_at_0, loc_2 + 24)
 							loc_5 = load_i32(memory_at_0, loc_2 + 28)
 							if loc_5 > sub_i32(load_i32(memory_at_0, loc_2 + 8), loc_3) then
@@ -15581,9 +15686,10 @@ FUNC_LIST[33] = function(loc_0, loc_1)
 	local loc_3 = i64_ZERO
 	local loc_4 = i64_ZERO
 	local loc_5 = i64_ZERO
-	local loc_6 = i64_ZERO
+	local loc_6 = 0
 	local loc_7 = 0
-	local loc_8 = 0
+	local loc_8 = i64_ZERO
+	local loc_9 = 0
 	local reg_0
 	local reg_1
 	local reg_2
@@ -15600,18 +15706,23 @@ FUNC_LIST[33] = function(loc_0, loc_1)
 		while true do
 			if ge_u64(loc_3, i64_from_u32(524288, 0)) then
 				while true do
-					FUNC_LIST[104](add_i32(loc_2, 48), loc_5, i64_ZERO, i64_from_u32(3895859571, 2509829361))
-					FUNC_LIST[104](add_i32(loc_2, 32), loc_5, i64_ZERO, i64_from_u32(3679105234, 1980704062))
-					FUNC_LIST[104](add_i32(loc_2, 80), loc_3, i64_ZERO, i64_from_u32(3895859571, 2509829361))
-					FUNC_LIST[104](sub_i32(loc_2, 4294967232), loc_3, i64_ZERO, i64_from_u32(3679105234, 1980704062))
-					loc_4 = load_i64(memory_at_0, add_i32(loc_2, 56))
+					loc_0 = add_i32(loc_2, 48)
+					FUNC_LIST[104](loc_0, loc_5, i64_ZERO, i64_from_u32(3895859571, 2509829361))
+					loc_6 = add_i32(loc_2, 32)
+					FUNC_LIST[104](loc_6, loc_5, i64_ZERO, i64_from_u32(3679105234, 1980704062))
+					loc_7 = add_i32(loc_2, 80)
+					FUNC_LIST[104](loc_7, loc_3, i64_ZERO, i64_from_u32(3895859571, 2509829361))
+					loc_9 = sub_i32(loc_2, 4294967232)
+					FUNC_LIST[104](loc_9, loc_3, i64_ZERO, i64_from_u32(3679105234, 1980704062))
+					loc_4 = load_i64(memory_at_0, add_i32(loc_0, 8))
 					loc_3 = add_i64(loc_4, load_i64(memory_at_0, loc_2 + 32))
-					loc_6 = add_i64(load_i64(memory_at_0, add_i32(loc_2, 40)), extend_i64_u32((if lt_u64(loc_3, loc_4) then 1 else 0)))
-					loc_4 = add_i64(loc_6, load_i64(memory_at_0, loc_2 + 64))
-					loc_3 = add_i64(loc_4, add_i64(load_i64(memory_at_0, add_i32(loc_2, 88)), extend_i64_u32((if lt_u64(add_i64(loc_3, load_i64(memory_at_0, loc_2 + 80)), loc_3) then 1 else 0))))
-					loc_6 = add_i64(add_i64(load_i64(memory_at_0, add_i32(loc_2, 72)), extend_i64_u32((if lt_u64(loc_4, loc_6) then 1 else 0))), extend_i64_u32((if lt_u64(loc_3, loc_4) then 1 else 0)))
-					loc_4 = shr_u64(loc_6, i64_from_u32(62, 0))
-					reg_1 = bor_i64(shl_i64(loc_6, i64_from_u32(2, 0)), shr_u64(loc_3, i64_from_u32(62, 0)))
+					loc_4 = add_i64(load_i64(memory_at_0, add_i32(loc_6, 8)), extend_i64_u32((if lt_u64(loc_3, loc_4) then 1 else 0)))
+					reg_1 = add_i64(load_i64(memory_at_0, add_i32(loc_7, 8)), extend_i64_u32((if gt_u64(loc_3, add_i64(loc_3, load_i64(memory_at_0, loc_2 + 80))) then 1 else 0)))
+					loc_3 = add_i64(loc_4, load_i64(memory_at_0, loc_2 + 64))
+					loc_8 = add_i64(reg_1, loc_3)
+					loc_3 = add_i64(extend_i64_u32((if gt_u64(loc_3, loc_8) then 1 else 0)), add_i64(load_i64(memory_at_0, add_i32(loc_9, 8)), extend_i64_u32((if lt_u64(loc_3, loc_4) then 1 else 0))))
+					loc_4 = shr_u64(loc_3, i64_from_u32(62, 0))
+					reg_1 = bor_i64(shl_i64(loc_3, i64_from_u32(2, 0)), shr_u64(loc_8, i64_from_u32(62, 0)))
 					desired = 1
 					break
 				end
@@ -15627,9 +15738,9 @@ FUNC_LIST[33] = function(loc_0, loc_1)
 		end
 		loc_3 = reg_1
 		FUNC_LIST[104](reg_0, loc_3, loc_4, i64_from_u32(1981284352, 1966660859))
-		loc_7 = add_i32(loc_2, 101)
-		loc_8 = add_i32(loc_2, 140)
-		FUNC_LIST[68](add_i64(load_i64(memory_at_0, loc_2 + 16), loc_5), loc_7, loc_8)
+		loc_6 = add_i32(loc_2, 101)
+		loc_7 = add_i32(loc_2, 140)
+		FUNC_LIST[68](add_i64(load_i64(memory_at_0, loc_2 + 16), loc_5), loc_6, loc_7)
 		reg_0 = loc_1
 		reg_1 = 1
 		reg_2 = 1068848
@@ -15640,12 +15751,12 @@ FUNC_LIST[33] = function(loc_0, loc_1)
 			if eq_i64(bor_i64(loc_3, loc_4), i64_ZERO) then
 				break
 			end
-			reg_4 = FUNC_LIST[105](add_i32(loc_2, 121), 48, sub_i32(loc_0, 20))
+			reg_4 = FUNC_LIST[105](add_i32(loc_6, 20), 48, sub_i32(loc_0, 20))
 			store_i32(memory_at_0, loc_2 + 140, 20)
 			loc_5 = bor_i64(shl_i64(loc_4, i64_from_u32(45, 0)), shr_u64(loc_3, i64_from_u32(19, 0)))
 			loc_4 = div_u64(loc_5, i64_from_u32(3831533885, 4440))
 			FUNC_LIST[104](loc_2, loc_4, loc_3, i64_from_u32(1981284352, 1966660859))
-			FUNC_LIST[68](add_i64(load_i64(memory_at_0, loc_2), loc_3), loc_7, loc_8)
+			FUNC_LIST[68](add_i64(load_i64(memory_at_0, loc_2), loc_3), loc_6, loc_7)
 			loc_0 = load_i32(memory_at_0, loc_2 + 140)
 			reg_4 = loc_0
 			if lt_u64(loc_5, i64_from_u32(3831533885, 4440)) then
@@ -15666,14 +15777,12 @@ FUNC_LIST[33] = function(loc_0, loc_1)
 	return reg_0
 end
 FUNC_LIST[34] = function(loc_0, loc_1)
+	local loc_2 = 0
 	local reg_0
-	local reg_1
 	while true do
 		loc_0 = load_i32(memory_at_0, loc_0)
-		reg_0 = extend_i64_u32(loc_0)
-		reg_1 = add_i64(extend_i64_i32(bxor_i32(loc_0, 4294967295)), i64_ONE)
-		loc_0 = (if ge_i32(loc_0, 0) then 1 else 0)
-		reg_0 = FUNC_LIST[53]((if loc_0 ~= 0 then reg_0 else reg_1), loc_0, loc_1)
+		loc_2 = (if ge_i32(loc_0, 0) then 1 else 0)
+		reg_0 = FUNC_LIST[53]((if loc_2 ~= 0 then extend_i64_u32(loc_0) else add_i64(extend_i64_i32(bxor_i32(loc_0, 4294967295)), i64_ONE)), loc_2, loc_1)
 		break
 	end
 	return reg_0
@@ -15713,17 +15822,17 @@ FUNC_LIST[36] = function()
 			while true do
 				store_i32(memory_at_0, loc_4 + 8, 1078012)
 				store_i32(memory_at_0, loc_4 + 12, add_i32(loc_4, 36))
-				loc_2 = add_i32(loc_4, 8)
+				loc_5 = add_i32(loc_4, 8)
 				loc_0 = sub_i32(GLOBAL_LIST[0].value, 32)
 				GLOBAL_LIST[0].value = loc_0
 				while true do
 					while true do
 						while true do
 							while true do
-								loc_5 = load_i32_u8(memory_at_0, 1078036)
-								if loc_5 >= 2 then
+								loc_2 = load_i32_u8(memory_at_0, 1078036)
+								if loc_2 >= 2 then
 									while true do
-										if sub_i32(loc_5, 3) ~= 0 then
+										if sub_i32(loc_2, 3) ~= 0 then
 											desired = 3
 											break
 										end
@@ -15738,16 +15847,16 @@ FUNC_LIST[36] = function()
 									end
 								end
 								store_i32_n8(memory_at_0, 1078036, 2)
-								loc_5 = load_i32(memory_at_0, loc_2)
-								store_i32(memory_at_0, loc_2, 0)
-								if loc_5 == 0 then
+								loc_2 = load_i32(memory_at_0, loc_5)
+								store_i32(memory_at_0, loc_5, 0)
+								if loc_2 == 0 then
 									desired = 4
 									break
 								end
-								store_i64(memory_at_0, loc_5 + 8, i64_ZERO)
-								store_i32(memory_at_0, loc_5 + 4, 1)
-								store_i32_n16(memory_at_0, loc_5, 0)
-								store_i64(memory_at_0, add_i32(loc_5, 16), i64_ZERO)
+								store_i64(memory_at_0, loc_2 + 8, i64_ZERO)
+								store_i32(memory_at_0, loc_2 + 4, 1)
+								store_i32_n16(memory_at_0, loc_2, 0)
+								store_i64(memory_at_0, add_i32(loc_2, 16), i64_ZERO)
 								store_i32_n8(memory_at_0, 1078036, 3)
 								break
 							end
@@ -15786,20 +15895,20 @@ FUNC_LIST[36] = function()
 				break
 			end
 		end
-		loc_0 = load_i32_u8(memory_at_0, 1078012)
+		loc_2 = load_i32_u8(memory_at_0, 1078012)
 		store_i32_n8(memory_at_0, 1078012, 1)
-		store_i32_n8(memory_at_0, loc_4 + 36, loc_0)
-		if loc_0 == 0 then
+		store_i32_n8(memory_at_0, loc_4 + 36, loc_2)
+		if loc_2 == 0 then
 			while true do
 				while true do
-					loc_6 = load_i32(memory_at_0, 1078032)
+					loc_7 = load_i32(memory_at_0, 1078032)
 					loc_14 = load_i32(memory_at_0, 1078016)
-					loc_9 = load_i32(memory_at_0, 1078020)
-					loc_11 = load_i32(memory_at_0, 1078028)
-					loc_12 = load_i32(memory_at_0, 1078024)
-					loc_0 = 1
-					loc_3 = 0
-					loc_5 = 0
+					loc_11 = load_i32(memory_at_0, 1078020)
+					loc_12 = load_i32(memory_at_0, 1078028)
+					loc_13 = load_i32(memory_at_0, 1078024)
+					loc_5 = 1
+					loc_8 = 0
+					loc_2 = 0
 					while true do
 						while true do
 							while true do
@@ -15813,18 +15922,18 @@ FUNC_LIST[36] = function()
 															while true do
 																while true do
 																	while true do
-																		if loc_11 <= loc_12 then
+																		if loc_12 <= loc_13 then
 																			while true do
-																				if loc_6 > loc_9 then
+																				if loc_7 > loc_11 then
 																					desired = 15
 																					break
 																				end
-																				loc_11 = 0
-																				reg_0 = FUNC_LIST[105](add_i32(loc_6, loc_14), 0, sub_i32(loc_9, loc_6))
-																				store_i32(memory_at_0, 1078032, loc_9)
-																				store_i32(memory_at_0, 1078028, 0)
 																				loc_12 = 0
-																				loc_6 = loc_9
+																				reg_0 = FUNC_LIST[105](add_i32(loc_7, loc_14), 0, sub_i32(loc_11, loc_7))
+																				store_i32(memory_at_0, 1078032, loc_11)
+																				store_i32(memory_at_0, 1078028, 0)
+																				loc_13 = 0
+																				loc_7 = loc_11
 																				break
 																			end
 																			if desired then
@@ -15834,18 +15943,18 @@ FUNC_LIST[36] = function()
 																				break
 																			end
 																		end
-																		loc_10 = add_i32(loc_12, loc_14)
-																		loc_7 = sub_i32(loc_11, loc_12)
-																		if loc_7 >= 8 then
+																		loc_10 = add_i32(loc_13, loc_14)
+																		loc_9 = sub_i32(loc_12, loc_13)
+																		if loc_9 >= 8 then
 																			while true do
-																				loc_2 = band_i32(add_i32(loc_10, 3), 4294967292)
-																				if loc_2 == loc_10 then
+																				loc_0 = band_i32(add_i32(loc_10, 3), 4294967292)
+																				if loc_0 == loc_10 then
 																					desired = 14
 																					break
 																				end
-																				loc_2 = sub_i32(loc_2, loc_10)
-																				loc_2 = (if loc_2 < loc_7 then loc_2 else loc_7)
-																				if loc_2 == 0 then
+																				loc_0 = sub_i32(loc_0, loc_10)
+																				loc_3 = (if loc_0 < loc_9 then loc_0 else loc_9)
+																				if loc_3 == 0 then
 																					desired = 14
 																					break
 																				end
@@ -15856,7 +15965,7 @@ FUNC_LIST[36] = function()
 																						break
 																					end
 																					loc_1 = add_i32(loc_1, 1)
-																					if loc_2 ~= loc_1 then
+																					if loc_3 ~= loc_1 then
 																						continue
 																					end
 																					break
@@ -15864,8 +15973,8 @@ FUNC_LIST[36] = function()
 																				if desired then
 																					break
 																				end
-																				loc_1 = sub_i32(loc_7, 8)
-																				if loc_2 > loc_1 then
+																				loc_1 = sub_i32(loc_9, 8)
+																				if loc_3 > loc_1 then
 																					desired = 12
 																					break
 																				end
@@ -15879,7 +15988,7 @@ FUNC_LIST[36] = function()
 																				break
 																			end
 																		end
-																		if loc_7 == 0 then
+																		if loc_9 == 0 then
 																			desired = 11
 																			break
 																		end
@@ -15890,7 +15999,7 @@ FUNC_LIST[36] = function()
 																				break
 																			end
 																			loc_1 = add_i32(loc_1, 1)
-																			if loc_7 ~= loc_1 then
+																			if loc_9 ~= loc_1 then
 																				continue
 																			end
 																			break
@@ -15910,7 +16019,7 @@ FUNC_LIST[36] = function()
 																		end
 																		break
 																	end
-																	FUNC_LIST[37](loc_6, loc_9, 1069212)
+																	FUNC_LIST[37](loc_7, loc_11, 1069212)
 																	error("out of code bounds")
 																end
 																if desired then
@@ -15919,8 +16028,8 @@ FUNC_LIST[36] = function()
 																	end
 																	break
 																end
-																loc_1 = sub_i32(loc_7, 8)
-																loc_2 = 0
+																loc_1 = sub_i32(loc_9, 8)
+																loc_3 = 0
 																break
 															end
 															if desired then
@@ -15930,15 +16039,16 @@ FUNC_LIST[36] = function()
 																break
 															end
 															while true do
-																loc_8 = add_i32(loc_2, loc_10)
-																loc_13 = load_i32(memory_at_0, add_i32(loc_8, 4))
-																loc_8 = load_i32(memory_at_0, loc_8)
-																if band_i32(bor_i32(band_i32(sub_i32(bxor_i32(loc_13, 168430090), 16843009), bxor_i32(loc_13, 4294967295)), band_i32(sub_i32(bxor_i32(loc_8, 168430090), 16843009), bxor_i32(loc_8, 4294967295))), 2155905152) ~= 0 then
+																loc_6 = add_i32(loc_3, loc_10)
+																loc_0 = load_i32(memory_at_0, add_i32(loc_6, 4))
+																reg_0 = band_i32(sub_i32(bxor_i32(loc_0, 168430090), 16843009), bxor_i32(loc_0, 4294967295))
+																loc_0 = load_i32(memory_at_0, loc_6)
+																if band_i32(bor_i32(reg_0, band_i32(sub_i32(bxor_i32(loc_0, 168430090), 16843009), bxor_i32(loc_0, 4294967295))), 2155905152) ~= 0 then
 																	desired = 12
 																	break
 																end
-																loc_2 = add_i32(loc_2, 8)
-																if loc_2 <= loc_1 then
+																loc_3 = add_i32(loc_3, 8)
+																if loc_3 <= loc_1 then
 																	continue
 																end
 																break
@@ -15957,19 +16067,19 @@ FUNC_LIST[36] = function()
 															end
 															break
 														end
-														if loc_2 == loc_7 then
+														if loc_3 == loc_9 then
 															break
 														end
-														loc_8 = add_i32(loc_2, loc_10)
-														loc_13 = sub_i32(sub_i32(loc_11, loc_2), loc_12)
+														loc_6 = add_i32(loc_3, loc_10)
+														loc_0 = sub_i32(sub_i32(loc_12, loc_3), loc_13)
 														loc_1 = 0
 														while true do
-															if load_i32_u8(memory_at_0, add_i32(loc_1, loc_8)) == 10 then
+															if load_i32_u8(memory_at_0, add_i32(loc_1, loc_6)) == 10 then
 																desired = 10
 																break
 															end
 															loc_1 = add_i32(loc_1, 1)
-															if loc_13 ~= loc_1 then
+															if loc_0 ~= loc_1 then
 																continue
 															end
 															break
@@ -15988,9 +16098,9 @@ FUNC_LIST[36] = function()
 														end
 														break
 													end
-													if loc_7 <= sub_i32(loc_5, loc_3) then
+													if loc_9 <= sub_i32(loc_2, loc_8) then
 														while true do
-															loc_2 = add_i32(loc_3, loc_7)
+															loc_3 = add_i32(loc_8, loc_9)
 															desired = 5
 															break
 														end
@@ -16001,20 +16111,20 @@ FUNC_LIST[36] = function()
 															break
 														end
 													end
-													loc_2 = add_i32(loc_3, loc_7)
-													if loc_2 < loc_3 then
+													loc_3 = add_i32(loc_8, loc_9)
+													if loc_8 > loc_3 then
 														desired = 8
 														break
 													end
-													loc_1 = shl_i32(loc_5, 1)
-													loc_1 = (if loc_1 > loc_2 then loc_1 else loc_2)
-													loc_8 = (if loc_1 <= 8 then 8 else loc_1)
-													loc_1 = shr_u32(bxor_i32(loc_8, 4294967295), 31)
+													loc_0 = shl_i32(loc_2, 1)
+													loc_0 = (if loc_0 > loc_3 then loc_0 else loc_3)
+													loc_0 = (if loc_0 <= 8 then 8 else loc_0)
+													loc_6 = shr_u32(bxor_i32(loc_0, 4294967295), 31)
 													reg_0 = loc_4
-													if loc_5 ~= 0 then
+													if loc_2 ~= 0 then
 														while true do
-															store_i32(memory_at_0, loc_4 + 16, loc_5)
-															store_i32(memory_at_0, loc_4 + 8, loc_0)
+															store_i32(memory_at_0, loc_4 + 16, loc_2)
+															store_i32(memory_at_0, loc_4 + 8, loc_5)
 															reg_1 = 1
 															break
 														end
@@ -16037,12 +16147,12 @@ FUNC_LIST[36] = function()
 														end
 													end
 													store_i32(memory_at_0, reg_0 + 12, reg_1)
-													FUNC_LIST[5](add_i32(loc_4, 36), loc_1, loc_8, add_i32(loc_4, 8))
-													loc_1 = load_i32(memory_at_0, loc_4 + 40)
+													FUNC_LIST[5](add_i32(loc_4, 36), loc_6, loc_0, add_i32(loc_4, 8))
+													loc_6 = load_i32(memory_at_0, loc_4 + 40)
 													if load_i32(memory_at_0, loc_4 + 36) == 0 then
 														while true do
-															loc_0 = loc_1
-															loc_5 = loc_8
+															loc_5 = loc_6
+															loc_2 = loc_0
 															desired = 5
 															break
 														end
@@ -16053,11 +16163,11 @@ FUNC_LIST[36] = function()
 															break
 														end
 													end
-													if loc_1 == 2147483649 then
+													if loc_6 == 2147483649 then
 														desired = 5
 														break
 													end
-													if loc_1 == 0 then
+													if loc_6 == 0 then
 														desired = 8
 														break
 													end
@@ -16070,7 +16180,7 @@ FUNC_LIST[36] = function()
 													end
 													break
 												end
-												loc_1 = add_i32(loc_1, loc_2)
+												loc_1 = add_i32(loc_1, loc_3)
 												break
 											end
 											if desired then
@@ -16082,12 +16192,12 @@ FUNC_LIST[36] = function()
 											while true do
 												if loc_1 ~= 4294967295 then
 													while true do
-														loc_8 = add_i32(loc_1, 1)
-														if loc_1 < loc_7 then
+														loc_7 = add_i32(loc_1, 1)
+														if loc_1 < loc_9 then
 															desired = 9
 															break
 														end
-														FUNC_LIST[38](loc_8, loc_7, 1069228)
+														FUNC_LIST[38](loc_7, loc_9, 1069228)
 														error("out of code bounds")
 													end
 													if desired then
@@ -16097,13 +16207,13 @@ FUNC_LIST[36] = function()
 														break
 													end
 												end
-												loc_0 = sub_i32(GLOBAL_LIST[0].value, 32)
-												GLOBAL_LIST[0].value = loc_0
-												store_i64(memory_at_0, add_i32(loc_0, 20), i64_ZERO)
-												store_i32(memory_at_0, loc_0 + 12, 1)
-												store_i32(memory_at_0, loc_0 + 8, 1050076)
-												store_i32(memory_at_0, loc_0 + 16, 1068848)
-												FUNC_LIST[20](add_i32(loc_0, 8), 1069228)
+												loc_2 = sub_i32(GLOBAL_LIST[0].value, 32)
+												GLOBAL_LIST[0].value = loc_2
+												store_i64(memory_at_0, add_i32(loc_2, 20), i64_ZERO)
+												store_i32(memory_at_0, loc_2 + 12, 1)
+												store_i32(memory_at_0, loc_2 + 8, 1050076)
+												store_i32(memory_at_0, loc_2 + 16, 1068848)
+												FUNC_LIST[20](add_i32(loc_2, 8), 1069228)
 												error("out of code bounds")
 											end
 											if desired then
@@ -16112,9 +16222,9 @@ FUNC_LIST[36] = function()
 												end
 												break
 											end
-											if loc_1 < sub_i32(loc_5, loc_3) then
+											if loc_1 < sub_i32(loc_2, loc_8) then
 												while true do
-													loc_2 = add_i32(loc_3, loc_8)
+													loc_3 = add_i32(loc_7, loc_8)
 													desired = 7
 													break
 												end
@@ -16125,19 +16235,19 @@ FUNC_LIST[36] = function()
 													break
 												end
 											end
-											loc_2 = add_i32(loc_3, loc_8)
-											if loc_2 < loc_3 then
+											loc_3 = add_i32(loc_7, loc_8)
+											if loc_8 > loc_3 then
 												break
 											end
-											loc_6 = shl_i32(loc_5, 1)
-											loc_6 = (if loc_2 < loc_6 then loc_6 else loc_2)
-											loc_9 = (if loc_6 <= 8 then 8 else loc_6)
-											loc_6 = shr_u32(bxor_i32(loc_9, 4294967295), 31)
+											loc_0 = shl_i32(loc_2, 1)
+											loc_0 = (if loc_0 > loc_3 then loc_0 else loc_3)
+											loc_0 = (if loc_0 <= 8 then 8 else loc_0)
+											loc_6 = shr_u32(bxor_i32(loc_0, 4294967295), 31)
 											reg_0 = loc_4
-											if loc_5 ~= 0 then
+											if loc_2 ~= 0 then
 												while true do
-													store_i32(memory_at_0, loc_4 + 16, loc_5)
-													store_i32(memory_at_0, loc_4 + 8, loc_0)
+													store_i32(memory_at_0, loc_4 + 16, loc_2)
+													store_i32(memory_at_0, loc_4 + 8, loc_5)
 													reg_1 = 1
 													break
 												end
@@ -16160,12 +16270,12 @@ FUNC_LIST[36] = function()
 												end
 											end
 											store_i32(memory_at_0, reg_0 + 12, reg_1)
-											FUNC_LIST[5](add_i32(loc_4, 36), loc_6, loc_9, add_i32(loc_4, 8))
+											FUNC_LIST[5](add_i32(loc_4, 36), loc_6, loc_0, add_i32(loc_4, 8))
 											loc_6 = load_i32(memory_at_0, loc_4 + 40)
 											if load_i32(memory_at_0, loc_4 + 36) == 0 then
 												while true do
-													loc_0 = loc_6
-													loc_5 = loc_9
+													loc_5 = loc_6
+													loc_2 = loc_0
 													desired = 7
 													break
 												end
@@ -16201,9 +16311,9 @@ FUNC_LIST[36] = function()
 										end
 										break
 									end
-									reg_0 = FUNC_LIST[107](add_i32(loc_0, loc_3), loc_10, loc_8)
-									loc_3 = add_i32(loc_8, loc_12)
-									store_i32(memory_at_0, 1078024, (if loc_3 < loc_11 then loc_3 else loc_11))
+									reg_0 = FUNC_LIST[107](add_i32(loc_5, loc_8), loc_10, loc_7)
+									loc_0 = add_i32(loc_7, loc_13)
+									store_i32(memory_at_0, 1078024, (if loc_0 < loc_12 then loc_0 else loc_12))
 									desired = 4
 									break
 								end
@@ -16221,12 +16331,12 @@ FUNC_LIST[36] = function()
 								end
 								break
 							end
-							reg_0 = FUNC_LIST[107](add_i32(loc_0, loc_3), loc_10, loc_7)
-							loc_3 = add_i32(loc_7, loc_12)
-							loc_12 = (if loc_3 < loc_11 then loc_3 else loc_11)
-							store_i32(memory_at_0, 1078024, loc_12)
-							loc_3 = loc_2
-							if loc_7 ~= 0 then
+							reg_0 = FUNC_LIST[107](add_i32(loc_5, loc_8), loc_10, loc_9)
+							loc_0 = add_i32(loc_9, loc_13)
+							loc_13 = (if loc_0 < loc_12 then loc_0 else loc_12)
+							store_i32(memory_at_0, 1078024, loc_13)
+							loc_8 = loc_3
+							if loc_9 ~= 0 then
 								desired = 3
 								break
 							end
@@ -16249,12 +16359,12 @@ FUNC_LIST[36] = function()
 						break
 					end
 					while true do
-						if loc_2 == 0 then
+						if loc_3 == 0 then
 							break
 						end
-						loc_3 = sub_i32(loc_2, 7)
-						loc_8 = (if loc_2 >= loc_3 then loc_3 else 0)
-						loc_7 = sub_i32(band_i32(add_i32(loc_0, 3), 4294967292), loc_0)
+						loc_0 = sub_i32(loc_3, 7)
+						loc_11 = (if loc_0 <= loc_3 then loc_0 else 0)
+						loc_6 = sub_i32(band_i32(add_i32(loc_5, 3), 4294967292), loc_5)
 						loc_1 = 0
 						while true do
 							while true do
@@ -16266,16 +16376,16 @@ FUNC_LIST[36] = function()
 													while true do
 														while true do
 															while true do
-																loc_6 = load_i32_u8(memory_at_0, add_i32(loc_0, loc_1))
-																loc_9 = extend_i32_n8(loc_6)
-																if lt_i32(loc_9, 0) then
+																loc_8 = load_i32_u8(memory_at_0, add_i32(loc_1, loc_5))
+																loc_7 = extend_i32_n8(loc_8)
+																if lt_i32(loc_7, 0) then
 																	while true do
 																		if not br_map[1] then
 																			br_map[1] = (function()
 																				return { [0] = 1, 3, 2, }
 																			end)()
 																		end
-																		temp = br_map[1][sub_i32(load_i32_u8(memory_at_0, add_i32(loc_6, 1053320)), 2)] or 6
+																		temp = br_map[1][sub_i32(load_i32_u8(memory_at_0, add_i32(loc_8, 1053320)), 2)] or 6
 																		if temp < 3 then
 																			if temp < 2 then
 																				desired = 13
@@ -16299,22 +16409,22 @@ FUNC_LIST[36] = function()
 																		break
 																	end
 																end
-																if band_i32(sub_i32(loc_7, loc_1), 3) ~= 0 then
+																if band_i32(sub_i32(loc_6, loc_1), 3) ~= 0 then
 																	desired = 7
 																	break
 																end
-																if loc_1 >= loc_8 then
+																if loc_1 >= loc_11 then
 																	desired = 6
 																	break
 																end
 																while true do
-																	loc_3 = add_i32(loc_0, loc_1)
-																	if band_i32(bor_i32(load_i32(memory_at_0, add_i32(loc_3, 4)), load_i32(memory_at_0, loc_3)), 2155905152) ~= 0 then
+																	loc_0 = add_i32(loc_1, loc_5)
+																	if band_i32(bor_i32(load_i32(memory_at_0, add_i32(loc_0, 4)), load_i32(memory_at_0, loc_0)), 2155905152) ~= 0 then
 																		desired = 6
 																		break
 																	end
 																	loc_1 = add_i32(loc_1, 8)
-																	if loc_1 < loc_8 then
+																	if loc_11 > loc_1 then
 																		continue
 																	end
 																	break
@@ -16335,7 +16445,7 @@ FUNC_LIST[36] = function()
 																break
 															end
 															loc_1 = add_i32(loc_1, 1)
-															if loc_1 < loc_2 then
+															if loc_3 > loc_1 then
 																desired = 10
 																break
 															end
@@ -16348,12 +16458,12 @@ FUNC_LIST[36] = function()
 															end
 															break
 														end
-														loc_3 = add_i32(loc_1, 1)
-														if loc_3 >= loc_2 then
+														loc_0 = add_i32(loc_1, 1)
+														if loc_0 >= loc_3 then
 															desired = 8
 															break
 														end
-														loc_3 = load_i32_i8(memory_at_0, add_i32(loc_0, loc_3))
+														loc_0 = load_i32_i8(memory_at_0, add_i32(loc_0, loc_5))
 														while true do
 															while true do
 																while true do
@@ -16363,7 +16473,7 @@ FUNC_LIST[36] = function()
 																				return { [0] = 1, 0, 0, 0, 2, }
 																			end)()
 																		end
-																		temp = br_map[2][sub_i32(loc_6, 240)] or 0
+																		temp = br_map[2][sub_i32(loc_8, 240)] or 0
 																		if temp < 1 then
 																			break
 																		elseif temp > 1 then
@@ -16380,11 +16490,11 @@ FUNC_LIST[36] = function()
 																		end
 																		break
 																	end
-																	if band_i32(add_i32(loc_9, 15), 255) > 2 then
+																	if band_i32(add_i32(loc_7, 15), 255) > 2 then
 																		desired = 8
 																		break
 																	end
-																	if lt_i32(loc_3, 4294967232) then
+																	if lt_i32(loc_0, 4294967232) then
 																		desired = 12
 																		break
 																	end
@@ -16397,7 +16507,7 @@ FUNC_LIST[36] = function()
 																	end
 																	break
 																end
-																if band_i32(add_i32(loc_3, 112), 255) < 48 then
+																if band_i32(add_i32(loc_0, 112), 255) < 48 then
 																	desired = 12
 																	break
 																end
@@ -16410,7 +16520,7 @@ FUNC_LIST[36] = function()
 																end
 																break
 															end
-															if gt_i32(loc_3, 4294967183) then
+															if gt_i32(loc_0, 4294967183) then
 																desired = 8
 																break
 															end
@@ -16422,21 +16532,21 @@ FUNC_LIST[36] = function()
 															end
 															break
 														end
-														loc_3 = add_i32(loc_1, 2)
-														if loc_3 >= loc_2 then
+														loc_0 = add_i32(loc_1, 2)
+														if loc_0 >= loc_3 then
 															desired = 8
 															break
 														end
-														if gt_i32(load_i32_i8(memory_at_0, add_i32(loc_0, loc_3)), 4294967231) then
+														if gt_i32(load_i32_i8(memory_at_0, add_i32(loc_0, loc_5)), 4294967231) then
 															desired = 8
 															break
 														end
 														loc_1 = add_i32(loc_1, 3)
-														if loc_1 >= loc_2 then
+														if loc_3 <= loc_1 then
 															desired = 8
 															break
 														end
-														if le_i32(load_i32_i8(memory_at_0, add_i32(loc_0, loc_1)), 4294967231) then
+														if le_i32(load_i32_i8(memory_at_0, add_i32(loc_1, loc_5)), 4294967231) then
 															desired = 9
 															break
 														end
@@ -16449,45 +16559,39 @@ FUNC_LIST[36] = function()
 														end
 														break
 													end
-													loc_3 = add_i32(loc_1, 1)
-													if loc_3 >= loc_2 then
+													loc_0 = add_i32(loc_1, 1)
+													if loc_0 >= loc_3 then
 														desired = 8
 														break
 													end
-													loc_3 = load_i32_i8(memory_at_0, add_i32(loc_0, loc_3))
+													loc_0 = load_i32_i8(memory_at_0, add_i32(loc_0, loc_5))
 													while true do
 														while true do
 															while true do
-																loc_6 = sub_i32(loc_6, 224)
-																if loc_6 ~= 0 then
-																	while true do
-																		if loc_6 == 13 then
-																			while true do
-																				desired = 13
-																				break
-																			end
-																			if desired then
-																				break
-																			end
-																		else
-																			while true do
-																				desired = 12
-																				break
-																			end
-																			if desired then
-																				break
-																			end
-																		end
-																		error("out of code bounds")
+																while true do
+																	if not br_map[3] then
+																		br_map[3] = (function()
+																			return { [0] = 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, }
+																		end)()
 																	end
-																	if desired then
-																		if desired == 13 then
-																			desired = nil
-																		end
+																	temp = br_map[3][sub_i32(loc_8, 224)] or 2
+																	if temp < 1 then
+																		break
+																	elseif temp > 1 then
+																		desired = 12
+																		break
+																	else
+																		desired = 13
 																		break
 																	end
 																end
-																if band_i32(loc_3, 4294967264) == 4294967200 then
+																if desired then
+																	if desired == 13 then
+																		desired = nil
+																	end
+																	break
+																end
+																if band_i32(loc_0, 4294967264) == 4294967200 then
 																	desired = 11
 																	break
 																end
@@ -16500,7 +16604,7 @@ FUNC_LIST[36] = function()
 																end
 																break
 															end
-															if gt_i32(loc_3, 4294967199) then
+															if gt_i32(loc_0, 4294967199) then
 																desired = 8
 																break
 															end
@@ -16513,13 +16617,13 @@ FUNC_LIST[36] = function()
 															end
 															break
 														end
-														if band_i32(add_i32(loc_9, 31), 255) >= 12 then
+														if band_i32(add_i32(loc_7, 31), 255) >= 12 then
 															while true do
-																if band_i32(loc_9, 4294967294) ~= 4294967278 then
+																if band_i32(loc_7, 4294967294) ~= 4294967278 then
 																	desired = 8
 																	break
 																end
-																if lt_i32(loc_3, 4294967232) then
+																if lt_i32(loc_0, 4294967232) then
 																	desired = 11
 																	break
 																end
@@ -16533,7 +16637,7 @@ FUNC_LIST[36] = function()
 																break
 															end
 														end
-														if ge_i32(loc_3, 4294967232) then
+														if ge_i32(loc_0, 4294967232) then
 															desired = 8
 															break
 														end
@@ -16546,11 +16650,11 @@ FUNC_LIST[36] = function()
 														break
 													end
 													loc_1 = add_i32(loc_1, 2)
-													if loc_1 >= loc_2 then
+													if loc_3 <= loc_1 then
 														desired = 8
 														break
 													end
-													if le_i32(load_i32_i8(memory_at_0, add_i32(loc_0, loc_1)), 4294967231) then
+													if le_i32(load_i32_i8(memory_at_0, add_i32(loc_1, loc_5)), 4294967231) then
 														desired = 9
 														break
 													end
@@ -16563,7 +16667,7 @@ FUNC_LIST[36] = function()
 													end
 													break
 												end
-												if gt_i32(load_i32_i8(memory_at_0, add_i32(loc_0, loc_1)), 4294967231) then
+												if gt_i32(load_i32_i8(memory_at_0, add_i32(loc_1, loc_5)), 4294967231) then
 													desired = 8
 													break
 												end
@@ -16606,16 +16710,16 @@ FUNC_LIST[36] = function()
 									end
 									break
 								end
-								if loc_1 >= loc_2 then
+								if loc_1 >= loc_3 then
 									break
 								end
 								while true do
-									if lt_i32(load_i32_i8(memory_at_0, add_i32(loc_0, loc_1)), 0) then
+									if lt_i32(load_i32_i8(memory_at_0, add_i32(loc_1, loc_5)), 0) then
 										desired = 5
 										break
 									end
 									loc_1 = add_i32(loc_1, 1)
-									if loc_2 ~= loc_1 then
+									if loc_3 ~= loc_1 then
 										continue
 									end
 									break
@@ -16636,7 +16740,7 @@ FUNC_LIST[36] = function()
 								end
 								break
 							end
-							if loc_1 < loc_2 then
+							if loc_1 < loc_3 then
 								continue
 							end
 							break
@@ -16656,11 +16760,11 @@ FUNC_LIST[36] = function()
 						end
 						break
 					end
-					FUNC_LIST[10](loc_0, loc_2)
-					if loc_5 == 0 then
+					FUNC_LIST[10](loc_5, loc_3)
+					if loc_2 == 0 then
 						continue
 					end
-					FUNC_LIST[4](loc_0)
+					FUNC_LIST[4](loc_5)
 					continue
 				end
 				error("out of code bounds")
@@ -16670,29 +16774,31 @@ FUNC_LIST[36] = function()
 		store_i32(memory_at_0, loc_4 + 16, 1068848)
 		store_i32(memory_at_0, loc_4 + 12, 1)
 		store_i32(memory_at_0, loc_4 + 8, 1069276)
-		loc_5 = sub_i32(GLOBAL_LIST[0].value, 16)
-		GLOBAL_LIST[0].value = loc_5
-		store_i32(memory_at_0, loc_5 + 12, 1068848)
-		store_i32(memory_at_0, loc_5 + 8, add_i32(loc_4, 36))
+		loc_2 = sub_i32(GLOBAL_LIST[0].value, 16)
+		GLOBAL_LIST[0].value = loc_2
+		store_i32(memory_at_0, loc_2 + 12, 1068848)
+		store_i32(memory_at_0, loc_2 + 8, add_i32(loc_4, 36))
 		loc_0 = sub_i32(GLOBAL_LIST[0].value, 112)
 		GLOBAL_LIST[0].value = loc_0
 		store_i32(memory_at_0, loc_0 + 12, 1068852)
-		store_i32(memory_at_0, loc_0 + 8, add_i32(loc_5, 8))
+		store_i32(memory_at_0, loc_0 + 8, add_i32(loc_2, 8))
 		store_i32(memory_at_0, loc_0 + 20, 1068852)
-		store_i32(memory_at_0, loc_0 + 16, add_i32(loc_5, 12))
+		store_i32(memory_at_0, loc_0 + 16, add_i32(loc_2, 12))
 		store_i32(memory_at_0, loc_0 + 28, 2)
 		store_i32(memory_at_0, loc_0 + 24, 1049364)
 		while true do
-			loc_5 = add_i32(loc_4, 8)
-			if load_i32(memory_at_0, loc_5) == 0 then
+			loc_2 = add_i32(loc_4, 8)
+			if load_i32(memory_at_0, loc_2) == 0 then
 				while true do
 					store_i32(memory_at_0, add_i32(loc_0, 76), 10)
-					store_i32(memory_at_0, add_i32(loc_0, 68), 10)
-					store_i64(memory_at_0, add_i32(loc_0, 100), i64_from_u32(3, 0))
+					loc_2 = add_i32(loc_0, 56)
+					store_i32(memory_at_0, add_i32(loc_2, 12), 10)
+					loc_4 = add_i32(loc_0, 88)
+					store_i64(memory_at_0, add_i32(loc_4, 12), i64_from_u32(3, 0))
 					store_i32(memory_at_0, loc_0 + 92, 3)
 					store_i32(memory_at_0, loc_0 + 88, 1049416)
 					store_i32(memory_at_0, loc_0 + 60, 11)
-					store_i32(memory_at_0, loc_0 + 96, add_i32(loc_0, 56))
+					store_i32(memory_at_0, loc_0 + 96, loc_2)
 					store_i32(memory_at_0, loc_0 + 72, add_i32(loc_0, 16))
 					store_i32(memory_at_0, loc_0 + 64, add_i32(loc_0, 8))
 					desired = 1
@@ -16705,24 +16811,27 @@ FUNC_LIST[36] = function()
 					break
 				end
 			end
-			store_i64(memory_at_0, add_i32(loc_0, 48), load_i64(memory_at_0, add_i32(loc_5, 16)))
-			store_i64(memory_at_0, add_i32(loc_0, 40), load_i64(memory_at_0, add_i32(loc_5, 8)))
-			store_i64(memory_at_0, loc_0 + 32, load_i64(memory_at_0, loc_5))
-			store_i64(memory_at_0, add_i32(loc_0, 100), i64_from_u32(4, 0))
+			loc_5 = add_i32(loc_0, 32)
+			store_i64(memory_at_0, add_i32(loc_5, 16), load_i64(memory_at_0, add_i32(loc_2, 16)))
+			store_i64(memory_at_0, add_i32(loc_5, 8), load_i64(memory_at_0, add_i32(loc_2, 8)))
+			store_i64(memory_at_0, loc_0 + 32, load_i64(memory_at_0, loc_2))
+			loc_4 = add_i32(loc_0, 88)
+			store_i64(memory_at_0, add_i32(loc_4, 12), i64_from_u32(4, 0))
 			store_i32(memory_at_0, add_i32(loc_0, 84), 10)
 			store_i32(memory_at_0, add_i32(loc_0, 76), 10)
-			store_i32(memory_at_0, add_i32(loc_0, 68), 17)
+			loc_2 = add_i32(loc_0, 56)
+			store_i32(memory_at_0, add_i32(loc_2, 12), 17)
 			store_i32(memory_at_0, loc_0 + 92, 4)
 			store_i32(memory_at_0, loc_0 + 88, 1049468)
 			store_i32(memory_at_0, loc_0 + 60, 11)
-			store_i32(memory_at_0, loc_0 + 96, add_i32(loc_0, 56))
+			store_i32(memory_at_0, loc_0 + 96, loc_2)
 			store_i32(memory_at_0, loc_0 + 80, add_i32(loc_0, 16))
 			store_i32(memory_at_0, loc_0 + 72, add_i32(loc_0, 8))
-			store_i32(memory_at_0, loc_0 + 64, add_i32(loc_0, 32))
+			store_i32(memory_at_0, loc_0 + 64, loc_5)
 			break
 		end
 		store_i32(memory_at_0, loc_0 + 56, add_i32(loc_0, 24))
-		FUNC_LIST[20](add_i32(loc_0, 88), 1069340)
+		FUNC_LIST[20](loc_4, 1069340)
 		error("out of code bounds")
 	end
 end
@@ -16733,15 +16842,17 @@ FUNC_LIST[37] = function(loc_0, loc_1, loc_2)
 		GLOBAL_LIST[0].value = loc_3
 		store_i32(memory_at_0, loc_3, loc_0)
 		store_i32(memory_at_0, loc_3 + 4, loc_1)
-		store_i64(memory_at_0, add_i32(loc_3, 20), i64_from_u32(2, 0))
-		store_i32(memory_at_0, add_i32(loc_3, 44), 3)
+		loc_0 = add_i32(loc_3, 8)
+		store_i64(memory_at_0, add_i32(loc_0, 12), i64_from_u32(2, 0))
+		loc_1 = add_i32(loc_3, 32)
+		store_i32(memory_at_0, add_i32(loc_1, 12), 3)
 		store_i32(memory_at_0, loc_3 + 12, 2)
 		store_i32(memory_at_0, loc_3 + 8, 1049932)
 		store_i32(memory_at_0, loc_3 + 36, 3)
-		store_i32(memory_at_0, loc_3 + 16, add_i32(loc_3, 32))
+		store_i32(memory_at_0, loc_3 + 16, loc_1)
 		store_i32(memory_at_0, loc_3 + 40, add_i32(loc_3, 4))
 		store_i32(memory_at_0, loc_3 + 32, loc_3)
-		FUNC_LIST[20](add_i32(loc_3, 8), loc_2)
+		FUNC_LIST[20](loc_0, loc_2)
 		error("out of code bounds")
 	end
 end
@@ -16752,23 +16863,25 @@ FUNC_LIST[38] = function(loc_0, loc_1, loc_2)
 		GLOBAL_LIST[0].value = loc_3
 		store_i32(memory_at_0, loc_3, loc_0)
 		store_i32(memory_at_0, loc_3 + 4, loc_1)
-		store_i64(memory_at_0, add_i32(loc_3, 20), i64_from_u32(2, 0))
-		store_i32(memory_at_0, add_i32(loc_3, 44), 3)
+		loc_0 = add_i32(loc_3, 8)
+		store_i64(memory_at_0, add_i32(loc_0, 12), i64_from_u32(2, 0))
+		loc_1 = add_i32(loc_3, 32)
+		store_i32(memory_at_0, add_i32(loc_1, 12), 3)
 		store_i32(memory_at_0, loc_3 + 12, 2)
 		store_i32(memory_at_0, loc_3 + 8, 1049964)
 		store_i32(memory_at_0, loc_3 + 36, 3)
-		store_i32(memory_at_0, loc_3 + 16, add_i32(loc_3, 32))
+		store_i32(memory_at_0, loc_3 + 16, loc_1)
 		store_i32(memory_at_0, loc_3 + 40, add_i32(loc_3, 4))
 		store_i32(memory_at_0, loc_3 + 32, loc_3)
-		FUNC_LIST[20](add_i32(loc_3, 8), loc_2)
+		FUNC_LIST[20](loc_0, loc_2)
 		error("out of code bounds")
 	end
 end
 FUNC_LIST[39] = function(loc_0, loc_1)
 	local loc_2 = 0
 	local loc_3 = 0
-	local loc_4 = 0
-	local loc_5 = i64_ZERO
+	local loc_4 = i64_ZERO
+	local loc_5 = 0
 	local loc_6 = i64_ZERO
 	local loc_7 = i64_ZERO
 	local reg_0
@@ -16794,17 +16907,17 @@ FUNC_LIST[39] = function(loc_0, loc_1)
 				store_i64(memory_at_0, loc_0, i64_from_u32(1, 1))
 				store_i32(memory_at_0, loc_0 + 20, 5)
 				store_i32(memory_at_0, add_i32(loc_0, 16), loc_2)
-				loc_5 = load_i64(memory_at_0, 1078088)
+				loc_4 = load_i64(memory_at_0, 1078088)
 				while true do
-					loc_6 = add_i64(loc_5, i64_ONE)
+					loc_6 = add_i64(loc_4, i64_ONE)
 					if eq_i64(loc_6, i64_ZERO) then
 						desired = 1
 						break
 					end
-					loc_7 = load_i64(memory_at_0, 1078088)
-					loc_2 = (if eq_i64(loc_5, loc_7) then 1 else 0)
-					store_i64(memory_at_0, 1078088, (if loc_2 ~= 0 then loc_6 else loc_7))
-					loc_5 = loc_7
+					loc_7 = loc_4
+					loc_4 = load_i64(memory_at_0, 1078088)
+					loc_2 = (if eq_i64(loc_7, loc_4) then 1 else 0)
+					store_i64(memory_at_0, 1078088, (if loc_2 ~= 0 then loc_6 else loc_4))
 					if loc_2 == 0 then
 						continue
 					end
@@ -16885,10 +16998,10 @@ FUNC_LIST[39] = function(loc_0, loc_1)
 																		while true do
 																			while true do
 																				while true do
-																					loc_4 = load_i32_u8(memory_at_0, 1078072)
-																					if loc_4 >= 2 then
+																					loc_5 = load_i32_u8(memory_at_0, 1078072)
+																					if loc_5 >= 2 then
 																						while true do
-																							if sub_i32(loc_4, 3) ~= 0 then
+																							if sub_i32(loc_5, 3) ~= 0 then
 																								desired = 15
 																								break
 																							end
@@ -16903,14 +17016,14 @@ FUNC_LIST[39] = function(loc_0, loc_1)
 																						end
 																					end
 																					store_i32_n8(memory_at_0, 1078072, 2)
-																					loc_4 = load_i32(memory_at_0, loc_3)
+																					loc_5 = load_i32(memory_at_0, loc_3)
 																					store_i32(memory_at_0, loc_3, 0)
-																					if loc_4 == 0 then
+																					if loc_5 == 0 then
 																						desired = 16
 																						break
 																					end
 																					loc_3 = load_i32(memory_at_0, loc_3 + 4)
-																					store_i32_n8(memory_at_0, loc_4, 1)
+																					store_i32_n8(memory_at_0, loc_5, 1)
 																					store_i64(memory_at_0, add_i32(loc_3, 8), i64_ZERO)
 																					store_i64(memory_at_0, loc_3, i64_ZERO)
 																					store_i32_n8(memory_at_0, loc_3 + 28, 0)
@@ -17161,7 +17274,6 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 	local loc_3 = 0
 	local loc_4 = 0
 	local loc_5 = 0
-	local reg_0
 	local desired
 	while true do
 		loc_2 = load_i32(memory_at_0, loc_0 + 12)
@@ -17169,14 +17281,14 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 			while true do
 				if loc_1 >= 256 then
 					while true do
-						loc_3 = load_i32(memory_at_0, loc_0 + 24)
+						loc_4 = load_i32(memory_at_0, loc_0 + 24)
 						while true do
 							while true do
 								if loc_0 == loc_2 then
 									while true do
 										loc_2 = add_i32(loc_0, 20)
-										loc_4 = load_i32(memory_at_0, loc_2)
-										loc_1 = load_i32(memory_at_0, add_i32(loc_0, (if loc_4 ~= 0 then 20 else 16)))
+										loc_3 = load_i32(memory_at_0, loc_2)
+										loc_1 = load_i32(memory_at_0, add_i32(loc_0, (if loc_3 ~= 0 then 20 else 16)))
 										if loc_1 ~= 0 then
 											desired = 5
 											break
@@ -17204,14 +17316,13 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 								end
 								break
 							end
-							loc_4 = (if loc_4 ~= 0 then loc_2 else add_i32(loc_0, 16))
+							loc_3 = (if loc_3 ~= 0 then loc_2 else add_i32(loc_0, 16))
 							while true do
-								loc_5 = loc_4
+								loc_5 = loc_3
 								loc_2 = loc_1
-								loc_1 = add_i32(loc_2, 20)
-								reg_0 = loc_1
-								loc_1 = load_i32(memory_at_0, loc_1)
-								loc_4 = (if loc_1 ~= 0 then reg_0 else add_i32(loc_2, 16))
+								loc_3 = add_i32(loc_2, 20)
+								loc_1 = load_i32(memory_at_0, loc_3)
+								loc_3 = (if loc_1 ~= 0 then loc_3 else add_i32(loc_2, 16))
 								loc_1 = load_i32(memory_at_0, add_i32(loc_2, (if loc_1 ~= 0 then 20 else 16)))
 								if loc_1 ~= 0 then
 									continue
@@ -17230,14 +17341,14 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 						if desired then
 							break
 						end
-						if loc_3 == 0 then
+						if loc_4 == 0 then
 							desired = 1
 							break
 						end
 						loc_1 = add_i32(shl_i32(load_i32(memory_at_0, loc_0 + 28), 2), 1078096)
 						if loc_0 ~= load_i32(memory_at_0, loc_1) then
 							while true do
-								store_i32(memory_at_0, add_i32(loc_3, (if load_i32(memory_at_0, loc_3 + 16) == loc_0 then 16 else 20)), loc_2)
+								store_i32(memory_at_0, add_i32(loc_4, (if load_i32(memory_at_0, loc_4 + 16) == loc_0 then 16 else 20)), loc_2)
 								if loc_2 == 0 then
 									desired = 1
 									break
@@ -17266,7 +17377,7 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 					end
 				end
 				loc_0 = load_i32(memory_at_0, loc_0 + 8)
-				if loc_0 ~= loc_2 then
+				if loc_2 ~= loc_0 then
 					while true do
 						store_i32(memory_at_0, loc_0 + 12, loc_2)
 						store_i32(memory_at_0, loc_2 + 8, loc_0)
@@ -17290,7 +17401,7 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 				end
 				break
 			end
-			store_i32(memory_at_0, loc_2 + 24, loc_3)
+			store_i32(memory_at_0, loc_2 + 24, loc_4)
 			loc_1 = load_i32(memory_at_0, loc_0 + 16)
 			if loc_1 ~= 0 then
 				while true do
@@ -17885,7 +17996,7 @@ FUNC_LIST[44] = function(loc_0, loc_1, loc_2)
 									loc_5 = add_i32(loc_5, 1)
 									loc_0 = add_i32(loc_0, 8)
 									loc_1 = add_i32(loc_1, 8)
-									if loc_1 ~= loc_4 then
+									if loc_4 ~= loc_1 then
 										continue
 									end
 									break
@@ -17962,7 +18073,7 @@ FUNC_LIST[44] = function(loc_0, loc_1, loc_2)
 										end
 										break
 									end
-									loc_13 = add_i32(shl_i32(loc_7, 3), loc_6)
+									loc_13 = add_i32(loc_6, shl_i32(loc_7, 3))
 									if load_i32(memory_at_0, loc_13 + 4) ~= 16 then
 										desired = 6
 										break
@@ -18014,7 +18125,7 @@ FUNC_LIST[44] = function(loc_0, loc_1, loc_2)
 										end
 										break
 									end
-									loc_7 = add_i32(shl_i32(loc_4, 3), loc_6)
+									loc_7 = add_i32(loc_6, shl_i32(loc_4, 3))
 									if load_i32(memory_at_0, loc_7 + 4) ~= 16 then
 										desired = 6
 										break
@@ -18193,8 +18304,9 @@ FUNC_LIST[48] = function(loc_0, loc_1)
 							break
 						end
 					end
+					loc_5 = load_i32(memory_at_0, loc_0)
 					loc_2 = load_i32(memory_at_0, loc_0 + 8)
-					if loc_2 == load_i32(memory_at_0, loc_0) then
+					if loc_5 == loc_2 then
 						while true do
 							loc_4 = sub_i32(GLOBAL_LIST[0].value, 32)
 							GLOBAL_LIST[0].value = loc_4
@@ -18204,13 +18316,12 @@ FUNC_LIST[48] = function(loc_0, loc_1)
 									if loc_2 == 0 then
 										break
 									end
-									loc_6 = load_i32(memory_at_0, loc_0)
-									loc_5 = shl_i32(loc_6, 1)
-									loc_2 = (if loc_2 < loc_5 then loc_5 else loc_2)
-									loc_5 = (if loc_2 <= 8 then 8 else loc_2)
-									loc_2 = shr_u32(bxor_i32(loc_5, 4294967295), 31)
+									loc_6 = shl_i32(loc_5, 1)
+									loc_2 = (if loc_2 < loc_6 then loc_6 else loc_2)
+									loc_2 = (if loc_2 <= 8 then 8 else loc_2)
+									loc_6 = shr_u32(bxor_i32(loc_2, 4294967295), 31)
 									while true do
-										if loc_6 == 0 then
+										if loc_5 == 0 then
 											while true do
 												store_i32(memory_at_0, loc_4 + 24, 0)
 												desired = 7
@@ -18223,7 +18334,7 @@ FUNC_LIST[48] = function(loc_0, loc_1)
 												break
 											end
 										end
-										store_i32(memory_at_0, loc_4 + 28, loc_6)
+										store_i32(memory_at_0, loc_4 + 28, loc_5)
 										store_i32(memory_at_0, loc_4 + 24, 1)
 										store_i32(memory_at_0, loc_4 + 20, load_i32(memory_at_0, loc_0 + 4))
 										break
@@ -18234,12 +18345,12 @@ FUNC_LIST[48] = function(loc_0, loc_1)
 										end
 										break
 									end
-									FUNC_LIST[43](add_i32(loc_4, 8), loc_2, loc_5, add_i32(loc_4, 20))
-									loc_2 = load_i32(memory_at_0, loc_4 + 12)
+									FUNC_LIST[43](add_i32(loc_4, 8), loc_6, loc_2, add_i32(loc_4, 20))
+									loc_5 = load_i32(memory_at_0, loc_4 + 12)
 									if load_i32(memory_at_0, loc_4 + 8) == 0 then
 										while true do
-											store_i32(memory_at_0, loc_0, loc_5)
-											store_i32(memory_at_0, loc_0 + 4, loc_2)
+											store_i32(memory_at_0, loc_0, loc_2)
+											store_i32(memory_at_0, loc_0 + 4, loc_5)
 											desired = 5
 											break
 										end
@@ -18250,11 +18361,11 @@ FUNC_LIST[48] = function(loc_0, loc_1)
 											break
 										end
 									end
-									if loc_2 == 2147483649 then
+									if loc_5 == 2147483649 then
 										desired = 5
 										break
 									end
-									if loc_2 == 0 then
+									if loc_5 == 0 then
 										break
 									end
 									error("out of code bounds")
@@ -18366,6 +18477,7 @@ FUNC_LIST[53] = function(loc_0, loc_1, loc_2)
 	local loc_7 = 0
 	local loc_8 = 0
 	local reg_0
+	local reg_1
 	local desired
 	while true do
 		loc_5 = sub_i32(GLOBAL_LIST[0].value, 48)
@@ -18412,9 +18524,9 @@ FUNC_LIST[53] = function(loc_0, loc_1, loc_2)
 		if loc_4 > 99 then
 			while true do
 				loc_3 = sub_i32(loc_3, 2)
-				loc_7 = wrap_i32_i64(loc_6)
-				loc_4 = div_u32(band_i32(loc_7, 65535), 100)
-				store_i32_n16(memory_at_0, add_i32(loc_3, add_i32(loc_5, 9)), load_i32_u16(memory_at_0, add_i32(shl_i32(band_i32(add_i32(mul_i32(loc_4, 4294967196), loc_7), 65535), 1), 1049590)))
+				reg_1 = loc_4
+				loc_4 = div_u32(band_i32(loc_4, 65535), 100)
+				store_i32_n16(memory_at_0, add_i32(loc_3, add_i32(loc_5, 9)), load_i32_u16(memory_at_0, add_i32(shl_i32(band_i32(add_i32(reg_1, mul_i32(loc_4, 4294967196)), 65535), 1), 1049590)))
 				break
 			end
 		end
@@ -18859,7 +18971,6 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 	local loc_10 = 0
 	local loc_11 = 0
 	local loc_12 = 0
-	local loc_13 = 0
 	local reg_0
 	local desired
 	local br_map = {}
@@ -18893,7 +19004,7 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 											loc_7 = load_i32_i8(memory_at_0, loc_3)
 											if ge_i32(loc_7, 0) then
 												while true do
-													loc_7 = band_i32(loc_7, 255)
+													loc_8 = band_i32(loc_7, 255)
 													reg_0 = add_i32(loc_3, 1)
 													desired = 8
 													break
@@ -18909,7 +19020,7 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 											loc_4 = band_i32(loc_7, 31)
 											if loc_7 <= 4294967263 then
 												while true do
-													loc_7 = bor_i32(shl_i32(loc_4, 6), loc_8)
+													loc_8 = bor_i32(shl_i32(loc_4, 6), loc_8)
 													reg_0 = add_i32(loc_3, 2)
 													desired = 8
 													break
@@ -18924,7 +19035,7 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 											loc_8 = bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 2), 63), shl_i32(loc_8, 6))
 											if loc_7 < 4294967280 then
 												while true do
-													loc_7 = bor_i32(loc_8, shl_i32(loc_4, 12))
+													loc_8 = bor_i32(loc_8, shl_i32(loc_4, 12))
 													reg_0 = add_i32(loc_3, 3)
 													desired = 8
 													break
@@ -18936,8 +19047,8 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 													break
 												end
 											end
-											loc_7 = bor_i32(band_i32(shl_i32(loc_4, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 3), 63), shl_i32(loc_8, 6)))
-											if loc_7 == 1114112 then
+											loc_8 = bor_i32(band_i32(shl_i32(loc_4, 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 3), 63), shl_i32(loc_8, 6)))
+											if loc_8 == 1114112 then
 												desired = 5
 												break
 											end
@@ -18952,7 +19063,7 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 										end
 										loc_4 = reg_0
 										loc_5 = add_i32(loc_4, sub_i32(loc_5, loc_3))
-										if loc_7 ~= 1114112 then
+										if loc_8 ~= 1114112 then
 											desired = 6
 											break
 										end
@@ -18977,21 +19088,28 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 								if loc_3 == loc_9 then
 									break
 								end
-								loc_4 = load_i32_i8(memory_at_0, loc_3)
-								if bor_i32(bor_i32((if ge_i32(loc_4, 0) then 1 else 0), (if loc_4 < 4294967264 then 1 else 0)), (if loc_4 < 4294967280 then 1 else 0)) == 0 then
-									while true do
-										if bor_i32(band_i32(shl_i32(band_i32(loc_4, 255), 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 3), 63), bor_i32(shl_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 2), 63), 6), shl_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 1), 63), 12)))) == 1114112 then
-											desired = 5
-											break
-										end
+								while true do
+									loc_4 = load_i32_i8(memory_at_0, loc_3)
+									if ge_i32(loc_4, 0) then
 										break
 									end
-									if desired then
-										if desired == 5 then
-											desired = nil
-										end
+									if loc_4 < 4294967264 then
 										break
 									end
+									if loc_4 < 4294967280 then
+										break
+									end
+									if bor_i32(band_i32(shl_i32(band_i32(loc_4, 255), 18), 1835008), bor_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 3), 63), bor_i32(shl_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 2), 63), 6), shl_i32(band_i32(load_i32_u8(memory_at_0, loc_3 + 1), 63), 12)))) == 1114112 then
+										desired = 5
+										break
+									end
+									break
+								end
+								if desired then
+									if desired == 5 then
+										desired = nil
+									end
+									break
 								end
 								while true do
 									while true do
@@ -19051,15 +19169,15 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 							loc_11 = load_i32(memory_at_0, loc_0 + 4)
 							if loc_2 >= 16 then
 								while true do
-									loc_7 = band_i32(add_i32(loc_1, 3), 4294967292)
-									loc_6 = sub_i32(loc_1, loc_7)
-									loc_10 = add_i32(loc_2, loc_6)
-									loc_8 = band_i32(loc_10, 3)
-									loc_9 = 0
+									loc_8 = band_i32(add_i32(loc_1, 3), 4294967292)
+									loc_6 = sub_i32(loc_1, loc_8)
+									loc_10 = add_i32(loc_6, loc_2)
+									loc_9 = band_i32(loc_10, 3)
+									loc_7 = 0
 									loc_3 = 0
-									if loc_1 ~= loc_7 then
+									if loc_1 ~= loc_8 then
 										while true do
-											if add_i32(loc_7, bxor_i32(loc_1, 4294967295)) >= 3 then
+											if add_i32(loc_8, bxor_i32(loc_1, 4294967295)) >= 3 then
 												while true do
 													loc_5 = 0
 													while true do
@@ -19100,39 +19218,39 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 										end
 									end
 									while true do
-										if loc_8 == 0 then
+										if loc_9 == 0 then
 											break
 										end
-										loc_4 = add_i32(loc_7, band_i32(loc_10, 4294967292))
-										loc_9 = (if gt_i32(load_i32_i8(memory_at_0, loc_4), 4294967231) then 1 else 0)
-										if loc_8 == 1 then
+										loc_4 = add_i32(loc_8, band_i32(loc_10, 4294967292))
+										loc_7 = (if gt_i32(load_i32_i8(memory_at_0, loc_4), 4294967231) then 1 else 0)
+										if loc_9 == 1 then
 											break
 										end
-										loc_9 = add_i32(loc_9, (if gt_i32(load_i32_i8(memory_at_0, loc_4 + 1), 4294967231) then 1 else 0))
-										if loc_8 == 2 then
+										loc_7 = add_i32(loc_7, (if gt_i32(load_i32_i8(memory_at_0, loc_4 + 1), 4294967231) then 1 else 0))
+										if loc_9 == 2 then
 											break
 										end
-										loc_9 = add_i32(loc_9, (if gt_i32(load_i32_i8(memory_at_0, loc_4 + 2), 4294967231) then 1 else 0))
+										loc_7 = add_i32(loc_7, (if gt_i32(load_i32_i8(memory_at_0, loc_4 + 2), 4294967231) then 1 else 0))
 										break
 									end
 									if desired then
 										break
 									end
 									loc_5 = shr_u32(loc_10, 2)
-									loc_6 = add_i32(loc_3, loc_9)
+									loc_6 = add_i32(loc_3, loc_7)
 									while true do
-										loc_9 = loc_7
+										loc_7 = loc_8
 										if loc_5 == 0 then
 											desired = 2
 											break
 										end
-										loc_8 = (if loc_5 >= 192 then 192 else loc_5)
-										loc_10 = band_i32(loc_8, 3)
-										loc_12 = shl_i32(loc_8, 2)
+										loc_9 = (if loc_5 >= 192 then 192 else loc_5)
+										loc_10 = band_i32(loc_9, 3)
+										loc_8 = shl_i32(loc_9, 2)
 										loc_4 = 0
-										if loc_8 >= 4 then
+										if loc_9 >= 4 then
 											while true do
-												loc_13 = add_i32(loc_7, band_i32(loc_12, 1008))
+												loc_12 = add_i32(loc_7, band_i32(loc_8, 1008))
 												loc_3 = loc_7
 												while true do
 													reg_0 = loc_4
@@ -19145,7 +19263,7 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 													loc_4 = load_i32(memory_at_0, add_i32(loc_3, 12))
 													loc_4 = add_i32(reg_0, band_i32(bor_i32(shr_u32(bxor_i32(loc_4, 4294967295), 7), shr_u32(loc_4, 6)), 16843009))
 													loc_3 = add_i32(loc_3, 16)
-													if loc_3 ~= loc_13 then
+													if loc_12 ~= loc_3 then
 														continue
 													end
 													break
@@ -19163,8 +19281,8 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 												break
 											end
 										end
-										loc_5 = sub_i32(loc_5, loc_8)
-										loc_7 = add_i32(loc_9, loc_12)
+										loc_5 = sub_i32(loc_5, loc_9)
+										loc_8 = add_i32(loc_7, loc_8)
 										loc_6 = add_i32(shr_u32(mul_i32(add_i32(band_i32(shr_u32(loc_4, 8), 16711935), band_i32(loc_4, 16711935)), 65537), 16), loc_6)
 										if loc_10 == 0 then
 											continue
@@ -19174,7 +19292,7 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 									if desired then
 										break
 									end
-									loc_4 = add_i32(loc_9, shl_i32(band_i32(loc_8, 252), 2))
+									loc_4 = add_i32(loc_7, shl_i32(band_i32(loc_9, 252), 2))
 									loc_3 = load_i32(memory_at_0, loc_4)
 									loc_3 = band_i32(bor_i32(shr_u32(bxor_i32(loc_3, 4294967295), 7), shr_u32(loc_3, 6)), 16843009)
 									if loc_10 == 1 then
@@ -19378,7 +19496,7 @@ FUNC_LIST[56] = function(loc_0, loc_1, loc_2)
 			reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, loc_4 + 12)](loc_0, loc_1, loc_2)
 			if reg_0 ~= 0 then
 				while true do
-					reg_0 = loc_3
+					reg_0 = 1
 					break
 				end
 				if desired then
@@ -19500,9 +19618,9 @@ FUNC_LIST[60] = function(loc_0, loc_1)
 						loc_2 = 127
 						while true do
 							loc_3 = loc_2
-							loc_5 = add_i32(loc_4, loc_3)
+							loc_5 = add_i32(loc_3, loc_4)
 							loc_2 = band_i32(loc_0, 15)
-							store_i32_n8(memory_at_0, loc_5, add_i32((if loc_2 < 10 then 48 else 87), loc_2))
+							store_i32_n8(memory_at_0, loc_5, add_i32(loc_2, (if loc_2 < 10 then 48 else 87)))
 							loc_2 = sub_i32(loc_3, 1)
 							loc_6 = (if loc_0 < 16 then 1 else 0)
 							loc_0 = shr_u32(loc_0, 4)
@@ -19534,9 +19652,9 @@ FUNC_LIST[60] = function(loc_0, loc_1)
 					loc_2 = 127
 					while true do
 						loc_3 = loc_2
-						loc_5 = add_i32(loc_4, loc_3)
+						loc_5 = add_i32(loc_3, loc_4)
 						loc_2 = band_i32(loc_0, 15)
-						store_i32_n8(memory_at_0, loc_5, add_i32((if loc_2 < 10 then 48 else 55), loc_2))
+						store_i32_n8(memory_at_0, loc_5, add_i32(loc_2, (if loc_2 < 10 then 48 else 55)))
 						loc_2 = sub_i32(loc_3, 1)
 						loc_6 = (if loc_0 < 16 then 1 else 0)
 						loc_0 = shr_u32(loc_0, 4)
@@ -19597,15 +19715,17 @@ FUNC_LIST[61] = function(loc_0, loc_1, loc_2)
 		GLOBAL_LIST[0].value = loc_3
 		store_i32(memory_at_0, loc_3, loc_0)
 		store_i32(memory_at_0, loc_3 + 4, loc_1)
-		store_i64(memory_at_0, add_i32(loc_3, 20), i64_from_u32(2, 0))
-		store_i32(memory_at_0, add_i32(loc_3, 44), 3)
+		loc_0 = add_i32(loc_3, 8)
+		store_i64(memory_at_0, add_i32(loc_0, 12), i64_from_u32(2, 0))
+		loc_1 = add_i32(loc_3, 32)
+		store_i32(memory_at_0, add_i32(loc_1, 12), 3)
 		store_i32(memory_at_0, loc_3 + 12, 2)
 		store_i32(memory_at_0, loc_3 + 8, 1050016)
 		store_i32(memory_at_0, loc_3 + 36, 3)
-		store_i32(memory_at_0, loc_3 + 16, add_i32(loc_3, 32))
+		store_i32(memory_at_0, loc_3 + 16, loc_1)
 		store_i32(memory_at_0, loc_3 + 40, add_i32(loc_3, 4))
 		store_i32(memory_at_0, loc_3 + 32, loc_3)
-		FUNC_LIST[20](add_i32(loc_3, 8), loc_2)
+		FUNC_LIST[20](loc_0, loc_2)
 		error("out of code bounds")
 	end
 end
@@ -19635,34 +19755,34 @@ FUNC_LIST[64] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 	local reg_0
 	local desired
 	while true do
-		loc_5 = add_i32(GLOBAL_LIST[0].value, 4294967232)
-		GLOBAL_LIST[0].value = loc_5
+		loc_6 = add_i32(GLOBAL_LIST[0].value, 4294967232)
+		GLOBAL_LIST[0].value = loc_6
 		loc_7 = 1
 		while true do
 			if load_i32_u8(memory_at_0, loc_0 + 4) ~= 0 then
 				break
 			end
-			loc_9 = load_i32_u8(memory_at_0, loc_0 + 5)
-			loc_6 = load_i32(memory_at_0, loc_0)
-			loc_8 = load_i32(memory_at_0, loc_6 + 28)
-			if band_i32(loc_8, 4) == 0 then
+			loc_8 = load_i32_u8(memory_at_0, loc_0 + 5)
+			loc_5 = load_i32(memory_at_0, loc_0)
+			loc_9 = load_i32(memory_at_0, loc_5 + 28)
+			if band_i32(loc_9, 4) == 0 then
 				while true do
-					reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, load_i32(memory_at_0, add_i32(loc_6, 24)) + 12)](load_i32(memory_at_0, loc_6 + 20), (if loc_9 ~= 0 then 1049531 else 1049528), (if loc_9 ~= 0 then 2 else 3))
+					reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, load_i32(memory_at_0, add_i32(loc_5, 24)) + 12)](load_i32(memory_at_0, loc_5 + 20), (if loc_8 ~= 0 then 1049531 else 1049528), (if loc_8 ~= 0 then 2 else 3))
 					if reg_0 ~= 0 then
 						desired = 1
 						break
 					end
-					reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, load_i32(memory_at_0, loc_6 + 24) + 12)](load_i32(memory_at_0, loc_6 + 20), loc_1, loc_2)
+					reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, load_i32(memory_at_0, loc_5 + 24) + 12)](load_i32(memory_at_0, loc_5 + 20), loc_1, loc_2)
 					if reg_0 ~= 0 then
 						desired = 1
 						break
 					end
-					reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, load_i32(memory_at_0, loc_6 + 24) + 12)](load_i32(memory_at_0, loc_6 + 20), 1064448, 2)
+					reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, load_i32(memory_at_0, loc_5 + 24) + 12)](load_i32(memory_at_0, loc_5 + 20), 1064448, 2)
 					if reg_0 ~= 0 then
 						desired = 1
 						break
 					end
-					reg_0 = TABLE_LIST[0].data[loc_4](loc_3, loc_6)
+					reg_0 = TABLE_LIST[0].data[loc_4](loc_3, loc_5)
 					loc_7 = reg_0
 					desired = 1
 					break
@@ -19674,14 +19794,14 @@ FUNC_LIST[64] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 					break
 				end
 			end
-			if loc_9 == 0 then
+			if loc_8 == 0 then
 				while true do
-					reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, load_i32(memory_at_0, add_i32(loc_6, 24)) + 12)](load_i32(memory_at_0, loc_6 + 20), 1049533, 3)
+					reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, load_i32(memory_at_0, add_i32(loc_5, 24)) + 12)](load_i32(memory_at_0, loc_5 + 20), 1049533, 3)
 					if reg_0 ~= 0 then
 						desired = 1
 						break
 					end
-					loc_8 = load_i32(memory_at_0, loc_6 + 28)
+					loc_9 = load_i32(memory_at_0, loc_5 + 28)
 					break
 				end
 				if desired then
@@ -19691,37 +19811,37 @@ FUNC_LIST[64] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 					break
 				end
 			end
-			store_i32_n8(memory_at_0, loc_5 + 27, 1)
-			store_i32(memory_at_0, add_i32(loc_5, 52), 1049500)
-			store_i64(memory_at_0, loc_5 + 12, load_i64(memory_at_0, loc_6 + 20))
-			store_i32(memory_at_0, loc_5 + 20, add_i32(loc_5, 27))
-			store_i64(memory_at_0, loc_5 + 36, load_i64(memory_at_0, loc_6 + 8))
-			loc_10 = load_i64(memory_at_0, loc_6)
-			store_i32(memory_at_0, loc_5 + 56, loc_8)
-			store_i32(memory_at_0, loc_5 + 44, load_i32(memory_at_0, loc_6 + 16))
-			store_i32_n8(memory_at_0, loc_5 + 60, load_i32_u8(memory_at_0, loc_6 + 32))
-			store_i64(memory_at_0, loc_5 + 28, loc_10)
-			loc_8 = add_i32(loc_5, 12)
-			store_i32(memory_at_0, loc_5 + 48, loc_8)
-			reg_0 = FUNC_LIST[65](loc_8, loc_1, loc_2)
+			store_i32_n8(memory_at_0, loc_6 + 27, 1)
+			store_i32(memory_at_0, add_i32(loc_6, 52), 1049500)
+			store_i64(memory_at_0, loc_6 + 12, load_i64(memory_at_0, loc_5 + 20))
+			store_i32(memory_at_0, loc_6 + 20, add_i32(loc_6, 27))
+			store_i64(memory_at_0, loc_6 + 36, load_i64(memory_at_0, loc_5 + 8))
+			loc_10 = load_i64(memory_at_0, loc_5)
+			store_i32(memory_at_0, loc_6 + 56, loc_9)
+			store_i32(memory_at_0, loc_6 + 44, load_i32(memory_at_0, loc_5 + 16))
+			store_i32_n8(memory_at_0, loc_6 + 60, load_i32_u8(memory_at_0, loc_5 + 32))
+			store_i64(memory_at_0, loc_6 + 28, loc_10)
+			loc_5 = add_i32(loc_6, 12)
+			store_i32(memory_at_0, loc_6 + 48, loc_5)
+			reg_0 = FUNC_LIST[65](loc_5, loc_1, loc_2)
 			if reg_0 ~= 0 then
 				break
 			end
-			reg_0 = FUNC_LIST[65](loc_8, 1064448, 2)
+			reg_0 = FUNC_LIST[65](loc_5, 1064448, 2)
 			if reg_0 ~= 0 then
 				break
 			end
-			reg_0 = TABLE_LIST[0].data[loc_4](loc_3, add_i32(loc_5, 28))
+			reg_0 = TABLE_LIST[0].data[loc_4](loc_3, add_i32(loc_6, 28))
 			if reg_0 ~= 0 then
 				break
 			end
-			reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, load_i32(memory_at_0, loc_5 + 52) + 12)](load_i32(memory_at_0, loc_5 + 48), 1049536, 2)
+			reg_0 = TABLE_LIST[0].data[load_i32(memory_at_0, load_i32(memory_at_0, loc_6 + 52) + 12)](load_i32(memory_at_0, loc_6 + 48), 1049536, 2)
 			loc_7 = reg_0
 			break
 		end
 		store_i32_n8(memory_at_0, loc_0 + 5, 1)
 		store_i32_n8(memory_at_0, loc_0 + 4, loc_7)
-		GLOBAL_LIST[0].value = sub_i32(loc_5, 4294967232)
+		GLOBAL_LIST[0].value = sub_i32(loc_6, 4294967232)
 		reg_0 = loc_0
 		break
 	end
@@ -19748,22 +19868,22 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 		loc_12 = load_i32(memory_at_0, loc_0 + 8)
 		while true do
 			while true do
-				if loc_4 ~= 0 then
+				if loc_3 ~= 0 then
 					desired = 1
 					break
 				end
 				while true do
 					while true do
-						if loc_2 < loc_3 then
+						if loc_2 < loc_4 then
 							break
 						end
 						while true do
-							loc_5 = add_i32(loc_1, loc_3)
+							loc_5 = add_i32(loc_1, loc_4)
 							while true do
 								while true do
 									while true do
 										while true do
-											loc_6 = sub_i32(loc_2, loc_3)
+											loc_6 = sub_i32(loc_2, loc_4)
 											if loc_6 >= 8 then
 												while true do
 													loc_0 = band_i32(add_i32(loc_5, 3), 4294967292)
@@ -19771,8 +19891,8 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 														desired = 9
 														break
 													end
-													loc_4 = sub_i32(loc_0, loc_5)
-													if loc_4 == 0 then
+													loc_3 = sub_i32(loc_0, loc_5)
+													if loc_3 == 0 then
 														desired = 9
 														break
 													end
@@ -19783,7 +19903,7 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 															break
 														end
 														loc_0 = add_i32(loc_0, 1)
-														if loc_4 ~= loc_0 then
+														if loc_3 ~= loc_0 then
 															continue
 														end
 														break
@@ -19792,7 +19912,7 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 														break
 													end
 													loc_7 = sub_i32(loc_6, 8)
-													if loc_4 > loc_7 then
+													if loc_7 < loc_3 then
 														desired = 7
 														break
 													end
@@ -19806,9 +19926,9 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 													break
 												end
 											end
-											if loc_2 == loc_3 then
+											if loc_2 == loc_4 then
 												while true do
-													loc_3 = loc_2
+													loc_4 = loc_2
 													desired = 4
 													break
 												end
@@ -19837,7 +19957,7 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 												end
 												break
 											end
-											loc_3 = loc_2
+											loc_4 = loc_2
 											desired = 4
 											break
 										end
@@ -19848,7 +19968,7 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 											break
 										end
 										loc_7 = sub_i32(loc_6, 8)
-										loc_4 = 0
+										loc_3 = 0
 										break
 									end
 									if desired then
@@ -19858,15 +19978,15 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 										break
 									end
 									while true do
-										loc_0 = add_i32(loc_4, loc_5)
+										loc_0 = add_i32(loc_3, loc_5)
 										loc_9 = load_i32(memory_at_0, add_i32(loc_0, 4))
 										loc_0 = load_i32(memory_at_0, loc_0)
 										if band_i32(bor_i32(band_i32(sub_i32(bxor_i32(loc_9, 168430090), 16843009), bxor_i32(loc_9, 4294967295)), band_i32(sub_i32(bxor_i32(loc_0, 168430090), 16843009), bxor_i32(loc_0, 4294967295))), 2155905152) ~= 0 then
 											desired = 7
 											break
 										end
-										loc_4 = add_i32(loc_4, 8)
-										if loc_4 <= loc_7 then
+										loc_3 = add_i32(loc_3, 8)
+										if loc_7 >= loc_3 then
 											continue
 										end
 										break
@@ -19885,9 +20005,9 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 									end
 									break
 								end
-								if loc_4 == loc_6 then
+								if loc_3 == loc_6 then
 									while true do
-										loc_3 = loc_2
+										loc_4 = loc_2
 										desired = 4
 										break
 									end
@@ -19898,8 +20018,8 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 										break
 									end
 								end
-								loc_7 = add_i32(loc_4, loc_5)
-								loc_5 = sub_i32(sub_i32(loc_2, loc_4), loc_3)
+								loc_7 = add_i32(loc_3, loc_5)
+								loc_5 = sub_i32(sub_i32(loc_2, loc_3), loc_4)
 								loc_0 = 0
 								while true do
 									while true do
@@ -19919,7 +20039,7 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 										end
 										break
 									end
-									loc_3 = loc_2
+									loc_4 = loc_2
 									desired = 4
 									break
 								end
@@ -19929,7 +20049,7 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 									end
 									break
 								end
-								loc_0 = add_i32(loc_0, loc_4)
+								loc_0 = add_i32(loc_0, loc_3)
 								break
 							end
 							if desired then
@@ -19939,8 +20059,8 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 								end
 								break
 							end
-							loc_0 = add_i32(loc_0, loc_3)
-							loc_3 = add_i32(loc_0, 1)
+							loc_0 = add_i32(loc_0, loc_4)
+							loc_4 = add_i32(loc_0, 1)
 							while true do
 								if loc_0 >= loc_2 then
 									break
@@ -19948,9 +20068,9 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 								if load_i32_u8(memory_at_0, add_i32(loc_0, loc_1)) ~= 10 then
 									break
 								end
-								loc_4 = 0
-								loc_7 = loc_3
-								loc_0 = loc_3
+								loc_3 = 0
+								loc_7 = loc_4
+								loc_0 = loc_7
 								desired = 3
 								break
 							end
@@ -19961,7 +20081,7 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 								end
 								break
 							end
-							if loc_2 >= loc_3 then
+							if loc_2 >= loc_4 then
 								continue
 							end
 							break
@@ -19980,7 +20100,7 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 						end
 						break
 					end
-					loc_4 = 1
+					loc_3 = 1
 					loc_7 = loc_8
 					loc_0 = loc_2
 					if loc_8 == loc_0 then
@@ -20030,7 +20150,7 @@ FUNC_LIST[65] = function(loc_0, loc_1, loc_2)
 						end
 					else
 						while true do
-							reg_1 = loc_9
+							reg_1 = 0
 							break
 						end
 						if desired then
@@ -20176,7 +20296,7 @@ FUNC_LIST[68] = function(loc_0, loc_1, loc_2)
 						reg_2 = loc_0
 						loc_0 = div_u64(loc_0, i64_from_u32(100000000, 0))
 						loc_3 = wrap_i32_i64(add_i64(reg_2, mul_i64(loc_0, i64_from_u32(4194967296, 0))))
-						store_i32_n16(memory_at_0, add_i32(loc_1, loc_5), load_i32_u16(memory_at_0, add_i32(shl_i32(div_u32(loc_3, 1000000), 1), 1049590)))
+						store_i32_n16(memory_at_0, add_i32(loc_5, loc_1), load_i32_u16(memory_at_0, add_i32(shl_i32(div_u32(loc_3, 1000000), 1), 1049590)))
 						loc_7 = add_i32(loc_1, loc_4)
 						loc_8 = div_u32(loc_3, 100)
 						store_i32_n16(memory_at_0, sub_i32(loc_7, 4), load_i32_u16(memory_at_0, add_i32(shl_i32((loc_8 % 100), 1), 1049590)))
@@ -20216,7 +20336,7 @@ FUNC_LIST[68] = function(loc_0, loc_1, loc_2)
 					loc_3 = div_u32(loc_3, 10000)
 					loc_7 = add_i32(reg_1, mul_i32(loc_3, 55536))
 					loc_8 = div_u32(band_i32(loc_7, 65535), 100)
-					store_i32_n16(memory_at_0, add_i32(loc_1, loc_4), load_i32_u16(memory_at_0, add_i32(shl_i32(loc_8, 1), 1049590)))
+					store_i32_n16(memory_at_0, add_i32(loc_4, loc_1), load_i32_u16(memory_at_0, add_i32(shl_i32(loc_8, 1), 1049590)))
 					store_i32_n16(memory_at_0, sub_i32(add_i32(loc_1, loc_5), 2), load_i32_u16(memory_at_0, add_i32(shl_i32(band_i32(add_i32(mul_i32(loc_8, 4294967196), loc_7), 65535), 1), 1049590)))
 					break
 				end
@@ -20240,18 +20360,19 @@ FUNC_LIST[68] = function(loc_0, loc_1, loc_2)
 					end
 					loc_4 = sub_i32(loc_4, 2)
 					loc_5 = div_u32(loc_5, 100)
-					store_i32_n16(memory_at_0, add_i32(loc_1, loc_4), load_i32_u16(memory_at_0, add_i32(shl_i32(band_i32(add_i32(mul_i32(loc_5, 4294967196), loc_3), 65535), 1), 1049590)))
+					store_i32_n16(memory_at_0, add_i32(loc_4, loc_1), load_i32_u16(memory_at_0, add_i32(shl_i32(band_i32(add_i32(mul_i32(loc_5, 4294967196), loc_3), 65535), 1), 1049590)))
 					break
 				end
 				if desired then
 					break
 				end
-				loc_7 = band_i32(loc_5, 65535)
-				if loc_7 >= 10 then
+				loc_3 = band_i32(loc_5, 65535)
+				if loc_3 >= 10 then
 					while true do
-						loc_3 = sub_i32(loc_4, 2)
-						store_i32_n16(memory_at_0, add_i32(loc_1, loc_3), load_i32_u16(memory_at_0, add_i32(shl_i32(loc_7, 1), 1049590)))
-						store_i32(memory_at_0, loc_2, loc_3)
+						reg_0 = loc_1
+						loc_1 = sub_i32(loc_4, 2)
+						store_i32_n16(memory_at_0, add_i32(reg_0, loc_1), load_i32_u16(memory_at_0, add_i32(shl_i32(loc_3, 1), 1049590)))
+						store_i32(memory_at_0, loc_2, loc_1)
 						desired = 0
 						break
 					end
@@ -20259,9 +20380,10 @@ FUNC_LIST[68] = function(loc_0, loc_1, loc_2)
 						break
 					end
 				end
-				loc_3 = sub_i32(loc_4, 1)
-				store_i32_n8(memory_at_0, add_i32(loc_1, loc_3), add_i32(loc_5, 48))
-				store_i32(memory_at_0, loc_2, loc_3)
+				reg_0 = loc_1
+				loc_1 = sub_i32(loc_4, 1)
+				store_i32_n8(memory_at_0, add_i32(reg_0, loc_1), add_i32(loc_5, 48))
+				store_i32(memory_at_0, loc_2, loc_1)
 				desired = 0
 				break
 			end
@@ -21009,7 +21131,7 @@ FUNC_LIST[70] = function(loc_0, loc_1, loc_2)
 														break
 													end
 													loc_2 = add_i32(loc_2, load_i32_u8(memory_at_0, add_i32(loc_4, 1052080)))
-													if loc_2 > loc_7 then
+													if loc_7 < loc_2 then
 														desired = 9
 														break
 													end
@@ -21060,7 +21182,35 @@ FUNC_LIST[70] = function(loc_0, loc_1, loc_2)
 										desired = 6
 										break
 									end
-									if bor_i32(bor_i32(bor_i32((if sub_i32(loc_1, 205744) < 712016 then 1 else 0), (if sub_i32(loc_1, 201547) < 5 then 1 else 0)), bor_i32((if sub_i32(loc_1, 195102) < 1506 then 1 else 0), (if sub_i32(loc_1, 191457) < 3103 then 1 else 0))), bor_i32(bor_i32((if band_i32(loc_1, 4294967294) == 178206 then 1 else 0), (if sub_i32(loc_1, 183970) < 14 then 1 else 0)), bor_i32((if band_i32(loc_1, 4294967264) == 173792 then 1 else 0), (if sub_i32(loc_1, 177978) < 6 then 1 else 0)))) ~= 0 then
+									if sub_i32(loc_1, 205744) < 712016 then
+										desired = 2
+										break
+									end
+									if sub_i32(loc_1, 201547) < 5 then
+										desired = 2
+										break
+									end
+									if sub_i32(loc_1, 195102) < 1506 then
+										desired = 2
+										break
+									end
+									if sub_i32(loc_1, 191457) < 3103 then
+										desired = 2
+										break
+									end
+									if sub_i32(loc_1, 183970) < 14 then
+										desired = 2
+										break
+									end
+									if band_i32(loc_1, 4294967294) == 178206 then
+										desired = 2
+										break
+									end
+									if band_i32(loc_1, 4294967264) == 173792 then
+										desired = 2
+										break
+									end
+									if sub_i32(loc_1, 177978) < 6 then
 										desired = 2
 										break
 									end
@@ -21077,24 +21227,25 @@ FUNC_LIST[70] = function(loc_0, loc_1, loc_2)
 									end
 									break
 								end
-								store_i32_n8(memory_at_0, add_i32(loc_3, 8), 0)
+								loc_2 = add_i32(loc_3, 6)
+								store_i32_n8(memory_at_0, add_i32(loc_2, 2), 0)
 								store_i32_n16(memory_at_0, loc_3 + 6, 0)
 								store_i32_n8(memory_at_0, loc_3 + 12, load_i32_u8(memory_at_0, add_i32(band_i32(shr_u32(loc_1, 8), 15), 1049144)))
 								store_i32_n8(memory_at_0, loc_3 + 11, load_i32_u8(memory_at_0, add_i32(band_i32(shr_u32(loc_1, 12), 15), 1049144)))
 								store_i32_n8(memory_at_0, loc_3 + 10, load_i32_u8(memory_at_0, add_i32(band_i32(shr_u32(loc_1, 16), 15), 1049144)))
 								store_i32_n8(memory_at_0, loc_3 + 9, load_i32_u8(memory_at_0, add_i32(band_i32(shr_u32(loc_1, 20), 15), 1049144)))
-								loc_2 = sub_i32(shr_u32(clz_i32(bor_i32(loc_1, 1)), 2), 2)
-								loc_4 = add_i32(loc_2, add_i32(loc_3, 6))
-								store_i32_n16(memory_at_0, loc_4, load_i32_u16(memory_at_0, 1051926))
+								loc_4 = sub_i32(shr_u32(clz_i32(bor_i32(loc_1, 1)), 2), 2)
+								loc_5 = add_i32(loc_2, loc_4)
+								store_i32_n16(memory_at_0, loc_5, load_i32_u16(memory_at_0, 1051926))
 								store_i32_n8(memory_at_0, loc_3 + 13, load_i32_u8(memory_at_0, add_i32(band_i32(shr_u32(loc_1, 4), 15), 1049144)))
-								store_i32_n8(memory_at_0, add_i32(loc_4, 2), load_i32_u8(memory_at_0, 1051928))
-								loc_4 = add_i32(loc_3, 14)
-								store_i32_n8(memory_at_0, loc_4, load_i32_u8(memory_at_0, add_i32(band_i32(loc_1, 15), 1049144)))
+								store_i32_n8(memory_at_0, add_i32(loc_5, 2), load_i32_u8(memory_at_0, 1051928))
+								loc_2 = add_i32(loc_2, 8)
+								store_i32_n8(memory_at_0, loc_2, load_i32_u8(memory_at_0, add_i32(band_i32(loc_1, 15), 1049144)))
 								store_i64(memory_at_0, loc_0, load_i64(memory_at_0, loc_3 + 6))
 								store_i32_n8(memory_at_0, loc_3 + 15, 125)
-								store_i32_n16(memory_at_0, add_i32(loc_0, 8), load_i32_u16(memory_at_0, loc_4))
+								store_i32_n16(memory_at_0, add_i32(loc_0, 8), load_i32_u16(memory_at_0, loc_2))
 								store_i32_n8(memory_at_0, loc_0 + 11, 10)
-								store_i32_n8(memory_at_0, loc_0 + 10, loc_2)
+								store_i32_n8(memory_at_0, loc_0 + 10, loc_4)
 								desired = 1
 								break
 							end
@@ -21151,24 +21302,25 @@ FUNC_LIST[70] = function(loc_0, loc_1, loc_2)
 				end
 				break
 			end
-			store_i32_n8(memory_at_0, add_i32(loc_3, 8), 0)
+			loc_2 = add_i32(loc_3, 6)
+			store_i32_n8(memory_at_0, add_i32(loc_2, 2), 0)
 			store_i32_n16(memory_at_0, loc_3 + 6, 0)
 			store_i32_n8(memory_at_0, loc_3 + 12, load_i32_u8(memory_at_0, add_i32(band_i32(shr_u32(loc_1, 8), 15), 1049144)))
 			store_i32_n8(memory_at_0, loc_3 + 11, load_i32_u8(memory_at_0, add_i32(band_i32(shr_u32(loc_1, 12), 15), 1049144)))
 			store_i32_n8(memory_at_0, loc_3 + 10, load_i32_u8(memory_at_0, add_i32(band_i32(shr_u32(loc_1, 16), 15), 1049144)))
 			store_i32_n8(memory_at_0, loc_3 + 9, load_i32_u8(memory_at_0, add_i32(band_i32(shr_u32(loc_1, 20), 15), 1049144)))
-			loc_2 = sub_i32(shr_u32(clz_i32(bor_i32(loc_1, 1)), 2), 2)
-			loc_4 = add_i32(loc_2, add_i32(loc_3, 6))
-			store_i32_n16(memory_at_0, loc_4, load_i32_u16(memory_at_0, 1051926))
+			loc_4 = sub_i32(shr_u32(clz_i32(bor_i32(loc_1, 1)), 2), 2)
+			loc_5 = add_i32(loc_2, loc_4)
+			store_i32_n16(memory_at_0, loc_5, load_i32_u16(memory_at_0, 1051926))
 			store_i32_n8(memory_at_0, loc_3 + 13, load_i32_u8(memory_at_0, add_i32(band_i32(shr_u32(loc_1, 4), 15), 1049144)))
-			store_i32_n8(memory_at_0, add_i32(loc_4, 2), load_i32_u8(memory_at_0, 1051928))
-			loc_4 = add_i32(loc_3, 14)
-			store_i32_n8(memory_at_0, loc_4, load_i32_u8(memory_at_0, add_i32(band_i32(loc_1, 15), 1049144)))
+			store_i32_n8(memory_at_0, add_i32(loc_5, 2), load_i32_u8(memory_at_0, 1051928))
+			loc_2 = add_i32(loc_2, 8)
+			store_i32_n8(memory_at_0, loc_2, load_i32_u8(memory_at_0, add_i32(band_i32(loc_1, 15), 1049144)))
 			store_i64(memory_at_0, loc_0, load_i64(memory_at_0, loc_3 + 6))
 			store_i32_n8(memory_at_0, loc_3 + 15, 125)
-			store_i32_n16(memory_at_0, add_i32(loc_0, 8), load_i32_u16(memory_at_0, loc_4))
+			store_i32_n16(memory_at_0, add_i32(loc_0, 8), load_i32_u16(memory_at_0, loc_2))
 			store_i32_n8(memory_at_0, loc_0 + 11, 10)
-			store_i32_n8(memory_at_0, loc_0 + 10, loc_2)
+			store_i32_n8(memory_at_0, loc_0 + 10, loc_4)
 			break
 		end
 		GLOBAL_LIST[0].value = add_i32(loc_3, 16)
@@ -21205,7 +21357,7 @@ FUNC_LIST[71] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									end
 									loc_7 = loc_8
 									loc_1 = loc_11
-									if loc_1 ~= loc_9 then
+									if loc_9 ~= loc_1 then
 										desired = 5
 										break
 									end
@@ -21234,7 +21386,7 @@ FUNC_LIST[71] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									while true do
 										loc_7 = loc_8
 										loc_1 = loc_11
-										if loc_1 ~= loc_9 then
+										if loc_9 ~= loc_1 then
 											desired = 5
 											break
 										end
@@ -21648,14 +21800,12 @@ FUNC_LIST[74] = function(loc_0, loc_1)
 	return reg_0
 end
 FUNC_LIST[75] = function(loc_0, loc_1)
+	local loc_2 = 0
 	local reg_0
-	local reg_1
 	while true do
 		loc_0 = load_i32_i8(memory_at_0, loc_0)
-		reg_0 = band_i64(extend_i64_u32(loc_0), i64_from_u32(255, 0))
-		reg_1 = add_i64(extend_i64_i32(bxor_i32(loc_0, 4294967295)), i64_ONE)
-		loc_0 = (if ge_i32(loc_0, 0) then 1 else 0)
-		reg_0 = FUNC_LIST[53]((if loc_0 ~= 0 then reg_0 else reg_1), loc_0, loc_1)
+		loc_2 = (if ge_i32(loc_0, 0) then 1 else 0)
+		reg_0 = FUNC_LIST[53]((if loc_2 ~= 0 then band_i64(extend_i64_u32(loc_0), i64_from_u32(255, 0)) else add_i64(extend_i64_i32(bxor_i32(loc_0, 4294967295)), i64_ONE)), loc_2, loc_1)
 		break
 	end
 	return reg_0
@@ -21914,7 +22064,6 @@ FUNC_LIST[80] = function(loc_0, loc_1)
 	local loc_7 = 0
 	local loc_8 = 0
 	local reg_0
-	local reg_1
 	local desired
 	local br_map = {}
 	while true do
@@ -21991,41 +22140,41 @@ FUNC_LIST[80] = function(loc_0, loc_1)
 																	end
 																	loc_3 = shl_i64(i64_ONE, load_i64_u8(memory_at_0, loc_1 + 2))
 																	while true do
-																		if loc_7 == 0 then
+																		if band_i32(loc_7, 255) == 0 then
 																			while true do
 																				loc_2 = 6
 																				loc_5 = load_i64(memory_at_0, add_i32(loc_0, 80))
-																				if ne_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																				if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																					desired = 3
 																					break
 																				end
 																				loc_2 = 7
 																				loc_5 = load_i64(memory_at_0, add_i32(loc_0, 88))
-																				if ne_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																				if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																					desired = 3
 																					break
 																				end
 																				loc_2 = 8
 																				loc_5 = load_i64(memory_at_0, add_i32(loc_0, 96))
-																				if ne_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																				if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																					desired = 3
 																					break
 																				end
 																				loc_2 = 9
 																				loc_5 = load_i64(memory_at_0, add_i32(loc_0, 104))
-																				if ne_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																				if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																					desired = 3
 																					break
 																				end
 																				loc_2 = 10
 																				loc_5 = load_i64(memory_at_0, add_i32(loc_0, 112))
-																				if ne_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																				if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																					desired = 3
 																					break
 																				end
 																				loc_2 = 11
 																				loc_5 = load_i64(memory_at_0, add_i32(loc_0, 120))
-																				if eq_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																				if eq_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																					desired = 16
 																					break
 																				end
@@ -22041,37 +22190,37 @@ FUNC_LIST[80] = function(loc_0, loc_1)
 																		end
 																		loc_2 = 0
 																		loc_5 = load_i64(memory_at_0, loc_0 + 32)
-																		if ne_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																		if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																			desired = 3
 																			break
 																		end
 																		loc_2 = 1
 																		loc_5 = load_i64(memory_at_0, add_i32(loc_0, 40))
-																		if ne_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																		if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																			desired = 3
 																			break
 																		end
 																		loc_2 = 2
 																		loc_5 = load_i64(memory_at_0, add_i32(loc_0, 48))
-																		if ne_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																		if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																			desired = 3
 																			break
 																		end
 																		loc_2 = 3
 																		loc_5 = load_i64(memory_at_0, add_i32(loc_0, 56))
-																		if ne_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																		if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																			desired = 3
 																			break
 																		end
 																		loc_2 = 4
 																		loc_5 = load_i64(memory_at_0, sub_i32(loc_0, 4294967232))
-																		if ne_i64(band_i64(loc_5, loc_3), i64_ZERO) then
+																		if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																			desired = 3
 																			break
 																		end
 																		loc_2 = 5
 																		loc_5 = load_i64(memory_at_0, add_i32(loc_0, 72))
-																		if (if eq_i64(band_i64(loc_5, loc_3), i64_ZERO) then 1 else 0) == 0 then
+																		if ne_i64(band_i64(loc_3, loc_5), i64_ZERO) then
 																			desired = 3
 																			break
 																		end
@@ -22127,12 +22276,10 @@ FUNC_LIST[80] = function(loc_0, loc_1)
 																end
 																break
 															end
-															loc_4 = add_i32(loc_0, (if loc_2 ~= 0 then 104 else 56))
-															reg_0 = loc_4
-															reg_1 = load_i64(memory_at_0, loc_4)
 															loc_4 = load_i32_u8(memory_at_0, loc_1 + 2)
 															loc_6 = (if band_i32(loc_4, 7) == 6 then 1 else 0)
-															store_i64(memory_at_0, reg_0, bxor_i64(reg_1, bor_i64(shl_i64(i64_ONE, extend_i64_u32(band_i32(add_i32((if loc_6 ~= 0 then 1 else 62), loc_4), 63))), shl_i64(i64_ONE, extend_i64_u32(band_i32(add_i32((if loc_6 ~= 0 then 63 else 1), loc_4), 63))))))
+															loc_7 = add_i32(loc_0, (if loc_2 ~= 0 then 104 else 56))
+															store_i64(memory_at_0, loc_7, bxor_i64(load_i64(memory_at_0, loc_7), bor_i64(shl_i64(i64_ONE, extend_i64_u32(band_i32(add_i32((if loc_6 ~= 0 then 1 else 62), loc_4), 63))), shl_i64(i64_ONE, extend_i64_u32(band_i32(add_i32((if loc_6 ~= 0 then 63 else 1), loc_4), 63))))))
 															loc_0 = add_i32(loc_0, (if loc_2 ~= 0 then 120 else 72))
 															store_i64(memory_at_0, loc_0, bxor_i64(load_i64(memory_at_0, loc_0), bor_i64(shl_i64(i64_ONE, load_i64_u8(memory_at_0, loc_1 + 1)), shl_i64(i64_ONE, extend_i64_u32(band_i32(loc_4, 63))))))
 															desired = 2
@@ -22296,6 +22443,7 @@ FUNC_LIST[81] = function(loc_0)
 	local loc_9 = 0
 	local loc_10 = 0
 	local loc_11 = 0
+	local loc_12 = 0
 	local reg_0
 	local reg_1
 	local desired
@@ -22323,9 +22471,9 @@ FUNC_LIST[81] = function(loc_0)
 						end
 					end
 					store_i32_n8(memory_at_0, 1076928, 2)
-					loc_10 = load_i32(memory_at_0, loc_0)
+					loc_11 = load_i32(memory_at_0, loc_0)
 					store_i32(memory_at_0, loc_0, 0)
-					if loc_10 == 0 then
+					if loc_11 == 0 then
 						desired = 1
 						break
 					end
@@ -22334,8 +22482,8 @@ FUNC_LIST[81] = function(loc_0)
 					while true do
 						loc_6 = add_i32(add_i32(loc_9, 4160), shl_i32(loc_0, 6))
 						loc_3 = shl_i32(loc_0, 3)
-						loc_5 = add_i32(loc_3, 1060654)
-						loc_7 = load_i32_u8(memory_at_0, add_i32(loc_3, 1060653))
+						loc_7 = add_i32(loc_3, 1060654)
+						loc_5 = load_i32_u8(memory_at_0, add_i32(loc_3, 1060653))
 						loc_4 = load_i32_i8(memory_at_0, add_i32(loc_3, 1060652))
 						if gt_i32(loc_4, 0) then
 							while true do
@@ -22349,7 +22497,7 @@ FUNC_LIST[81] = function(loc_0)
 											break
 										end
 										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_4, loc_8) then 1 else 0)))
-										if le_i32(loc_1, loc_4) then
+										if ge_i32(loc_4, loc_1) then
 											desired = 6
 											break
 										end
@@ -22378,66 +22526,23 @@ FUNC_LIST[81] = function(loc_0)
 								break
 							end
 						end
-						loc_5 = load_i32_u8(memory_at_0, loc_5)
-						loc_4 = extend_i32_n8(loc_7)
-						if gt_i32(loc_4, 0) then
-							while true do
-								loc_7 = add_i32(loc_6, 8)
-								loc_2 = load_i64(memory_at_0, loc_7)
-								loc_1 = 1
-								while true do
-									while true do
-										loc_2 = bor_i64(shl_i64(i64_ONE, extend_i64_u32(band_i32(add_i32(shl_i32(loc_1, 3), loc_0), 63))), loc_2)
-										loc_8 = extend_i32_n8(loc_1)
-										if ge_i32(loc_8, loc_4) then
-											break
-										end
-										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_4, loc_8) then 1 else 0)))
-										if le_i32(loc_1, loc_4) then
-											desired = 6
-											break
-										end
-										break
-									end
-									if desired then
-										if desired == 6 then
-											desired = nil
-											continue
-										end
-										break
-									end
-									break
-								end
-								if desired then
-									break
-								end
-								store_i64(memory_at_0, loc_7, loc_2)
-								break
-							end
-							if desired then
-								if desired == 4 then
-									desired = nil
-									continue
-								end
-								break
-							end
-						end
-						loc_7 = load_i32_u8(memory_at_0, add_i32(loc_3, 1060655))
+						loc_8 = add_i32(loc_3, 1060655)
+						loc_7 = load_i32_u8(memory_at_0, loc_7)
 						loc_4 = extend_i32_n8(loc_5)
 						if gt_i32(loc_4, 0) then
 							while true do
-								loc_5 = add_i32(loc_6, 16)
+								loc_5 = add_i32(loc_6, 8)
 								loc_2 = load_i64(memory_at_0, loc_5)
 								loc_1 = 1
 								while true do
 									while true do
-										loc_2 = bor_i64(shl_i64(i64_ONE, extend_i64_u32(band_i32(sub_i32(loc_0, loc_1), 63))), loc_2)
-										loc_8 = extend_i32_n8(loc_1)
-										if ge_i32(loc_8, loc_4) then
+										loc_2 = bor_i64(shl_i64(i64_ONE, extend_i64_u32(band_i32(add_i32(shl_i32(loc_1, 3), loc_0), 63))), loc_2)
+										loc_10 = extend_i32_n8(loc_1)
+										if ge_i32(loc_10, loc_4) then
 											break
 										end
-										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_4, loc_8) then 1 else 0)))
-										if le_i32(loc_1, loc_4) then
+										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_4, loc_10) then 1 else 0)))
+										if ge_i32(loc_4, loc_1) then
 											desired = 6
 											break
 										end
@@ -22466,22 +22571,23 @@ FUNC_LIST[81] = function(loc_0)
 								break
 							end
 						end
-						loc_5 = load_i32_u8(memory_at_0, add_i32(loc_3, 1060656))
+						loc_5 = add_i32(loc_3, 1060656)
+						loc_8 = load_i32_u8(memory_at_0, loc_8)
 						loc_4 = extend_i32_n8(loc_7)
 						if gt_i32(loc_4, 0) then
 							while true do
-								loc_7 = add_i32(loc_6, 24)
+								loc_7 = add_i32(loc_6, 16)
 								loc_2 = load_i64(memory_at_0, loc_7)
 								loc_1 = 1
 								while true do
 									while true do
-										loc_2 = bor_i64(shl_i64(i64_ONE, extend_i64_u32(band_i32(sub_i32(loc_0, shl_i32(loc_1, 3)), 63))), loc_2)
-										loc_8 = extend_i32_n8(loc_1)
-										if ge_i32(loc_8, loc_4) then
+										loc_2 = bor_i64(shl_i64(i64_ONE, extend_i64_u32(band_i32(sub_i32(loc_0, loc_1), 63))), loc_2)
+										loc_10 = extend_i32_n8(loc_1)
+										if ge_i32(loc_10, loc_4) then
 											break
 										end
-										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_4, loc_8) then 1 else 0)))
-										if le_i32(loc_1, loc_4) then
+										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_4, loc_10) then 1 else 0)))
+										if ge_i32(loc_4, loc_1) then
 											desired = 6
 											break
 										end
@@ -22510,9 +22616,56 @@ FUNC_LIST[81] = function(loc_0)
 								break
 							end
 						end
-						loc_4 = load_i32_u8(memory_at_0, add_i32(loc_3, 1060659))
-						loc_7 = load_i32_u8(memory_at_0, add_i32(loc_3, 1060658))
-						loc_8 = load_i32_u8(memory_at_0, add_i32(loc_3, 1060657))
+						loc_4 = add_i32(loc_3, 1060659)
+						loc_7 = add_i32(loc_3, 1060658)
+						loc_10 = add_i32(loc_3, 1060657)
+						loc_5 = load_i32_u8(memory_at_0, loc_5)
+						loc_3 = extend_i32_n8(loc_8)
+						if gt_i32(loc_3, 0) then
+							while true do
+								loc_8 = add_i32(loc_6, 24)
+								loc_2 = load_i64(memory_at_0, loc_8)
+								loc_1 = 1
+								while true do
+									while true do
+										loc_2 = bor_i64(shl_i64(i64_ONE, extend_i64_u32(band_i32(sub_i32(loc_0, shl_i32(loc_1, 3)), 63))), loc_2)
+										loc_12 = extend_i32_n8(loc_1)
+										if ge_i32(loc_12, loc_3) then
+											break
+										end
+										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_3, loc_12) then 1 else 0)))
+										if ge_i32(loc_3, loc_1) then
+											desired = 6
+											break
+										end
+										break
+									end
+									if desired then
+										if desired == 6 then
+											desired = nil
+											continue
+										end
+										break
+									end
+									break
+								end
+								if desired then
+									break
+								end
+								store_i64(memory_at_0, loc_8, loc_2)
+								break
+							end
+							if desired then
+								if desired == 4 then
+									desired = nil
+									continue
+								end
+								break
+							end
+						end
+						loc_4 = load_i32_u8(memory_at_0, loc_4)
+						loc_7 = load_i32_u8(memory_at_0, loc_7)
+						loc_8 = load_i32_u8(memory_at_0, loc_10)
 						loc_3 = extend_i32_n8(loc_5)
 						if gt_i32(loc_3, 0) then
 							while true do
@@ -22522,12 +22675,12 @@ FUNC_LIST[81] = function(loc_0)
 								while true do
 									while true do
 										loc_2 = bor_i64(shl_i64(i64_ONE, extend_i64_u32(band_i32(add_i32(mul_i32(loc_1, 7), loc_0), 63))), loc_2)
-										loc_11 = extend_i32_n8(loc_1)
-										if ge_i32(loc_11, loc_3) then
+										loc_10 = extend_i32_n8(loc_1)
+										if ge_i32(loc_10, loc_3) then
 											break
 										end
-										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_3, loc_11) then 1 else 0)))
-										if le_i32(loc_1, loc_3) then
+										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_3, loc_10) then 1 else 0)))
+										if ge_i32(loc_3, loc_1) then
 											desired = 6
 											break
 										end
@@ -22570,7 +22723,7 @@ FUNC_LIST[81] = function(loc_0)
 											break
 										end
 										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_3, loc_8) then 1 else 0)))
-										if le_i32(loc_1, loc_3) then
+										if ge_i32(loc_3, loc_1) then
 											desired = 6
 											break
 										end
@@ -22602,18 +22755,18 @@ FUNC_LIST[81] = function(loc_0)
 						loc_3 = extend_i32_n8(loc_7)
 						if gt_i32(loc_3, 0) then
 							while true do
-								loc_5 = add_i32(loc_6, 48)
-								loc_2 = load_i64(memory_at_0, loc_5)
+								loc_7 = add_i32(loc_6, 48)
+								loc_2 = load_i64(memory_at_0, loc_7)
 								loc_1 = 1
 								while true do
 									while true do
 										loc_2 = bor_i64(shl_i64(i64_ONE, extend_i64_u32(band_i32(add_i32(mul_i32(loc_1, 55), loc_0), 63))), loc_2)
-										loc_7 = extend_i32_n8(loc_1)
-										if ge_i32(loc_7, loc_3) then
+										loc_5 = extend_i32_n8(loc_1)
+										if ge_i32(loc_5, loc_3) then
 											break
 										end
-										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_3, loc_7) then 1 else 0)))
-										if le_i32(loc_1, loc_3) then
+										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_3, loc_5) then 1 else 0)))
+										if ge_i32(loc_3, loc_1) then
 											desired = 6
 											break
 										end
@@ -22631,7 +22784,7 @@ FUNC_LIST[81] = function(loc_0)
 								if desired then
 									break
 								end
-								store_i64(memory_at_0, loc_5, loc_2)
+								store_i64(memory_at_0, loc_7, loc_2)
 								break
 							end
 							if desired then
@@ -22656,7 +22809,7 @@ FUNC_LIST[81] = function(loc_0)
 											break
 										end
 										loc_1 = extend_i32_n8(add_i32(loc_1, (if gt_i32(loc_3, loc_4) then 1 else 0)))
-										if le_i32(loc_1, loc_3) then
+										if ge_i32(loc_3, loc_1) then
 											desired = 6
 											break
 										end
@@ -22698,7 +22851,7 @@ FUNC_LIST[81] = function(loc_0)
 						break
 					end
 					reg_1 = FUNC_LIST[107](loc_9, add_i32(loc_9, 4160), 4160)
-					reg_0 = FUNC_LIST[107](loc_10, reg_1, 4160)
+					reg_0 = FUNC_LIST[107](loc_11, reg_1, 4160)
 					store_i32_n8(memory_at_0, 1076928, 3)
 					break
 				end
@@ -22745,9 +22898,11 @@ FUNC_LIST[82] = function(loc_0, loc_1)
 	local loc_8 = 0
 	local loc_9 = 0
 	local loc_10 = i64_ZERO
-	local loc_11 = i64_ZERO
+	local loc_11 = 0
 	local loc_12 = 0
 	local loc_13 = i64_ZERO
+	local loc_14 = 0
+	local loc_15 = i64_ZERO
 	local reg_0
 	local desired
 	while true do
@@ -22778,20 +22933,20 @@ FUNC_LIST[82] = function(loc_0, loc_1)
 				loc_4 = add_i32(loc_1, 1)
 				loc_10 = load_i64(memory_at_0, add_i32(loc_3, shl_i32(loc_4, 3)))
 				store_i64(memory_at_0, loc_2 + 16, i64_from_u32(4177463297, 4193716487))
-				loc_5 = load_i32_u8(memory_at_0, add_i32(loc_4, loc_5))
-				loc_6 = load_i32_u8(memory_at_0, add_i32(loc_4, loc_6))
+				loc_11 = load_i32_u8(memory_at_0, add_i32(loc_4, loc_5))
+				loc_12 = load_i32_u8(memory_at_0, add_i32(loc_4, loc_6))
 				loc_4 = add_i32(loc_1, 2)
-				loc_11 = load_i64(memory_at_0, add_i32(loc_3, shl_i32(loc_4, 3)))
+				loc_13 = load_i64(memory_at_0, add_i32(loc_3, shl_i32(loc_4, 3)))
 				store_i64(memory_at_0, loc_2 + 16, i64_from_u32(4177463297, 4193716487))
-				loc_12 = load_i32_u8(memory_at_0, add_i32(add_i32(loc_2, 8), loc_4))
-				loc_4 = load_i32_u8(memory_at_0, add_i32(add_i32(loc_2, 16), loc_4))
+				loc_14 = load_i32_u8(memory_at_0, add_i32(loc_4, loc_5))
+				loc_4 = load_i32_u8(memory_at_0, add_i32(loc_4, loc_6))
 				loc_1 = add_i32(loc_1, 3)
-				loc_13 = load_i64(memory_at_0, add_i32(loc_3, shl_i32(loc_1, 3)))
+				loc_15 = load_i64(memory_at_0, add_i32(loc_3, shl_i32(loc_1, 3)))
 				store_i64(memory_at_0, loc_2 + 16, i64_from_u32(4177463297, 4193716487))
-				loc_3 = load_i32_u8(memory_at_0, add_i32(add_i32(loc_2, 16), loc_1))
-				loc_1 = load_i32_u8(memory_at_0, add_i32(add_i32(loc_2, 8), loc_1))
+				loc_3 = load_i32_u8(memory_at_0, add_i32(loc_1, loc_6))
+				loc_1 = load_i32_u8(memory_at_0, add_i32(loc_1, loc_5))
 				GLOBAL_LIST[0].value = add_i32(loc_2, 32)
-				reg_0 = bor_i64(band_i64(loc_13, rotl_i64(i64_from_u32(4294967294, 4294967295), extend_i64_u32(add_i32(mul_i32(loc_1, loc_3), loc_0)))), bor_i64(band_i64(loc_11, rotl_i64(i64_from_u32(4294967294, 4294967295), extend_i64_u32(add_i32(mul_i32(loc_4, loc_12), loc_0)))), bor_i64(band_i64(loc_10, rotl_i64(i64_from_u32(4294967294, 4294967295), extend_i64_u32(add_i32(mul_i32(loc_5, loc_6), loc_0)))), band_i64(loc_7, rotl_i64(i64_from_u32(4294967294, 4294967295), extend_i64_u32(add_i32(mul_i32(loc_8, loc_9), loc_0)))))))
+				reg_0 = bor_i64(band_i64(loc_15, rotl_i64(i64_from_u32(4294967294, 4294967295), extend_i64_u32(add_i32(mul_i32(loc_1, loc_3), loc_0)))), bor_i64(band_i64(loc_13, rotl_i64(i64_from_u32(4294967294, 4294967295), extend_i64_u32(add_i32(mul_i32(loc_4, loc_14), loc_0)))), bor_i64(band_i64(loc_10, rotl_i64(i64_from_u32(4294967294, 4294967295), extend_i64_u32(add_i32(mul_i32(loc_11, loc_12), loc_0)))), band_i64(loc_7, rotl_i64(i64_from_u32(4294967294, 4294967295), extend_i64_u32(add_i32(mul_i32(loc_8, loc_9), loc_0)))))))
 				desired = 0
 				break
 			end
@@ -23129,10 +23284,10 @@ FUNC_LIST[86] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 				loc_13 = add_i32(loc_4, 1)
 				loc_6 = 0
 				while true do
+					loc_19 = shl_i32(loc_17, 3)
 					loc_7 = loc_6
 					loc_6 = add_i32(shr_i32(shl_i32(loc_7, 24), 18), 1072768)
-					loc_19 = shl_i32(loc_17, 3)
-					loc_20 = add_i32(loc_6, loc_19)
+					loc_20 = add_i32(loc_19, loc_6)
 					loc_21 = shl_i32(loc_18, 3)
 					loc_22 = add_i32(loc_6, loc_21)
 					loc_23 = add_i32(loc_6, shl_i32(loc_13, 3))
@@ -23150,7 +23305,7 @@ FUNC_LIST[86] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 								if load_i32_u8(memory_at_0, 1076928) == 3 then
 									while true do
 										loc_16 = load_i64(memory_at_0, loc_14)
-										loc_8 = band_i64(loc_10, loc_16)
+										loc_8 = band_i64(loc_16, loc_10)
 										reg_0 = 3
 										desired = 5
 										break
@@ -23168,7 +23323,7 @@ FUNC_LIST[86] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 								loc_11 = add_i32(loc_5, 4)
 								FUNC_LIST[81](loc_11)
 								loc_16 = load_i64(memory_at_0, loc_14)
-								loc_8 = band_i64(loc_10, loc_16)
+								loc_8 = band_i64(loc_16, loc_10)
 								reg_0 = 3
 								if load_i32_u8(memory_at_0, 1076928) == 3 then
 									break
@@ -23407,15 +23562,15 @@ FUNC_LIST[88] = function(loc_0)
 	local reg_1
 	local desired
 	while true do
-		loc_2 = sub_i32(GLOBAL_LIST[0].value, 2560)
-		GLOBAL_LIST[0].value = loc_2
+		loc_1 = sub_i32(GLOBAL_LIST[0].value, 2560)
+		GLOBAL_LIST[0].value = loc_1
 		while true do
 			while true do
 				while true do
-					loc_1 = load_i32_u8(memory_at_0, 1072760)
-					if loc_1 >= 2 then
+					loc_2 = load_i32_u8(memory_at_0, 1072760)
+					if loc_2 >= 2 then
 						while true do
-							if sub_i32(loc_1, 3) ~= 0 then
+							if sub_i32(loc_2, 3) ~= 0 then
 								desired = 1
 								break
 							end
@@ -23437,12 +23592,12 @@ FUNC_LIST[88] = function(loc_0)
 						break
 					end
 					loc_0 = 0
-					reg_0 = FUNC_LIST[105](add_i32(loc_2, 2048), 0, 512)
-					reg_0 = FUNC_LIST[105](loc_2, 0, 512)
-					loc_1 = reg_0
+					reg_0 = FUNC_LIST[105](add_i32(loc_1, 2048), 0, 512)
+					reg_0 = FUNC_LIST[105](loc_1, 0, 512)
+					loc_2 = reg_0
 					while true do
-						loc_5 = add_i32(loc_0, loc_1)
-						loc_6 = add_i32(add_i32(loc_1, 2048), loc_0)
+						loc_5 = add_i32(loc_0, loc_2)
+						loc_6 = add_i32(add_i32(loc_2, 2048), loc_0)
 						while true do
 							loc_8 = shl_i64(i64_ONE, loc_3)
 							if eq_i64(band_i64(loc_8, i64_from_u32(4278124286, 4278124286)), i64_ZERO) then
@@ -23518,10 +23673,10 @@ FUNC_LIST[88] = function(loc_0)
 						end
 						break
 					end
-					loc_0 = add_i32(loc_1, 1024)
-					reg_0 = FUNC_LIST[107](loc_0, add_i32(loc_1, 2048), 512)
-					reg_0 = FUNC_LIST[107](add_i32(loc_1, 1536), loc_1, 512)
-					reg_1 = FUNC_LIST[107](loc_1, loc_0, 1024)
+					loc_0 = add_i32(loc_2, 1024)
+					reg_0 = FUNC_LIST[107](loc_0, add_i32(loc_2, 2048), 512)
+					reg_0 = FUNC_LIST[107](add_i32(loc_0, 512), loc_2, 512)
+					reg_1 = FUNC_LIST[107](loc_2, loc_0, 1024)
 					reg_0 = FUNC_LIST[107](loc_7, reg_1, 1024)
 					store_i32_n8(memory_at_0, 1072760, 3)
 					break
@@ -23532,7 +23687,7 @@ FUNC_LIST[88] = function(loc_0)
 					end
 					break
 				end
-				GLOBAL_LIST[0].value = add_i32(loc_2, 2560)
+				GLOBAL_LIST[0].value = add_i32(loc_1, 2560)
 				desired = 0
 				break
 			end
@@ -23551,11 +23706,11 @@ FUNC_LIST[88] = function(loc_0)
 			end
 			break
 		end
-		store_i64(memory_at_0, add_i32(loc_2, 1036), i64_ZERO)
-		store_i32(memory_at_0, loc_2 + 1028, 1)
-		store_i32(memory_at_0, loc_2 + 1024, 1070232)
-		store_i32(memory_at_0, loc_2 + 1032, 1068848)
-		FUNC_LIST[20](add_i32(loc_2, 1024), 1052884)
+		store_i64(memory_at_0, add_i32(loc_1, 1036), i64_ZERO)
+		store_i32(memory_at_0, loc_1 + 1028, 1)
+		store_i32(memory_at_0, loc_1 + 1024, 1070232)
+		store_i32(memory_at_0, loc_1 + 1032, 1068848)
+		FUNC_LIST[20](add_i32(loc_1, 1024), 1052884)
 		error("out of code bounds")
 	end
 end
@@ -23568,12 +23723,13 @@ FUNC_LIST[89] = function(loc_0)
 	local loc_6 = 0
 	local loc_7 = 0
 	local loc_8 = 0
+	local loc_9 = 0
 	local reg_0
 	local reg_1
 	local desired
 	while true do
-		loc_7 = sub_i32(GLOBAL_LIST[0].value, 1024)
-		GLOBAL_LIST[0].value = loc_7
+		loc_8 = sub_i32(GLOBAL_LIST[0].value, 1024)
+		GLOBAL_LIST[0].value = loc_8
 		while true do
 			while true do
 				while true do
@@ -23595,32 +23751,31 @@ FUNC_LIST[89] = function(loc_0)
 						end
 					end
 					store_i32_n8(memory_at_0, 1071208, 2)
-					loc_8 = load_i32(memory_at_0, loc_0)
+					loc_9 = load_i32(memory_at_0, loc_0)
 					store_i32(memory_at_0, loc_0, 0)
-					if loc_8 == 0 then
+					if loc_9 == 0 then
 						desired = 1
 						break
 					end
-					loc_4 = add_i32(loc_7, 512)
-					reg_0 = FUNC_LIST[105](loc_4, 0, 512)
+					loc_0 = add_i32(loc_8, 512)
+					reg_0 = FUNC_LIST[105](loc_0, 0, 512)
 					while true do
-						loc_0 = band_i32(loc_6, 7)
-						loc_5 = shr_i32(extend_i32_n8(loc_6), 3)
+						loc_4 = band_i32(loc_7, 7)
+						loc_5 = shr_i32(extend_i32_n8(loc_7), 3)
 						while true do
-							loc_3 = add_i32(loc_6, 15)
+							loc_3 = add_i32(loc_7, 15)
 							if band_i32(loc_3, 255) > 63 then
 								break
 							end
+							loc_6 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
+							loc_1 = shr_i32(extend_i32_n8(loc_6), 7)
 							loc_2 = band_i32(loc_3, 7)
-							loc_2 = band_i32((if loc_0 < loc_2 then sub_i32(loc_2, loc_0) else sub_i32(loc_0, loc_2)), 255)
-							loc_1 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
-							reg_1 = loc_1
-							loc_1 = shr_i32(extend_i32_n8(loc_1), 7)
-							loc_1 = band_i32(sub_i32(bxor_i32(reg_1, loc_1), loc_1), 255)
+							loc_2 = band_i32((if loc_2 > loc_4 then sub_i32(loc_2, loc_4) else sub_i32(loc_4, loc_2)), 255)
+							loc_1 = band_i32(sub_i32(bxor_i32(loc_1, loc_6), loc_1), 255)
 							if (if loc_1 < loc_2 then loc_2 else loc_1) ~= 2 then
 								break
 							end
-							store_i64(memory_at_0, loc_4, bor_i64(load_i64(memory_at_0, loc_4), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
+							store_i64(memory_at_0, loc_0, bor_i64(load_i64(memory_at_0, loc_0), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
 							break
 						end
 						if desired then
@@ -23631,20 +23786,19 @@ FUNC_LIST[89] = function(loc_0)
 							break
 						end
 						while true do
-							loc_3 = add_i32(loc_6, 17)
+							loc_3 = add_i32(loc_7, 17)
 							if band_i32(loc_3, 255) > 63 then
 								break
 							end
+							loc_6 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
+							loc_1 = shr_i32(extend_i32_n8(loc_6), 7)
 							loc_2 = band_i32(loc_3, 7)
-							loc_2 = band_i32((if loc_0 < loc_2 then sub_i32(loc_2, loc_0) else sub_i32(loc_0, loc_2)), 255)
-							loc_1 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
-							reg_1 = loc_1
-							loc_1 = shr_i32(extend_i32_n8(loc_1), 7)
-							loc_1 = band_i32(sub_i32(bxor_i32(reg_1, loc_1), loc_1), 255)
+							loc_2 = band_i32((if loc_2 > loc_4 then sub_i32(loc_2, loc_4) else sub_i32(loc_4, loc_2)), 255)
+							loc_1 = band_i32(sub_i32(bxor_i32(loc_1, loc_6), loc_1), 255)
 							if (if loc_1 < loc_2 then loc_2 else loc_1) ~= 2 then
 								break
 							end
-							store_i64(memory_at_0, loc_4, bor_i64(load_i64(memory_at_0, loc_4), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
+							store_i64(memory_at_0, loc_0, bor_i64(load_i64(memory_at_0, loc_0), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
 							break
 						end
 						if desired then
@@ -23655,20 +23809,19 @@ FUNC_LIST[89] = function(loc_0)
 							break
 						end
 						while true do
-							loc_3 = sub_i32(loc_6, 17)
+							loc_3 = sub_i32(loc_7, 17)
 							if band_i32(loc_3, 255) > 63 then
 								break
 							end
+							loc_6 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
+							loc_1 = shr_i32(extend_i32_n8(loc_6), 7)
 							loc_2 = band_i32(loc_3, 7)
-							loc_2 = band_i32((if loc_0 < loc_2 then sub_i32(loc_2, loc_0) else sub_i32(loc_0, loc_2)), 255)
-							loc_1 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
-							reg_1 = loc_1
-							loc_1 = shr_i32(extend_i32_n8(loc_1), 7)
-							loc_1 = band_i32(sub_i32(bxor_i32(reg_1, loc_1), loc_1), 255)
+							loc_2 = band_i32((if loc_2 > loc_4 then sub_i32(loc_2, loc_4) else sub_i32(loc_4, loc_2)), 255)
+							loc_1 = band_i32(sub_i32(bxor_i32(loc_1, loc_6), loc_1), 255)
 							if (if loc_1 < loc_2 then loc_2 else loc_1) ~= 2 then
 								break
 							end
-							store_i64(memory_at_0, loc_4, bor_i64(load_i64(memory_at_0, loc_4), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
+							store_i64(memory_at_0, loc_0, bor_i64(load_i64(memory_at_0, loc_0), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
 							break
 						end
 						if desired then
@@ -23679,20 +23832,19 @@ FUNC_LIST[89] = function(loc_0)
 							break
 						end
 						while true do
-							loc_3 = sub_i32(loc_6, 15)
+							loc_3 = sub_i32(loc_7, 15)
 							if band_i32(loc_3, 255) > 63 then
 								break
 							end
+							loc_6 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
+							loc_1 = shr_i32(extend_i32_n8(loc_6), 7)
 							loc_2 = band_i32(loc_3, 7)
-							loc_2 = band_i32((if loc_0 < loc_2 then sub_i32(loc_2, loc_0) else sub_i32(loc_0, loc_2)), 255)
-							loc_1 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
-							reg_1 = loc_1
-							loc_1 = shr_i32(extend_i32_n8(loc_1), 7)
-							loc_1 = band_i32(sub_i32(bxor_i32(reg_1, loc_1), loc_1), 255)
+							loc_2 = band_i32((if loc_2 > loc_4 then sub_i32(loc_2, loc_4) else sub_i32(loc_4, loc_2)), 255)
+							loc_1 = band_i32(sub_i32(bxor_i32(loc_1, loc_6), loc_1), 255)
 							if (if loc_1 < loc_2 then loc_2 else loc_1) ~= 2 then
 								break
 							end
-							store_i64(memory_at_0, loc_4, bor_i64(load_i64(memory_at_0, loc_4), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
+							store_i64(memory_at_0, loc_0, bor_i64(load_i64(memory_at_0, loc_0), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
 							break
 						end
 						if desired then
@@ -23703,20 +23855,19 @@ FUNC_LIST[89] = function(loc_0)
 							break
 						end
 						while true do
-							loc_3 = add_i32(loc_6, 10)
+							loc_3 = add_i32(loc_7, 10)
 							if band_i32(loc_3, 255) > 63 then
 								break
 							end
+							loc_6 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
+							loc_1 = shr_i32(extend_i32_n8(loc_6), 7)
 							loc_2 = band_i32(loc_3, 7)
-							loc_2 = band_i32((if loc_0 < loc_2 then sub_i32(loc_2, loc_0) else sub_i32(loc_0, loc_2)), 255)
-							loc_1 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
-							reg_1 = loc_1
-							loc_1 = shr_i32(extend_i32_n8(loc_1), 7)
-							loc_1 = band_i32(sub_i32(bxor_i32(reg_1, loc_1), loc_1), 255)
+							loc_2 = band_i32((if loc_2 > loc_4 then sub_i32(loc_2, loc_4) else sub_i32(loc_4, loc_2)), 255)
+							loc_1 = band_i32(sub_i32(bxor_i32(loc_1, loc_6), loc_1), 255)
 							if (if loc_1 < loc_2 then loc_2 else loc_1) ~= 2 then
 								break
 							end
-							store_i64(memory_at_0, loc_4, bor_i64(load_i64(memory_at_0, loc_4), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
+							store_i64(memory_at_0, loc_0, bor_i64(load_i64(memory_at_0, loc_0), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
 							break
 						end
 						if desired then
@@ -23727,20 +23878,19 @@ FUNC_LIST[89] = function(loc_0)
 							break
 						end
 						while true do
-							loc_3 = sub_i32(loc_6, 6)
+							loc_3 = sub_i32(loc_7, 6)
 							if band_i32(loc_3, 255) > 63 then
 								break
 							end
+							loc_6 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
+							loc_1 = shr_i32(extend_i32_n8(loc_6), 7)
 							loc_2 = band_i32(loc_3, 7)
-							loc_2 = band_i32((if loc_0 < loc_2 then sub_i32(loc_2, loc_0) else sub_i32(loc_0, loc_2)), 255)
-							loc_1 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
-							reg_1 = loc_1
-							loc_1 = shr_i32(extend_i32_n8(loc_1), 7)
-							loc_1 = band_i32(sub_i32(bxor_i32(reg_1, loc_1), loc_1), 255)
+							loc_2 = band_i32((if loc_2 > loc_4 then sub_i32(loc_2, loc_4) else sub_i32(loc_4, loc_2)), 255)
+							loc_1 = band_i32(sub_i32(bxor_i32(loc_1, loc_6), loc_1), 255)
 							if (if loc_1 < loc_2 then loc_2 else loc_1) ~= 2 then
 								break
 							end
-							store_i64(memory_at_0, loc_4, bor_i64(load_i64(memory_at_0, loc_4), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
+							store_i64(memory_at_0, loc_0, bor_i64(load_i64(memory_at_0, loc_0), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
 							break
 						end
 						if desired then
@@ -23751,20 +23901,19 @@ FUNC_LIST[89] = function(loc_0)
 							break
 						end
 						while true do
-							loc_3 = add_i32(loc_6, 6)
+							loc_3 = add_i32(loc_7, 6)
 							if band_i32(loc_3, 255) > 63 then
 								break
 							end
+							loc_6 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
+							loc_1 = shr_i32(extend_i32_n8(loc_6), 7)
 							loc_2 = band_i32(loc_3, 7)
-							loc_2 = band_i32((if loc_0 < loc_2 then sub_i32(loc_2, loc_0) else sub_i32(loc_0, loc_2)), 255)
-							loc_1 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
-							reg_1 = loc_1
-							loc_1 = shr_i32(extend_i32_n8(loc_1), 7)
-							loc_1 = band_i32(sub_i32(bxor_i32(reg_1, loc_1), loc_1), 255)
+							loc_2 = band_i32((if loc_2 > loc_4 then sub_i32(loc_2, loc_4) else sub_i32(loc_4, loc_2)), 255)
+							loc_1 = band_i32(sub_i32(bxor_i32(loc_1, loc_6), loc_1), 255)
 							if (if loc_1 < loc_2 then loc_2 else loc_1) ~= 2 then
 								break
 							end
-							store_i64(memory_at_0, loc_4, bor_i64(load_i64(memory_at_0, loc_4), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
+							store_i64(memory_at_0, loc_0, bor_i64(load_i64(memory_at_0, loc_0), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
 							break
 						end
 						if desired then
@@ -23775,20 +23924,19 @@ FUNC_LIST[89] = function(loc_0)
 							break
 						end
 						while true do
-							loc_3 = sub_i32(loc_6, 10)
+							loc_3 = sub_i32(loc_7, 10)
 							if band_i32(loc_3, 255) > 63 then
 								break
 							end
-							loc_2 = band_i32(loc_3, 7)
-							loc_0 = band_i32((if loc_0 < loc_2 then sub_i32(loc_2, loc_0) else sub_i32(loc_0, loc_2)), 255)
-							loc_5 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
-							reg_1 = loc_5
-							loc_5 = shr_i32(extend_i32_n8(loc_5), 7)
-							loc_5 = band_i32(sub_i32(bxor_i32(reg_1, loc_5), loc_5), 255)
-							if (if loc_0 > loc_5 then loc_0 else loc_5) ~= 2 then
+							loc_2 = sub_i32(loc_5, shr_u32(band_i32(loc_3, 248), 3))
+							loc_5 = shr_i32(extend_i32_n8(loc_2), 7)
+							loc_1 = band_i32(loc_3, 7)
+							loc_4 = band_i32((if loc_1 > loc_4 then sub_i32(loc_1, loc_4) else sub_i32(loc_4, loc_1)), 255)
+							loc_5 = band_i32(sub_i32(bxor_i32(loc_2, loc_5), loc_5), 255)
+							if (if loc_4 > loc_5 then loc_4 else loc_5) ~= 2 then
 								break
 							end
-							store_i64(memory_at_0, loc_4, bor_i64(load_i64(memory_at_0, loc_4), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
+							store_i64(memory_at_0, loc_0, bor_i64(load_i64(memory_at_0, loc_0), shl_i64(i64_ONE, extend_i64_u32(loc_3))))
 							break
 						end
 						if desired then
@@ -23798,9 +23946,9 @@ FUNC_LIST[89] = function(loc_0)
 							end
 							break
 						end
-						loc_4 = add_i32(loc_4, 8)
-						loc_6 = add_i32(loc_6, 1)
-						if loc_6 ~= 64 then
+						loc_0 = add_i32(loc_0, 8)
+						loc_7 = add_i32(loc_7, 1)
+						if loc_7 ~= 64 then
 							continue
 						end
 						break
@@ -23811,8 +23959,8 @@ FUNC_LIST[89] = function(loc_0)
 						end
 						break
 					end
-					reg_1 = FUNC_LIST[107](loc_7, add_i32(loc_7, 512), 512)
-					reg_0 = FUNC_LIST[107](loc_8, reg_1, 512)
+					reg_1 = FUNC_LIST[107](loc_8, add_i32(loc_8, 512), 512)
+					reg_0 = FUNC_LIST[107](loc_9, reg_1, 512)
 					store_i32_n8(memory_at_0, 1071208, 3)
 					break
 				end
@@ -23822,7 +23970,7 @@ FUNC_LIST[89] = function(loc_0)
 					end
 					break
 				end
-				GLOBAL_LIST[0].value = add_i32(loc_7, 1024)
+				GLOBAL_LIST[0].value = add_i32(loc_8, 1024)
 				desired = 0
 				break
 			end
@@ -23832,11 +23980,11 @@ FUNC_LIST[89] = function(loc_0)
 				end
 				break
 			end
-			store_i64(memory_at_0, add_i32(loc_7, 524), i64_ZERO)
-			store_i32(memory_at_0, loc_7 + 516, 1)
-			store_i32(memory_at_0, loc_7 + 512, 1070232)
-			store_i32(memory_at_0, loc_7 + 520, 1068848)
-			FUNC_LIST[20](add_i32(loc_7, 512), 1052884)
+			store_i64(memory_at_0, add_i32(loc_8, 524), i64_ZERO)
+			store_i32(memory_at_0, loc_8 + 516, 1)
+			store_i32(memory_at_0, loc_8 + 512, 1070232)
+			store_i32(memory_at_0, loc_8 + 520, 1068848)
+			FUNC_LIST[20](add_i32(loc_8, 512), 1052884)
 			error("out of code bounds")
 		end
 		if desired then
@@ -24163,7 +24311,7 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 				loc_7 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1066056)), loc_7)
 				loc_5 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1064520)), loc_5)
 				loc_3 = band_i64(sub_i64(loc_3, i64_ONE), loc_3)
-				if (if eq_i64(loc_3, i64_ZERO) then 1 else 0) == 0 then
+				if ne_i64(loc_3, i64_ZERO) then
 					continue
 				end
 				break
@@ -24183,7 +24331,7 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			break
 		end
 		loc_13 = load_i64(memory_at_0, add_i32(loc_9, 40))
-		if (if eq_i64(loc_13, i64_ZERO) then 1 else 0) == 0 then
+		if ne_i64(loc_13, i64_ZERO) then
 			while true do
 				loc_3 = loc_13
 				while true do
@@ -24209,7 +24357,7 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			end
 		end
 		loc_14 = load_i64(memory_at_0, add_i32(loc_9, 48))
-		if (if eq_i64(loc_14, i64_ZERO) then 1 else 0) == 0 then
+		if ne_i64(loc_14, i64_ZERO) then
 			while true do
 				loc_3 = loc_14
 				while true do
@@ -24235,7 +24383,7 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			end
 		end
 		loc_15 = load_i64(memory_at_0, add_i32(loc_9, 56))
-		if (if eq_i64(loc_15, i64_ZERO) then 1 else 0) == 0 then
+		if ne_i64(loc_15, i64_ZERO) then
 			while true do
 				loc_3 = loc_15
 				while true do
@@ -24261,7 +24409,7 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			end
 		end
 		loc_16 = load_i64(memory_at_0, sub_i32(loc_9, 4294967232))
-		if (if eq_i64(loc_16, i64_ZERO) then 1 else 0) == 0 then
+		if ne_i64(loc_16, i64_ZERO) then
 			while true do
 				loc_3 = loc_16
 				while true do
@@ -24287,7 +24435,7 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			end
 		end
 		loc_3 = load_i64(memory_at_0, add_i32(loc_9, 72))
-		if (if eq_i64(loc_3, i64_ZERO) then 1 else 0) == 0 then
+		if ne_i64(loc_3, i64_ZERO) then
 			while true do
 				while true do
 					loc_4 = shl_i32(bxor_i32(wrap_i32_i64(ctz_i64(loc_3)), 56), 2)
@@ -24327,10 +24475,10 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			end
 			while true do
 				loc_4 = shl_i32(wrap_i32_i64(ctz_i64(loc_3)), 2)
-				loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1066056)), loc_6)
-				loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1064520)), loc_8)
+				loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1066056)), loc_8)
+				loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1064520)), loc_6)
 				loc_3 = band_i64(sub_i64(loc_3, i64_ONE), loc_3)
-				if (if eq_i64(loc_3, i64_ZERO) then 1 else 0) == 0 then
+				if ne_i64(loc_3, i64_ZERO) then
 					continue
 				end
 				break
@@ -24350,13 +24498,13 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			break
 		end
 		loc_17 = load_i64(memory_at_0, add_i32(loc_9, 88))
-		if (if eq_i64(loc_17, i64_ZERO) then 1 else 0) == 0 then
+		if ne_i64(loc_17, i64_ZERO) then
 			while true do
 				loc_3 = loc_17
 				while true do
 					loc_4 = shl_i32(wrap_i32_i64(ctz_i64(loc_3)), 2)
-					loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1066312)), loc_6)
-					loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1064776)), loc_8)
+					loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1066312)), loc_8)
+					loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1064776)), loc_6)
 					loc_3 = band_i64(sub_i64(loc_3, i64_ONE), loc_3)
 					if ne_i64(loc_3, i64_ZERO) then
 						continue
@@ -24376,13 +24524,13 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			end
 		end
 		loc_18 = load_i64(memory_at_0, add_i32(loc_9, 96))
-		if (if eq_i64(loc_18, i64_ZERO) then 1 else 0) == 0 then
+		if ne_i64(loc_18, i64_ZERO) then
 			while true do
 				loc_3 = loc_18
 				while true do
 					loc_4 = shl_i32(wrap_i32_i64(ctz_i64(loc_3)), 2)
-					loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1066568)), loc_6)
-					loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1065032)), loc_8)
+					loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1066568)), loc_8)
+					loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1065032)), loc_6)
 					loc_3 = band_i64(sub_i64(loc_3, i64_ONE), loc_3)
 					if ne_i64(loc_3, i64_ZERO) then
 						continue
@@ -24402,13 +24550,13 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			end
 		end
 		loc_19 = load_i64(memory_at_0, add_i32(loc_9, 104))
-		if (if eq_i64(loc_19, i64_ZERO) then 1 else 0) == 0 then
+		if ne_i64(loc_19, i64_ZERO) then
 			while true do
 				loc_3 = loc_19
 				while true do
 					loc_4 = shl_i32(wrap_i32_i64(ctz_i64(loc_3)), 2)
-					loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1066824)), loc_6)
-					loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1065288)), loc_8)
+					loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1066824)), loc_8)
+					loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1065288)), loc_6)
 					loc_3 = band_i64(sub_i64(loc_3, i64_ONE), loc_3)
 					if ne_i64(loc_3, i64_ZERO) then
 						continue
@@ -24428,13 +24576,13 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			end
 		end
 		loc_20 = load_i64(memory_at_0, add_i32(loc_9, 112))
-		if (if eq_i64(loc_20, i64_ZERO) then 1 else 0) == 0 then
+		if ne_i64(loc_20, i64_ZERO) then
 			while true do
 				loc_3 = loc_20
 				while true do
 					loc_4 = shl_i32(wrap_i32_i64(ctz_i64(loc_3)), 2)
-					loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1067080)), loc_6)
-					loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1065544)), loc_8)
+					loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1067080)), loc_8)
+					loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1065544)), loc_6)
 					loc_3 = band_i64(sub_i64(loc_3, i64_ONE), loc_3)
 					if ne_i64(loc_3, i64_ZERO) then
 						continue
@@ -24454,12 +24602,12 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 			end
 		end
 		loc_3 = load_i64(memory_at_0, add_i32(loc_9, 120))
-		if (if eq_i64(loc_3, i64_ZERO) then 1 else 0) == 0 then
+		if ne_i64(loc_3, i64_ZERO) then
 			while true do
 				while true do
 					loc_4 = shl_i32(wrap_i32_i64(ctz_i64(loc_3)), 2)
-					loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1067336)), loc_6)
-					loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1065800)), loc_8)
+					loc_8 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1067336)), loc_8)
+					loc_6 = add_i32(load_i32(memory_at_0, add_i32(loc_4, 1065800)), loc_6)
 					loc_3 = band_i64(sub_i64(loc_3, i64_ONE), loc_3)
 					if ne_i64(loc_3, i64_ZERO) then
 						continue
@@ -24484,7 +24632,7 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 					while true do
 						loc_4 = add_i32(add_i32(add_i32(wrap_i32_i64(popcnt_i64(loc_18)), add_i32(wrap_i32_i64(popcnt_i64(loc_17)), add_i32(wrap_i32_i64(popcnt_i64(loc_14)), wrap_i32_i64(popcnt_i64(loc_13))))), shl_i32(add_i32(wrap_i32_i64(popcnt_i64(loc_19)), wrap_i32_i64(popcnt_i64(loc_15))), 1)), shl_i32(add_i32(wrap_i32_i64(popcnt_i64(loc_20)), wrap_i32_i64(popcnt_i64(loc_16))), 2))
 						loc_4 = (if loc_4 >= 24 then 24 else loc_4)
-						loc_4 = div_i32(add_i32(mul_i32(sub_i32(24, loc_4), sub_i32(loc_7, loc_6)), mul_i32(loc_4, sub_i32(loc_5, loc_8))), 24)
+						loc_4 = div_i32(add_i32(mul_i32(sub_i32(24, loc_4), sub_i32(loc_7, loc_8)), mul_i32(loc_4, sub_i32(loc_5, loc_6))), 24)
 						loc_4 = (if load_i32_u8(memory_at_0, loc_9 + 140) ~= 0 then loc_4 else sub_i32(0, loc_4))
 						loc_11 = (if lt_i32(loc_1, loc_4) then loc_4 else loc_1)
 						if le_i32(loc_2, loc_11) then
@@ -24503,8 +24651,8 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 						FUNC_LIST[25](add_i32(loc_10, 8), loc_9)
 						loc_5 = 0
 						while true do
-							loc_8 = add_i32(loc_10, 732)
-							loc_1 = add_i32(loc_8, loc_5)
+							loc_6 = add_i32(loc_10, 732)
+							loc_1 = add_i32(loc_6, loc_5)
 							store_i32(memory_at_0, loc_1, 0)
 							store_i32_n16(memory_at_0, add_i32(loc_1, 12), 0)
 							store_i32(memory_at_0, add_i32(loc_1, 8), 0)
@@ -24524,10 +24672,10 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 						store_i32(memory_at_0, loc_10 + 1324, 0)
 						store_i32(memory_at_0, loc_10 + 144, loc_0)
 						store_i32(memory_at_0, loc_10 + 140, add_i32(loc_10, 1324))
-						store_i32(memory_at_0, loc_10 + 136, loc_8)
+						store_i32(memory_at_0, loc_10 + 136, loc_6)
 						loc_1 = add_i32(loc_10, 136)
 						FUNC_LIST[27](add_i32(loc_10, 8), loc_1, 21, 1)
-						reg_0 = FUNC_LIST[107](loc_1, loc_8, 592)
+						reg_0 = FUNC_LIST[107](loc_1, loc_6, 592)
 						loc_7 = load_i32(memory_at_0, loc_10 + 1324)
 						if loc_7 == 0 then
 							while true do
@@ -24550,8 +24698,8 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 								desired = 1
 								break
 							end
-							loc_8 = add_i32(loc_10, 136)
-							loc_12 = add_i32(loc_8, shl_i32(loc_1, 3))
+							loc_6 = add_i32(loc_10, 136)
+							loc_12 = add_i32(loc_6, shl_i32(loc_1, 3))
 							while true do
 								if loc_1 == 0 then
 									break
@@ -24559,17 +24707,17 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 								loc_23 = sub_i32(loc_7, 2)
 								loc_5 = load_i32(memory_at_0, loc_12)
 								loc_7 = 0
-								loc_6 = loc_1
+								loc_8 = loc_1
 								while true do
 									while true do
-										loc_24 = load_i32(memory_at_0, loc_8)
+										loc_24 = load_i32(memory_at_0, loc_6)
 										loc_9 = (if gt_i32(loc_24, loc_5) then 1 else 0)
-										loc_6 = (if loc_9 ~= 0 then loc_7 else loc_6)
+										loc_8 = (if loc_9 ~= 0 then loc_7 else loc_8)
 										if loc_7 == loc_23 then
 											break
 										end
 										loc_5 = (if loc_9 ~= 0 then loc_24 else loc_5)
-										loc_8 = add_i32(loc_8, 8)
+										loc_6 = add_i32(loc_6, 8)
 										loc_9 = (if loc_7 == 73 then 1 else 0)
 										loc_7 = add_i32(loc_7, 1)
 										if loc_9 == 0 then
@@ -24593,14 +24741,14 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 									end
 									break
 								end
-								if loc_1 == loc_6 then
+								if loc_1 == loc_8 then
 									break
 								end
-								if loc_6 >= 74 then
+								if loc_8 >= 74 then
 									desired = 3
 									break
 								end
-								loc_5 = add_i32(add_i32(loc_10, 136), shl_i32(loc_6, 3))
+								loc_5 = add_i32(add_i32(loc_10, 136), shl_i32(loc_8, 3))
 								loc_3 = load_i64(memory_at_0, loc_5)
 								store_i64(memory_at_0, loc_5, load_i64(memory_at_0, loc_12))
 								store_i64(memory_at_0, loc_12, loc_3)
@@ -24622,11 +24770,11 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 							end
 							store_i32_n8(memory_at_0, loc_10 + 734, band_i32(shr_u32(loc_5, 6), 63))
 							store_i32_n16(memory_at_0, loc_10 + 732, bor_i32(load_i32_u8(memory_at_0, add_i32(loc_6, 1064512)), shl_i32(band_i32(loc_5, 63), 8)))
-							loc_8 = add_i32(loc_10, 732)
-							FUNC_LIST[24](load_i32(memory_at_0, loc_0 + 24), loc_8)
+							loc_6 = add_i32(loc_10, 732)
+							FUNC_LIST[24](load_i32(memory_at_0, loc_0 + 24), loc_6)
 							reg_0 = FUNC_LIST[92](loc_0, loc_21, sub_i32(0, loc_11))
 							loc_5 = reg_0
-							FUNC_LIST[80](load_i32(memory_at_0, loc_0 + 24), loc_8)
+							FUNC_LIST[80](load_i32(memory_at_0, loc_0 + 24), loc_6)
 							loc_6 = sub_i32(0, loc_5)
 							loc_5 = (if gt_i32(loc_4, loc_6) then loc_4 else loc_6)
 							loc_11 = (if lt_i32(loc_4, loc_6) then (if lt_i32(loc_6, loc_11) then loc_11 else loc_6) else loc_11)
@@ -24666,7 +24814,7 @@ FUNC_LIST[92] = function(loc_0, loc_1, loc_2)
 					end
 					break
 				end
-				FUNC_LIST[15](loc_6, 74, 1067748)
+				FUNC_LIST[15](loc_8, 74, 1067748)
 				error("out of code bounds")
 			end
 			if desired then
@@ -24849,7 +24997,7 @@ FUNC_LIST[93] = function(loc_0, loc_1)
 										break
 									end
 									loc_4 = 5
-									if (if eq_i64(band_i64(load_i64(memory_at_0, add_i32(loc_2, 72)), loc_3), i64_ZERO) then 1 else 0) == 0 then
+									if ne_i64(band_i64(load_i64(memory_at_0, add_i32(loc_2, 72)), loc_3), i64_ZERO) then
 										desired = 5
 										break
 									end
@@ -25116,7 +25264,7 @@ FUNC_LIST[94] = function(loc_0, loc_1)
 																		break
 																	end
 																	loc_4 = 5
-																	if (if eq_i64(band_i64(load_i64(memory_at_0, add_i32(loc_1, 72)), loc_3), i64_ZERO) then 1 else 0) == 0 then
+																	if ne_i64(band_i64(load_i64(memory_at_0, add_i32(loc_1, 72)), loc_3), i64_ZERO) then
 																		desired = 8
 																		break
 																	end
@@ -25156,7 +25304,7 @@ FUNC_LIST[94] = function(loc_0, loc_1)
 																break
 															end
 															loc_2 = 5
-															if (if eq_i64(band_i64(load_i64(memory_at_0, add_i32(loc_1, 72)), loc_3), i64_ZERO) then 1 else 0) == 0 then
+															if ne_i64(band_i64(load_i64(memory_at_0, add_i32(loc_1, 72)), loc_3), i64_ZERO) then
 																desired = 9
 																break
 															end
@@ -25767,7 +25915,6 @@ FUNC_LIST[97] = function(loc_0, loc_1)
 	local loc_5 = 0
 	local loc_6 = 0
 	local reg_0
-	local reg_1
 	local desired
 	while true do
 		loc_4 = sub_i32(GLOBAL_LIST[0].value, 128)
@@ -25784,10 +25931,8 @@ FUNC_LIST[97] = function(loc_0, loc_1)
 									break
 								end
 								loc_0 = load_i32(memory_at_0, loc_0)
-								reg_0 = extend_i64_u32(loc_0)
-								reg_1 = add_i64(extend_i64_i32(bxor_i32(loc_0, 4294967295)), i64_ONE)
-								loc_0 = (if ge_i32(loc_0, 0) then 1 else 0)
-								reg_0 = FUNC_LIST[53]((if loc_0 ~= 0 then reg_0 else reg_1), loc_0, loc_1)
+								loc_2 = (if ge_i32(loc_0, 0) then 1 else 0)
+								reg_0 = FUNC_LIST[53]((if loc_2 ~= 0 then extend_i64_u32(loc_0) else add_i64(extend_i64_i32(bxor_i32(loc_0, 4294967295)), i64_ONE)), loc_2, loc_1)
 								desired = 3
 								break
 							end
@@ -25802,9 +25947,9 @@ FUNC_LIST[97] = function(loc_0, loc_1)
 						loc_2 = 127
 						while true do
 							loc_3 = loc_2
-							loc_5 = add_i32(loc_4, loc_3)
+							loc_5 = add_i32(loc_3, loc_4)
 							loc_2 = band_i32(loc_0, 15)
-							store_i32_n8(memory_at_0, loc_5, add_i32((if loc_2 < 10 then 48 else 87), loc_2))
+							store_i32_n8(memory_at_0, loc_5, add_i32(loc_2, (if loc_2 < 10 then 48 else 87)))
 							loc_2 = sub_i32(loc_3, 1)
 							loc_6 = (if loc_0 < 16 then 1 else 0)
 							loc_0 = shr_u32(loc_0, 4)
@@ -25837,9 +25982,9 @@ FUNC_LIST[97] = function(loc_0, loc_1)
 					loc_2 = 127
 					while true do
 						loc_3 = loc_2
-						loc_5 = add_i32(loc_4, loc_3)
+						loc_5 = add_i32(loc_3, loc_4)
 						loc_2 = band_i32(loc_0, 15)
-						store_i32_n8(memory_at_0, loc_5, add_i32((if loc_2 < 10 then 48 else 55), loc_2))
+						store_i32_n8(memory_at_0, loc_5, add_i32(loc_2, (if loc_2 < 10 then 48 else 55)))
 						loc_2 = sub_i32(loc_3, 1)
 						loc_6 = (if loc_0 < 16 then 1 else 0)
 						loc_0 = shr_u32(loc_0, 4)
@@ -26048,23 +26193,23 @@ FUNC_LIST[103] = function(loc_0, loc_1)
 	local loc_2 = i64_ZERO
 	local loc_3 = i64_ZERO
 	local loc_4 = 0
-	local loc_5 = 0
-	local loc_6 = i64_ZERO
+	local loc_5 = i64_ZERO
+	local loc_6 = 0
 	local reg_0
 	local desired
 	while true do
 		loc_4 = sub_i32(GLOBAL_LIST[0].value, 16)
 		GLOBAL_LIST[0].value = loc_4
 		while true do
-			loc_3 = reinterpret_i64_f64(loc_1)
+			loc_5 = reinterpret_i64_f64(loc_1)
 			reg_0 = i64_ZERO
-			if lt_u64(loc_3, i64_from_u32(0, 1072693248)) then
+			if lt_u64(loc_5, i64_from_u32(0, 1072693248)) then
 				break
 			end
-			if ge_u64(loc_3, i64_from_u32(0, 1206910976)) then
+			if ge_u64(loc_5, i64_from_u32(0, 1206910976)) then
 				while true do
-					loc_2 = (if lt_u64(loc_3, i64_from_u32(1, 2146435072)) then i64_from_u32(4294967295, 4294967295) else i64_ZERO)
-					reg_0 = loc_2
+					loc_3 = (if lt_u64(loc_5, i64_from_u32(1, 2146435072)) then i64_from_u32(4294967295, 4294967295) else i64_ZERO)
+					reg_0 = loc_3
 					desired = 1
 					break
 				end
@@ -26075,18 +26220,17 @@ FUNC_LIST[103] = function(loc_0, loc_1)
 					break
 				end
 			end
-			loc_2 = bor_i64(shl_i64(loc_3, i64_from_u32(11, 0)), i64_from_u32(0, 2147483648))
+			loc_2 = bor_i64(shl_i64(loc_5, i64_from_u32(11, 0)), i64_from_u32(0, 2147483648))
 			while true do
-				loc_5 = band_i32(sub_i32(126, wrap_i32_i64(shr_u64(loc_3, i64_from_u32(52, 0)))), 127)
-				if band_i32(loc_5, 64) == 0 then
+				loc_6 = band_i32(sub_i32(126, wrap_i32_i64(shr_u64(loc_5, i64_from_u32(52, 0)))), 127)
+				if band_i32(loc_6, 64) == 0 then
 					while true do
-						if loc_5 == 0 then
+						if loc_6 == 0 then
 							desired = 2
 							break
 						end
-						loc_3 = extend_i64_u32(band_i32(loc_5, 63))
-						loc_6 = bor_i64(shl_i64(loc_2, extend_i64_u32(band_i32(sub_i32(0, loc_5), 63))), shr_u64(i64_ZERO, loc_3))
-						loc_2 = shr_u64(loc_2, loc_3)
+						loc_3 = shl_i64(loc_2, extend_i64_u32(band_i32(sub_i32(0, loc_6), 63)))
+						loc_2 = shr_u64(loc_2, extend_i64_u32(band_i32(loc_6, 63)))
 						desired = 2
 						break
 					end
@@ -26097,7 +26241,7 @@ FUNC_LIST[103] = function(loc_0, loc_1)
 						break
 					end
 				end
-				loc_6 = shr_u64(loc_2, extend_i64_u32(band_i32(loc_5, 63)))
+				loc_3 = shr_u64(loc_2, extend_i64_u32(band_i32(loc_6, 63)))
 				loc_2 = i64_ZERO
 				break
 			end
@@ -26107,15 +26251,15 @@ FUNC_LIST[103] = function(loc_0, loc_1)
 				end
 				break
 			end
-			store_i64(memory_at_0, loc_4, loc_6)
+			store_i64(memory_at_0, loc_4, loc_3)
 			store_i64(memory_at_0, loc_4 + 8, loc_2)
-			loc_2 = load_i64(memory_at_0, loc_4)
+			loc_3 = load_i64(memory_at_0, loc_4)
 			reg_0 = load_i64(memory_at_0, add_i32(loc_4, 8))
 			break
 		end
-		loc_3 = reg_0
-		store_i64(memory_at_0, loc_0, loc_2)
-		store_i64(memory_at_0, loc_0 + 8, loc_3)
+		loc_2 = reg_0
+		store_i64(memory_at_0, loc_0, loc_3)
+		store_i64(memory_at_0, loc_0 + 8, loc_2)
 		GLOBAL_LIST[0].value = add_i32(loc_4, 16)
 		break
 	end
@@ -26126,17 +26270,21 @@ FUNC_LIST[104] = function(loc_0, loc_1, loc_2, loc_3)
 	local loc_6 = i64_ZERO
 	local loc_7 = i64_ZERO
 	local loc_8 = i64_ZERO
+	local reg_0
+	local reg_1
+	local reg_2
 	while true do
 		loc_4 = band_i64(loc_3, i64_from_u32(4294967295, 0))
 		loc_5 = band_i64(loc_1, i64_from_u32(4294967295, 0))
 		loc_6 = mul_i64(loc_4, loc_5)
-		loc_7 = shr_u64(loc_3, i64_from_u32(32, 0))
-		loc_5 = mul_i64(loc_5, loc_7)
-		loc_8 = shr_u64(loc_1, i64_from_u32(32, 0))
-		loc_1 = add_i64(loc_5, mul_i64(loc_4, loc_8))
-		loc_4 = add_i64(loc_6, shl_i64(loc_1, i64_from_u32(32, 0)))
-		store_i64(memory_at_0, loc_0, loc_4)
-		store_i64(memory_at_0, loc_0 + 8, add_i64(add_i64(extend_i64_u32((if lt_u64(loc_4, loc_6) then 1 else 0)), add_i64(mul_i64(loc_7, loc_8), bor_i64(shl_i64(extend_i64_u32((if lt_u64(loc_1, loc_5) then 1 else 0)), i64_from_u32(32, 0)), shr_u64(loc_1, i64_from_u32(32, 0))))), mul_i64(loc_2, loc_3)))
+		loc_7 = shr_u64(loc_1, i64_from_u32(32, 0))
+		reg_2 = mul_i64(loc_4, loc_7)
+		loc_4 = shr_u64(loc_3, i64_from_u32(32, 0))
+		loc_5 = mul_i64(loc_5, loc_4)
+		loc_1 = add_i64(reg_2, loc_5)
+		loc_8 = add_i64(loc_6, shl_i64(loc_1, i64_from_u32(32, 0)))
+		store_i64(memory_at_0, loc_0, loc_8)
+		store_i64(memory_at_0, loc_0 + 8, add_i64(add_i64(extend_i64_u32((if gt_u64(loc_6, loc_8) then 1 else 0)), add_i64(mul_i64(loc_4, loc_7), bor_i64(shl_i64(extend_i64_u32((if lt_u64(loc_1, loc_5) then 1 else 0)), i64_from_u32(32, 0)), shr_u64(loc_1, i64_from_u32(32, 0))))), mul_i64(loc_2, loc_3)))
 		break
 	end
 end
@@ -26163,14 +26311,14 @@ FUNC_LIST[105] = function(loc_0, loc_1, loc_2)
 				end
 			end
 			loc_3 = band_i32(sub_i32(0, loc_0), 3)
-			loc_4 = add_i32(loc_0, loc_3)
+			loc_4 = add_i32(loc_3, loc_0)
 			if loc_3 ~= 0 then
 				while true do
 					loc_1 = loc_0
 					while true do
 						store_i32_n8(memory_at_0, loc_1, loc_5)
 						loc_1 = add_i32(loc_1, 1)
-						if loc_1 < loc_4 then
+						if loc_4 > loc_1 then
 							continue
 						end
 						break
@@ -26189,7 +26337,7 @@ FUNC_LIST[105] = function(loc_0, loc_1, loc_2)
 			end
 			loc_2 = sub_i32(loc_2, loc_3)
 			loc_3 = band_i32(loc_2, 4294967292)
-			loc_1 = add_i32(loc_4, loc_3)
+			loc_1 = add_i32(loc_3, loc_4)
 			if gt_i32(loc_3, 0) then
 				while true do
 					loc_3 = mul_i32(band_i32(loc_5, 255), 16843009)
@@ -26222,7 +26370,7 @@ FUNC_LIST[105] = function(loc_0, loc_1, loc_2)
 				while true do
 					store_i32_n8(memory_at_0, loc_1, loc_5)
 					loc_1 = add_i32(loc_1, 1)
-					if loc_1 < loc_2 then
+					if loc_2 > loc_1 then
 						continue
 					end
 					break
@@ -26293,13 +26441,13 @@ FUNC_LIST[107] = function(loc_0, loc_1, loc_2)
 	local loc_7 = 0
 	local loc_8 = 0
 	local loc_9 = 0
+	local loc_10 = 0
 	local reg_0
-	local reg_1
 	local desired
 	while true do
 		while true do
-			loc_4 = loc_2
-			if loc_4 < 16 then
+			loc_6 = loc_2
+			if loc_6 < 16 then
 				while true do
 					loc_2 = loc_0
 					desired = 1
@@ -26312,17 +26460,17 @@ FUNC_LIST[107] = function(loc_0, loc_1, loc_2)
 					break
 				end
 			end
-			loc_3 = band_i32(sub_i32(0, loc_0), 3)
-			loc_5 = add_i32(loc_0, loc_3)
-			if loc_3 ~= 0 then
+			loc_4 = band_i32(sub_i32(0, loc_0), 3)
+			loc_5 = add_i32(loc_4, loc_0)
+			if loc_4 ~= 0 then
 				while true do
 					loc_2 = loc_0
-					loc_6 = loc_1
+					loc_3 = loc_1
 					while true do
-						store_i32_n8(memory_at_0, loc_2, load_i32_u8(memory_at_0, loc_6))
-						loc_6 = add_i32(loc_6, 1)
+						store_i32_n8(memory_at_0, loc_2, load_i32_u8(memory_at_0, loc_3))
+						loc_3 = add_i32(loc_3, 1)
 						loc_2 = add_i32(loc_2, 1)
-						if loc_2 < loc_5 then
+						if loc_5 > loc_2 then
 							continue
 						end
 						break
@@ -26339,27 +26487,27 @@ FUNC_LIST[107] = function(loc_0, loc_1, loc_2)
 					break
 				end
 			end
-			loc_8 = sub_i32(loc_4, loc_3)
-			loc_7 = band_i32(loc_8, 4294967292)
-			loc_2 = add_i32(loc_5, loc_7)
+			loc_6 = sub_i32(loc_6, loc_4)
+			loc_7 = band_i32(loc_6, 4294967292)
+			loc_2 = add_i32(loc_7, loc_5)
 			while true do
-				loc_3 = add_i32(loc_1, loc_3)
-				if band_i32(loc_3, 3) ~= 0 then
+				loc_4 = add_i32(loc_1, loc_4)
+				if band_i32(loc_4, 3) ~= 0 then
 					while true do
 						if le_i32(loc_7, 0) then
 							desired = 2
 							break
 						end
-						loc_4 = shl_i32(loc_3, 3)
-						loc_9 = band_i32(loc_4, 24)
-						loc_6 = band_i32(loc_3, 4294967292)
-						loc_1 = add_i32(loc_6, 4)
-						loc_4 = band_i32(sub_i32(0, loc_4), 24)
-						loc_6 = load_i32(memory_at_0, loc_6)
+						loc_3 = shl_i32(loc_4, 3)
+						loc_9 = band_i32(loc_3, 24)
+						loc_8 = band_i32(loc_4, 4294967292)
+						loc_1 = add_i32(loc_8, 4)
+						loc_10 = band_i32(sub_i32(0, loc_3), 24)
+						loc_3 = load_i32(memory_at_0, loc_8)
 						while true do
-							reg_1 = shr_u32(loc_6, loc_9)
-							loc_6 = load_i32(memory_at_0, loc_1)
-							store_i32(memory_at_0, loc_5, bor_i32(reg_1, shl_i32(loc_6, loc_4)))
+							loc_8 = shr_u32(loc_3, loc_9)
+							loc_3 = load_i32(memory_at_0, loc_1)
+							store_i32(memory_at_0, loc_5, bor_i32(loc_8, shl_i32(loc_3, loc_10)))
 							loc_1 = add_i32(loc_1, 4)
 							loc_5 = add_i32(loc_5, 4)
 							if loc_5 < loc_2 then
@@ -26383,7 +26531,7 @@ FUNC_LIST[107] = function(loc_0, loc_1, loc_2)
 				if le_i32(loc_7, 0) then
 					break
 				end
-				loc_1 = loc_3
+				loc_1 = loc_4
 				while true do
 					store_i32(memory_at_0, loc_5, load_i32(memory_at_0, loc_1))
 					loc_1 = add_i32(loc_1, 4)
@@ -26407,18 +26555,18 @@ FUNC_LIST[107] = function(loc_0, loc_1, loc_2)
 				end
 				break
 			end
-			loc_4 = band_i32(loc_8, 3)
-			loc_1 = add_i32(loc_3, loc_7)
+			loc_6 = band_i32(loc_6, 3)
+			loc_1 = add_i32(loc_4, loc_7)
 			break
 		end
-		if loc_4 ~= 0 then
+		if loc_6 ~= 0 then
 			while true do
-				loc_3 = add_i32(loc_2, loc_4)
+				loc_3 = add_i32(loc_2, loc_6)
 				while true do
 					store_i32_n8(memory_at_0, loc_2, load_i32_u8(memory_at_0, loc_1))
 					loc_1 = add_i32(loc_1, 1)
 					loc_2 = add_i32(loc_2, 1)
-					if loc_2 < loc_3 then
+					if loc_3 > loc_2 then
 						continue
 					end
 					break
