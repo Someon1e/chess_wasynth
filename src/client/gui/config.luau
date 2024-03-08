@@ -12,7 +12,7 @@ Config.LIGHT_SQUARE_COLOUR, Config.DARK_SQUARE_COLOUR = Color3.fromRGB(234, 233,
 Config.CAN_MOVE_TO_SQUARE_COLOUR = Color3.fromRGB(100, 100, 100)
 Config.CAN_CAPTURE_SQUARE_COLOUR = Color3.fromRGB(255, 0, 0)
 
-Config.FONT = Font.fromName("GothamSSm")
+Config.FONT = Font.fromName("Montserrat")
 
 Config.PIECE_TEXTURES = {
 	[Notation.BLACK_PAWN] = "rbxassetid://7079123026",
