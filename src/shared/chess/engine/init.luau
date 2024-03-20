@@ -36,7 +36,7 @@ function Engine.getLegalMoves(out, fen: string, moves: string)
 	WASM.sendInput("go perft 1")
 end
 
-function Engine.getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
+function Engine.getBestMove(initialFen: string, moves, updateEval: (mate: boolean, number) -> (), aiMoveTime)
 	local result: string?
 	WASM.setListener(function(output)
 		print(output)
@@ -47,10 +47,16 @@ function Engine.getBestMove(initialFen: string, moves, updateEval, aiMoveTime)
 			WASM.setListener(print)
 		else
 			local eval = tonumber(string.match(output, "cp ([^ ]+)"))
-			if not eval then
+			if eval then
+				updateEval(false, eval)
+			else
+				local mate = tonumber(string.match(output, "mate ([^ ]+)"))
+				if not mate then
+					return
+				end
+				updateEval(true, mate)
 				return
 			end
-			updateEval(eval)
 		end
 	end)
 	WASM.sendInput("position fen " .. initialFen .. " moves " .. moves)
