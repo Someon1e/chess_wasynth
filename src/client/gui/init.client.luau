@@ -49,7 +49,7 @@ local function makeSquareGui(boardFrame, state)
 
 			label.LayoutOrder = y * 8 + x
 			label.Name = Notation.SQUARE_NUMBER_TO_NAME[x + y * 8]
-			label.BackgroundColor3 = if (y + x) % 2 == 0 then Config.LIGHT_SQUARE_COLOUR else Config.DARK_SQUARE_COLOUR
+			label.BackgroundColor3 = if (y + x) % 2 == 0 then Config.DARK_SQUARE_COLOUR else Config.LIGHT_SQUARE_COLOUR
 
 			local piece = buffer.readu8(state.board, x + y * 8)
 			label.Active = piece ~= 0
