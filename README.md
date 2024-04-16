@@ -1,7 +1,7 @@
 # chess_wasynth
 [Chess engine written in rust](https://github.com/Someon1e/chess), compiled to webassembly, [then into luau](https://github.com/Rerumu/Wasynth).
 
-Demo: https://streamable.com/0ckeex
+Demo: https://streamable.com/xbyf2x
 
 ## Getting Started
 To build the place from scratch, use:
