@@ -193,6 +193,7 @@ local function makeGui(initialFen)
 		state = newState
 		initialFen = Board.toFEN(state)
 		fenBox.Text = initialFen
+		sideOfHuman = state.whiteToPlay
 		table.clear(moveHistory)
 		table.clear(stateHistory)
 		for square, label in labels do
