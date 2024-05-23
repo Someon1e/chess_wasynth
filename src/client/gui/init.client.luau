@@ -329,7 +329,6 @@ local function makeGui(initialFen)
 	aiSelfPlayButton.FontFace = Config.FONT
 	local aiSelfPlaying = false
 	aiSelfPlayButton.Activated:Connect(function()
-		sideOfHuman = nil
 		aiSelfPlaying = not aiSelfPlaying
 		while aiSelfPlaying do
 			local move = getAIResponse()
@@ -338,6 +337,7 @@ local function makeGui(initialFen)
 			end
 			playMove(move)
 		end
+		sideOfHuman = state.whiteToPlay
 	end)
 	aiSelfPlayButton.Parent = gui
 
