@@ -314,7 +314,7 @@ local function makeGui(initialFen)
 			evalBar.Visible = true
 			if mate then
 				local engineIsMating = if evaluation > 0 then 1 else 0
-				blackEvalFill.Size = UDim2.fromScale(1, if state.whiteToPlay then engineIsMating else -engineIsMating)
+				blackEvalFill.Size = UDim2.fromScale(1, if state.whiteToPlay then -engineIsMating else engineIsMating)
 			else
 				local blackEvaluation = if state.whiteToPlay then -evaluation else evaluation
 				blackEvalFill.Size = UDim2.fromScale(1, 0.5 + blackEvaluation / 1800)
