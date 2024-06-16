@@ -329,16 +329,25 @@ local function makeGui(initialFen)
 	aiSelfPlayButton.Text = "AI vs AI"
 	aiSelfPlayButton.FontFace = Config.FONT
 	local aiSelfPlaying = false
+	aiSelfPlayButton.TextColor3 = if aiSelfPlaying then Config.BUTTON_ENABLED_COLOUR else Config.BUTTON_DISABLED_COLOUR
 	aiSelfPlayButton.Activated:Connect(function()
 		sideOfHuman = nil
 		aiSelfPlaying = not aiSelfPlaying
-		while aiSelfPlaying do
-			local move = getAIResponse()
-			if not move then
-				break
+
+		if aiSelfPlaying then
+			aiSelfPlayButton.TextColor3 = Config.BUTTON_ENABLED_COLOUR
+
+			while aiSelfPlaying do
+				local move = getAIResponse()
+				if not move then
+					break
+				end
+				playMove(move)
 			end
-			playMove(move)
+		else
+			aiSelfPlayButton.TextColor3 = Config.BUTTON_DISABLED_COLOUR
 		end
+
 		sideOfHuman = state.whiteToPlay
 	end)
 	aiSelfPlayButton.Parent = gui
