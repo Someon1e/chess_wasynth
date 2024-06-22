@@ -6,18 +6,12 @@ local line = {}
 
 local messageListener: (string) -> ...any? = print
 
-local rust = require(script:WaitForChild("compiled"))({
+local rust rust = require(script:WaitForChild("compiled"))({
 	env = {
 		func_list = {
 			time = os.clock,
-			print_char = function(byte)
-				local character = string.char(byte)
-				if character == "\n" then
-					messageListener(table.concat(line))
-					table.clear(line)
-					return
-				end
-				table.insert(line, character)
+			print_string = function(pointer, length)
+				messageListener(rust.rt.load.string(rust.memory_list.memory, pointer, length))
 			end,
 		},
 	},
