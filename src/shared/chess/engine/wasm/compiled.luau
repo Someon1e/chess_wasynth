@@ -1067,7 +1067,7 @@ FUNC_LIST[4] = function(loc_0, loc_1)
 					break
 				end
 			end
-			FUNC_LIST[34](1074405, 46, 1074452)
+			FUNC_LIST[34](1074425, 46, 1074472)
 			error("out of code bounds")
 		end
 		if desired then
@@ -1076,7 +1076,7 @@ FUNC_LIST[4] = function(loc_0, loc_1)
 			end
 			break
 		end
-		FUNC_LIST[34](1074468, 46, 1074516)
+		FUNC_LIST[34](1074488, 46, 1074536)
 		error("out of code bounds")
 	end
 end
@@ -1217,11 +1217,11 @@ FUNC_LIST[6] = function(loc_0, loc_1, loc_2)
 										while true do
 											if loc_1 > loc_3 then
 												while true do
-													if loc_7 == rt_load_i32(memory_at_0, 1223788) then
+													if loc_7 == rt_load_i32(memory_at_0, 1223868) then
 														desired = 6
 														break
 													end
-													if loc_7 == rt_load_i32(memory_at_0, 1223784) then
+													if loc_7 == rt_load_i32(memory_at_0, 1223864) then
 														desired = 7
 														break
 													end
@@ -1292,7 +1292,7 @@ FUNC_LIST[6] = function(loc_0, loc_1, loc_2)
 										end
 										break
 									end
-									loc_3 = rt_add_i32(rt_load_i32(memory_at_0, 1223776), loc_3)
+									loc_3 = rt_add_i32(rt_load_i32(memory_at_0, 1223856), loc_3)
 									if loc_3 < loc_1 then
 										desired = 5
 										break
@@ -1330,8 +1330,8 @@ FUNC_LIST[6] = function(loc_0, loc_1, loc_2)
 										end
 										break
 									end
-									rt_store_i32(memory_at_0, 1223784, loc_1)
-									rt_store_i32(memory_at_0, 1223776, loc_2)
+									rt_store_i32(memory_at_0, 1223864, loc_1)
+									rt_store_i32(memory_at_0, 1223856, loc_2)
 									reg_0 = loc_0
 									desired = 0
 									break
@@ -1342,7 +1342,7 @@ FUNC_LIST[6] = function(loc_0, loc_1, loc_2)
 									end
 									break
 								end
-								loc_3 = rt_add_i32(rt_load_i32(memory_at_0, 1223780), loc_3)
+								loc_3 = rt_add_i32(rt_load_i32(memory_at_0, 1223860), loc_3)
 								if loc_3 > loc_1 then
 									desired = 1
 									break
@@ -1392,7 +1392,7 @@ FUNC_LIST[6] = function(loc_0, loc_1, loc_2)
 						break
 					end
 				end
-				FUNC_LIST[34](1074405, 46, 1074452)
+				FUNC_LIST[34](1074425, 46, 1074472)
 				error("out of code bounds")
 			end
 			if desired then
@@ -1401,7 +1401,7 @@ FUNC_LIST[6] = function(loc_0, loc_1, loc_2)
 				end
 				break
 			end
-			FUNC_LIST[34](1074468, 46, 1074516)
+			FUNC_LIST[34](1074488, 46, 1074536)
 			error("out of code bounds")
 		end
 		if desired then
@@ -1414,8 +1414,8 @@ FUNC_LIST[6] = function(loc_0, loc_1, loc_2)
 		loc_2 = rt_add_i32(loc_1, loc_5)
 		loc_1 = rt_sub_i32(loc_3, loc_1)
 		rt_store_i32(memory_at_0, loc_2 + 4, bit_or(loc_1, 1))
-		rt_store_i32(memory_at_0, 1223780, loc_1)
-		rt_store_i32(memory_at_0, 1223788, loc_2)
+		rt_store_i32(memory_at_0, 1223860, loc_1)
+		rt_store_i32(memory_at_0, 1223868, loc_2)
 		reg_0 = loc_0
 		break
 	end
@@ -1443,7 +1443,7 @@ FUNC_LIST[8] = function(loc_0)
 	local reg_2
 	local desired
 	while true do
-		loc_1 = rt_load_i32_u8(memory_at_0, 1223240)
+		loc_1 = rt_load_i32_u8(memory_at_0, 1223320)
 		while true do
 			while true do
 				while true do
@@ -1455,10 +1455,10 @@ FUNC_LIST[8] = function(loc_0)
 									while true do
 										if bit_and(loc_1, 1) == 0 then
 											while true do
-												rt_store_i32_n8(memory_at_0, 1223240, 1)
-												rt_store_i32(memory_at_0, 1223252, 1)
-												rt_store_i32(memory_at_0, 1223248, 0)
-												rt_store_i32(memory_at_0, 1223256, 0)
+												rt_store_i32_n8(memory_at_0, 1223320, 1)
+												rt_store_i32(memory_at_0, 1223332, 1)
+												rt_store_i32(memory_at_0, 1223328, 0)
+												rt_store_i32(memory_at_0, 1223336, 0)
 												reg_0 = 1
 												desired = 7
 												break
@@ -1470,13 +1470,13 @@ FUNC_LIST[8] = function(loc_0)
 												break
 											end
 										end
-										loc_0 = rt_load_i32(memory_at_0, 1223244)
+										loc_0 = rt_load_i32(memory_at_0, 1223324)
 										if loc_0 > 2147483646 then
 											desired = 4
 											break
 										end
-										loc_2 = rt_load_i32(memory_at_0, 1223252)
-										loc_4 = rt_load_i32(memory_at_0, 1223256)
+										loc_2 = rt_load_i32(memory_at_0, 1223332)
+										loc_4 = rt_load_i32(memory_at_0, 1223336)
 										reg_0 = rt_add_i32(loc_0, 1)
 										break
 									end
@@ -1485,15 +1485,15 @@ FUNC_LIST[8] = function(loc_0)
 									end
 									loc_1 = reg_0
 									loc_0 = 0
-									rt_store_i32(memory_at_0, 1223244, loc_1)
+									rt_store_i32(memory_at_0, 1223324, loc_1)
 									FUNC_LIST[9](loc_2, loc_4)
-									loc_1 = rt_sub_i32(rt_load_i32(memory_at_0, 1223244), 1)
-									rt_store_i32(memory_at_0, 1223244, loc_1)
+									loc_1 = rt_sub_i32(rt_load_i32(memory_at_0, 1223324), 1)
+									rt_store_i32(memory_at_0, 1223324, loc_1)
 									if loc_1 ~= 0 then
 										desired = 3
 										break
 									end
-									rt_store_i32(memory_at_0, 1223256, 0)
+									rt_store_i32(memory_at_0, 1223336, 0)
 									desired = 5
 									break
 								end
@@ -1507,10 +1507,10 @@ FUNC_LIST[8] = function(loc_0)
 							while true do
 								if bit_and(loc_1, 1) == 0 then
 									while true do
-										rt_store_i32_n8(memory_at_0, 1223240, 1)
-										rt_store_i32(memory_at_0, 1223252, 1)
-										rt_store_i32(memory_at_0, 1223248, 0)
-										rt_store_i32(memory_at_0, 1223256, 0)
+										rt_store_i32_n8(memory_at_0, 1223320, 1)
+										rt_store_i32(memory_at_0, 1223332, 1)
+										rt_store_i32(memory_at_0, 1223328, 0)
+										rt_store_i32(memory_at_0, 1223336, 0)
 										desired = 6
 										break
 									end
@@ -1521,7 +1521,7 @@ FUNC_LIST[8] = function(loc_0)
 										break
 									end
 								end
-								if rt_load_i32(memory_at_0, 1223244) ~= 0 then
+								if rt_load_i32(memory_at_0, 1223324) ~= 0 then
 									desired = 2
 									break
 								end
@@ -1533,15 +1533,15 @@ FUNC_LIST[8] = function(loc_0)
 								end
 								break
 							end
-							rt_store_i32(memory_at_0, 1223244, 4294967295)
-							reg_0 = 1223256
+							rt_store_i32(memory_at_0, 1223324, 4294967295)
+							reg_0 = 1223336
 							while true do
 								if rt_lt_i32(rt_extend_i32_n8(loc_0), 0) then
 									while true do
 										loc_4 = bit_and(loc_0, 191)
 										loc_3 = bit_or(rt_shr_u32(loc_0, 6), 4294967232)
-										loc_0 = rt_load_i32(memory_at_0, 1223256)
-										if rt_sub_i32(rt_load_i32(memory_at_0, 1223248), loc_0) <= 1 then
+										loc_0 = rt_load_i32(memory_at_0, 1223336)
+										if rt_sub_i32(rt_load_i32(memory_at_0, 1223328), loc_0) <= 1 then
 											while true do
 												loc_1 = rt_sub_i32(GLOBAL_LIST[0].value, 32)
 												GLOBAL_LIST[0].value = loc_1
@@ -1556,7 +1556,7 @@ FUNC_LIST[8] = function(loc_0)
 														break
 													end
 												end
-												loc_2 = rt_load_i32(memory_at_0, 1223248)
+												loc_2 = rt_load_i32(memory_at_0, 1223328)
 												loc_5 = rt_shl_i32(loc_2, 1)
 												loc_0 = (if loc_0 < loc_5 then loc_5 else loc_0)
 												loc_0 = (if loc_0 <= 8 then 8 else loc_0)
@@ -1565,7 +1565,7 @@ FUNC_LIST[8] = function(loc_0)
 												if loc_2 ~= 0 then
 													while true do
 														rt_store_i32(memory_at_0, loc_1 + 28, loc_2)
-														rt_store_i32(memory_at_0, loc_1 + 20, rt_load_i32(memory_at_0, 1223252))
+														rt_store_i32(memory_at_0, loc_1 + 20, rt_load_i32(memory_at_0, 1223332))
 														reg_2 = 1
 														break
 													end
@@ -1592,17 +1592,17 @@ FUNC_LIST[8] = function(loc_0)
 														break
 													end
 												end
-												rt_store_i32(memory_at_0, 1223252, rt_load_i32(memory_at_0, loc_1 + 12))
-												rt_store_i32(memory_at_0, 1223248, loc_0)
+												rt_store_i32(memory_at_0, 1223332, rt_load_i32(memory_at_0, loc_1 + 12))
+												rt_store_i32(memory_at_0, 1223328, loc_0)
 												GLOBAL_LIST[0].value = rt_add_i32(loc_1, 32)
-												loc_0 = rt_load_i32(memory_at_0, 1223256)
+												loc_0 = rt_load_i32(memory_at_0, 1223336)
 												break
 											end
 											if desired then
 												break
 											end
 										end
-										rt_store_i32_n16(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223252), loc_0), bit_or(bit_and(loc_3, 255), rt_shl_i32(loc_4, 8)))
+										rt_store_i32_n16(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223332), loc_0), bit_or(bit_and(loc_3, 255), rt_shl_i32(loc_4, 8)))
 										reg_1 = rt_add_i32(loc_0, 2)
 										desired = 6
 										break
@@ -1614,8 +1614,8 @@ FUNC_LIST[8] = function(loc_0)
 										break
 									end
 								end
-								loc_2 = rt_load_i32(memory_at_0, 1223248)
-								loc_4 = rt_load_i32(memory_at_0, 1223256)
+								loc_2 = rt_load_i32(memory_at_0, 1223328)
+								loc_4 = rt_load_i32(memory_at_0, 1223336)
 								if loc_2 == loc_4 then
 									while true do
 										loc_1 = rt_sub_i32(GLOBAL_LIST[0].value, 32)
@@ -1638,7 +1638,7 @@ FUNC_LIST[8] = function(loc_0)
 										if loc_2 ~= 0 then
 											while true do
 												rt_store_i32(memory_at_0, loc_1 + 28, loc_2)
-												rt_store_i32(memory_at_0, loc_1 + 20, rt_load_i32(memory_at_0, 1223252))
+												rt_store_i32(memory_at_0, loc_1 + 20, rt_load_i32(memory_at_0, 1223332))
 												reg_2 = 1
 												break
 											end
@@ -1665,8 +1665,8 @@ FUNC_LIST[8] = function(loc_0)
 												break
 											end
 										end
-										rt_store_i32(memory_at_0, 1223252, rt_load_i32(memory_at_0, loc_1 + 12))
-										rt_store_i32(memory_at_0, 1223248, loc_3)
+										rt_store_i32(memory_at_0, 1223332, rt_load_i32(memory_at_0, loc_1 + 12))
+										rt_store_i32(memory_at_0, 1223328, loc_3)
 										GLOBAL_LIST[0].value = rt_add_i32(loc_1, 32)
 										break
 									end
@@ -1677,7 +1677,7 @@ FUNC_LIST[8] = function(loc_0)
 										break
 									end
 								end
-								rt_store_i32_n8(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223252), loc_4), loc_0)
+								rt_store_i32_n8(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223332), loc_4), loc_0)
 								reg_1 = rt_add_i32(loc_4, 1)
 								break
 							end
@@ -1688,7 +1688,7 @@ FUNC_LIST[8] = function(loc_0)
 								break
 							end
 							rt_store_i32(memory_at_0, reg_0, reg_1)
-							loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223244), 1)
+							loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223324), 1)
 							break
 						end
 						if desired then
@@ -1697,7 +1697,7 @@ FUNC_LIST[8] = function(loc_0)
 							end
 							break
 						end
-						rt_store_i32(memory_at_0, 1223244, loc_0)
+						rt_store_i32(memory_at_0, 1223324, loc_0)
 						desired = 0
 						break
 					end
@@ -1778,7 +1778,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 	local desired
 	local br_map = {}
 	while true do
-		loc_2 = rt_sub_i32(GLOBAL_LIST[0].value, 17104)
+		loc_2 = rt_sub_i32(GLOBAL_LIST[0].value, 17168)
 		GLOBAL_LIST[0].value = loc_2
 		rt_store_i32_n16(memory_at_0, loc_2 + 204, 1)
 		rt_store_i32(memory_at_0, loc_2 + 200, 0)
@@ -1789,16 +1789,16 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 		rt_store_i32(memory_at_0, loc_2 + 176, 0)
 		loc_12 = rt_add_i32(loc_0, loc_1)
 		rt_store_i32(memory_at_0, loc_2 + 196, loc_12)
-		if rt_eq_i64(rt_load_i64(memory_at_0, 1076280), rt_i64_ZERO) then
+		if rt_eq_i64(rt_load_i64(memory_at_0, 1076296), rt_i64_ZERO) then
 			while true do
-				rt_store_i64(memory_at_0, 1223232, rt_i64_ZERO)
-				rt_store_i64(memory_at_0, 1223224, rt_i64_from_u32(0, 1))
-				rt_store_i32(memory_at_0, 1223212, 2147483648)
-				rt_store_i32(memory_at_0, 1223208, 1)
-				rt_store_i32(memory_at_0, 1092872, 2147483648)
-				rt_store_i64(memory_at_0, 1076296, rt_i64_from_u32(40000, 0))
-				rt_store_i64(memory_at_0, 1076280, rt_i64_ONE)
-				rt_store_i32(memory_at_0, 1076288, 0)
+				rt_store_i64(memory_at_0, 1223312, rt_i64_ZERO)
+				rt_store_i64(memory_at_0, 1223304, rt_i64_from_u32(0, 1))
+				rt_store_i32(memory_at_0, 1223292, 2147483648)
+				rt_store_i32(memory_at_0, 1223288, 1)
+				rt_store_i32(memory_at_0, 1092952, 2147483648)
+				rt_store_i64(memory_at_0, 1076312, rt_i64_from_u32(40000, 0))
+				rt_store_i64(memory_at_0, 1076296, rt_i64_ONE)
+				rt_store_i32(memory_at_0, 1076304, 0)
 				break
 			end
 			if desired then
@@ -2133,13 +2133,13 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																								desired = 9
 																								break
 																							end
-																							loc_0 = rt_load_i32(memory_at_0, 1076288)
+																							loc_0 = rt_load_i32(memory_at_0, 1076304)
 																							if loc_0 >= 2147483647 then
 																								desired = 16
 																								break
 																							end
-																							rt_store_i32(memory_at_0, 1076288, rt_add_i32(loc_0, 1))
-																							TABLE_LIST[0].data[rt_load_i32(memory_at_0, 1223208)](1073693, 7)
+																							rt_store_i32(memory_at_0, 1076304, rt_add_i32(loc_0, 1))
+																							TABLE_LIST[0].data[rt_load_i32(memory_at_0, 1223288)](1073693, 7)
 																							desired = 7
 																							break
 																						end
@@ -2153,14 +2153,14 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																							desired = 9
 																							break
 																						end
-																						if rt_load_i32(memory_at_0, 1076288) ~= 0 then
+																						if rt_load_i32(memory_at_0, 1076304) ~= 0 then
 																							desired = 15
 																							break
 																						end
-																						rt_store_i32(memory_at_0, 1076288, 4294967295)
-																						rt_store_i32(memory_at_0, 1223232, 0)
-																						rt_store_i32(memory_at_0, loc_2 + 16936, 0)
-																						rt_store_i64(memory_at_0, loc_2 + 16928, rt_i64_from_u32(0, 1))
+																						rt_store_i32(memory_at_0, 1076304, 4294967295)
+																						rt_store_i32(memory_at_0, 1223312, 0)
+																						rt_store_i32(memory_at_0, loc_2 + 17000, 0)
+																						rt_store_i64(memory_at_0, loc_2 + 16992, rt_i64_from_u32(0, 1))
 																						loc_0 = 1
 																						loc_11 = 0
 																						loc_13 = 0
@@ -2179,22 +2179,22 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																						desired = 9
 																						break
 																					end
-																					if rt_load_i32(memory_at_0, 1076288) ~= 0 then
+																					if rt_load_i32(memory_at_0, 1076304) ~= 0 then
 																						desired = 13
 																						break
 																					end
-																					rt_store_i32(memory_at_0, 1076288, 4294967295)
+																					rt_store_i32(memory_at_0, 1076304, 4294967295)
 																					loc_4 = 1
-																					if rt_load_i32(memory_at_0, 1092872) == 2147483648 then
+																					if rt_load_i32(memory_at_0, 1092952) == 2147483648 then
 																						desired = 6
 																						break
 																					end
 																					while true do
-																						loc_0 = rt_load_i32(memory_at_0, 1092892)
+																						loc_0 = rt_load_i32(memory_at_0, 1092972)
 																						if loc_0 == 0 then
 																							break
 																						end
-																						loc_1 = rt_load_i32(memory_at_0, 1092888)
+																						loc_1 = rt_load_i32(memory_at_0, 1092968)
 																						loc_3 = loc_1
 																						loc_0 = rt_mul_i32(loc_0, 12)
 																						loc_6 = rt_sub_i32(loc_0, 12)
@@ -2256,7 +2256,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																						end
 																						break
 																					end
-																					reg_0 = FUNC_LIST[122](1076488, 16384)
+																					reg_0 = FUNC_LIST[122](1076568, 16384)
 																					desired = 6
 																					break
 																				end
@@ -2275,7 +2275,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																					desired = 9
 																					break
 																				end
-																				loc_0 = rt_load_i32(memory_at_0, 1076288)
+																				loc_0 = rt_load_i32(memory_at_0, 1076304)
 																				if loc_0 <= 2147483646 then
 																					desired = 17
 																					break
@@ -2294,11 +2294,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																				break
 																			end
 																			loc_11 = 0
-																			if rt_load_i32(memory_at_0, 1076288) ~= 0 then
+																			if rt_load_i32(memory_at_0, 1076304) ~= 0 then
 																				desired = 12
 																				break
 																			end
-																			rt_store_i32(memory_at_0, 1076288, 4294967295)
+																			rt_store_i32(memory_at_0, 1076304, 4294967295)
 																			loc_9 = 0
 																			loc_28 = rt_i64_from_u32(4, 0)
 																			loc_25 = rt_i64_from_u32(4, 0)
@@ -2412,11 +2412,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																											desired = 49
 																																																											break
 																																																										end
-																																																										rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																																																										rt_store_i32(memory_at_0, loc_2 + 16928, 1073412)
-																																																										rt_store_i64(memory_at_0, loc_2 + 16940, rt_i64_ZERO)
-																																																										rt_store_i32(memory_at_0, loc_2 + 16936, rt_add_i32(loc_2, 208))
-																																																										FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1073420)
+																																																										rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																																																										rt_store_i32(memory_at_0, loc_2 + 16992, 1073412)
+																																																										rt_store_i64(memory_at_0, loc_2 + 17004, rt_i64_ZERO)
+																																																										rt_store_i32(memory_at_0, loc_2 + 17000, rt_add_i32(loc_2, 208))
+																																																										FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1073420)
 																																																										error("out of code bounds")
 																																																									end
 																																																									if desired then
@@ -2443,11 +2443,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																										desired = 46
 																																																										break
 																																																									end
-																																																									rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																																																									rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																																																									rt_store_i32(memory_at_0, loc_2 + 16928, 1072892)
-																																																									rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																																																									FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1072900)
+																																																									rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																																																									rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																																																									rt_store_i32(memory_at_0, loc_2 + 16992, 1072892)
+																																																									rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																																																									FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1072900)
 																																																									error("out of code bounds")
 																																																								end
 																																																								if desired then
@@ -2485,11 +2485,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																								desired = 45
 																																																								break
 																																																							end
-																																																							rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																																																							rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																																																							rt_store_i32(memory_at_0, loc_2 + 16928, 1072952)
-																																																							rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																																																							FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1072960)
+																																																							rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																																																							rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																																																							rt_store_i32(memory_at_0, loc_2 + 16992, 1072952)
+																																																							rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																																																							FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1072960)
 																																																							error("out of code bounds")
 																																																						end
 																																																						if desired then
@@ -2514,11 +2514,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																							desired = 29
 																																																							break
 																																																						end
-																																																						rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																																																						rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																																																						rt_store_i32(memory_at_0, loc_2 + 16928, 1072804)
-																																																						rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																																																						FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1072812)
+																																																						rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																																																						rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																																																						rt_store_i32(memory_at_0, loc_2 + 16992, 1072804)
+																																																						rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																																																						FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1072812)
 																																																						error("out of code bounds")
 																																																					end
 																																																					if desired then
@@ -2560,11 +2560,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																				end
 																																																				break
 																																																			end
-																																																			rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																																																			rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																																																			rt_store_i32(memory_at_0, loc_2 + 16928, 1072736)
-																																																			rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																																																			FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1072764)
+																																																			rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																																																			rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																																																			rt_store_i32(memory_at_0, loc_2 + 16992, 1072736)
+																																																			rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																																																			FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1072764)
 																																																			error("out of code bounds")
 																																																		end
 																																																		if desired then
@@ -2589,8 +2589,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																				break
 																																																			end
 																																																		end
-																																																		rt_store_i32_n8(memory_at_0, loc_2 + 16928, rt_shr_u32(loc_0, 8))
-																																																		FUNC_LIST[17](1074588, 43, rt_add_i32(loc_2, 16928), 1053764, 1072828)
+																																																		rt_store_i32_n8(memory_at_0, loc_2 + 16992, rt_shr_u32(loc_0, 8))
+																																																		FUNC_LIST[17](1074608, 43, rt_add_i32(loc_2, 16992), 1053764, 1072828)
 																																																		error("out of code bounds")
 																																																	end
 																																																	if desired then
@@ -2609,10 +2609,10 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																		desired = 36
 																																																		break
 																																																	end
-																																																	FUNC_LIST[82](rt_add_i32(loc_2, 16928), loc_0, rt_load_i32(memory_at_0, loc_2 + 164))
-																																																	if rt_load_i32_u8(memory_at_0, loc_2 + 16928) == 0 then
+																																																	FUNC_LIST[82](rt_add_i32(loc_2, 16992), loc_0, rt_load_i32(memory_at_0, loc_2 + 164))
+																																																	if rt_load_i32_u8(memory_at_0, loc_2 + 16992) == 0 then
 																																																		while true do
-																																																			loc_26 = rt_load_i64(memory_at_0, loc_2 + 16936)
+																																																			loc_26 = rt_load_i64(memory_at_0, loc_2 + 17000)
 																																																			loc_28 = rt_i64_from_u32(3, 0)
 																																																			loc_25 = rt_i64_from_u32(3, 0)
 																																																			desired = 29
@@ -2625,8 +2625,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																			break
 																																																		end
 																																																	end
-																																																	rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16929))
-																																																	FUNC_LIST[17](1074588, 43, rt_add_i32(loc_2, 208), 1053764, 1072860)
+																																																	rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16993))
+																																																	FUNC_LIST[17](1074608, 43, rt_add_i32(loc_2, 208), 1053764, 1072860)
 																																																	error("out of code bounds")
 																																																end
 																																																if desired then
@@ -2648,8 +2648,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																	desired = 29
 																																																	break
 																																																end
-																																																rt_store_i32_n8(memory_at_0, loc_2 + 16928, rt_shr_u32(loc_0, 8))
-																																																FUNC_LIST[17](1074588, 43, rt_add_i32(loc_2, 16928), 1053764, 1072916)
+																																																rt_store_i32_n8(memory_at_0, loc_2 + 16992, rt_shr_u32(loc_0, 8))
+																																																FUNC_LIST[17](1074608, 43, rt_add_i32(loc_2, 16992), 1053764, 1072916)
 																																																error("out of code bounds")
 																																															end
 																																															if desired then
@@ -2664,8 +2664,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																desired = 38
 																																																break
 																																															end
-																																															FUNC_LIST[82](rt_add_i32(loc_2, 16928), loc_0, rt_load_i32(memory_at_0, loc_2 + 140))
-																																															if rt_load_i32_u8(memory_at_0, loc_2 + 16928) == 0 then
+																																															FUNC_LIST[82](rt_add_i32(loc_2, 16992), loc_0, rt_load_i32(memory_at_0, loc_2 + 140))
+																																															if rt_load_i32_u8(memory_at_0, loc_2 + 16992) == 0 then
 																																																while true do
 																																																	loc_32 = rt_i64_ONE
 																																																	desired = 29
@@ -2678,8 +2678,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																	break
 																																																end
 																																															end
-																																															rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16929))
-																																															FUNC_LIST[17](1074588, 43, rt_add_i32(loc_2, 208), 1053764, 1072976)
+																																															rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16993))
+																																															FUNC_LIST[17](1074608, 43, rt_add_i32(loc_2, 208), 1053764, 1072976)
 																																															error("out of code bounds")
 																																														end
 																																														if desired then
@@ -2722,8 +2722,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																												if desired then
 																																													break
 																																												end
-																																												rt_store_i32_n8(memory_at_0, loc_2 + 16928, rt_shr_u32(loc_0, 8))
-																																												FUNC_LIST[17](1074588, 43, rt_add_i32(loc_2, 16928), 1053764, 1073036)
+																																												rt_store_i32_n8(memory_at_0, loc_2 + 16992, rt_shr_u32(loc_0, 8))
+																																												FUNC_LIST[17](1074608, 43, rt_add_i32(loc_2, 16992), 1053764, 1073036)
 																																												error("out of code bounds")
 																																											end
 																																											if desired then
@@ -2733,20 +2733,20 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																												break
 																																											end
 																																										end
-																																										if rt_load_i32(memory_at_0, 1223212) ~= 2147483648 then
+																																										if rt_load_i32(memory_at_0, 1223292) ~= 2147483648 then
 																																											while true do
-																																												loc_0 = rt_load_i32(memory_at_0, 1223220)
-																																												loc_1 = rt_load_i32(memory_at_0, 1223216)
-																																												rt_store_i32_n16(memory_at_0, loc_2 + 17076, 1)
-																																												rt_store_i32(memory_at_0, loc_2 + 17072, 0)
-																																												rt_store_i32(memory_at_0, loc_2 + 17068, rt_add_i32(loc_0, loc_1))
-																																												rt_store_i32(memory_at_0, loc_2 + 17064, loc_1)
-																																												rt_store_i32(memory_at_0, loc_2 + 17060, loc_0)
-																																												rt_store_i32(memory_at_0, loc_2 + 17056, loc_1)
-																																												rt_store_i32(memory_at_0, loc_2 + 17052, loc_0)
-																																												rt_store_i32(memory_at_0, loc_2 + 17048, 0)
-																																												reg_0 = FUNC_LIST[122](rt_add_i32(loc_2, 16928), 96)
-																																												FUNC_LIST[13](rt_add_i32(loc_2, 80), rt_add_i32(loc_2, 17048))
+																																												loc_0 = rt_load_i32(memory_at_0, 1223300)
+																																												loc_1 = rt_load_i32(memory_at_0, 1223296)
+																																												rt_store_i32_n16(memory_at_0, loc_2 + 17140, 1)
+																																												rt_store_i32(memory_at_0, loc_2 + 17136, 0)
+																																												rt_store_i32(memory_at_0, loc_2 + 17132, rt_add_i32(loc_0, loc_1))
+																																												rt_store_i32(memory_at_0, loc_2 + 17128, loc_1)
+																																												rt_store_i32(memory_at_0, loc_2 + 17124, loc_0)
+																																												rt_store_i32(memory_at_0, loc_2 + 17120, loc_1)
+																																												rt_store_i32(memory_at_0, loc_2 + 17116, loc_0)
+																																												rt_store_i32(memory_at_0, loc_2 + 17112, 0)
+																																												reg_0 = FUNC_LIST[122](rt_add_i32(loc_2, 16992), 96)
+																																												FUNC_LIST[13](rt_add_i32(loc_2, 80), rt_add_i32(loc_2, 17112))
 																																												loc_3 = rt_load_i32(memory_at_0, loc_2 + 80)
 																																												if loc_3 ~= 0 then
 																																													while true do
@@ -3020,7 +3020,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																									if desired then
 																																																										break
 																																																									end
-																																																									loc_0 = rt_add_i32(rt_add_i32(loc_2, 16928), rt_shl_i32(loc_6, 3))
+																																																									loc_0 = rt_add_i32(rt_add_i32(loc_2, 16992), rt_shl_i32(loc_6, 3))
 																																																									reg_0 = loc_0
 																																																									reg_1 = rt_load_i64(memory_at_0, loc_0)
 																																																									loc_0 = rt_add_i32(loc_1, loc_14)
@@ -3078,7 +3078,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																						end
 																																																						break
 																																																					end
-																																																					FUNC_LIST[13](rt_add_i32(loc_2, 72), rt_add_i32(loc_2, 17048))
+																																																					FUNC_LIST[13](rt_add_i32(loc_2, 72), rt_add_i32(loc_2, 17112))
 																																																					loc_0 = rt_load_i32(memory_at_0, loc_2 + 72)
 																																																					if loc_0 == 0 then
 																																																						desired = 46
@@ -3105,7 +3105,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																							break
 																																																						end
 																																																					end
-																																																					FUNC_LIST[13](rt_sub_i32(loc_2, 4294967232), rt_add_i32(loc_2, 17048))
+																																																					FUNC_LIST[13](rt_sub_i32(loc_2, 4294967232), rt_add_i32(loc_2, 17112))
 																																																					loc_3 = rt_load_i32(memory_at_0, loc_2 + 64)
 																																																					if loc_3 == 0 then
 																																																						desired = 43
@@ -3164,9 +3164,9 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																				end
 																																																				break
 																																																			end
-																																																			rt_store_i32(memory_at_0, loc_2 + 17084, 13)
-																																																			rt_store_i32(memory_at_0, loc_2 + 17080, 1053844)
-																																																			FUNC_LIST[17](1053512, 29, rt_add_i32(loc_2, 17080), 1053812, 1053828)
+																																																			rt_store_i32(memory_at_0, loc_2 + 17148, 13)
+																																																			rt_store_i32(memory_at_0, loc_2 + 17144, 1053844)
+																																																			FUNC_LIST[17](1053512, 29, rt_add_i32(loc_2, 17144), 1053812, 1053828)
 																																																			error("out of code bounds")
 																																																		end
 																																																		if desired then
@@ -3203,11 +3203,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																end
 																																																break
 																																															end
-																																															rt_store_i32(memory_at_0, loc_2 + 17096, 0)
-																																															rt_store_i32(memory_at_0, loc_2 + 17084, 1)
-																																															rt_store_i32(memory_at_0, loc_2 + 17080, 1053592)
-																																															rt_store_i64(memory_at_0, loc_2 + 17088, rt_i64_from_u32(4, 0))
-																																															FUNC_LIST[14](rt_add_i32(loc_2, 17080), 1053600)
+																																															rt_store_i32(memory_at_0, loc_2 + 17160, 0)
+																																															rt_store_i32(memory_at_0, loc_2 + 17148, 1)
+																																															rt_store_i32(memory_at_0, loc_2 + 17144, 1053592)
+																																															rt_store_i64(memory_at_0, loc_2 + 17152, rt_i64_from_u32(4, 0))
+																																															FUNC_LIST[14](rt_add_i32(loc_2, 17144), 1053600)
 																																															error("out of code bounds")
 																																														end
 																																														if desired then
@@ -3248,11 +3248,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																									end
 																																									break
 																																								end
-																																								rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																																								rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																																								rt_store_i32(memory_at_0, loc_2 + 16928, 1073012)
-																																								rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																																								FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1073020)
+																																								rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																																								rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																																								rt_store_i32(memory_at_0, loc_2 + 16992, 1073012)
+																																								rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																																								FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1073020)
 																																								error("out of code bounds")
 																																							end
 																																							if desired then
@@ -3288,11 +3288,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																					end
 																																					break
 																																				end
-																																				rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																																				rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																																				rt_store_i32(memory_at_0, loc_2 + 16928, 1072804)
-																																				rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																																				FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1072844)
+																																				rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																																				rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																																				rt_store_i32(memory_at_0, loc_2 + 16992, 1072804)
+																																				rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																																				FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1072844)
 																																				error("out of code bounds")
 																																			end
 																																			if desired then
@@ -3457,7 +3457,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																end
 																																loc_0 = reg_0
 																																loc_27 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_0, 3), 1060088))
-																																FUNC_LIST[13](rt_add_i32(loc_2, 24), rt_add_i32(loc_2, 17048))
+																																FUNC_LIST[13](rt_add_i32(loc_2, 24), rt_add_i32(loc_2, 17112))
 																																while true do
 																																	while true do
 																																		while true do
@@ -3570,20 +3570,20 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																													if desired then
 																																														break
 																																													end
-																																													loc_1 = rt_add_i32(loc_2, 17048)
+																																													loc_1 = rt_add_i32(loc_2, 17112)
 																																													FUNC_LIST[13](rt_add_i32(loc_2, 16), loc_1)
 																																													loc_3 = rt_load_i32(memory_at_0, loc_2 + 16)
 																																													if loc_3 == 0 then
 																																														desired = 41
 																																														break
 																																													end
-																																													loc_5 = rt_add_i32(loc_2, 17080)
+																																													loc_5 = rt_add_i32(loc_2, 17144)
 																																													FUNC_LIST[20](loc_5, loc_3, rt_load_i32(memory_at_0, loc_2 + 20))
-																																													if rt_load_i32_u8(memory_at_0, loc_2 + 17080) ~= 0 then
+																																													if rt_load_i32_u8(memory_at_0, loc_2 + 17144) ~= 0 then
 																																														desired = 40
 																																														break
 																																													end
-																																													loc_3 = rt_load_i32(memory_at_0, loc_2 + 17084)
+																																													loc_3 = rt_load_i32(memory_at_0, loc_2 + 17148)
 																																													FUNC_LIST[13](rt_add_i32(loc_2, 8), loc_1)
 																																													loc_1 = rt_load_i32(memory_at_0, loc_2 + 8)
 																																													if loc_1 == 0 then
@@ -3591,12 +3591,12 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																														break
 																																													end
 																																													FUNC_LIST[20](loc_5, loc_1, rt_load_i32(memory_at_0, loc_2 + 12))
-																																													if rt_load_i32_u8(memory_at_0, loc_2 + 17080) ~= 0 then
+																																													if rt_load_i32_u8(memory_at_0, loc_2 + 17144) ~= 0 then
 																																														desired = 38
 																																														break
 																																													end
-																																													loc_1 = rt_load_i32(memory_at_0, loc_2 + 17084)
-																																													reg_0 = FUNC_LIST[121](rt_add_i32(loc_2, 208), rt_add_i32(loc_2, 16928), 96)
+																																													loc_1 = rt_load_i32(memory_at_0, loc_2 + 17148)
+																																													reg_0 = FUNC_LIST[121](rt_add_i32(loc_2, 208), rt_add_i32(loc_2, 16992), 96)
 																																													rt_store_i32(memory_at_0, loc_2 + 320, loc_1)
 																																													rt_store_i32_n8(memory_at_0, loc_2 + 324, (if loc_8 == 119 then 1 else 0))
 																																													rt_store_i32_n8(memory_at_0, loc_2 + 319, loc_4)
@@ -3607,18 +3607,18 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																													rt_store_i64(memory_at_0, loc_2 + 304, loc_25)
 																																													if bit_and(loc_11, 255) ~= 0 then
 																																														while true do
-																																															loc_0 = rt_load_i32(memory_at_0, 1223232)
+																																															loc_0 = rt_load_i32(memory_at_0, 1223312)
 																																															if loc_0 ~= 0 then
 																																																while true do
-																																																	loc_3 = rt_load_i32(memory_at_0, 1223228)
+																																																	loc_3 = rt_load_i32(memory_at_0, 1223308)
 																																																	loc_0 = rt_add_i32(loc_3, rt_mul_i32(loc_0, 3))
 																																																	while true do
 																																																		loc_1 = rt_add_i32(loc_2, 208)
 																																																		reg_1 = FUNC_LIST[21](loc_1, rt_load_i32_u8(memory_at_0, loc_3), rt_load_i32_u8(memory_at_0, loc_3 + 1), rt_load_i32_u8(memory_at_0, loc_3 + 2))
 																																																		loc_6 = reg_1
-																																																		rt_store_i32_n16(memory_at_0, loc_2 + 17048, loc_6)
-																																																		rt_store_i32_n8(memory_at_0, loc_2 + 17050, rt_shr_u32(loc_6, 16))
-																																																		FUNC_LIST[22](rt_add_i32(loc_2, 16928), loc_1, rt_add_i32(loc_2, 17048))
+																																																		rt_store_i32_n16(memory_at_0, loc_2 + 17112, loc_6)
+																																																		rt_store_i32_n8(memory_at_0, loc_2 + 17114, rt_shr_u32(loc_6, 16))
+																																																		FUNC_LIST[22](rt_add_i32(loc_2, 16992), loc_1, rt_add_i32(loc_2, 17112))
 																																																		loc_3 = rt_add_i32(loc_3, 3)
 																																																		if loc_0 ~= loc_3 then
 																																																			continue
@@ -3638,29 +3638,29 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																																desired = 37
 																																																break
 																																															end
-																																															loc_1 = rt_load_i32(memory_at_0, 1223208)
-																																															rt_store_i32(memory_at_0, loc_2 + 16916, loc_1)
-																																															rt_store_i32_n16(memory_at_0, loc_2 + 16914, loc_10)
-																																															rt_store_i64(memory_at_0, loc_2 + 16920, rt_i64_ZERO)
-																																															loc_0 = rt_add_i32(loc_2, 16928)
+																																															loc_1 = rt_load_i32(memory_at_0, 1223288)
+																																															rt_store_i32(memory_at_0, loc_2 + 16980, loc_1)
+																																															rt_store_i32_n16(memory_at_0, loc_2 + 16978, loc_10)
+																																															rt_store_i64(memory_at_0, loc_2 + 16984, rt_i64_ZERO)
+																																															loc_0 = rt_add_i32(loc_2, 16992)
 																																															loc_3 = rt_add_i32(loc_2, 208)
 																																															FUNC_LIST[23](loc_0, loc_3)
-																																															rt_store_i32(memory_at_0, loc_2 + 17092, loc_3)
-																																															rt_store_i32(memory_at_0, loc_2 + 17088, rt_add_i32(loc_2, 16920))
-																																															rt_store_i32(memory_at_0, loc_2 + 17084, rt_add_i32(loc_2, 16916))
-																																															rt_store_i32(memory_at_0, loc_2 + 17080, rt_add_i32(loc_2, 16914))
-																																															FUNC_LIST[25](loc_0, rt_add_i32(loc_2, 17080), 2, 0)
-																																															rt_store_i64(memory_at_0, loc_2 + 328, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_2, 16904)), rt_i64_from_u32(0, 3)))
+																																															rt_store_i32(memory_at_0, loc_2 + 17156, loc_3)
+																																															rt_store_i32(memory_at_0, loc_2 + 17152, rt_add_i32(loc_2, 16984))
+																																															rt_store_i32(memory_at_0, loc_2 + 17148, rt_add_i32(loc_2, 16980))
+																																															rt_store_i32(memory_at_0, loc_2 + 17144, rt_add_i32(loc_2, 16978))
+																																															FUNC_LIST[25](loc_0, rt_add_i32(loc_2, 17144), 2, 0)
+																																															rt_store_i64(memory_at_0, loc_2 + 328, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_2, 16968)), rt_i64_from_u32(0, 3)))
 																																															loc_4 = 1
-																																															rt_store_i32(memory_at_0, loc_2 + 17052, 1)
-																																															rt_store_i32(memory_at_0, loc_2 + 17048, 1073884)
-																																															rt_store_i64(memory_at_0, loc_2 + 17060, rt_i64_ONE)
-																																															rt_store_i64(memory_at_0, loc_2 + 16904, rt_load_i64(memory_at_0, loc_2 + 16920))
-																																															rt_store_i32(memory_at_0, loc_2 + 17056, rt_add_i32(loc_2, 328))
-																																															FUNC_LIST[27](loc_0, rt_add_i32(loc_2, 17048))
-																																															loc_0 = rt_load_i32(memory_at_0, loc_2 + 16928)
-																																															loc_3 = rt_load_i32(memory_at_0, loc_2 + 16932)
-																																															TABLE_LIST[0].data[loc_1](loc_3, rt_load_i32(memory_at_0, loc_2 + 16936))
+																																															rt_store_i32(memory_at_0, loc_2 + 17116, 1)
+																																															rt_store_i32(memory_at_0, loc_2 + 17112, 1073884)
+																																															rt_store_i64(memory_at_0, loc_2 + 17124, rt_i64_ONE)
+																																															rt_store_i64(memory_at_0, loc_2 + 16968, rt_load_i64(memory_at_0, loc_2 + 16984))
+																																															rt_store_i32(memory_at_0, loc_2 + 17120, rt_add_i32(loc_2, 328))
+																																															FUNC_LIST[27](loc_0, rt_add_i32(loc_2, 17112))
+																																															loc_0 = rt_load_i32(memory_at_0, loc_2 + 16992)
+																																															loc_3 = rt_load_i32(memory_at_0, loc_2 + 16996)
+																																															TABLE_LIST[0].data[loc_1](loc_3, rt_load_i32(memory_at_0, loc_2 + 17000))
 																																															if loc_0 == 0 then
 																																																desired = 6
 																																																break
@@ -3673,29 +3673,23 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																															break
 																																														end
 																																													end
-																																													if rt_load_i32(memory_at_0, 1092872) == 2147483648 then
+																																													if rt_load_i32(memory_at_0, 1092952) == 2147483648 then
 																																														desired = 36
 																																														break
 																																													end
-																																													reg_0 = FUNC_LIST[121](1076304, rt_add_i32(loc_2, 208), 120)
-																																													rt_store_i64(memory_at_0, 1076424, rt_i64_ZERO)
-																																													rt_store_i64(memory_at_0, 1076432, rt_i64_ZERO)
-																																													rt_store_i64(memory_at_0, 1076440, rt_i64_ZERO)
-																																													rt_store_i64(memory_at_0, 1076448, rt_i64_ZERO)
-																																													rt_store_i64(memory_at_0, 1076456, rt_i64_ZERO)
-																																													rt_store_i64(memory_at_0, 1076464, rt_i64_ZERO)
-																																													rt_store_i64(memory_at_0, 1076472, rt_i64_ZERO)
-																																													rt_store_i64(memory_at_0, 1076480, rt_i64_ZERO)
-																																													rt_store_i32(memory_at_0, 1092896, 0)
-																																													rt_store_i32(memory_at_0, 1092880, 0)
-																																													loc_3 = 208
+																																													reg_0 = FUNC_LIST[121](1076320, rt_add_i32(loc_2, 208), 120)
+																																													rt_store_i32_n8(memory_at_0, 1223286, 0)
+																																													rt_store_i32(memory_at_0, 1092976, 0)
+																																													rt_store_i32(memory_at_0, 1092960, 0)
+																																													reg_0 = FUNC_LIST[122](1076440, 128)
+																																													loc_3 = 272
 																																													while true do
-																																														loc_0 = rt_add_i32(loc_3, 1076280)
+																																														loc_0 = rt_add_i32(loc_3, 1076296)
 																																														rt_store_i32_n16(memory_at_0, loc_0, rt_div_i32(rt_load_i32_i16(memory_at_0, loc_0), 9))
-																																														loc_0 = rt_add_i32(loc_3, 1076282)
+																																														loc_0 = rt_add_i32(loc_3, 1076298)
 																																														rt_store_i32_n16(memory_at_0, loc_0, rt_div_i32(rt_load_i32_i16(memory_at_0, loc_0), 9))
 																																														loc_3 = rt_add_i32(loc_3, 4)
-																																														if loc_3 ~= 8400 then
+																																														if loc_3 ~= 8464 then
 																																															continue
 																																														end
 																																														break
@@ -3703,14 +3697,14 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																													if desired then
 																																														break
 																																													end
-																																													loc_3 = 8400
+																																													loc_3 = 8464
 																																													while true do
-																																														loc_0 = rt_add_i32(loc_3, 1076280)
+																																														loc_0 = rt_add_i32(loc_3, 1076296)
 																																														rt_store_i32_n16(memory_at_0, loc_0, rt_div_i32(rt_load_i32_i16(memory_at_0, loc_0), 9))
-																																														loc_0 = rt_add_i32(loc_3, 1076282)
+																																														loc_0 = rt_add_i32(loc_3, 1076298)
 																																														rt_store_i32_n16(memory_at_0, loc_0, rt_div_i32(rt_load_i32_i16(memory_at_0, loc_0), 9))
 																																														loc_3 = rt_add_i32(loc_3, 4)
-																																														if loc_3 ~= 16592 then
+																																														if loc_3 ~= 16656 then
 																																															continue
 																																														end
 																																														break
@@ -3746,8 +3740,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																										end
 																																										break
 																																									end
-																																									rt_store_i32_n8(memory_at_0, loc_2 + 16920, rt_load_i32_u8(memory_at_0, loc_2 + 17081))
-																																									FUNC_LIST[17](1053692, 18, rt_add_i32(loc_2, 16920), 1053764, 1053796)
+																																									rt_store_i32_n8(memory_at_0, loc_2 + 16984, rt_load_i32_u8(memory_at_0, loc_2 + 17145))
+																																									FUNC_LIST[17](1053692, 18, rt_add_i32(loc_2, 16984), 1053764, 1053796)
 																																									error("out of code bounds")
 																																								end
 																																								if desired then
@@ -3765,8 +3759,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																								end
 																																								break
 																																							end
-																																							rt_store_i32_n8(memory_at_0, loc_2 + 16920, rt_load_i32_u8(memory_at_0, loc_2 + 17081))
-																																							FUNC_LIST[17](1053728, 20, rt_add_i32(loc_2, 16920), 1053764, 1053780)
+																																							rt_store_i32_n8(memory_at_0, loc_2 + 16984, rt_load_i32_u8(memory_at_0, loc_2 + 17145))
+																																							FUNC_LIST[17](1053728, 20, rt_add_i32(loc_2, 16984), 1053764, 1053780)
 																																							error("out of code bounds")
 																																						end
 																																						if desired then
@@ -3813,13 +3807,14 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																					rt_store_i32_n8(memory_at_0, rt_add_i32(rt_add_i32(loc_1, loc_5), 11), 3)
 																																					loc_0 = rt_add_i32(loc_2, 336)
 																																					reg_0 = FUNC_LIST[121](loc_0, rt_add_i32(loc_2, 208), 120)
-																																					reg_0 = FUNC_LIST[122](rt_add_i32(loc_0, 120), 16448)
-																																					reg_0 = FUNC_LIST[121](1076304, loc_0, 16568)
-																																					rt_store_i32(memory_at_0, 1092892, 2666666)
-																																					rt_store_i32(memory_at_0, 1092888, loc_1)
-																																					rt_store_i64(memory_at_0, 1092880, rt_i64_from_u32(0, 2666666))
-																																					rt_store_i64(memory_at_0, 1092872, rt_i64_from_u32(0, 8))
-																																					reg_0 = FUNC_LIST[122](1092896, 130309)
+																																					reg_0 = FUNC_LIST[122](rt_add_i32(loc_0, 120), 16512)
+																																					reg_0 = FUNC_LIST[121](1076320, loc_0, 16632)
+																																					rt_store_i32(memory_at_0, 1092972, 2666666)
+																																					rt_store_i32(memory_at_0, 1092968, loc_1)
+																																					rt_store_i64(memory_at_0, 1092960, rt_i64_from_u32(0, 2666666))
+																																					rt_store_i64(memory_at_0, 1092952, rt_i64_from_u32(0, 8))
+																																					rt_store_i32_n8(memory_at_0, 1223286, 0)
+																																					reg_0 = FUNC_LIST[122](1092976, 130309)
 																																					break
 																																				end
 																																				if desired then
@@ -3828,19 +3823,19 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																					end
 																																					break
 																																				end
-																																				loc_0 = rt_load_i32(memory_at_0, 1223232)
+																																				loc_0 = rt_load_i32(memory_at_0, 1223312)
 																																				if loc_0 ~= 0 then
 																																					while true do
-																																						loc_3 = rt_load_i32(memory_at_0, 1223228)
+																																						loc_3 = rt_load_i32(memory_at_0, 1223308)
 																																						loc_1 = rt_add_i32(loc_3, rt_mul_i32(loc_0, 3))
 																																						while true do
-																																							reg_1 = FUNC_LIST[21](1076304, rt_load_i32_u8(memory_at_0, loc_3), rt_load_i32_u8(memory_at_0, loc_3 + 1), rt_load_i32_u8(memory_at_0, loc_3 + 2))
+																																							reg_1 = FUNC_LIST[21](1076320, rt_load_i32_u8(memory_at_0, loc_3), rt_load_i32_u8(memory_at_0, loc_3 + 1), rt_load_i32_u8(memory_at_0, loc_3 + 2))
 																																							loc_0 = reg_1
-																																							rt_store_i32_n16(memory_at_0, loc_2 + 17048, loc_0)
-																																							rt_store_i32_n8(memory_at_0, loc_2 + 17050, rt_shr_u32(loc_0, 16))
-																																							loc_27 = rt_load_i64(memory_at_0, 1076400)
-																																							loc_0 = rt_load_i32(memory_at_0, 1092880)
-																																							if loc_0 == rt_load_i32(memory_at_0, 1092872) then
+																																							rt_store_i32_n16(memory_at_0, loc_2 + 17112, loc_0)
+																																							rt_store_i32_n8(memory_at_0, loc_2 + 17114, rt_shr_u32(loc_0, 16))
+																																							loc_27 = rt_load_i64(memory_at_0, 1076416)
+																																							loc_0 = rt_load_i32(memory_at_0, 1092960)
+																																							if loc_0 == rt_load_i32(memory_at_0, 1092952) then
 																																								while true do
 																																									FUNC_LIST[28]()
 																																									break
@@ -3853,9 +3848,9 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																									break
 																																								end
 																																							end
-																																							rt_store_i32(memory_at_0, 1092880, rt_add_i32(loc_0, 1))
-																																							rt_store_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1092876), rt_shl_i32(loc_0, 3)), loc_27)
-																																							FUNC_LIST[22](rt_add_i32(loc_2, 16928), 1076304, rt_add_i32(loc_2, 17048))
+																																							rt_store_i32(memory_at_0, 1092960, rt_add_i32(loc_0, 1))
+																																							rt_store_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1092956), rt_shl_i32(loc_0, 3)), loc_27)
+																																							FUNC_LIST[22](rt_add_i32(loc_2, 16992), 1076320, rt_add_i32(loc_2, 17112))
 																																							loc_3 = rt_add_i32(loc_3, 3)
 																																							if loc_1 ~= loc_3 then
 																																								continue
@@ -3904,7 +3899,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																						end
 																																						break
 																																					end
-																																					loc_26 = rt_load_i64(memory_at_0, 1076296)
+																																					loc_26 = rt_load_i64(memory_at_0, 1076312)
 																																					loc_27 = loc_26
 																																					desired = 31
 																																					break
@@ -3915,17 +3910,20 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																					end
 																																					break
 																																				end
-																																				loc_0 = rt_load_i32_u8(memory_at_0, 1076420)
+																																				loc_0 = rt_load_i32_u8(memory_at_0, 1076436)
 																																				if rt_wrap_i32_i64((if loc_0 ~= 0 then loc_28 else loc_31)) == 0 then
 																																					desired = 32
 																																					break
 																																				end
 																																				loc_26 = (if loc_0 ~= 0 then loc_26 else loc_33)
-																																				loc_27 = rt_add_i64(rt_div_u64(loc_26, rt_i64_from_u32(26, 0)), rt_shr_u64((if loc_0 ~= 0 then loc_29 else loc_30), rt_i64_ONE))
-																																				loc_26 = rt_div_u64(loc_26, rt_i64_from_u32(10, 0))
-																																				loc_25 = rt_load_i64(memory_at_0, 1076296)
-																																				loc_26 = (if rt_gt_u64(loc_25, loc_26) then loc_26 else loc_25)
-																																				loc_27 = (if rt_gt_u64(loc_26, loc_27) then loc_27 else loc_26)
+																																				loc_27 = (if loc_0 ~= 0 then loc_29 else loc_30)
+																																				loc_25 = rt_add_i64(rt_div_u64(loc_26, rt_i64_from_u32(24, 0)), rt_shr_u64(loc_27, rt_i64_ONE))
+																																				loc_27 = rt_add_i64(rt_div_u64(loc_26, rt_i64_from_u32(6, 0)), rt_shl_i64(loc_27, rt_i64_ONE))
+																																				loc_28 = rt_load_i64(memory_at_0, 1076312)
+																																				loc_26 = rt_shr_u64(loc_26, rt_i64_ONE)
+																																				loc_26 = (if rt_gt_u64(loc_26, loc_28) then loc_28 else loc_26)
+																																				loc_26 = (if rt_gt_u64(loc_26, loc_27) then loc_27 else loc_26)
+																																				loc_27 = (if rt_lt_u64(loc_25, loc_26) then loc_25 else loc_26)
 																																				desired = 31
 																																				break
 																																			end
@@ -3964,12 +3962,12 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																end
 																																reg_1 = FUNC_LIST[1]()
 																																loc_35 = reg_1
-																																rt_store_f64(memory_at_0, loc_2 + 16904, loc_35)
+																																rt_store_f64(memory_at_0, loc_2 + 16968, loc_35)
 																																loc_4 = 1
 																																loc_3 = 2147483649
 																																while true do
 																																	while true do
-																																		reg_0 = FUNC_LIST[29](rt_add_i32(loc_2, 16904), loc_26, loc_4, 0, 0, 2147483649, 2147483647)
+																																		reg_0 = FUNC_LIST[29](rt_add_i32(loc_2, 16968), loc_26, loc_4, 0, 0, 2147483649, 2147483647)
 																																		loc_5 = reg_0
 																																		loc_6 = loc_3
 																																		while true do
@@ -4011,10 +4009,10 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																				if rt_gt_i32(rt_sub_i32(bit_xor(loc_0, loc_3), loc_0), 2147483390) then
 																																					break
 																																				end
-																																				if rt_load_i32_u16(memory_at_0, 1092900) == 0 then
+																																				if rt_load_i32_u16(memory_at_0, 1092980) == 0 then
 																																					break
 																																				end
-																																				FUNC_LIST[30](rt_add_i32(loc_2, 16904), loc_4, loc_3, rt_load_i32(memory_at_0, 1092896))
+																																				FUNC_LIST[30](rt_add_i32(loc_2, 16968), loc_4, loc_3, rt_load_i32_u8(memory_at_0, 1223286), rt_load_i32(memory_at_0, 1092976))
 																																				if bit_and(loc_4, 255) == 255 then
 																																					while true do
 																																						loc_4 = 255
@@ -4061,7 +4059,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																				loc_4 = rt_add_i32(loc_4, 1)
 																																				loc_0 = rt_sub_i32(loc_3, 40)
 																																				loc_1 = rt_add_i32(loc_3, 40)
-																																				reg_0 = FUNC_LIST[29](rt_add_i32(loc_2, 16904), loc_26, loc_4, 0, 0, loc_0, loc_1)
+																																				reg_0 = FUNC_LIST[29](rt_add_i32(loc_2, 16968), loc_26, loc_4, 0, 0, loc_0, loc_1)
 																																				loc_5 = reg_0
 																																				if rt_gt_i32(loc_5, loc_0) then
 																																					while true do
@@ -4081,7 +4079,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																				end
 																																				loc_0 = rt_sub_i32(loc_5, 80)
 																																				loc_1 = rt_add_i32(loc_5, 80)
-																																				reg_0 = FUNC_LIST[29](rt_add_i32(loc_2, 16904), loc_26, loc_4, 0, 0, loc_0, loc_1)
+																																				reg_0 = FUNC_LIST[29](rt_add_i32(loc_2, 16968), loc_26, loc_4, 0, 0, loc_0, loc_1)
 																																				loc_5 = reg_0
 																																				if rt_gt_i32(loc_5, loc_0) then
 																																					while true do
@@ -4101,7 +4099,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																				end
 																																				loc_0 = rt_sub_i32(loc_5, 120)
 																																				loc_1 = rt_add_i32(loc_5, 120)
-																																				reg_0 = FUNC_LIST[29](rt_add_i32(loc_2, 16904), loc_26, loc_4, 0, 0, loc_0, loc_1)
+																																				reg_0 = FUNC_LIST[29](rt_add_i32(loc_2, 16968), loc_26, loc_4, 0, 0, loc_0, loc_1)
 																																				loc_5 = reg_0
 																																				if rt_gt_i32(loc_5, loc_0) then
 																																					while true do
@@ -4121,7 +4119,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																				end
 																																				loc_0 = rt_sub_i32(loc_5, 200)
 																																				loc_1 = rt_add_i32(loc_5, 200)
-																																				reg_0 = FUNC_LIST[29](rt_add_i32(loc_2, 16904), loc_26, loc_4, 0, 0, loc_0, loc_1)
+																																				reg_0 = FUNC_LIST[29](rt_add_i32(loc_2, 16968), loc_26, loc_4, 0, 0, loc_0, loc_1)
 																																				loc_5 = reg_0
 																																				if rt_le_i32(loc_5, loc_0) then
 																																					desired = 32
@@ -4168,34 +4166,34 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																	end
 																																	break
 																																end
-																																FUNC_LIST[30](rt_add_i32(loc_2, 16904), loc_4, loc_6, rt_load_i32(memory_at_0, 1092896))
-																																loc_1 = rt_load_i32_u16(memory_at_0, 1092900)
+																																FUNC_LIST[30](rt_add_i32(loc_2, 16968), loc_4, loc_6, rt_load_i32_u8(memory_at_0, 1223286), rt_load_i32(memory_at_0, 1092976))
+																																loc_1 = rt_load_i32_u16(memory_at_0, 1092980)
 																																loc_0 = rt_shr_u32(loc_1, 12)
 																																loc_1 = rt_extend_i32_n16(loc_1)
 																																if rt_ge_i32(loc_1, 0) then
 																																	while true do
-																																		loc_3 = rt_load_i32(memory_at_0, 1223208)
-																																		loc_6 = rt_add_i32(loc_2, 17048)
+																																		loc_3 = rt_load_i32(memory_at_0, 1223288)
+																																		loc_6 = rt_add_i32(loc_2, 17112)
 																																		FUNC_LIST[31](loc_6, bit_or(rt_load_i32_u8(memory_at_0, rt_add_i32(loc_0, 1070588)), bit_or(bit_and(rt_shl_i32(loc_1, 10), 4128768), rt_shl_i32(bit_and(loc_1, 63), 8))))
-																																		rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																																		rt_store_i32(memory_at_0, loc_2 + 16928, 1073952)
-																																		rt_store_i64(memory_at_0, loc_2 + 16920, rt_bit_or_i64(rt_extend_i64_u32(loc_6), rt_i64_from_u32(0, 4)))
-																																		rt_store_i64(memory_at_0, loc_2 + 16940, rt_i64_ONE)
-																																		rt_store_i32(memory_at_0, loc_2 + 16936, rt_add_i32(loc_2, 16920))
-																																		FUNC_LIST[27](rt_add_i32(loc_2, 17080), rt_add_i32(loc_2, 16928))
-																																		loc_0 = rt_load_i32(memory_at_0, loc_2 + 17048)
+																																		rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																																		rt_store_i32(memory_at_0, loc_2 + 16992, 1073952)
+																																		rt_store_i64(memory_at_0, loc_2 + 16984, rt_bit_or_i64(rt_extend_i64_u32(loc_6), rt_i64_from_u32(0, 4)))
+																																		rt_store_i64(memory_at_0, loc_2 + 17004, rt_i64_ONE)
+																																		rt_store_i32(memory_at_0, loc_2 + 17000, rt_add_i32(loc_2, 16984))
+																																		FUNC_LIST[27](rt_add_i32(loc_2, 17144), rt_add_i32(loc_2, 16992))
+																																		loc_0 = rt_load_i32(memory_at_0, loc_2 + 17112)
 																																		if loc_0 ~= 0 then
 																																			while true do
-																																				FUNC_LIST[4](rt_load_i32(memory_at_0, loc_2 + 17052), loc_0)
+																																				FUNC_LIST[4](rt_load_i32(memory_at_0, loc_2 + 17116), loc_0)
 																																				break
 																																			end
 																																			if desired then
 																																				break
 																																			end
 																																		end
-																																		loc_0 = rt_load_i32(memory_at_0, loc_2 + 17080)
-																																		loc_1 = rt_load_i32(memory_at_0, loc_2 + 17084)
-																																		TABLE_LIST[0].data[loc_3](loc_1, rt_load_i32(memory_at_0, loc_2 + 17088))
+																																		loc_0 = rt_load_i32(memory_at_0, loc_2 + 17144)
+																																		loc_1 = rt_load_i32(memory_at_0, loc_2 + 17148)
+																																		TABLE_LIST[0].data[loc_3](loc_1, rt_load_i32(memory_at_0, loc_2 + 17152))
 																																		if loc_0 ~= 0 then
 																																			while true do
 																																				FUNC_LIST[4](loc_1, loc_0)
@@ -4321,11 +4319,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																					desired = 33
 																																					break
 																																				end
-																																				rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																																				rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																																				rt_store_i32(memory_at_0, loc_2 + 16928, 1073148)
-																																				rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																																				FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1073156)
+																																				rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																																				rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																																				rt_store_i32(memory_at_0, loc_2 + 16992, 1073148)
+																																				rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																																				FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1073156)
 																																				error("out of code bounds")
 																																			end
 																																			if desired then
@@ -4579,8 +4577,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																					break
 																																				end
 																																			end
-																																			rt_store_i32_n8(memory_at_0, loc_2 + 16928, rt_shr_u32(loc_0, 8))
-																																			FUNC_LIST[17](1074588, 43, rt_add_i32(loc_2, 16928), 1053764, 1073116)
+																																			rt_store_i32_n8(memory_at_0, loc_2 + 16992, rt_shr_u32(loc_0, 8))
+																																			FUNC_LIST[17](1074608, 43, rt_add_i32(loc_2, 16992), 1053764, 1073116)
 																																			error("out of code bounds")
 																																		end
 																																		if desired then
@@ -4595,10 +4593,10 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																			desired = 24
 																																			break
 																																		end
-																																		FUNC_LIST[33](rt_add_i32(loc_2, 16928), loc_0, rt_load_i32(memory_at_0, loc_2 + 116))
-																																		if rt_load_i32_u8(memory_at_0, loc_2 + 16928) == 0 then
+																																		FUNC_LIST[33](rt_add_i32(loc_2, 16992), loc_0, rt_load_i32(memory_at_0, loc_2 + 116))
+																																		if rt_load_i32_u8(memory_at_0, loc_2 + 16992) == 0 then
 																																			while true do
-																																				loc_30 = rt_load_i64(memory_at_0, loc_2 + 16936)
+																																				loc_30 = rt_load_i64(memory_at_0, loc_2 + 17000)
 																																				desired = 29
 																																				break
 																																			end
@@ -4609,8 +4607,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																				break
 																																			end
 																																		end
-																																		rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16929))
-																																		FUNC_LIST[17](1074588, 43, rt_add_i32(loc_2, 208), 1053764, 1073172)
+																																		rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16993))
+																																		FUNC_LIST[17](1074608, 43, rt_add_i32(loc_2, 208), 1053764, 1073172)
 																																		error("out of code bounds")
 																																	end
 																																	if desired then
@@ -4629,10 +4627,10 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																		desired = 22
 																																		break
 																																	end
-																																	FUNC_LIST[33](rt_add_i32(loc_2, 16928), loc_0, rt_load_i32(memory_at_0, loc_2 + 108))
-																																	if rt_load_i32_u8(memory_at_0, loc_2 + 16928) == 0 then
+																																	FUNC_LIST[33](rt_add_i32(loc_2, 16992), loc_0, rt_load_i32(memory_at_0, loc_2 + 108))
+																																	if rt_load_i32_u8(memory_at_0, loc_2 + 16992) == 0 then
 																																		while true do
-																																			loc_29 = rt_load_i64(memory_at_0, loc_2 + 16936)
+																																			loc_29 = rt_load_i64(memory_at_0, loc_2 + 17000)
 																																			desired = 29
 																																			break
 																																		end
@@ -4643,8 +4641,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																			break
 																																		end
 																																	end
-																																	rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16929))
-																																	FUNC_LIST[17](1074588, 43, rt_add_i32(loc_2, 208), 1053764, 1073228)
+																																	rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16993))
+																																	FUNC_LIST[17](1074608, 43, rt_add_i32(loc_2, 208), 1053764, 1073228)
 																																	error("out of code bounds")
 																																end
 																																if desired then
@@ -4663,10 +4661,10 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																	desired = 20
 																																	break
 																																end
-																																FUNC_LIST[82](rt_add_i32(loc_2, 16928), loc_0, rt_load_i32(memory_at_0, loc_2 + 100))
-																																if rt_load_i32_u8(memory_at_0, loc_2 + 16928) == 0 then
+																																FUNC_LIST[82](rt_add_i32(loc_2, 16992), loc_0, rt_load_i32(memory_at_0, loc_2 + 100))
+																																if rt_load_i32_u8(memory_at_0, loc_2 + 16992) == 0 then
 																																	while true do
-																																		loc_33 = rt_load_i64(memory_at_0, loc_2 + 16936)
+																																		loc_33 = rt_load_i64(memory_at_0, loc_2 + 17000)
 																																		loc_31 = rt_i64_ONE
 																																		loc_27 = rt_i64_ONE
 																																		desired = 29
@@ -4679,8 +4677,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																		break
 																																	end
 																																end
-																																rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16929))
-																																FUNC_LIST[17](1074588, 43, rt_add_i32(loc_2, 208), 1053764, 1073288)
+																																rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16993))
+																																FUNC_LIST[17](1074608, 43, rt_add_i32(loc_2, 208), 1053764, 1073288)
 																																error("out of code bounds")
 																															end
 																															if desired then
@@ -4700,10 +4698,10 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																																desired = 18
 																																break
 																															end
-																															FUNC_LIST[82](rt_add_i32(loc_2, 16928), loc_0, rt_load_i32(memory_at_0, loc_2 + 92))
-																															if rt_load_i32_u8(memory_at_0, loc_2 + 16928) == 0 then
+																															FUNC_LIST[82](rt_add_i32(loc_2, 16992), loc_0, rt_load_i32(memory_at_0, loc_2 + 92))
+																															if rt_load_i32_u8(memory_at_0, loc_2 + 16992) == 0 then
 																																while true do
-																																	loc_26 = rt_load_i64(memory_at_0, loc_2 + 16936)
+																																	loc_26 = rt_load_i64(memory_at_0, loc_2 + 17000)
 																																	loc_28 = rt_i64_ONE
 																																	loc_25 = rt_i64_ONE
 																																	desired = 29
@@ -4725,8 +4723,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																															end
 																															break
 																														end
-																														rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16929))
-																														FUNC_LIST[17](1074588, 43, rt_add_i32(loc_2, 208), 1053764, 1073348)
+																														rt_store_i32_n8(memory_at_0, loc_2 + 208, rt_load_i32_u8(memory_at_0, loc_2 + 16993))
+																														FUNC_LIST[17](1074608, 43, rt_add_i32(loc_2, 208), 1053764, 1073348)
 																														error("out of code bounds")
 																													end
 																													if desired then
@@ -4735,11 +4733,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																														end
 																														break
 																													end
-																													rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																													rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																													rt_store_i32(memory_at_0, loc_2 + 16928, 1072804)
-																													rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																													FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1073364)
+																													rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																													rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																													rt_store_i32(memory_at_0, loc_2 + 16992, 1072804)
+																													rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																													FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1073364)
 																													error("out of code bounds")
 																												end
 																												if desired then
@@ -4757,11 +4755,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																												end
 																												break
 																											end
-																											rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																											rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																											rt_store_i32(memory_at_0, loc_2 + 16928, 1073092)
-																											rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																											FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1073100)
+																											rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																											rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																											rt_store_i32(memory_at_0, loc_2 + 16992, 1073092)
+																											rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																											FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1073100)
 																											error("out of code bounds")
 																										end
 																										if desired then
@@ -4788,11 +4786,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																									end
 																									break
 																								end
-																								rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																								rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																								rt_store_i32(memory_at_0, loc_2 + 16928, 1073204)
-																								rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																								FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1073212)
+																								rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																								rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																								rt_store_i32(memory_at_0, loc_2 + 16992, 1073204)
+																								rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																								FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1073212)
 																								error("out of code bounds")
 																							end
 																							if desired then
@@ -4810,11 +4808,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																							end
 																							break
 																						end
-																						rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																						rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																						rt_store_i32(memory_at_0, loc_2 + 16928, 1073264)
-																						rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																						FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1073272)
+																						rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																						rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																						rt_store_i32(memory_at_0, loc_2 + 16992, 1073264)
+																						rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																						FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1073272)
 																						error("out of code bounds")
 																					end
 																					if desired then
@@ -4832,11 +4830,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																					end
 																					break
 																				end
-																				rt_store_i32(memory_at_0, loc_2 + 16944, 0)
-																				rt_store_i32(memory_at_0, loc_2 + 16932, 1)
-																				rt_store_i32(memory_at_0, loc_2 + 16928, 1073324)
-																				rt_store_i64(memory_at_0, loc_2 + 16936, rt_i64_from_u32(4, 0))
-																				FUNC_LIST[14](rt_add_i32(loc_2, 16928), 1073332)
+																				rt_store_i32(memory_at_0, loc_2 + 17008, 0)
+																				rt_store_i32(memory_at_0, loc_2 + 16996, 1)
+																				rt_store_i32(memory_at_0, loc_2 + 16992, 1073324)
+																				rt_store_i64(memory_at_0, loc_2 + 17000, rt_i64_from_u32(4, 0))
+																				FUNC_LIST[14](rt_add_i32(loc_2, 16992), 1073332)
 																				error("out of code bounds")
 																			end
 																			if desired then
@@ -4854,14 +4852,14 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																			end
 																			break
 																		end
-																		rt_store_i32(memory_at_0, 1076288, rt_add_i32(loc_0, 1))
+																		rt_store_i32(memory_at_0, 1076304, rt_add_i32(loc_0, 1))
 																		loc_0 = rt_sub_i32(GLOBAL_LIST[0].value, 32)
 																		GLOBAL_LIST[0].value = loc_0
 																		rt_store_i32(memory_at_0, loc_0 + 8, 1)
-																		rt_store_i32(memory_at_0, loc_0 + 4, 1074124)
+																		rt_store_i32(memory_at_0, loc_0 + 4, 1074144)
 																		rt_store_i64(memory_at_0, loc_0 + 16, rt_i64_ZERO)
 																		rt_store_i32(memory_at_0, loc_0 + 12, rt_add_i32(loc_0, 28))
-																		FUNC_LIST[14](rt_add_i32(loc_0, 4), 1074132)
+																		FUNC_LIST[14](rt_add_i32(loc_0, 4), 1074152)
 																		error("out of code bounds")
 																	end
 																	if desired then
@@ -4905,21 +4903,21 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																											desired = 22
 																											break
 																										end
-																										loc_0 = rt_load_i32(memory_at_0, loc_2 + 16932)
-																										loc_1 = rt_load_i32(memory_at_0, loc_2 + 16928)
-																										loc_3 = rt_load_i32(memory_at_0, 1223212)
+																										loc_0 = rt_load_i32(memory_at_0, loc_2 + 16996)
+																										loc_1 = rt_load_i32(memory_at_0, loc_2 + 16992)
+																										loc_3 = rt_load_i32(memory_at_0, 1223292)
 																										if bit_or(loc_3, 2147483648) ~= 2147483648 then
 																											while true do
-																												FUNC_LIST[4](rt_load_i32(memory_at_0, 1223216), loc_3)
+																												FUNC_LIST[4](rt_load_i32(memory_at_0, 1223296), loc_3)
 																												break
 																											end
 																											if desired then
 																												break
 																											end
 																										end
-																										rt_store_i32(memory_at_0, 1223220, loc_11)
-																										rt_store_i32(memory_at_0, 1223216, loc_0)
-																										rt_store_i32(memory_at_0, 1223212, loc_1)
+																										rt_store_i32(memory_at_0, 1223300, loc_11)
+																										rt_store_i32(memory_at_0, 1223296, loc_0)
+																										rt_store_i32(memory_at_0, 1223292, loc_1)
 																										desired = 15
 																										break
 																									end
@@ -4989,10 +4987,10 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																							rt_store_i64(memory_at_0, rt_add_i32(loc_0, 16), rt_load_i64(memory_at_0, 1073716))
 																							rt_store_i64(memory_at_0, rt_add_i32(loc_0, 8), rt_load_i64(memory_at_0, 1073708))
 																							rt_store_i64(memory_at_0, loc_0, rt_load_i64(memory_at_0, 1073700))
-																							loc_1 = rt_load_i32(memory_at_0, 1223212)
+																							loc_1 = rt_load_i32(memory_at_0, 1223292)
 																							if bit_or(loc_1, 2147483648) ~= 2147483648 then
 																								while true do
-																									FUNC_LIST[4](rt_load_i32(memory_at_0, 1223216), loc_1)
+																									FUNC_LIST[4](rt_load_i32(memory_at_0, 1223296), loc_1)
 																									break
 																								end
 																								if desired then
@@ -5002,15 +5000,15 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																									break
 																								end
 																							end
-																							rt_store_i32(memory_at_0, 1223220, 56)
-																							rt_store_i32(memory_at_0, 1223216, loc_0)
-																							rt_store_i32(memory_at_0, 1223212, 56)
-																							loc_0 = rt_load_i32(memory_at_0, loc_2 + 16928)
+																							rt_store_i32(memory_at_0, 1223300, 56)
+																							rt_store_i32(memory_at_0, 1223296, loc_0)
+																							rt_store_i32(memory_at_0, 1223292, 56)
+																							loc_0 = rt_load_i32(memory_at_0, loc_2 + 16992)
 																							if loc_0 == 0 then
 																								desired = 15
 																								break
 																							end
-																							FUNC_LIST[4](rt_load_i32(memory_at_0, loc_2 + 16932), loc_0)
+																							FUNC_LIST[4](rt_load_i32(memory_at_0, loc_2 + 16996), loc_0)
 																							loc_4 = 1
 																							desired = 6
 																							break
@@ -5306,9 +5304,9 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																								break
 																							end
 																							loc_3 = rt_sub_i32(loc_8, loc_9)
-																							rt_store_i32(memory_at_0, loc_2 + 17052, loc_3)
+																							rt_store_i32(memory_at_0, loc_2 + 17116, loc_3)
 																							loc_5 = rt_add_i32(loc_9, loc_17)
-																							rt_store_i32(memory_at_0, loc_2 + 17048, loc_5)
+																							rt_store_i32(memory_at_0, loc_2 + 17112, loc_5)
 																							if loc_3 <= 2 then
 																								while true do
 																									loc_4 = 2
@@ -5596,7 +5594,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																														rt_store_i32(memory_at_0, loc_2 + 340, 1)
 																														rt_store_i32(memory_at_0, loc_2 + 336, 1073828)
 																														rt_store_i64(memory_at_0, loc_2 + 348, rt_i64_ONE)
-																														rt_store_i64(memory_at_0, loc_2 + 208, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_2, 17048)), rt_i64_from_u32(0, 5)))
+																														rt_store_i64(memory_at_0, loc_2 + 208, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_2, 17112)), rt_i64_from_u32(0, 5)))
 																														rt_store_i32(memory_at_0, loc_2 + 344, rt_add_i32(loc_2, 208))
 																														FUNC_LIST[14](rt_add_i32(loc_2, 336), 1073836)
 																														error("out of code bounds")
@@ -5656,7 +5654,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																								break
 																							end
 																							loc_5 = bit_or(bit_and(rt_sub_i32(rt_add_i32(loc_22, rt_shl_i32(loc_24, 3)), 105), 255), bit_or(rt_shl_i32(loc_4, 16), rt_shl_i32(bit_and(rt_sub_i32(rt_add_i32(loc_21, rt_shl_i32(loc_7, 3)), 105), 255), 8)))
-																							loc_4 = rt_load_i32(memory_at_0, 1223224)
+																							loc_4 = rt_load_i32(memory_at_0, 1223304)
 																							if loc_4 == loc_13 then
 																								while true do
 																									loc_3 = rt_sub_i32(GLOBAL_LIST[0].value, 32)
@@ -5680,7 +5678,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																									if loc_4 ~= 0 then
 																										while true do
 																											rt_store_i32(memory_at_0, loc_3 + 28, rt_mul_i32(loc_4, 3))
-																											rt_store_i32(memory_at_0, loc_3 + 20, rt_load_i32(memory_at_0, 1223228))
+																											rt_store_i32(memory_at_0, loc_3 + 20, rt_load_i32(memory_at_0, 1223308))
 																											reg_1 = 1
 																											break
 																										end
@@ -5707,8 +5705,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																											break
 																										end
 																									end
-																									rt_store_i32(memory_at_0, 1223228, rt_load_i32(memory_at_0, loc_3 + 12))
-																									rt_store_i32(memory_at_0, 1223224, loc_9)
+																									rt_store_i32(memory_at_0, 1223308, rt_load_i32(memory_at_0, loc_3 + 12))
+																									rt_store_i32(memory_at_0, 1223304, loc_9)
 																									GLOBAL_LIST[0].value = rt_add_i32(loc_3, 32)
 																									break
 																								end
@@ -5721,8 +5719,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																								end
 																							end
 																							loc_3 = rt_add_i32(loc_13, 1)
-																							rt_store_i32(memory_at_0, 1223232, loc_3)
-																							loc_4 = rt_add_i32(rt_load_i32(memory_at_0, 1223228), rt_mul_i32(loc_13, 3))
+																							rt_store_i32(memory_at_0, 1223312, loc_3)
+																							loc_4 = rt_add_i32(rt_load_i32(memory_at_0, 1223308), rt_mul_i32(loc_13, 3))
 																							rt_store_i32_n16(memory_at_0, loc_4, loc_5)
 																							rt_store_i32_n8(memory_at_0, rt_add_i32(loc_4, 2), rt_shr_u32(loc_5, 16))
 																							loc_13 = loc_3
@@ -5789,13 +5787,13 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																		end
 																		break
 																	end
-																	loc_4 = rt_load_i32(memory_at_0, loc_2 + 16928)
+																	loc_4 = rt_load_i32(memory_at_0, loc_2 + 16992)
 																	if loc_3 > rt_sub_i32(loc_4, loc_11) then
 																		while true do
-																			FUNC_LIST[37](rt_add_i32(loc_2, 16928), loc_11, loc_3)
-																			loc_4 = rt_load_i32(memory_at_0, loc_2 + 16928)
-																			loc_11 = rt_load_i32(memory_at_0, loc_2 + 16936)
-																			loc_0 = rt_load_i32(memory_at_0, loc_2 + 16932)
+																			FUNC_LIST[37](rt_add_i32(loc_2, 16992), loc_11, loc_3)
+																			loc_4 = rt_load_i32(memory_at_0, loc_2 + 16992)
+																			loc_11 = rt_load_i32(memory_at_0, loc_2 + 17000)
+																			loc_0 = rt_load_i32(memory_at_0, loc_2 + 16996)
 																			break
 																		end
 																		if desired then
@@ -5807,11 +5805,11 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																	end
 																	reg_0 = FUNC_LIST[121](rt_add_i32(loc_0, loc_11), loc_1, loc_3)
 																	loc_1 = rt_add_i32(loc_3, loc_11)
-																	rt_store_i32(memory_at_0, loc_2 + 16936, loc_1)
+																	rt_store_i32(memory_at_0, loc_2 + 17000, loc_1)
 																	if loc_1 == loc_4 then
 																		while true do
-																			FUNC_LIST[38](rt_add_i32(loc_2, 16928))
-																			loc_0 = rt_load_i32(memory_at_0, loc_2 + 16932)
+																			FUNC_LIST[38](rt_add_i32(loc_2, 16992))
+																			loc_0 = rt_load_i32(memory_at_0, loc_2 + 16996)
 																			break
 																		end
 																		if desired then
@@ -5823,7 +5821,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 																	end
 																	rt_store_i32_n8(memory_at_0, rt_add_i32(loc_0, loc_1), 32)
 																	loc_11 = rt_add_i32(loc_1, 1)
-																	rt_store_i32(memory_at_0, loc_2 + 16936, loc_11)
+																	rt_store_i32(memory_at_0, loc_2 + 17000, loc_11)
 																	loc_6 = 0
 																	desired = 14
 																	break
@@ -5906,13 +5904,13 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 										end
 										break
 									end
-									loc_0 = rt_load_i32(memory_at_0, 1076288)
+									loc_0 = rt_load_i32(memory_at_0, 1076304)
 									if loc_0 >= 2147483647 then
 										desired = 5
 										break
 									end
-									rt_store_i32(memory_at_0, 1076288, rt_add_i32(loc_0, 1))
-									TABLE_LIST[0].data[rt_load_i32(memory_at_0, 1223208)](1073552, 141)
+									rt_store_i32(memory_at_0, 1076304, rt_add_i32(loc_0, 1))
+									TABLE_LIST[0].data[rt_load_i32(memory_at_0, 1223288)](1073552, 141)
 									break
 								end
 								if desired then
@@ -5930,8 +5928,8 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 								end
 								break
 							end
-							rt_store_i32(memory_at_0, 1076288, rt_add_i32(rt_load_i32(memory_at_0, 1076288), loc_4))
-							GLOBAL_LIST[0].value = rt_add_i32(loc_2, 17104)
+							rt_store_i32(memory_at_0, 1076304, rt_add_i32(rt_load_i32(memory_at_0, 1076304), loc_4))
+							GLOBAL_LIST[0].value = rt_add_i32(loc_2, 17168)
 							desired = 0
 							break
 						end
@@ -5952,7 +5950,7 @@ FUNC_LIST[9] = function(loc_0, loc_1)
 					end
 					loc_0 = rt_sub_i32(GLOBAL_LIST[0].value, 16)
 					GLOBAL_LIST[0].value = loc_0
-					if rt_load_i32_u8(memory_at_0, 1223277) ~= 3 then
+					if rt_load_i32_u8(memory_at_0, 1223357) ~= 3 then
 						while true do
 							rt_store_i32_n8(memory_at_0, loc_0 + 15, 1)
 							FUNC_LIST[103](rt_add_i32(loc_0, 15))
@@ -6367,7 +6365,7 @@ FUNC_LIST[14] = function(loc_0, loc_1)
 		loc_1 = rt_load_i32(memory_at_0, loc_0 + 8)
 		if loc_1 == 0 then
 			while true do
-				FUNC_LIST[15](1075196)
+				FUNC_LIST[15](1075212)
 				error("out of code bounds")
 			end
 		end
@@ -6382,20 +6380,20 @@ FUNC_LIST[14] = function(loc_0, loc_1)
 			break
 		end
 		loc_0 = rt_load_i32_u8(memory_at_0, loc_0 + 16)
-		loc_1 = rt_load_i32(memory_at_0, 1223348)
-		rt_store_i32(memory_at_0, 1223348, rt_add_i32(loc_1, 1))
+		loc_1 = rt_load_i32(memory_at_0, 1223428)
+		rt_store_i32(memory_at_0, 1223428, rt_add_i32(loc_1, 1))
 		while true do
 			if rt_lt_i32(loc_1, 0) then
 				break
 			end
-			if bit_and(rt_load_i32_u8(memory_at_0, 1223816), 1) ~= 0 then
+			if bit_and(rt_load_i32_u8(memory_at_0, 1223896), 1) ~= 0 then
 				break
 			end
-			rt_store_i32(memory_at_0, 1223812, rt_add_i32(rt_load_i32(memory_at_0, 1223812), 1))
-			if rt_lt_i32(rt_load_i32(memory_at_0, 1223344), 0) then
+			rt_store_i32(memory_at_0, 1223892, rt_add_i32(rt_load_i32(memory_at_0, 1223892), 1))
+			if rt_lt_i32(rt_load_i32(memory_at_0, 1223424), 0) then
 				break
 			end
-			rt_store_i32_n8(memory_at_0, 1223816, 0)
+			rt_store_i32_n8(memory_at_0, 1223896, 0)
 			if loc_0 == 0 then
 				break
 			end
@@ -6634,7 +6632,7 @@ FUNC_LIST[17] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 		rt_store_i32(memory_at_0, loc_5 + 20, loc_3)
 		rt_store_i32(memory_at_0, loc_5 + 16, loc_2)
 		rt_store_i32(memory_at_0, loc_5 + 28, 2)
-		rt_store_i32(memory_at_0, loc_5 + 24, 1074172)
+		rt_store_i32(memory_at_0, loc_5 + 24, 1074192)
 		rt_store_i64(memory_at_0, loc_5 + 36, rt_i64_from_u32(2, 0))
 		rt_store_i64(memory_at_0, loc_5 + 56, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 16)), rt_i64_from_u32(0, 8)))
 		rt_store_i64(memory_at_0, loc_5 + 48, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 8)), rt_i64_from_u32(0, 9)))
@@ -7939,9 +7937,9 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 								loc_5 = rt_load_i32(memory_at_0, rt_add_i32(loc_1, 1067896))
 								loc_4 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_1, 1067900))
 								loc_22 = rt_load_i64(memory_at_0, rt_add_i32(loc_1, 1067888))
-								if rt_load_i32_u8(memory_at_0, 1223272) ~= 3 then
+								if rt_load_i32_u8(memory_at_0, 1223352) ~= 3 then
 									while true do
-										rt_store_i32(memory_at_0, loc_2 + 4, 1223268)
+										rt_store_i32(memory_at_0, loc_2 + 4, 1223348)
 										rt_store_i32(memory_at_0, loc_2 + 8, rt_add_i32(loc_2, 15))
 										FUNC_LIST[95](rt_add_i32(loc_2, 4))
 										break
@@ -7962,10 +7960,10 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 								loc_8 = rt_load_i32(memory_at_0, rt_add_i32(loc_4, 1066824))
 								loc_6 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_4, 1066828))
 								loc_24 = rt_load_i64(memory_at_0, rt_add_i32(loc_4, 1066816))
-								loc_45 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223268), rt_shl_i32(loc_1, 3)))
-								if rt_load_i32_u8(memory_at_0, 1223264) ~= 3 then
+								loc_45 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223348), rt_shl_i32(loc_1, 3)))
+								if rt_load_i32_u8(memory_at_0, 1223344) ~= 3 then
 									while true do
-										rt_store_i32(memory_at_0, loc_2 + 4, 1223260)
+										rt_store_i32(memory_at_0, loc_2 + 4, 1223340)
 										rt_store_i32(memory_at_0, loc_2 + 8, rt_add_i32(loc_2, 15))
 										FUNC_LIST[89](rt_add_i32(loc_2, 4))
 										break
@@ -8002,7 +8000,7 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 					loc_4 = rt_shl_i32(loc_7, 3)
 					reg_0 = rt_add_i32(loc_4, (if loc_3 ~= 0 then 1060464 else 1060976))
 					loc_4 = rt_add_i32(loc_4, 1069456)
-					loc_1 = rt_add_i32(rt_load_i32(memory_at_0, 1223260), rt_shl_i32(loc_1, 3))
+					loc_1 = rt_add_i32(rt_load_i32(memory_at_0, 1223340), rt_shl_i32(loc_1, 3))
 					while true do
 						if loc_3 == 0 then
 							while true do
@@ -8082,9 +8080,9 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 						loc_4 = rt_load_i32(memory_at_0, rt_add_i32(loc_1, 1067896))
 						loc_6 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_1, 1067900))
 						loc_20 = rt_load_i64(memory_at_0, rt_add_i32(loc_1, 1067888))
-						if rt_load_i32_u8(memory_at_0, 1223272) ~= 3 then
+						if rt_load_i32_u8(memory_at_0, 1223352) ~= 3 then
 							while true do
-								rt_store_i32(memory_at_0, loc_2 + 4, 1223268)
+								rt_store_i32(memory_at_0, loc_2 + 4, 1223348)
 								rt_store_i32(memory_at_0, loc_2 + 8, rt_add_i32(loc_2, 15))
 								FUNC_LIST[95](rt_add_i32(loc_2, 4))
 								break
@@ -8104,14 +8102,14 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 							desired = 1
 							break
 						end
-						loc_49 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223268), rt_shl_i32(loc_1, 3)))
+						loc_49 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223348), rt_shl_i32(loc_1, 3)))
 						if rt_ne_i64(rt_bit_and_i64(loc_49, loc_17), rt_i64_ZERO) then
 							while true do
 								loc_28 = rt_bit_and_i64(loc_28, rt_i64_from_u32(63, 0))
 								loc_36 = rt_bit_and_i64(loc_21, loc_36)
-								if rt_load_i32_u8(memory_at_0, 1223272) ~= 3 then
+								if rt_load_i32_u8(memory_at_0, 1223352) ~= 3 then
 									while true do
-										rt_store_i32(memory_at_0, loc_2 + 4, 1223268)
+										rt_store_i32(memory_at_0, loc_2 + 4, 1223348)
 										rt_store_i32(memory_at_0, loc_2 + 8, rt_add_i32(loc_2, 15))
 										FUNC_LIST[95](rt_add_i32(loc_2, 4))
 										break
@@ -8126,10 +8124,10 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 									break
 								end
 								loc_20 = rt_bit_and_i64(rt_shl_i64(rt_i64_ONE, loc_35), loc_33)
-								loc_35 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223268), rt_shl_i32(loc_1, 3)))
-								if rt_load_i32_u8(memory_at_0, 1223272) ~= 3 then
+								loc_35 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223348), rt_shl_i32(loc_1, 3)))
+								if rt_load_i32_u8(memory_at_0, 1223352) ~= 3 then
 									while true do
-										rt_store_i32(memory_at_0, loc_2 + 4, 1223268)
+										rt_store_i32(memory_at_0, loc_2 + 4, 1223348)
 										rt_store_i32(memory_at_0, loc_2 + 8, rt_add_i32(loc_2, 15))
 										FUNC_LIST[95](rt_add_i32(loc_2, 4))
 										break
@@ -8143,7 +8141,7 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 									desired = 1
 									break
 								end
-								loc_19 = rt_bit_or_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223268), rt_shl_i32(loc_1, 3))), rt_bit_and_i64(loc_23, loc_35)), loc_19)
+								loc_19 = rt_bit_or_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223348), rt_shl_i32(loc_1, 3))), rt_bit_and_i64(loc_23, loc_35)), loc_19)
 								break
 							end
 							if desired then
@@ -8192,9 +8190,9 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 								loc_5 = rt_load_i32(memory_at_0, rt_add_i32(loc_1, 1066824))
 								loc_4 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_1, 1066828))
 								loc_20 = rt_load_i64(memory_at_0, rt_add_i32(loc_1, 1066816))
-								if rt_load_i32_u8(memory_at_0, 1223264) ~= 3 then
+								if rt_load_i32_u8(memory_at_0, 1223344) ~= 3 then
 									while true do
-										rt_store_i32(memory_at_0, loc_2 + 4, 1223260)
+										rt_store_i32(memory_at_0, loc_2 + 4, 1223340)
 										rt_store_i32(memory_at_0, loc_2 + 8, rt_add_i32(loc_2, 15))
 										FUNC_LIST[89](rt_add_i32(loc_2, 4))
 										break
@@ -8214,14 +8212,14 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 									desired = 3
 									break
 								end
-								loc_34 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223260), rt_shl_i32(loc_1, 3)))
+								loc_34 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223340), rt_shl_i32(loc_1, 3)))
 								if rt_ne_i64(rt_bit_and_i64(loc_34, loc_17), rt_i64_ZERO) then
 									while true do
 										loc_23 = rt_bit_and_i64(loc_23, rt_i64_from_u32(63, 0))
 										loc_27 = rt_bit_and_i64(loc_21, loc_27)
-										if rt_load_i32_u8(memory_at_0, 1223264) ~= 3 then
+										if rt_load_i32_u8(memory_at_0, 1223344) ~= 3 then
 											while true do
-												rt_store_i32(memory_at_0, loc_2 + 4, 1223260)
+												rt_store_i32(memory_at_0, loc_2 + 4, 1223340)
 												rt_store_i32(memory_at_0, loc_2 + 8, rt_add_i32(loc_2, 15))
 												FUNC_LIST[89](rt_add_i32(loc_2, 4))
 												break
@@ -8236,10 +8234,10 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 											break
 										end
 										loc_20 = rt_bit_and_i64(rt_shl_i64(rt_i64_ONE, loc_26), loc_44)
-										loc_26 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223260), rt_shl_i32(loc_1, 3)))
-										if rt_load_i32_u8(memory_at_0, 1223264) ~= 3 then
+										loc_26 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223340), rt_shl_i32(loc_1, 3)))
+										if rt_load_i32_u8(memory_at_0, 1223344) ~= 3 then
 											while true do
-												rt_store_i32(memory_at_0, loc_2 + 4, 1223260)
+												rt_store_i32(memory_at_0, loc_2 + 4, 1223340)
 												rt_store_i32(memory_at_0, loc_2 + 8, rt_add_i32(loc_2, 15))
 												FUNC_LIST[89](rt_add_i32(loc_2, 4))
 												break
@@ -8253,7 +8251,7 @@ FUNC_LIST[23] = function(loc_0, loc_1)
 											desired = 3
 											break
 										end
-										loc_19 = rt_bit_or_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223260), rt_shl_i32(loc_1, 3))), rt_bit_and_i64(loc_26, loc_31)), loc_19)
+										loc_19 = rt_bit_or_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223340), rt_shl_i32(loc_1, 3))), rt_bit_and_i64(loc_26, loc_31)), loc_19)
 										break
 									end
 									if desired then
@@ -8501,7 +8499,7 @@ FUNC_LIST[24] = function(loc_0, loc_1)
 					loc_3 = rt_add_i32(loc_2, 56)
 					FUNC_LIST[31](loc_3, loc_1)
 					rt_store_i32(memory_at_0, loc_2 + 92, 2)
-					rt_store_i32(memory_at_0, loc_2 + 88, 1074152)
+					rt_store_i32(memory_at_0, loc_2 + 88, 1074172)
 					rt_store_i64(memory_at_0, loc_2 + 72, rt_bit_or_i64(rt_extend_i64_u32(loc_3), rt_i64_from_u32(0, 4)))
 					rt_store_i64(memory_at_0, loc_2 + 100, rt_i64_ONE)
 					rt_store_i32(memory_at_0, loc_2 + 96, rt_add_i32(loc_2, 72))
@@ -8585,7 +8583,7 @@ FUNC_LIST[24] = function(loc_0, loc_1)
 			rt_store_i64(memory_at_0, loc_2 + 64, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_2, 32)), rt_i64_from_u32(0, 3)))
 			rt_store_i64(memory_at_0, loc_2 + 56, rt_bit_or_i64(rt_extend_i64_u32(loc_0), rt_i64_from_u32(0, 4)))
 			rt_store_i32(memory_at_0, loc_2 + 92, 2)
-			rt_store_i32(memory_at_0, loc_2 + 88, 1074172)
+			rt_store_i32(memory_at_0, loc_2 + 88, 1074192)
 			rt_store_i64(memory_at_0, loc_2 + 100, rt_i64_from_u32(2, 0))
 			rt_store_i32(memory_at_0, loc_2 + 96, rt_add_i32(loc_2, 56))
 			FUNC_LIST[27](rt_add_i32(loc_2, 44), rt_add_i32(loc_2, 88))
@@ -9048,9 +9046,9 @@ FUNC_LIST[25] = function(loc_0, loc_1, loc_2, loc_3)
 										loc_26 = rt_load_i32_u8(memory_at_0, loc_20 + 12)
 										loc_16 = rt_load_i64(memory_at_0, loc_20)
 										reg_0 = rt_load_i32(memory_at_0, loc_20 + 8)
-										if rt_load_i32_u8(memory_at_0, 1223264) ~= 3 then
+										if rt_load_i32_u8(memory_at_0, 1223344) ~= 3 then
 											while true do
-												rt_store_i32(memory_at_0, loc_21 + 4, 1223260)
+												rt_store_i32(memory_at_0, loc_21 + 4, 1223340)
 												rt_store_i32(memory_at_0, loc_21 + 8, rt_add_i32(loc_21, 15))
 												FUNC_LIST[89](rt_add_i32(loc_21, 4))
 												break
@@ -9065,7 +9063,7 @@ FUNC_LIST[25] = function(loc_0, loc_1, loc_2, loc_3)
 										loc_18 = rt_add_i32(reg_0, rt_wrap_i32_i64(rt_shr_u64(rt_mul_i64(loc_14, loc_16), rt_extend_i64_u32(loc_26))))
 										if loc_18 < 88064 then
 											while true do
-												if rt_eq_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223260), rt_shl_i32(loc_18, 3))), loc_13), rt_i64_ZERO) then
+												if rt_eq_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223340), rt_shl_i32(loc_18, 3))), loc_13), rt_i64_ZERO) then
 													desired = 8
 													break
 												end
@@ -9373,9 +9371,9 @@ FUNC_LIST[25] = function(loc_0, loc_1, loc_2, loc_3)
 								loc_23 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_19, 1067900))
 								reg_0 = rt_load_i32(memory_at_0, rt_add_i32(loc_19, 1067896))
 								reg_1 = rt_load_i64(memory_at_0, rt_add_i32(loc_19, 1067888))
-								if rt_load_i32_u8(memory_at_0, 1223272) ~= 3 then
+								if rt_load_i32_u8(memory_at_0, 1223352) ~= 3 then
 									while true do
-										rt_store_i32(memory_at_0, loc_21 + 4, 1223268)
+										rt_store_i32(memory_at_0, loc_21 + 4, 1223348)
 										rt_store_i32(memory_at_0, loc_21 + 8, rt_add_i32(loc_21, 15))
 										FUNC_LIST[95](rt_add_i32(loc_21, 4))
 										break
@@ -9393,7 +9391,7 @@ FUNC_LIST[25] = function(loc_0, loc_1, loc_2, loc_3)
 									desired = 2
 									break
 								end
-								loc_4 = rt_bit_and_i64(rt_bit_and_i64(rt_bit_and_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223268), rt_shl_i32(loc_19, 3))), (if rt_eq_i64(rt_bit_and_i64(rt_shr_u64(loc_6, loc_4), rt_i64_ONE), rt_i64_ZERO) then rt_i64_from_u32(4294967295, 4294967295) else loc_6)), loc_10), loc_15), loc_9)
+								loc_4 = rt_bit_and_i64(rt_bit_and_i64(rt_bit_and_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223348), rt_shl_i32(loc_19, 3))), (if rt_eq_i64(rt_bit_and_i64(rt_shr_u64(loc_6, loc_4), rt_i64_ONE), rt_i64_ZERO) then rt_i64_from_u32(4294967295, 4294967295) else loc_6)), loc_10), loc_15), loc_9)
 								if rt_ne_i64(loc_4, rt_i64_ZERO) then
 									while true do
 										loc_3 = rt_shl_i32(loc_3, 8)
@@ -9449,9 +9447,9 @@ FUNC_LIST[25] = function(loc_0, loc_1, loc_2, loc_3)
 						loc_18 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_3, 1066828))
 						loc_12 = rt_load_i64(memory_at_0, rt_add_i32(loc_3, 1066816))
 						reg_0 = rt_load_i32(memory_at_0, rt_add_i32(loc_3, 1066824))
-						if rt_load_i32_u8(memory_at_0, 1223264) ~= 3 then
+						if rt_load_i32_u8(memory_at_0, 1223344) ~= 3 then
 							while true do
-								rt_store_i32(memory_at_0, loc_21 + 4, 1223260)
+								rt_store_i32(memory_at_0, loc_21 + 4, 1223340)
 								rt_store_i32(memory_at_0, loc_21 + 8, rt_add_i32(loc_21, 15))
 								FUNC_LIST[89](rt_add_i32(loc_21, 4))
 								break
@@ -9470,7 +9468,7 @@ FUNC_LIST[25] = function(loc_0, loc_1, loc_2, loc_3)
 							break
 						end
 						loc_5 = rt_bit_and_i64(rt_sub_i64(loc_5, rt_i64_ONE), loc_5)
-						loc_4 = rt_bit_and_i64(rt_bit_and_i64(rt_bit_and_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223260), rt_shl_i32(loc_3, 3))), (if rt_eq_i64(rt_bit_and_i64(rt_shr_u64(loc_7, loc_4), rt_i64_ONE), rt_i64_ZERO) then rt_i64_from_u32(4294967295, 4294967295) else loc_7)), loc_10), loc_15), loc_9)
+						loc_4 = rt_bit_and_i64(rt_bit_and_i64(rt_bit_and_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223340), rt_shl_i32(loc_3, 3))), (if rt_eq_i64(rt_bit_and_i64(rt_shr_u64(loc_7, loc_4), rt_i64_ONE), rt_i64_ZERO) then rt_i64_from_u32(4294967295, 4294967295) else loc_7)), loc_10), loc_15), loc_9)
 						if rt_ne_i64(loc_4, rt_i64_ZERO) then
 							while true do
 								loc_0 = rt_shl_i32(loc_0, 8)
@@ -9743,7 +9741,7 @@ FUNC_LIST[28] = function()
 	while true do
 		loc_0 = rt_sub_i32(GLOBAL_LIST[0].value, 32)
 		GLOBAL_LIST[0].value = loc_0
-		loc_2 = rt_load_i32(memory_at_0, 1092872)
+		loc_2 = rt_load_i32(memory_at_0, 1092952)
 		loc_1 = rt_add_i32(loc_2, 1)
 		if loc_1 == 0 then
 			while true do
@@ -9760,7 +9758,7 @@ FUNC_LIST[28] = function()
 		if loc_2 ~= 0 then
 			while true do
 				rt_store_i32(memory_at_0, loc_0 + 28, rt_shl_i32(loc_2, 3))
-				rt_store_i32(memory_at_0, loc_0 + 20, rt_load_i32(memory_at_0, 1092876))
+				rt_store_i32(memory_at_0, loc_0 + 20, rt_load_i32(memory_at_0, 1092956))
 				reg_1 = 8
 				break
 			end
@@ -9779,8 +9777,8 @@ FUNC_LIST[28] = function()
 				error("out of code bounds")
 			end
 		end
-		rt_store_i32(memory_at_0, 1092876, rt_load_i32(memory_at_0, loc_0 + 12))
-		rt_store_i32(memory_at_0, 1092872, loc_3)
+		rt_store_i32(memory_at_0, 1092956, rt_load_i32(memory_at_0, loc_0 + 12))
+		rt_store_i32(memory_at_0, 1092952, loc_3)
 		GLOBAL_LIST[0].value = rt_add_i32(loc_0, 32)
 		break
 	end
@@ -9822,27 +9820,17 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 	local loc_40 = 0
 	local loc_41 = 0
 	local loc_42 = 0
-	local loc_43 = 0
-	local loc_44 = 0
-	local loc_45 = 0
-	local loc_46 = 0
+	local loc_43 = rt_i64_ZERO
+	local loc_44 = rt_i64_ZERO
+	local loc_45 = rt_i64_ZERO
+	local loc_46 = rt_i64_ZERO
 	local loc_47 = rt_i64_ZERO
 	local loc_48 = rt_i64_ZERO
 	local loc_49 = rt_i64_ZERO
 	local loc_50 = rt_i64_ZERO
 	local loc_51 = rt_i64_ZERO
-	local loc_52 = rt_i64_ZERO
-	local loc_53 = rt_i64_ZERO
-	local loc_54 = rt_i64_ZERO
-	local loc_55 = rt_i64_ZERO
-	local loc_56 = rt_i64_ZERO
-	local loc_57 = rt_i64_ZERO
-	local loc_58 = rt_i64_ZERO
-	local loc_59 = rt_i64_ZERO
-	local loc_60 = rt_i64_ZERO
-	local loc_61 = rt_i64_ZERO
-	local loc_62 = 0.0
-	local loc_63 = 0.0
+	local loc_52 = 0.0
+	local loc_53 = 0.0
 	local reg_0
 	local reg_1
 	local reg_2
@@ -9852,27 +9840,34 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 	while true do
 		loc_9 = rt_sub_i32(GLOBAL_LIST[0].value, 3696)
 		GLOBAL_LIST[0].value = loc_9
+		loc_8 = bit_and(loc_3, 255)
+		if loc_8 > rt_load_i32_u8(memory_at_0, 1223286) then
+			while true do
+				rt_store_i32_n8(memory_at_0, 1223286, loc_3)
+				break
+			end
+		end
 		while true do
 			while true do
-				loc_12 = bit_and(loc_3, 255)
-				if loc_12 ~= 255 then
+				if loc_8 ~= 255 then
 					while true do
-						rt_store_i32_n8(memory_at_0, rt_add_i32(loc_12, 1222950), loc_3)
-						loc_50 = rt_load_i64(memory_at_0, 1076400)
+						loc_12 = bit_and(loc_3, 255)
+						rt_store_i32_n8(memory_at_0, rt_add_i32(loc_12, 1223030), loc_3)
+						loc_47 = rt_load_i64(memory_at_0, 1076416)
 						if loc_12 == 0 then
 							desired = 2
 							break
 						end
-						loc_7 = rt_shl_i32(rt_load_i32(memory_at_0, 1092880), 3)
-						loc_10 = rt_sub_i32(rt_load_i32(memory_at_0, 1092876), 8)
+						loc_7 = rt_shl_i32(rt_load_i32(memory_at_0, 1092960), 3)
+						loc_8 = rt_sub_i32(rt_load_i32(memory_at_0, 1092956), 8)
 						while true do
 							if loc_7 == 0 then
 								desired = 2
 								break
 							end
-							reg_0 = rt_add_i32(loc_7, loc_10)
+							reg_0 = rt_add_i32(loc_7, loc_8)
 							loc_7 = rt_sub_i32(loc_7, 8)
-							if rt_ne_i64(rt_load_i64(memory_at_0, reg_0), loc_50) then
+							if rt_ne_i64(rt_load_i64(memory_at_0, reg_0), loc_47) then
 								continue
 							end
 							break
@@ -9900,31 +9895,31 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 				end
 				break
 			end
-			loc_10 = rt_load_i32(memory_at_0, 1092892)
-			FUNC_LIST[120](loc_9, rt_extend_i64_u32(loc_10), loc_50)
+			loc_8 = rt_load_i32(memory_at_0, 1092972)
+			FUNC_LIST[120](loc_9, rt_extend_i64_u32(loc_8), loc_47)
 			while true do
 				while true do
-					loc_21 = rt_load_i32(memory_at_0, rt_add_i32(loc_9, 8))
-					if loc_10 > loc_21 then
+					loc_19 = rt_load_i32(memory_at_0, rt_add_i32(loc_9, 8))
+					if loc_8 > loc_19 then
 						while true do
-							loc_15 = rt_add_i32(loc_5, 1)
+							loc_11 = rt_add_i32(loc_5, 1)
 							loc_7 = 0
-							loc_10 = rt_add_i32(rt_load_i32(memory_at_0, 1092888), rt_mul_i32(loc_21, 12))
-							loc_13 = rt_load_i32_u8(memory_at_0, loc_10 + 11)
-							if loc_13 == 3 then
+							loc_8 = rt_add_i32(rt_load_i32(memory_at_0, 1092968), rt_mul_i32(loc_19, 12))
+							loc_10 = rt_load_i32_u8(memory_at_0, loc_8 + 11)
+							if loc_10 == 3 then
 								desired = 2
 								break
 							end
-							if rt_load_i32(memory_at_0, loc_10) ~= rt_wrap_i32_i64(loc_50) then
+							if rt_load_i32(memory_at_0, loc_8) ~= rt_wrap_i32_i64(loc_47) then
 								desired = 2
 								break
 							end
-							loc_7 = rt_load_i32_u16(memory_at_0, loc_10 + 8)
-							if rt_load_i32_u8(memory_at_0, loc_10 + 10) < bit_and(loc_2, 255) then
+							loc_7 = rt_load_i32_u16(memory_at_0, loc_8 + 8)
+							if rt_load_i32_u8(memory_at_0, loc_8 + 10) < bit_and(loc_2, 255) then
 								desired = 2
 								break
 							end
-							loc_8 = rt_load_i32(memory_at_0, loc_10 + 4)
+							loc_8 = rt_load_i32(memory_at_0, loc_8 + 4)
 							while true do
 								while true do
 									while true do
@@ -9934,7 +9929,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 													return { [0] = 0, 1, }
 												end)()
 											end
-											temp = br_map[1][rt_sub_i32(loc_13, 1)] or 2
+											temp = br_map[1][rt_sub_i32(loc_10, 1)] or 2
 											if temp < 1 then
 												break
 											elseif temp > 1 then
@@ -9977,7 +9972,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									end
 									break
 								end
-								if loc_6 ~= loc_15 then
+								if loc_6 ~= loc_11 then
 									desired = 2
 									break
 								end
@@ -9986,23 +9981,23 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 							if desired then
 								break
 							end
-							rt_store_i32_n16(memory_at_0, rt_add_i32(rt_add_i32(rt_mul_i32(loc_12, 510), rt_shl_i32(loc_12, 1)), 1092900), loc_7)
+							rt_store_i32_n16(memory_at_0, rt_add_i32(rt_add_i32(rt_mul_i32(loc_12, 510), rt_shl_i32(loc_12, 1)), 1092980), loc_7)
 							if bit_and(loc_3, 255) == 254 then
 								desired = 3
 								break
 							end
-							loc_4 = rt_add_i32(loc_12, 1)
-							loc_0 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_4, 1222950))
-							reg_0 = rt_add_i32(loc_12, 1222950)
+							loc_2 = rt_add_i32(loc_12, 1)
+							loc_0 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_2, 1223030))
+							reg_0 = rt_add_i32(loc_12, 1223030)
 							if loc_0 > bit_and(rt_add_i32(loc_3, 1), 255) then
 								while true do
-									loc_2 = loc_4
+									loc_5 = loc_2
 									reg_1 = rt_sub_i32(rt_sub_i32(loc_0, loc_3), 2)
 									loc_3 = bit_and(rt_add_i32(loc_0, bit_xor(loc_3, 4294967295)), 3)
 									if loc_3 ~= 0 then
 										while true do
-											loc_7 = rt_add_i32(rt_shl_i32(loc_12, 9), 1092902)
-											loc_2 = rt_add_i32(rt_add_i32(loc_12, bit_and(rt_sub_i32(loc_3, 1), 255)), 2)
+											loc_7 = rt_add_i32(rt_shl_i32(loc_12, 9), 1092982)
+											loc_5 = rt_add_i32(rt_add_i32(loc_12, bit_and(rt_sub_i32(loc_3, 1), 255)), 2)
 											loc_10 = 0
 											while true do
 												rt_store_i32_n16(memory_at_0, loc_7, rt_load_i32_u16(memory_at_0, rt_add_i32(loc_7, 510)))
@@ -10024,14 +10019,14 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									end
 									if bit_and(reg_1, 255) >= 3 then
 										while true do
-											loc_7 = rt_add_i32(rt_add_i32(rt_mul_i32(loc_12, 510), rt_shl_i32(loc_2, 1)), 1076280)
-											loc_10 = rt_add_i32(loc_2, 4)
+											loc_7 = rt_add_i32(rt_add_i32(rt_mul_i32(loc_12, 510), rt_shl_i32(loc_5, 1)), 1076296)
+											loc_10 = rt_add_i32(loc_5, 4)
 											while true do
-												rt_store_i64(memory_at_0, rt_add_i32(loc_7, 16620), rt_load_i64(memory_at_0, rt_add_i32(loc_7, 17130)))
+												rt_store_i64(memory_at_0, rt_add_i32(loc_7, 16684), rt_load_i64(memory_at_0, rt_add_i32(loc_7, 17194)))
 												loc_7 = rt_add_i32(loc_7, 8)
-												loc_2 = bit_and(loc_10, 255)
+												loc_3 = bit_and(loc_10, 255)
 												loc_10 = rt_add_i32(loc_10, 4)
-												if loc_0 ~= loc_2 then
+												if loc_0 ~= loc_3 then
 													continue
 												end
 												break
@@ -10045,7 +10040,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 											break
 										end
 									end
-									loc_0 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_4, 1222950))
+									loc_0 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_2, 1223030))
 									break
 								end
 								if desired then
@@ -10063,7 +10058,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 							break
 						end
 					end
-					FUNC_LIST[19](loc_21, loc_10, 1072636)
+					FUNC_LIST[19](loc_19, loc_8, 1072636)
 					error("out of code bounds")
 				end
 				if desired then
@@ -10081,7 +10076,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 				end
 				break
 			end
-			loc_10 = (if bit_and(loc_3, 255) ~= 0 then loc_7 else rt_load_i32_u16(memory_at_0, 1092900))
+			loc_10 = (if bit_and(loc_3, 255) ~= 0 then loc_7 else rt_load_i32_u16(memory_at_0, 1092980))
 			loc_18 = rt_sub_i32(loc_2, bit_and((if bit_and(loc_10, 65535) == 0 then 1 else 0), (if bit_and(loc_2, 255) > 3 then 1 else 0)))
 			if bit_and(loc_18, 255) == 0 then
 				while true do
@@ -10097,54 +10092,56 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 					break
 				end
 			end
-			FUNC_LIST[23](rt_add_i32(loc_9, 16), 1076304)
+			FUNC_LIST[23](rt_add_i32(loc_9, 16), 1076320)
+			reg_0 = FUNC_LIST[96]()
+			loc_2 = reg_0
 			while true do
 				loc_7 = rt_load_i32_u8(memory_at_0, loc_9 + 134)
-				loc_35 = bit_and((if loc_7 == 0 then 1 else 0), (if loc_6 == loc_15 then 1 else 0))
-				if loc_35 == 0 then
+				loc_30 = bit_and((if loc_7 == 0 then 1 else 0), (if loc_6 == loc_11 then 1 else 0))
+				if loc_30 == 0 then
 					break
 				end
-				reg_0 = FUNC_LIST[96]()
-				loc_8 = reg_0
-				loc_2 = bit_and(loc_18, 255)
-				if loc_2 <= 4 then
-					while true do
-						if rt_gt_i32(rt_add_i32(loc_8, rt_mul_i32(loc_2, 4294967236)), loc_6) then
-							desired = 1
-							break
-						end
+				while true do
+					loc_8 = bit_and(loc_18, 255)
+					if loc_8 > 4 then
 						break
 					end
-					if desired then
-						if desired == 2 then
-							desired = nil
-						end
+					if rt_le_i32(rt_add_i32(loc_2, rt_mul_i32(loc_8, 4294967236)), loc_6) then
 						break
 					end
+					loc_8 = loc_2
+					desired = 1
+					break
+				end
+				if desired then
+					if desired == 2 then
+						desired = nil
+					end
+					break
 				end
 				if loc_4 == 0 then
 					break
 				end
-				loc_2 = bit_and(loc_18, 255)
-				if loc_2 < 3 then
+				loc_4 = bit_and(loc_18, 255)
+				if loc_4 < 3 then
 					break
 				end
-				if rt_gt_i32(loc_6, loc_8) then
+				if rt_lt_i32(loc_2, loc_6) then
 					break
 				end
 				if rt_wrap_i32_i64(rt_popcnt_i64(rt_load_i64(memory_at_0, loc_9 + 16))) == rt_add_i32(rt_wrap_i32_i64(rt_popcnt_i64(rt_load_i64(memory_at_0, loc_9 + 24))), 1) then
 					break
 				end
-				loc_4 = rt_add_i32(loc_9, 136)
-				rt_store_i64(memory_at_0, rt_add_i32(loc_4, 8), rt_load_i64(memory_at_0, 1076408))
-				loc_47 = rt_load_i64(memory_at_0, 1076400)
-				rt_store_i64(memory_at_0, loc_4, loc_47)
-				rt_store_i32_n8(memory_at_0, 1076420, bit_xor(rt_load_i32_u8(memory_at_0, 1076420), 1))
-				loc_47 = rt_bit_xor_i64(loc_47, rt_i64_from_u32(4095246069, 424779229))
-				rt_store_i64(memory_at_0, 1076400, loc_47)
-				if rt_load_i32_u8(memory_at_0, 1076414) ~= 0 then
+				loc_8 = rt_add_i32(loc_9, 136)
+				rt_store_i64(memory_at_0, rt_add_i32(loc_8, 8), rt_load_i64(memory_at_0, 1076424))
+				loc_43 = rt_load_i64(memory_at_0, 1076416)
+				rt_store_i64(memory_at_0, loc_8, loc_43)
+				rt_store_i32_n8(memory_at_0, 1076436, bit_xor(rt_load_i32_u8(memory_at_0, 1076436), 1))
+				loc_43 = rt_bit_xor_i64(loc_43, rt_i64_from_u32(4095246069, 424779229))
+				rt_store_i64(memory_at_0, 1076416, loc_43)
+				if rt_load_i32_u8(memory_at_0, 1076430) ~= 0 then
 					while true do
-						rt_store_i64(memory_at_0, 1076400, rt_bit_xor_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(bit_and(rt_load_i32_u8(memory_at_0, 1076415), 7), 3), 1060216)), loc_47))
+						rt_store_i64(memory_at_0, 1076416, rt_bit_xor_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(bit_and(rt_load_i32_u8(memory_at_0, 1076431), 7), 3), 1060216)), loc_43))
 						break
 					end
 					if desired then
@@ -10154,13 +10151,13 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 						break
 					end
 				end
-				rt_store_i32_n8(memory_at_0, 1076414, 0)
-				reg_0 = FUNC_LIST[29](loc_0, loc_1, rt_sub_i32(rt_sub_i32(loc_18, rt_div_u32(loc_2, 6)), 3), rt_add_i32(loc_3, 1), 0, rt_sub_i32(0, loc_6), rt_sub_i32(1, loc_6))
-				loc_2 = reg_0
-				rt_store_i64(memory_at_0, 1076408, rt_load_i64(memory_at_0, rt_add_i32(loc_9, 144)))
-				rt_store_i64(memory_at_0, 1076400, rt_load_i64(memory_at_0, loc_9 + 136))
-				rt_store_i32_n8(memory_at_0, 1076420, bit_xor(rt_load_i32_u8(memory_at_0, 1076420), 1))
-				loc_8 = rt_sub_i32(0, loc_2)
+				rt_store_i32_n8(memory_at_0, 1076430, 0)
+				reg_0 = FUNC_LIST[29](loc_0, loc_1, rt_sub_i32(rt_sub_i32(loc_18, rt_div_u32(loc_4, 6)), 3), rt_add_i32(loc_3, 1), 0, rt_sub_i32(0, loc_6), rt_sub_i32(1, loc_6))
+				loc_4 = reg_0
+				rt_store_i64(memory_at_0, 1076424, rt_load_i64(memory_at_0, rt_add_i32(loc_9, 144)))
+				rt_store_i64(memory_at_0, 1076416, rt_load_i64(memory_at_0, loc_9 + 136))
+				rt_store_i32_n8(memory_at_0, 1076436, bit_xor(rt_load_i32_u8(memory_at_0, 1076436), 1))
+				loc_8 = rt_sub_i32(0, loc_4)
 				if rt_ge_i32(loc_8, loc_6) then
 					desired = 1
 					break
@@ -10173,11 +10170,11 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 				end
 				break
 			end
-			loc_8 = rt_add_i32(loc_9, 1900)
+			loc_11 = rt_add_i32(loc_9, 1900)
 			reg_0 = rt_add_i32(loc_9, 16)
-			if bit_and(loc_3, 255) < 32 then
+			if bit_and(loc_3, 255) < 64 then
 				while true do
-					reg_1 = rt_load_i32_u16(memory_at_0, rt_add_i32(rt_shl_i32(loc_12, 1), 1076424))
+					reg_1 = rt_load_i32_u16(memory_at_0, rt_add_i32(rt_shl_i32(loc_12, 1), 1076440))
 					break
 				end
 				if desired then
@@ -10198,25 +10195,25 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 					break
 				end
 			end
-			loc_4 = reg_1
-			loc_2 = rt_sub_i32(GLOBAL_LIST[0].value, 1776)
-			GLOBAL_LIST[0].value = loc_2
-			rt_store_i32_n16(memory_at_0, loc_2 + 6, loc_4)
-			rt_store_i32_n16(memory_at_0, loc_2 + 4, loc_10)
-			rt_store_i32(memory_at_0, loc_2 + 1752, 0)
-			rt_store_i32(memory_at_0, loc_2 + 1764, 1076304)
-			rt_store_i32(memory_at_0, loc_2 + 1772, rt_add_i32(loc_2, 1752))
-			loc_4 = rt_add_i32(loc_2, 8)
-			rt_store_i32(memory_at_0, loc_2 + 1768, loc_4)
-			rt_store_i32(memory_at_0, loc_2 + 1760, rt_add_i32(loc_2, 6))
-			rt_store_i32(memory_at_0, loc_2 + 1756, rt_add_i32(loc_2, 4))
-			FUNC_LIST[25](reg_0, rt_add_i32(loc_2, 1756), 22, 0)
-			reg_0 = FUNC_LIST[124](loc_8, loc_4, 1744)
-			rt_store_i32(memory_at_0, reg_0 + 1744, rt_load_i32(memory_at_0, loc_2 + 1752))
-			GLOBAL_LIST[0].value = rt_add_i32(loc_2, 1776)
-			reg_0 = FUNC_LIST[121](rt_add_i32(loc_9, 156), loc_8, 1744)
-			loc_22 = rt_load_i32(memory_at_0, loc_9 + 3644)
-			if loc_22 == 0 then
+			loc_8 = reg_1
+			loc_4 = rt_sub_i32(GLOBAL_LIST[0].value, 1776)
+			GLOBAL_LIST[0].value = loc_4
+			rt_store_i32_n16(memory_at_0, loc_4 + 6, loc_8)
+			rt_store_i32_n16(memory_at_0, loc_4 + 4, loc_10)
+			rt_store_i32(memory_at_0, loc_4 + 1752, 0)
+			rt_store_i32(memory_at_0, loc_4 + 1764, 1076320)
+			rt_store_i32(memory_at_0, loc_4 + 1772, rt_add_i32(loc_4, 1752))
+			loc_8 = rt_add_i32(loc_4, 8)
+			rt_store_i32(memory_at_0, loc_4 + 1768, loc_8)
+			rt_store_i32(memory_at_0, loc_4 + 1760, rt_add_i32(loc_4, 6))
+			rt_store_i32(memory_at_0, loc_4 + 1756, rt_add_i32(loc_4, 4))
+			FUNC_LIST[25](reg_0, rt_add_i32(loc_4, 1756), 22, 0)
+			reg_0 = FUNC_LIST[124](loc_11, loc_8, 1744)
+			rt_store_i32(memory_at_0, reg_0 + 1744, rt_load_i32(memory_at_0, loc_4 + 1752))
+			GLOBAL_LIST[0].value = rt_add_i32(loc_4, 1776)
+			reg_0 = FUNC_LIST[121](rt_add_i32(loc_9, 156), loc_11, 1744)
+			loc_20 = rt_load_i32(memory_at_0, loc_9 + 3644)
+			if loc_20 == 0 then
 				while true do
 					loc_8 = (if loc_7 ~= 0 then rt_sub_i32(loc_12, 2147483646) else 0)
 					desired = 1
@@ -10231,35 +10228,36 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 			end
 			rt_store_i32(memory_at_0, loc_9 + 3656, 0)
 			rt_store_i64(memory_at_0, loc_9 + 3648, rt_i64_from_u32(0, 2))
-			loc_2 = rt_mul_i32(loc_12, 510)
-			loc_36 = rt_add_i32(rt_add_i32(loc_2, rt_shl_i32(loc_12, 1)), 1092900)
-			loc_37 = rt_add_i32(loc_12, 2)
-			loc_38 = rt_sub_i32(loc_22, 1)
-			loc_39 = bit_xor(loc_3, 4294967295)
-			loc_40 = rt_sub_i32(0, loc_6)
-			loc_27 = rt_sub_i32(loc_18, 1)
-			loc_23 = rt_add_i32(loc_3, 1)
-			loc_41 = rt_add_i32(loc_2, 1076280)
-			loc_42 = rt_add_i32(rt_shl_i32(loc_12, 9), 1092902)
-			loc_19 = bit_and(loc_18, 255)
-			loc_28 = rt_mul_i32(loc_19, loc_19)
-			loc_43 = rt_add_i32(loc_28, 3)
-			loc_44 = rt_add_i32(rt_div_u32(loc_19, 10), 2)
-			loc_63 = rt_load_f64(memory_at_0, loc_0)
-			loc_29 = rt_add_i32(loc_9, 1900)
-			loc_15 = 2147483649
-			loc_55 = rt_load_i64(memory_at_0, loc_9 + 64)
-			loc_45 = rt_add_i32(loc_12, 1)
-			loc_30 = rt_add_i32(loc_45, 1222950)
-			loc_13 = 2
-			loc_26 = 2
+			loc_4 = rt_mul_i32(loc_12, 510)
+			loc_31 = rt_add_i32(rt_add_i32(loc_4, rt_shl_i32(loc_12, 1)), 1092980)
+			loc_32 = rt_add_i32(loc_12, 2)
+			loc_33 = rt_sub_i32(loc_20, 1)
+			loc_34 = bit_xor(loc_3, 4294967295)
+			loc_35 = rt_sub_i32(0, loc_6)
+			loc_26 = rt_sub_i32(loc_18, 1)
+			loc_21 = rt_add_i32(loc_3, 1)
+			loc_36 = rt_add_i32(loc_4, 1076296)
+			loc_37 = rt_add_i32(rt_shl_i32(loc_12, 9), 1092982)
+			loc_17 = bit_and(loc_18, 255)
+			loc_27 = rt_mul_i32(loc_17, loc_17)
+			loc_38 = rt_add_i32(loc_27, 3)
+			loc_39 = rt_add_i32(loc_2, rt_mul_i32(loc_17, 130))
+			loc_40 = rt_add_i32(rt_div_u32(loc_17, 10), 2)
+			loc_53 = rt_load_f64(memory_at_0, loc_0)
+			loc_28 = rt_add_i32(loc_9, 1900)
+			loc_11 = 2147483649
+			loc_49 = rt_load_i64(memory_at_0, loc_9 + 64)
+			loc_41 = rt_add_i32(loc_12, 1)
+			loc_29 = rt_add_i32(loc_41, 1223030)
+			loc_15 = 2
+			loc_23 = 2
 			while true do
 				while true do
 					while true do
 						while true do
 							loc_7 = rt_add_i32(loc_9, 156)
 							loc_2 = rt_add_i32(loc_7, rt_shl_i32(loc_14, 3))
-							loc_10 = rt_load_i32(memory_at_0, loc_2)
+							loc_8 = rt_load_i32(memory_at_0, loc_2)
 							while true do
 								while true do
 									while true do
@@ -10268,10 +10266,10 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 												while true do
 													while true do
 														while true do
-															reg_0 = loc_22
+															reg_0 = loc_20
 															if loc_14 ~= 0 then
 																while true do
-																	if loc_14 >= loc_22 then
+																	if loc_14 >= loc_20 then
 																		desired = 13
 																		break
 																	end
@@ -10301,27 +10299,27 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 															if rt_add_i32(reg_0, loc_4) == 0 then
 																break
 															end
-															if rt_add_i32(loc_7, 8) == loc_29 then
+															if rt_add_i32(loc_7, 8) == loc_28 then
 																break
 															end
-															loc_8 = rt_load_i32(memory_at_0, loc_7)
-															loc_11 = (if rt_gt_i32(loc_8, loc_10) then loc_8 else loc_10)
-															loc_20 = rt_add_i32(loc_4, loc_38)
+															loc_10 = rt_load_i32(memory_at_0, loc_7)
+															loc_13 = (if rt_lt_i32(loc_8, loc_10) then loc_10 else loc_8)
+															loc_24 = rt_add_i32(loc_4, loc_33)
 															loc_7 = rt_add_i32(loc_7, 16)
 															loc_10 = 0
 															loc_8 = loc_14
 															while true do
 																while true do
 																	loc_4 = rt_add_i32(loc_10, 1)
-																	loc_16 = rt_load_i32(memory_at_0, rt_sub_i32(loc_7, 8))
-																	loc_24 = (if rt_gt_i32(loc_16, loc_11) then 1 else 0)
-																	loc_8 = (if loc_24 ~= 0 then rt_add_i32(loc_4, loc_14) else loc_8)
-																	if loc_10 == loc_20 then
+																	loc_25 = rt_load_i32(memory_at_0, rt_sub_i32(loc_7, 8))
+																	loc_42 = (if rt_gt_i32(loc_25, loc_13) then 1 else 0)
+																	loc_8 = (if loc_42 ~= 0 then rt_add_i32(loc_4, loc_14) else loc_8)
+																	if loc_10 == loc_24 then
 																		break
 																	end
-																	loc_11 = (if loc_24 ~= 0 then loc_16 else loc_11)
+																	loc_13 = (if loc_42 ~= 0 then loc_25 else loc_13)
 																	loc_10 = loc_4
-																	reg_0 = (if loc_7 == loc_29 then 1 else 0)
+																	reg_0 = (if loc_7 == loc_28 then 1 else 0)
 																	loc_7 = rt_add_i32(loc_7, 8)
 																	if reg_0 == 0 then
 																		desired = 14
@@ -10371,10 +10369,10 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 														break
 													end
 													loc_4 = rt_add_i32(rt_add_i32(loc_9, 156), rt_shl_i32(loc_8, 3))
-													loc_47 = rt_load_i64(memory_at_0, loc_4)
+													loc_43 = rt_load_i64(memory_at_0, loc_4)
 													rt_store_i64(memory_at_0, loc_4, rt_load_i64(memory_at_0, loc_2))
-													rt_store_i64(memory_at_0, loc_2, loc_47)
-													reg_0 = rt_wrap_i32_i64(rt_shr_u64(loc_47, rt_i64_from_u32(32, 0)))
+													rt_store_i64(memory_at_0, loc_2, loc_43)
+													reg_0 = rt_wrap_i32_i64(rt_shr_u64(loc_43, rt_i64_from_u32(32, 0)))
 													break
 												end
 												if desired then
@@ -10391,9 +10389,9 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 												end
 												rt_store_i32_n8(memory_at_0, loc_9 + 3662, rt_shr_u32(bit_and(rt_shl_i32(loc_10, 10), 4128768), 16))
 												rt_store_i32_n16(memory_at_0, loc_9 + 3660, bit_or(rt_load_i32_u8(memory_at_0, rt_add_i32(loc_2, 1070588)), rt_shl_i32(bit_and(loc_10, 63), 8)))
-												loc_47 = rt_load_i64(memory_at_0, 1076400)
-												loc_2 = rt_load_i32(memory_at_0, 1092880)
-												if loc_2 == rt_load_i32(memory_at_0, 1092872) then
+												loc_43 = rt_load_i64(memory_at_0, 1076416)
+												loc_2 = rt_load_i32(memory_at_0, 1092960)
+												if loc_2 == rt_load_i32(memory_at_0, 1092952) then
 													while true do
 														FUNC_LIST[28]()
 														break
@@ -10405,78 +10403,22 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 														break
 													end
 												end
-												loc_11 = 1
-												rt_store_i32(memory_at_0, 1092880, rt_add_i32(loc_2, 1))
-												loc_8 = 3
-												rt_store_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1092876), rt_shl_i32(loc_2, 3)), loc_47)
-												loc_7 = 1076304
-												FUNC_LIST[22](rt_add_i32(loc_9, 3664), 1076304, rt_add_i32(loc_9, 3660))
+												rt_store_i32(memory_at_0, 1092960, rt_add_i32(loc_2, 1))
+												rt_store_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1092956), rt_shl_i32(loc_2, 3)), loc_43)
+												FUNC_LIST[22](rt_add_i32(loc_9, 3664), 1076320, rt_add_i32(loc_9, 3660))
+												loc_4 = rt_load_i32_u8(memory_at_0, 1076436)
+												loc_44 = rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076360 else 1076408))
+												loc_43 = rt_ctz_i64(loc_44)
+												loc_7 = rt_wrap_i32_i64(loc_43)
 												while true do
-													loc_46 = rt_load_i32_u8(memory_at_0, 1076420)
-													if loc_46 ~= 0 then
-														while true do
-															loc_4 = 11
-															loc_20 = 8
-															loc_16 = 7
-															loc_24 = 6
-															loc_31 = 5
-															loc_32 = 4
-															loc_33 = 2
-															loc_34 = 9
-															reg_0 = 10
-															desired = 11
-															break
-														end
-														if desired then
-															if desired == 11 then
-																desired = nil
-															end
-															break
-														end
-													end
-													loc_4 = 5
-													loc_20 = 2
-													loc_16 = 1
-													loc_24 = 0
-													loc_31 = 11
-													loc_32 = 10
-													loc_8 = 9
-													loc_33 = 8
-													loc_11 = 7
-													loc_7 = 1076352
-													loc_34 = 3
-													reg_0 = 4
-													break
-												end
-												if desired then
-													if desired == 10 then
-														desired = nil
-													end
-													break
-												end
-												loc_52 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_20, 3), 1076304))
-												loc_51 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(reg_0, 3), 1076304))
-												loc_53 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_11, 3), 1076304))
-												loc_56 = rt_load_i64(memory_at_0, loc_7)
-												loc_57 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_33, 3), 1076304))
-												loc_58 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_8, 3), 1076304))
-												loc_59 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_32, 3), 1076304))
-												loc_60 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_4, 3), 1076304))
-												loc_48 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_24, 3), 1076304))
-												loc_49 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_16, 3), 1076304))
-												loc_54 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_34, 3), 1076304))
-												loc_61 = rt_load_i64(memory_at_0, rt_add_i32(rt_shl_i32(loc_31, 3), 1076304))
-												loc_47 = rt_ctz_i64(loc_61)
-												loc_2 = rt_wrap_i32_i64(loc_47)
-												while true do
-													if loc_46 == 0 then
+													if loc_4 == 0 then
 														while true do
 															loc_8 = 1060976
-															if rt_lt_u64(loc_47, rt_i64_from_u32(64, 0)) then
+															if rt_lt_u64(loc_43, rt_i64_from_u32(64, 0)) then
 																desired = 11
 																break
 															end
-															FUNC_LIST[19](loc_2, 64, 1061532)
+															FUNC_LIST[19](loc_7, 64, 1061532)
 															error("out of code bounds")
 														end
 														if desired then
@@ -10487,7 +10429,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 														end
 													end
 													loc_8 = 1060464
-													if rt_ge_u64(loc_47, rt_i64_from_u32(64, 0)) then
+													if rt_ge_u64(loc_43, rt_i64_from_u32(64, 0)) then
 														desired = 2
 														break
 													end
@@ -10499,30 +10441,35 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 													end
 													break
 												end
-												loc_47 = rt_bit_and_i64(rt_shl_i64(rt_i64_ONE, rt_extend_i64_u32(rt_shr_u32(loc_10, 6))), loc_55)
-												loc_11 = 1
+												loc_43 = rt_bit_and_i64(rt_shl_i64(rt_i64_ONE, rt_extend_i64_u32(rt_shr_u32(loc_10, 6))), loc_49)
+												loc_2 = 1
 												while true do
 													while true do
 														while true do
 															while true do
-																loc_4 = rt_shl_i32(loc_2, 3)
-																if rt_ne_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(loc_4, loc_8)), loc_48), rt_i64_ZERO) then
+																loc_45 = rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076368 else 1076320))
+																reg_1 = loc_8
+																loc_8 = rt_shl_i32(loc_7, 3)
+																if rt_ne_i64(rt_bit_and_i64(loc_45, rt_load_i64(memory_at_0, rt_add_i32(reg_1, loc_8))), rt_i64_ZERO) then
 																	break
 																end
-																if rt_ne_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(loc_4, 1069456)), loc_49), rt_i64_ZERO) then
+																loc_46 = rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076376 else 1076328))
+																if rt_ne_i64(rt_bit_and_i64(loc_46, rt_load_i64(memory_at_0, rt_add_i32(loc_8, 1069456))), rt_i64_ZERO) then
 																	break
 																end
-																reg_0 = rt_bit_or_i64(rt_bit_or_i64(rt_bit_or_i64(rt_bit_or_i64(rt_bit_or_i64(rt_bit_or_i64(rt_bit_or_i64(rt_bit_or_i64(rt_bit_or_i64(loc_53, loc_56), loc_57), loc_58), loc_59), loc_60), loc_61), loc_48), loc_49), loc_54)
-																loc_48 = rt_bit_or_i64(loc_51, loc_52)
-																loc_49 = rt_bit_or_i64(reg_0, loc_48)
-																loc_52 = rt_bit_and_i64(loc_49, rt_load_i64(memory_at_0, rt_add_i32(loc_4, 1068912)))
-																loc_2 = rt_shl_i32(loc_2, 4)
-																loc_8 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_2, 1067900))
-																loc_53 = rt_load_i64(memory_at_0, rt_add_i32(loc_2, 1067888))
-																reg_0 = rt_load_i32(memory_at_0, rt_add_i32(loc_2, 1067896))
-																if rt_load_i32_u8(memory_at_0, 1223272) ~= 3 then
+																reg_0 = rt_bit_or_i64(rt_bit_or_i64(rt_bit_or_i64(rt_bit_or_i64(rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076408 else 1076360)), rt_bit_or_i64(rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076352 else 1076400)), rt_bit_or_i64(rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076344 else 1076392)), rt_bit_or_i64(rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076336 else 1076384)), rt_bit_or_i64(rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076320 else 1076368)), rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076328 else 1076376))))))), loc_44), loc_45), loc_46)
+																loc_44 = rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076392 else 1076344))
+																loc_45 = rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076400 else 1076352))
+																loc_46 = rt_bit_or_i64(loc_45, rt_load_i64(memory_at_0, (if loc_4 ~= 0 then 1076384 else 1076336)))
+																loc_48 = rt_bit_or_i64(rt_bit_or_i64(reg_0, loc_44), loc_46)
+																loc_50 = rt_bit_and_i64(loc_48, rt_load_i64(memory_at_0, rt_add_i32(loc_8, 1068912)))
+																loc_4 = rt_shl_i32(loc_7, 4)
+																loc_13 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_4, 1067900))
+																loc_51 = rt_load_i64(memory_at_0, rt_add_i32(loc_4, 1067888))
+																reg_0 = rt_load_i32(memory_at_0, rt_add_i32(loc_4, 1067896))
+																if rt_load_i32_u8(memory_at_0, 1223352) ~= 3 then
 																	while true do
-																		rt_store_i32(memory_at_0, loc_9 + 1900, 1223268)
+																		rt_store_i32(memory_at_0, loc_9 + 1900, 1223348)
 																		rt_store_i32(memory_at_0, loc_9 + 1904, rt_add_i32(loc_9, 3688))
 																		FUNC_LIST[95](rt_add_i32(loc_9, 1900))
 																		break
@@ -10534,21 +10481,21 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																		break
 																	end
 																end
-																loc_7 = rt_add_i32(reg_0, rt_wrap_i32_i64(rt_shr_u64(rt_mul_i64(loc_52, loc_53), rt_extend_i64_u32(loc_8))))
+																loc_7 = rt_add_i32(reg_0, rt_wrap_i32_i64(rt_shr_u64(rt_mul_i64(loc_50, loc_51), rt_extend_i64_u32(loc_13))))
 																if loc_7 >= 4800 then
 																	desired = 8
 																	break
 																end
-																if rt_ne_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223268), rt_shl_i32(loc_7, 3))), loc_48), rt_i64_ZERO) then
+																if rt_ne_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223348), rt_shl_i32(loc_7, 3))), loc_46), rt_i64_ZERO) then
 																	break
 																end
-																loc_48 = rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(loc_4, 1061568)), loc_49)
-																loc_7 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_2, 1066828))
-																loc_49 = rt_load_i64(memory_at_0, rt_add_i32(loc_2, 1066816))
-																reg_0 = rt_load_i32(memory_at_0, rt_add_i32(loc_2, 1066824))
-																if rt_load_i32_u8(memory_at_0, 1223264) ~= 3 then
+																loc_46 = rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(loc_8, 1061568)), loc_48)
+																loc_7 = rt_load_i32_u8(memory_at_0, rt_add_i32(loc_4, 1066828))
+																loc_48 = rt_load_i64(memory_at_0, rt_add_i32(loc_4, 1066816))
+																reg_0 = rt_load_i32(memory_at_0, rt_add_i32(loc_4, 1066824))
+																if rt_load_i32_u8(memory_at_0, 1223344) ~= 3 then
 																	while true do
-																		rt_store_i32(memory_at_0, loc_9 + 1900, 1223260)
+																		rt_store_i32(memory_at_0, loc_9 + 1900, 1223340)
 																		rt_store_i32(memory_at_0, loc_9 + 1904, rt_add_i32(loc_9, 3688))
 																		FUNC_LIST[89](rt_add_i32(loc_9, 1900))
 																		break
@@ -10560,29 +10507,29 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																		break
 																	end
 																end
-																loc_2 = rt_add_i32(reg_0, rt_wrap_i32_i64(rt_shr_u64(rt_mul_i64(loc_48, loc_49), rt_extend_i64_u32(loc_7))))
-																if loc_2 >= 88064 then
+																loc_4 = rt_add_i32(reg_0, rt_wrap_i32_i64(rt_shr_u64(rt_mul_i64(loc_46, loc_48), rt_extend_i64_u32(loc_7))))
+																if loc_4 >= 88064 then
 																	desired = 7
 																	break
 																end
-																if rt_ne_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223260), rt_shl_i32(loc_2, 3))), rt_bit_or_i64(loc_51, loc_54)), rt_i64_ZERO) then
+																if rt_ne_i64(rt_bit_and_i64(rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1223340), rt_shl_i32(loc_4, 3))), rt_bit_or_i64(loc_44, loc_45)), rt_i64_ZERO) then
 																	break
 																end
-																loc_11 = 0
+																loc_2 = 0
 																if loc_14 < 3 then
 																	break
 																end
-																if loc_19 < 3 then
+																if loc_17 < 3 then
 																	break
 																end
-																if rt_ne_i64(loc_47, rt_i64_ZERO) then
+																if rt_ne_i64(loc_43, rt_i64_ZERO) then
 																	break
 																end
-																loc_2 = rt_sub_i32(loc_19, rt_add_i32(loc_44, rt_div_u32(bit_and(loc_14, 255), 9)))
-																reg_3 = (if loc_2 <= loc_19 then loc_2 else 0)
-																loc_2 = bit_xor(loc_5, 4294967295)
+																loc_4 = rt_sub_i32(loc_17, rt_add_i32(loc_40, rt_div_u32(bit_and(loc_14, 255), 9)))
+																reg_3 = (if loc_4 <= loc_17 then loc_4 else 0)
+																loc_4 = bit_xor(loc_5, 4294967295)
 																loc_7 = rt_sub_i32(0, loc_5)
-																reg_1 = FUNC_LIST[29](loc_0, loc_1, reg_3, loc_23, 1, loc_2, loc_7)
+																reg_1 = FUNC_LIST[29](loc_0, loc_1, reg_3, loc_21, 1, loc_4, loc_7)
 																loc_8 = rt_sub_i32(0, reg_1)
 																if rt_gt_i32(loc_8, loc_5) then
 																	desired = 13
@@ -10601,7 +10548,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																desired = 12
 																break
 															end
-															loc_2 = bit_xor(loc_5, 4294967295)
+															loc_4 = bit_xor(loc_5, 4294967295)
 															loc_7 = rt_sub_i32(0, loc_5)
 															break
 														end
@@ -10611,8 +10558,8 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 															end
 															break
 														end
-														loc_11 = rt_add_i32(loc_11, loc_27)
-														reg_1 = FUNC_LIST[29](loc_0, loc_1, loc_11, loc_23, 1, loc_2, loc_7)
+														loc_13 = rt_add_i32(loc_2, loc_26)
+														reg_1 = FUNC_LIST[29](loc_0, loc_1, loc_13, loc_21, 1, loc_4, loc_7)
 														loc_8 = rt_sub_i32(0, reg_1)
 														if rt_le_i32(loc_8, loc_5) then
 															desired = 6
@@ -10632,7 +10579,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 														break
 													end
 													loc_7 = rt_sub_i32(0, loc_5)
-													loc_11 = rt_add_i32(loc_11, loc_27)
+													loc_13 = rt_add_i32(loc_2, loc_26)
 													break
 												end
 												if desired then
@@ -10641,7 +10588,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 													end
 													break
 												end
-												reg_1 = FUNC_LIST[29](loc_0, loc_1, loc_11, loc_23, 1, loc_40, loc_7)
+												reg_1 = FUNC_LIST[29](loc_0, loc_1, loc_13, loc_21, 1, loc_35, loc_7)
 												loc_8 = rt_sub_i32(0, reg_1)
 												desired = 6
 												break
@@ -10679,7 +10626,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									end
 									break
 								end
-								FUNC_LIST[19](loc_2, 88064, 1067872)
+								FUNC_LIST[19](loc_4, 88064, 1067872)
 								error("out of code bounds")
 							end
 							if desired then
@@ -10689,37 +10636,37 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 								end
 								break
 							end
-							FUNC_LIST[88](1076304, rt_add_i32(loc_9, 3660), rt_add_i32(loc_9, 3664))
+							FUNC_LIST[88](1076320, rt_add_i32(loc_9, 3660), rt_add_i32(loc_9, 3664))
 							while true do
 								while true do
 									while true do
 										while true do
 											while true do
-												loc_2 = rt_load_i32(memory_at_0, 1092880)
+												loc_2 = rt_load_i32(memory_at_0, 1092960)
 												if loc_2 ~= 0 then
 													while true do
 														loc_2 = rt_sub_i32(loc_2, 1)
-														rt_store_i32(memory_at_0, 1092880, loc_2)
-														loc_51 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1092876), rt_shl_i32(loc_2, 3)))
-														rt_store_i64(memory_at_0, loc_9 + 3680, loc_51)
-														loc_48 = rt_load_i64(memory_at_0, 1076400)
-														rt_store_i64(memory_at_0, loc_9 + 3688, loc_48)
-														if rt_ne_i64(loc_48, loc_51) then
+														rt_store_i32(memory_at_0, 1092960, loc_2)
+														loc_44 = rt_load_i64(memory_at_0, rt_add_i32(rt_load_i32(memory_at_0, 1092956), rt_shl_i32(loc_2, 3)))
+														rt_store_i64(memory_at_0, loc_9 + 3680, loc_44)
+														loc_45 = rt_load_i64(memory_at_0, 1076416)
+														rt_store_i64(memory_at_0, loc_9 + 3688, loc_45)
+														if rt_ne_i64(loc_44, loc_45) then
 															desired = 10
 															break
 														end
 														while true do
 															while true do
-																if loc_19 ~= 1 then
+																if loc_17 ~= 1 then
 																	while true do
 																		reg_0 = rt_i64_from_u32(4294967295, 4294967295)
 																		while true do
 																			reg_1 = FUNC_LIST[1]()
-																			loc_62 = ((reg_1 - loc_63) * 1e3)
-																			loc_2 = (if loc_62 >= 0e0 then 1 else 0)
-																			if bit_and(loc_2, (if loc_62 < 1.8446744073709552e19 then 1 else 0)) ~= 0 then
+																			loc_52 = ((reg_1 - loc_53) * 1e3)
+																			loc_2 = (if loc_52 >= 0e0 then 1 else 0)
+																			if bit_and(loc_2, (if loc_52 < 1.8446744073709552e19 then 1 else 0)) ~= 0 then
 																				while true do
-																					reg_1 = rt_truncate_u64_f64(loc_62)
+																					reg_1 = rt_truncate_u64_f64(loc_52)
 																					desired = 15
 																					break
 																				end
@@ -10736,7 +10683,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																		if desired then
 																			break
 																		end
-																		if rt_gt_u64((if loc_62 > 1.844674407370955e19 then reg_0 else (if loc_2 ~= 0 then reg_1 else rt_i64_ZERO)), loc_1) then
+																		if rt_gt_u64((if loc_52 > 1.844674407370955e19 then reg_0 else (if loc_2 ~= 0 then reg_1 else rt_i64_ZERO)), loc_1) then
 																			desired = 13
 																			break
 																		end
@@ -10749,7 +10696,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																		break
 																	end
 																end
-																if rt_le_i32(loc_8, loc_15) then
+																if rt_le_i32(loc_8, loc_11) then
 																	desired = 6
 																	break
 																end
@@ -10757,8 +10704,8 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																	desired = 12
 																	break
 																end
-																loc_15 = loc_8
-																loc_25 = loc_10
+																loc_11 = loc_8
+																loc_22 = loc_10
 																desired = 6
 																break
 															end
@@ -10771,7 +10718,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 															loc_0 = rt_load_i32(memory_at_0, loc_9 + 3648)
 															if loc_0 ~= 0 then
 																while true do
-																	FUNC_LIST[4](loc_13, rt_shl_i32(loc_0, 1))
+																	FUNC_LIST[4](loc_15, rt_shl_i32(loc_0, 1))
 																	break
 																end
 																if desired then
@@ -10788,28 +10735,28 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 														if desired then
 															break
 														end
-														rt_store_i32_n16(memory_at_0, loc_36, loc_10)
+														rt_store_i32_n16(memory_at_0, loc_31, loc_10)
 														if bit_and(loc_3, 255) == 254 then
 															desired = 9
 															break
 														end
-														loc_4 = rt_load_i32_u8(memory_at_0, loc_30)
-														reg_0 = rt_add_i32(loc_12, 1222950)
-														if loc_4 > bit_and(loc_23, 255) then
+														loc_2 = rt_load_i32_u8(memory_at_0, loc_29)
+														reg_0 = rt_add_i32(loc_12, 1223030)
+														if loc_2 > bit_and(loc_21, 255) then
 															while true do
-																loc_2 = loc_45
-																loc_5 = bit_and(rt_add_i32(loc_4, loc_39), 3)
-																reg_1 = rt_sub_i32(rt_sub_i32(loc_4, loc_3), 2)
-																if loc_5 ~= 0 then
+																loc_5 = loc_41
+																loc_4 = bit_and(rt_add_i32(loc_2, loc_34), 3)
+																reg_1 = rt_sub_i32(rt_sub_i32(loc_2, loc_3), 2)
+																if loc_4 ~= 0 then
 																	while true do
-																		loc_2 = rt_add_i32(loc_37, bit_and(rt_sub_i32(loc_5, 1), 255))
-																		loc_11 = 0
-																		loc_7 = loc_42
+																		loc_5 = rt_add_i32(loc_32, bit_and(rt_sub_i32(loc_4, 1), 255))
+																		loc_13 = 0
+																		loc_7 = loc_37
 																		while true do
 																			rt_store_i32_n16(memory_at_0, loc_7, rt_load_i32_u16(memory_at_0, rt_add_i32(loc_7, 510)))
 																			loc_7 = rt_add_i32(loc_7, 2)
-																			loc_11 = rt_add_i32(loc_11, 1)
-																			if bit_and(loc_11, 255) ~= loc_5 then
+																			loc_13 = rt_add_i32(loc_13, 1)
+																			if bit_and(loc_13, 255) ~= loc_4 then
 																				continue
 																			end
 																			break
@@ -10825,14 +10772,14 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																end
 																if bit_and(reg_1, 255) >= 3 then
 																	while true do
-																		loc_11 = rt_add_i32(loc_2, 4)
-																		loc_7 = rt_add_i32(loc_41, rt_shl_i32(loc_2, 1))
+																		loc_13 = rt_add_i32(loc_5, 4)
+																		loc_7 = rt_add_i32(loc_36, rt_shl_i32(loc_5, 1))
 																		while true do
-																			rt_store_i64(memory_at_0, rt_add_i32(loc_7, 16620), rt_load_i64(memory_at_0, rt_add_i32(loc_7, 17130)))
+																			rt_store_i64(memory_at_0, rt_add_i32(loc_7, 16684), rt_load_i64(memory_at_0, rt_add_i32(loc_7, 17194)))
 																			loc_7 = rt_add_i32(loc_7, 8)
-																			reg_1 = bit_and(loc_11, 255)
-																			loc_11 = rt_add_i32(loc_11, 4)
-																			if reg_1 ~= loc_4 then
+																			loc_4 = bit_and(loc_13, 255)
+																			loc_13 = rt_add_i32(loc_13, 4)
+																			if loc_2 ~= loc_4 then
 																				continue
 																			end
 																			break
@@ -10846,20 +10793,20 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																		break
 																	end
 																end
-																loc_4 = rt_load_i32_u8(memory_at_0, loc_30)
+																loc_2 = rt_load_i32_u8(memory_at_0, loc_29)
 																break
 															end
 															if desired then
 																break
 															end
 														end
-														rt_store_i32_n8(memory_at_0, reg_0, loc_4)
-														loc_26 = 0
+														rt_store_i32_n8(memory_at_0, reg_0, loc_2)
+														loc_23 = 0
 														if rt_gt_i32(loc_6, loc_8) then
 															while true do
-																loc_25 = loc_10
-																loc_15 = loc_8
-																loc_5 = loc_15
+																loc_22 = loc_10
+																loc_11 = loc_8
+																loc_5 = loc_11
 																desired = 6
 																break
 															end
@@ -10867,10 +10814,10 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																break
 															end
 														end
-														loc_26 = 1
-														if rt_ne_i64(loc_47, rt_i64_ZERO) then
+														loc_23 = 1
+														if rt_ne_i64(loc_43, rt_i64_ZERO) then
 															while true do
-																loc_11 = 1
+																loc_7 = 1
 																desired = 3
 																break
 															end
@@ -10878,7 +10825,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 																break
 															end
 														end
-														if bit_and(loc_3, 255) < 32 then
+														if bit_and(loc_3, 255) < 64 then
 															desired = 8
 															break
 														end
@@ -10924,7 +10871,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 										end
 										break
 									end
-									rt_store_i32_n16(memory_at_0, rt_add_i32(rt_shl_i32(loc_12, 1), 1076424), loc_10)
+									rt_store_i32_n16(memory_at_0, rt_add_i32(rt_shl_i32(loc_12, 1), 1076440), loc_10)
 									break
 								end
 								if desired then
@@ -10933,26 +10880,26 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									end
 									break
 								end
-								loc_11 = 0
-								loc_5 = rt_load_i32_u8(memory_at_0, 1076420)
+								loc_7 = 0
+								loc_5 = rt_load_i32_u8(memory_at_0, 1076436)
 								loc_4 = rt_shl_i32(loc_5, 13)
-								loc_0 = rt_add_i32(bit_or(loc_4, rt_shl_i32(bit_and(loc_10, 4095), 1)), 1076488)
+								loc_0 = rt_add_i32(bit_or(loc_4, rt_shl_i32(bit_and(loc_10, 4095), 1)), 1076568)
 								loc_2 = rt_load_i32_i16(memory_at_0, loc_0)
 								reg_0 = loc_0
-								loc_0 = (if rt_ge_i32(loc_28, 16384) then 16384 else loc_28)
+								loc_0 = (if rt_ge_i32(loc_27, 16384) then 16384 else loc_27)
 								rt_store_i32_n16(memory_at_0, reg_0, rt_add_i32(loc_2, rt_add_i32(rt_div_i32(rt_mul_i32(loc_0, loc_2), 4294950912), loc_0)))
 								loc_3 = rt_load_i32(memory_at_0, loc_9 + 3648)
 								while true do
-									if loc_17 == 0 then
+									if loc_16 == 0 then
 										break
 									end
-									loc_2 = loc_13
-									reg_0 = bit_and(rt_sub_i32(loc_17, 1), 2147483647)
-									if bit_and(loc_17, 1) ~= 0 then
+									loc_2 = loc_15
+									reg_0 = bit_and(rt_sub_i32(loc_16, 1), 2147483647)
+									if bit_and(loc_16, 1) ~= 0 then
 										while true do
-											loc_7 = rt_add_i32(bit_or(loc_4, rt_shl_i32(bit_and(rt_load_i32_u16(memory_at_0, loc_2), 4095), 1)), 1076488)
-											loc_4 = rt_load_i32_i16(memory_at_0, loc_7)
-											rt_store_i32_n16(memory_at_0, loc_7, rt_add_i32(loc_4, rt_sub_i32(rt_div_i32(rt_mul_i32(loc_0, loc_4), 16384), loc_0)))
+											loc_11 = rt_add_i32(bit_or(loc_4, rt_shl_i32(bit_and(rt_load_i32_u16(memory_at_0, loc_2), 4095), 1)), 1076568)
+											loc_4 = rt_load_i32_i16(memory_at_0, loc_11)
+											rt_store_i32_n16(memory_at_0, loc_11, rt_add_i32(loc_4, rt_sub_i32(rt_div_i32(rt_mul_i32(loc_0, loc_4), 16384), loc_0)))
 											loc_2 = rt_add_i32(loc_2, 2)
 											break
 										end
@@ -10966,15 +10913,15 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									if reg_0 == 0 then
 										break
 									end
-									loc_6 = rt_add_i32(loc_13, rt_shl_i32(loc_17, 1))
-									loc_4 = rt_add_i32(rt_shl_i32(loc_5, 13), 1076488)
+									loc_6 = rt_add_i32(loc_15, rt_shl_i32(loc_16, 1))
+									loc_4 = rt_add_i32(rt_shl_i32(loc_5, 13), 1076568)
 									while true do
-										loc_7 = rt_add_i32(loc_4, rt_shl_i32(bit_and(rt_load_i32_u16(memory_at_0, loc_2), 4095), 1))
-										loc_5 = rt_load_i32_i16(memory_at_0, loc_7)
-										rt_store_i32_n16(memory_at_0, loc_7, rt_add_i32(loc_5, rt_sub_i32(rt_div_i32(rt_mul_i32(loc_0, loc_5), 16384), loc_0)))
-										loc_7 = rt_add_i32(loc_4, rt_shl_i32(bit_and(rt_load_i32_u16(memory_at_0, rt_add_i32(loc_2, 2)), 4095), 1))
-										loc_5 = rt_load_i32_i16(memory_at_0, loc_7)
-										rt_store_i32_n16(memory_at_0, loc_7, rt_add_i32(loc_5, rt_sub_i32(rt_div_i32(rt_mul_i32(loc_0, loc_5), 16384), loc_0)))
+										loc_11 = rt_add_i32(loc_4, rt_shl_i32(bit_and(rt_load_i32_u16(memory_at_0, loc_2), 4095), 1))
+										loc_5 = rt_load_i32_i16(memory_at_0, loc_11)
+										rt_store_i32_n16(memory_at_0, loc_11, rt_add_i32(loc_5, rt_sub_i32(rt_div_i32(rt_mul_i32(loc_0, loc_5), 16384), loc_0)))
+										loc_11 = rt_add_i32(loc_4, rt_shl_i32(bit_and(rt_load_i32_u16(memory_at_0, rt_add_i32(loc_2, 2)), 4095), 1))
+										loc_5 = rt_load_i32_i16(memory_at_0, loc_11)
+										rt_store_i32_n16(memory_at_0, loc_11, rt_add_i32(loc_5, rt_sub_i32(rt_div_i32(rt_mul_i32(loc_0, loc_5), 16384), loc_0)))
 										loc_2 = rt_add_i32(loc_2, 4)
 										if loc_6 ~= loc_2 then
 											continue
@@ -10999,7 +10946,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 									desired = 3
 									break
 								end
-								FUNC_LIST[4](loc_13, rt_shl_i32(loc_3, 1))
+								FUNC_LIST[4](loc_15, rt_shl_i32(loc_3, 1))
 								desired = 3
 								break
 							end
@@ -11010,110 +10957,107 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 								end
 								break
 							end
-							while true do
-								if rt_ne_i64(loc_47, rt_i64_ZERO) then
-									while true do
-										loc_7 = loc_17
-										desired = 6
-										break
-									end
-									if desired then
-										if desired == 6 then
-											desired = nil
+							if rt_eq_i64(loc_43, rt_i64_ZERO) then
+								while true do
+									if loc_30 ~= 0 then
+										while true do
+											loc_7 = 1
+											if rt_gt_i32(loc_5, loc_39) then
+												desired = 4
+												break
+											end
+											if rt_add_i32(loc_16, 1) > loc_38 then
+												desired = 4
+												break
+											end
+											break
 										end
-										break
+										if desired then
+											break
+										end
 									end
-								end
-								loc_11 = 1
-								loc_7 = rt_add_i32(loc_17, 1)
-								if bit_and(loc_35, (if loc_43 < loc_7 then 1 else 0)) ~= 0 then
-									desired = 4
+									if rt_load_i32(memory_at_0, loc_9 + 3648) == loc_16 then
+										while true do
+											loc_2 = rt_sub_i32(GLOBAL_LIST[0].value, 32)
+											GLOBAL_LIST[0].value = loc_2
+											loc_4 = rt_add_i32(loc_9, 3648)
+											loc_8 = rt_load_i32(memory_at_0, loc_4)
+											loc_7 = rt_add_i32(loc_8, 1)
+											if loc_7 == 0 then
+												while true do
+													FUNC_LIST[7](0)
+													error("out of code bounds")
+												end
+												if desired then
+													break
+												end
+											end
+											loc_15 = rt_shl_i32(loc_8, 1)
+											loc_7 = (if loc_7 < loc_15 then loc_15 else loc_7)
+											loc_13 = (if loc_7 <= 4 then 4 else loc_7)
+											loc_24 = rt_shl_i32(loc_13, 1)
+											loc_7 = rt_shl_i32((if loc_7 < 1073741824 then 1 else 0), 1)
+											reg_0 = loc_2
+											if loc_8 ~= 0 then
+												while true do
+													rt_store_i32(memory_at_0, loc_2 + 28, loc_15)
+													rt_store_i32(memory_at_0, loc_2 + 20, rt_load_i32(memory_at_0, loc_4 + 4))
+													reg_1 = 2
+													break
+												end
+												if desired then
+													break
+												end
+											else
+												while true do
+													reg_1 = 0
+													break
+												end
+												if desired then
+													break
+												end
+											end
+											rt_store_i32(memory_at_0, reg_0 + 24, reg_1)
+											FUNC_LIST[87](rt_add_i32(loc_2, 8), loc_7, loc_24, rt_add_i32(loc_2, 20))
+											if rt_load_i32(memory_at_0, loc_2 + 8) ~= 0 then
+												while true do
+													FUNC_LIST[7](rt_load_i32(memory_at_0, loc_2 + 12))
+													error("out of code bounds")
+												end
+												if desired then
+													break
+												end
+											end
+											loc_8 = rt_load_i32(memory_at_0, loc_2 + 12)
+											rt_store_i32(memory_at_0, loc_4, loc_13)
+											rt_store_i32(memory_at_0, loc_4 + 4, loc_8)
+											GLOBAL_LIST[0].value = rt_add_i32(loc_2, 32)
+											loc_15 = rt_load_i32(memory_at_0, loc_9 + 3652)
+											break
+										end
+										if desired then
+											break
+										end
+									end
+									rt_store_i32_n16(memory_at_0, rt_add_i32(loc_15, rt_shl_i32(loc_16, 1)), loc_10)
+									loc_16 = rt_add_i32(loc_16, 1)
+									rt_store_i32(memory_at_0, loc_9 + 3656, loc_16)
 									break
 								end
-								if rt_load_i32(memory_at_0, loc_9 + 3648) == loc_17 then
-									while true do
-										loc_2 = rt_sub_i32(GLOBAL_LIST[0].value, 32)
-										GLOBAL_LIST[0].value = loc_2
-										loc_4 = rt_add_i32(loc_9, 3648)
-										loc_8 = rt_load_i32(memory_at_0, loc_4)
-										loc_13 = rt_add_i32(loc_8, 1)
-										if loc_13 == 0 then
-											while true do
-												FUNC_LIST[7](0)
-												error("out of code bounds")
-											end
-											if desired then
-												break
-											end
-										end
-										loc_11 = rt_shl_i32(loc_8, 1)
-										loc_13 = (if loc_11 > loc_13 then loc_11 else loc_13)
-										loc_20 = (if loc_13 <= 4 then 4 else loc_13)
-										loc_16 = rt_shl_i32(loc_20, 1)
-										loc_13 = rt_shl_i32((if loc_13 < 1073741824 then 1 else 0), 1)
-										reg_0 = loc_2
-										if loc_8 ~= 0 then
-											while true do
-												rt_store_i32(memory_at_0, loc_2 + 28, loc_11)
-												rt_store_i32(memory_at_0, loc_2 + 20, rt_load_i32(memory_at_0, loc_4 + 4))
-												reg_1 = 2
-												break
-											end
-											if desired then
-												break
-											end
-										else
-											while true do
-												reg_1 = 0
-												break
-											end
-											if desired then
-												break
-											end
-										end
-										rt_store_i32(memory_at_0, reg_0 + 24, reg_1)
-										FUNC_LIST[87](rt_add_i32(loc_2, 8), loc_13, loc_16, rt_add_i32(loc_2, 20))
-										if rt_load_i32(memory_at_0, loc_2 + 8) ~= 0 then
-											while true do
-												FUNC_LIST[7](rt_load_i32(memory_at_0, loc_2 + 12))
-												error("out of code bounds")
-											end
-											if desired then
-												break
-											end
-										end
-										loc_8 = rt_load_i32(memory_at_0, loc_2 + 12)
-										rt_store_i32(memory_at_0, loc_4, loc_20)
-										rt_store_i32(memory_at_0, loc_4 + 4, loc_8)
-										GLOBAL_LIST[0].value = rt_add_i32(loc_2, 32)
-										loc_13 = rt_load_i32(memory_at_0, loc_9 + 3652)
-										break
+								if desired then
+									if desired == 5 then
+										desired = nil
+										continue
 									end
-									if desired then
-										if desired == 6 then
-											desired = nil
-										end
-										break
-									end
+									break
 								end
-								rt_store_i32_n16(memory_at_0, rt_add_i32(loc_13, rt_shl_i32(loc_17, 1)), loc_10)
-								rt_store_i32(memory_at_0, loc_9 + 3656, loc_7)
-								break
 							end
-							if desired then
-								if desired == 5 then
-									desired = nil
-									continue
-								end
-								break
-							end
-							loc_11 = 1
+							loc_7 = 1
 							loc_14 = rt_add_i32(loc_14, 1)
-							if loc_22 == loc_14 then
+							if loc_20 == loc_14 then
 								desired = 4
 								break
 							end
-							loc_17 = loc_7
 							if loc_14 ~= 218 then
 								continue
 							end
@@ -11134,8 +11078,8 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 						end
 						break
 					end
-					loc_8 = loc_15
-					loc_10 = loc_25
+					loc_8 = loc_11
+					loc_10 = loc_22
 					break
 				end
 				if desired then
@@ -11144,16 +11088,16 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 					end
 					break
 				end
-				loc_0 = rt_load_i32(memory_at_0, 1092892)
-				if loc_0 > loc_21 then
+				loc_0 = rt_load_i32(memory_at_0, 1092972)
+				if loc_0 > loc_19 then
 					while true do
-						loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1092888), rt_mul_i32(loc_21, 12))
-						rt_store_i32_n8(memory_at_0, loc_0 + 11, loc_26)
+						loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1092968), rt_mul_i32(loc_19, 12))
+						rt_store_i32_n8(memory_at_0, loc_0 + 11, loc_23)
 						rt_store_i32_n8(memory_at_0, loc_0 + 10, loc_18)
 						rt_store_i32_n16(memory_at_0, loc_0 + 8, loc_10)
 						rt_store_i32(memory_at_0, loc_0 + 4, loc_8)
-						rt_store_i64_n32(memory_at_0, loc_0, loc_50)
-						if loc_11 == 0 then
+						rt_store_i64_n32(memory_at_0, loc_0, loc_47)
+						if loc_7 == 0 then
 							desired = 1
 							break
 						end
@@ -11173,7 +11117,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 						break
 					end
 				end
-				FUNC_LIST[19](loc_21, loc_0, 1072652)
+				FUNC_LIST[19](loc_19, loc_0, 1072652)
 				error("out of code bounds")
 			end
 			if desired then
@@ -11182,7 +11126,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 				end
 				break
 			end
-			FUNC_LIST[19](loc_2, 64, 1061548)
+			FUNC_LIST[19](loc_7, 64, 1061548)
 			error("out of code bounds")
 		end
 		GLOBAL_LIST[0].value = rt_add_i32(loc_9, 3696)
@@ -11191,8 +11135,7 @@ FUNC_LIST[29] = function(loc_0, loc_1, loc_2, loc_3, loc_4, loc_5, loc_6)
 	end
 	return reg_0
 end
-FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3)
-	local loc_4 = 0
+FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 	local loc_5 = 0
 	local loc_6 = 0
 	local loc_7 = 0
@@ -11204,19 +11147,20 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3)
 	local reg_2
 	local desired
 	while true do
-		loc_4 = rt_sub_i32(GLOBAL_LIST[0].value, 144)
-		GLOBAL_LIST[0].value = loc_4
-		rt_store_i32(memory_at_0, loc_4 + 4, loc_2)
-		rt_store_i32_n8(memory_at_0, loc_4 + 3, loc_1)
-		rt_store_i32(memory_at_0, loc_4 + 8, loc_3)
+		loc_5 = rt_sub_i32(GLOBAL_LIST[0].value, 160)
+		GLOBAL_LIST[0].value = loc_5
+		rt_store_i32(memory_at_0, loc_5 + 8, loc_2)
+		rt_store_i32_n8(memory_at_0, loc_5 + 7, loc_1)
+		rt_store_i32_n8(memory_at_0, loc_5 + 15, loc_3)
+		rt_store_i32(memory_at_0, loc_5 + 16, loc_4)
 		while true do
 			loc_1 = rt_shr_i32(loc_2, 31)
 			if rt_le_i32(rt_sub_i32(bit_xor(loc_1, loc_2), loc_1), 2147483390) then
 				while true do
-					rt_store_i32(memory_at_0, loc_4 + 84, 1)
-					rt_store_i32(memory_at_0, loc_4 + 80, 1073972)
-					rt_store_i64(memory_at_0, loc_4 + 92, rt_i64_ONE)
-					rt_store_i64(memory_at_0, loc_4 + 56, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_4, 4)), rt_i64_from_u32(0, 12)))
+					rt_store_i32(memory_at_0, loc_5 + 92, 1)
+					rt_store_i32(memory_at_0, loc_5 + 88, 1073972)
+					rt_store_i64(memory_at_0, loc_5 + 100, rt_i64_ONE)
+					rt_store_i64(memory_at_0, loc_5 + 64, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 8)), rt_i64_from_u32(0, 12)))
 					desired = 1
 					break
 				end
@@ -11227,17 +11171,17 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3)
 					break
 				end
 			end
-			rt_store_i32(memory_at_0, loc_4 + 84, 1)
-			rt_store_i32(memory_at_0, loc_4 + 80, 1073992)
-			rt_store_i64(memory_at_0, loc_4 + 92, rt_i64_ONE)
-			rt_store_i64(memory_at_0, loc_4 + 56, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_4, 132)), rt_i64_from_u32(0, 12)))
+			rt_store_i32(memory_at_0, loc_5 + 92, 1)
+			rt_store_i32(memory_at_0, loc_5 + 88, 1073992)
+			rt_store_i64(memory_at_0, loc_5 + 100, rt_i64_ONE)
+			rt_store_i64(memory_at_0, loc_5 + 64, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 148)), rt_i64_from_u32(0, 12)))
 			loc_1 = rt_add_i32(loc_2, 2147483646)
-			rt_store_i32(memory_at_0, loc_4 + 132, rt_mul_i32((if rt_lt_i32(loc_1, 0) then rt_sub_i32(2147483650, loc_2) else loc_1), (if rt_lt_i32(loc_2, 0) then 4294967295 else (if loc_2 ~= 0 then 1 else 0))))
+			rt_store_i32(memory_at_0, loc_5 + 148, rt_mul_i32((if rt_lt_i32(loc_1, 0) then rt_sub_i32(2147483650, loc_2) else loc_1), (if rt_lt_i32(loc_2, 0) then 4294967295 else (if loc_2 ~= 0 then 1 else 0))))
 			break
 		end
-		rt_store_i32(memory_at_0, loc_4 + 88, rt_add_i32(loc_4, 56))
-		FUNC_LIST[27](rt_add_i32(loc_4, 12), rt_add_i32(loc_4, 80))
-		reg_0 = loc_4
+		rt_store_i32(memory_at_0, loc_5 + 96, rt_sub_i32(loc_5, 4294967232))
+		FUNC_LIST[27](rt_add_i32(loc_5, 20), rt_add_i32(loc_5, 88))
+		reg_0 = loc_5
 		reg_1 = rt_i64_from_u32(4294967295, 4294967295)
 		while true do
 			reg_2 = FUNC_LIST[1]()
@@ -11260,14 +11204,14 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3)
 			break
 		end
 		loc_10 = (if loc_9 > 1.844674407370955e19 then reg_1 else (if loc_0 ~= 0 then reg_2 else rt_i64_ZERO))
-		rt_store_i64(memory_at_0, reg_0 + 24, loc_10)
+		rt_store_i64(memory_at_0, reg_0 + 32, loc_10)
 		while true do
 			while true do
-				loc_0 = rt_load_i32_u8(memory_at_0, 1222950)
+				loc_0 = rt_load_i32_u8(memory_at_0, 1223030)
 				if loc_0 ~= 0 then
 					while true do
-						FUNC_LIST[101](rt_add_i32(loc_4, 132), 1092900)
-						if rt_load_i32(memory_at_0, loc_4 + 132) ~= 2147483648 then
+						FUNC_LIST[101](rt_add_i32(loc_5, 148), 1092980)
+						if rt_load_i32(memory_at_0, loc_5 + 148) ~= 2147483648 then
 							desired = 2
 							break
 						end
@@ -11280,8 +11224,8 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3)
 						break
 					end
 				end
-				rt_store_i32(memory_at_0, loc_4 + 40, 0)
-				rt_store_i64(memory_at_0, loc_4 + 32, rt_i64_from_u32(0, 1))
+				rt_store_i32(memory_at_0, loc_5 + 48, 0)
+				rt_store_i64(memory_at_0, loc_5 + 40, rt_i64_from_u32(0, 1))
 				desired = 1
 				break
 			end
@@ -11291,23 +11235,23 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3)
 				end
 				break
 			end
-			loc_8 = rt_sub_i32(loc_4, 4294967232)
-			rt_store_i32(memory_at_0, loc_8, rt_load_i32(memory_at_0, rt_add_i32(loc_4, 140)))
-			rt_store_i64(memory_at_0, loc_4 + 56, rt_load_i64(memory_at_0, loc_4 + 132))
-			loc_5 = rt_sub_i32(loc_0, 1)
-			if loc_5 ~= 0 then
+			loc_8 = rt_add_i32(loc_5, 72)
+			rt_store_i32(memory_at_0, loc_8, rt_load_i32(memory_at_0, rt_add_i32(loc_5, 156)))
+			rt_store_i64(memory_at_0, loc_5 + 64, rt_load_i64(memory_at_0, loc_5 + 148))
+			loc_3 = rt_sub_i32(loc_0, 1)
+			if loc_3 ~= 0 then
 				while true do
-					loc_1 = 1092902
-					loc_2 = rt_load_i32(memory_at_0, loc_4 + 64)
+					loc_1 = 1092982
+					loc_2 = rt_load_i32(memory_at_0, loc_5 + 72)
 					while true do
-						FUNC_LIST[101](rt_add_i32(loc_4, 80), loc_1)
-						loc_6 = rt_load_i32(memory_at_0, loc_4 + 84)
-						loc_7 = rt_load_i32(memory_at_0, loc_4 + 80)
-						loc_0 = rt_load_i32(memory_at_0, loc_4 + 88)
-						if loc_0 > rt_sub_i32(rt_load_i32(memory_at_0, loc_4 + 56), loc_2) then
+						FUNC_LIST[101](rt_add_i32(loc_5, 88), loc_1)
+						loc_6 = rt_load_i32(memory_at_0, loc_5 + 92)
+						loc_7 = rt_load_i32(memory_at_0, loc_5 + 88)
+						loc_0 = rt_load_i32(memory_at_0, loc_5 + 96)
+						if loc_0 > rt_sub_i32(rt_load_i32(memory_at_0, loc_5 + 64), loc_2) then
 							while true do
-								FUNC_LIST[37](rt_add_i32(loc_4, 56), loc_2, loc_0)
-								loc_2 = rt_load_i32(memory_at_0, loc_4 + 64)
+								FUNC_LIST[37](rt_sub_i32(loc_5, 4294967232), loc_2, loc_0)
+								loc_2 = rt_load_i32(memory_at_0, loc_5 + 72)
 								break
 							end
 							if desired then
@@ -11318,9 +11262,9 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3)
 								break
 							end
 						end
-						reg_0 = FUNC_LIST[121](rt_add_i32(rt_load_i32(memory_at_0, loc_4 + 60), loc_2), loc_6, loc_0)
+						reg_0 = FUNC_LIST[121](rt_add_i32(rt_load_i32(memory_at_0, loc_5 + 68), loc_2), loc_6, loc_0)
 						loc_2 = rt_add_i32(loc_0, loc_2)
-						rt_store_i32(memory_at_0, loc_4 + 64, loc_2)
+						rt_store_i32(memory_at_0, loc_5 + 72, loc_2)
 						if loc_7 ~= 0 then
 							while true do
 								FUNC_LIST[4](loc_6, loc_7)
@@ -11335,8 +11279,8 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3)
 							end
 						end
 						loc_1 = rt_add_i32(loc_1, 2)
-						loc_5 = rt_sub_i32(loc_5, 1)
-						if loc_5 ~= 0 then
+						loc_3 = rt_sub_i32(loc_3, 1)
+						if loc_3 ~= 0 then
 							continue
 						end
 						break
@@ -11353,11 +11297,11 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3)
 					break
 				end
 			end
-			rt_store_i32(memory_at_0, rt_add_i32(loc_4, 40), rt_load_i32(memory_at_0, loc_8))
-			rt_store_i64(memory_at_0, loc_4 + 32, rt_load_i64(memory_at_0, loc_4 + 56))
+			rt_store_i32(memory_at_0, rt_add_i32(loc_5, 48), rt_load_i32(memory_at_0, loc_8))
+			rt_store_i64(memory_at_0, loc_5 + 40, rt_load_i64(memory_at_0, loc_5 + 64))
 			break
 		end
-		reg_0 = loc_4
+		reg_0 = loc_5
 		if rt_eq_i64(loc_10, rt_i64_ZERO) then
 			while true do
 				reg_1 = rt_i64_from_u32(69420, 0)
@@ -11365,47 +11309,48 @@ FUNC_LIST[30] = function(loc_0, loc_1, loc_2, loc_3)
 			end
 		else
 			while true do
-				reg_1 = rt_div_u64(rt_mul_i64(rt_extend_i64_u32(loc_3), rt_i64_from_u32(1000, 0)), loc_10)
+				reg_1 = rt_div_u64(rt_mul_i64(rt_extend_i64_u32(loc_4), rt_i64_from_u32(1000, 0)), loc_10)
 				break
 			end
 		end
-		rt_store_i64(memory_at_0, reg_0 + 48, reg_1)
-		loc_1 = rt_load_i32(memory_at_0, 1223208)
-		rt_store_i32(memory_at_0, loc_4 + 60, 6)
-		rt_store_i32(memory_at_0, loc_4 + 56, 1074032)
-		rt_store_i64(memory_at_0, loc_4 + 68, rt_i64_from_u32(6, 0))
-		rt_store_i64(memory_at_0, loc_4 + 120, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_4, 32)), rt_i64_from_u32(0, 4)))
-		rt_store_i64(memory_at_0, loc_4 + 112, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_4, 48)), rt_i64_from_u32(0, 3)))
-		rt_store_i64(memory_at_0, loc_4 + 104, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_4, 8)), rt_i64_from_u32(0, 10)))
-		rt_store_i64(memory_at_0, loc_4 + 96, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_4, 24)), rt_i64_from_u32(0, 3)))
-		rt_store_i64(memory_at_0, loc_4 + 88, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_4, 12)), rt_i64_from_u32(0, 4)))
-		rt_store_i64(memory_at_0, loc_4 + 80, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_4, 3)), rt_i64_from_u32(0, 13)))
-		rt_store_i32(memory_at_0, loc_4 + 64, rt_add_i32(loc_4, 80))
-		FUNC_LIST[27](rt_add_i32(loc_4, 132), rt_add_i32(loc_4, 56))
-		loc_0 = rt_load_i32(memory_at_0, loc_4 + 132)
-		loc_2 = rt_load_i32(memory_at_0, loc_4 + 136)
-		TABLE_LIST[0].data[loc_1](loc_2, rt_load_i32(memory_at_0, loc_4 + 140))
+		rt_store_i64(memory_at_0, reg_0 + 56, reg_1)
+		loc_1 = rt_load_i32(memory_at_0, 1223288)
+		rt_store_i32(memory_at_0, loc_5 + 68, 7)
+		rt_store_i32(memory_at_0, loc_5 + 64, 1074044)
+		rt_store_i64(memory_at_0, loc_5 + 76, rt_i64_from_u32(7, 0))
+		rt_store_i64(memory_at_0, loc_5 + 136, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 40)), rt_i64_from_u32(0, 4)))
+		rt_store_i64(memory_at_0, loc_5 + 128, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 56)), rt_i64_from_u32(0, 3)))
+		rt_store_i64(memory_at_0, loc_5 + 120, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 16)), rt_i64_from_u32(0, 10)))
+		rt_store_i64(memory_at_0, loc_5 + 112, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 32)), rt_i64_from_u32(0, 3)))
+		rt_store_i64(memory_at_0, loc_5 + 104, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 20)), rt_i64_from_u32(0, 4)))
+		rt_store_i64(memory_at_0, loc_5 + 96, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 15)), rt_i64_from_u32(0, 13)))
+		rt_store_i64(memory_at_0, loc_5 + 88, rt_bit_or_i64(rt_extend_i64_u32(rt_add_i32(loc_5, 7)), rt_i64_from_u32(0, 13)))
+		rt_store_i32(memory_at_0, loc_5 + 72, rt_add_i32(loc_5, 88))
+		FUNC_LIST[27](rt_add_i32(loc_5, 148), rt_sub_i32(loc_5, 4294967232))
+		loc_0 = rt_load_i32(memory_at_0, loc_5 + 148)
+		loc_2 = rt_load_i32(memory_at_0, loc_5 + 152)
+		TABLE_LIST[0].data[loc_1](loc_2, rt_load_i32(memory_at_0, loc_5 + 156))
 		if loc_0 ~= 0 then
 			while true do
 				FUNC_LIST[4](loc_2, loc_0)
 				break
 			end
 		end
-		loc_0 = rt_load_i32(memory_at_0, loc_4 + 32)
+		loc_0 = rt_load_i32(memory_at_0, loc_5 + 40)
 		if loc_0 ~= 0 then
 			while true do
-				FUNC_LIST[4](rt_load_i32(memory_at_0, loc_4 + 36), loc_0)
+				FUNC_LIST[4](rt_load_i32(memory_at_0, loc_5 + 44), loc_0)
 				break
 			end
 		end
-		loc_0 = rt_load_i32(memory_at_0, loc_4 + 12)
+		loc_0 = rt_load_i32(memory_at_0, loc_5 + 20)
 		if loc_0 ~= 0 then
 			while true do
-				FUNC_LIST[4](rt_load_i32(memory_at_0, loc_4 + 16), loc_0)
+				FUNC_LIST[4](rt_load_i32(memory_at_0, loc_5 + 24), loc_0)
 				break
 			end
 		end
-		GLOBAL_LIST[0].value = rt_add_i32(loc_4, 144)
+		GLOBAL_LIST[0].value = rt_add_i32(loc_5, 160)
 		break
 	end
 end
@@ -12509,9 +12454,9 @@ FUNC_LIST[39] = function()
 				rt_store_i64(memory_at_0, loc_7 + 12, rt_i64_from_u32(0, 1))
 				loc_3 = rt_sub_i32(GLOBAL_LIST[0].value, 16)
 				GLOBAL_LIST[0].value = loc_3
-				if rt_load_i32_u8(memory_at_0, 1223304) ~= 3 then
+				if rt_load_i32_u8(memory_at_0, 1223384) ~= 3 then
 					while true do
-						rt_store_i32(memory_at_0, loc_3 + 4, 1223280)
+						rt_store_i32(memory_at_0, loc_3 + 4, 1223360)
 						rt_store_i32(memory_at_0, loc_3 + 8, rt_add_i32(loc_3, 15))
 						loc_4 = rt_add_i32(loc_3, 4)
 						loc_1 = rt_sub_i32(GLOBAL_LIST[0].value, 32)
@@ -12520,7 +12465,7 @@ FUNC_LIST[39] = function()
 							while true do
 								while true do
 									while true do
-										loc_2 = rt_load_i32_u8(memory_at_0, 1223304)
+										loc_2 = rt_load_i32_u8(memory_at_0, 1223384)
 										if loc_2 >= 2 then
 											while true do
 												if rt_sub_i32(loc_2, 3) ~= 0 then
@@ -12537,7 +12482,7 @@ FUNC_LIST[39] = function()
 												break
 											end
 										end
-										rt_store_i32_n8(memory_at_0, 1223304, 2)
+										rt_store_i32_n8(memory_at_0, 1223384, 2)
 										loc_2 = rt_load_i32(memory_at_0, loc_4)
 										rt_store_i32(memory_at_0, loc_4, 0)
 										if loc_2 == 0 then
@@ -12548,7 +12493,7 @@ FUNC_LIST[39] = function()
 										rt_store_i32(memory_at_0, loc_2 + 4, 1)
 										rt_store_i32_n8(memory_at_0, loc_2, 0)
 										rt_store_i64(memory_at_0, rt_add_i32(loc_2, 16), rt_i64_ZERO)
-										rt_store_i32_n8(memory_at_0, 1223304, 3)
+										rt_store_i32_n8(memory_at_0, 1223384, 3)
 										break
 									end
 									if desired then
@@ -12567,7 +12512,7 @@ FUNC_LIST[39] = function()
 									end
 									break
 								end
-								FUNC_LIST[15](1075152)
+								FUNC_LIST[15](1075168)
 								error("out of code bounds")
 							end
 							if desired then
@@ -12578,9 +12523,9 @@ FUNC_LIST[39] = function()
 							end
 							rt_store_i32(memory_at_0, loc_1 + 24, 0)
 							rt_store_i32(memory_at_0, loc_1 + 12, 1)
-							rt_store_i32(memory_at_0, loc_1 + 8, 1075904)
+							rt_store_i32(memory_at_0, loc_1 + 8, 1075920)
 							rt_store_i64(memory_at_0, loc_1 + 16, rt_i64_from_u32(4, 0))
-							FUNC_LIST[14](rt_add_i32(loc_1, 8), 1075136)
+							FUNC_LIST[14](rt_add_i32(loc_1, 8), 1075152)
 							error("out of code bounds")
 						end
 						if desired then
@@ -12596,7 +12541,7 @@ FUNC_LIST[39] = function()
 					end
 				end
 				GLOBAL_LIST[0].value = rt_add_i32(loc_3, 16)
-				rt_store_i32(memory_at_0, loc_7 + 36, 1223280)
+				rt_store_i32(memory_at_0, loc_7 + 36, 1223360)
 				loc_9 = rt_add_i32(loc_7, 12)
 				loc_15 = 0
 				loc_12 = rt_sub_i32(GLOBAL_LIST[0].value, 32)
@@ -12734,7 +12679,7 @@ FUNC_LIST[39] = function()
 																	end
 																	break
 																end
-																FUNC_LIST[54](loc_5, loc_11, 1074304)
+																FUNC_LIST[54](loc_5, loc_11, 1074324)
 																error("out of code bounds")
 															end
 															if desired then
@@ -12862,7 +12807,7 @@ FUNC_LIST[39] = function()
 													desired = 7
 													break
 												end
-												FUNC_LIST[59](loc_5, loc_6, 1074976)
+												FUNC_LIST[59](loc_5, loc_6, 1074992)
 												error("out of code bounds")
 											end
 											if desired then
@@ -12878,7 +12823,7 @@ FUNC_LIST[39] = function()
 										rt_store_i32(memory_at_0, loc_1 + 12, 1)
 										rt_store_i32(memory_at_0, loc_1 + 8, 1050020)
 										rt_store_i64(memory_at_0, loc_1 + 16, rt_i64_from_u32(4, 0))
-										FUNC_LIST[14](rt_add_i32(loc_1, 8), 1074976)
+										FUNC_LIST[14](rt_add_i32(loc_1, 8), 1074992)
 										error("out of code bounds")
 									end
 									if desired then
@@ -13222,7 +13167,7 @@ FUNC_LIST[39] = function()
 																end
 																break
 															end
-															reg_1 = rt_load_i64(memory_at_0, 1074824)
+															reg_1 = rt_load_i64(memory_at_0, 1074840)
 															desired = 3
 															break
 														end
@@ -13297,7 +13242,7 @@ FUNC_LIST[39] = function()
 										break
 									end
 								end
-								FUNC_LIST[54](loc_13, loc_1, 1074960)
+								FUNC_LIST[54](loc_13, loc_1, 1074976)
 								error("out of code bounds")
 							end
 							if desired then
@@ -13309,12 +13254,12 @@ FUNC_LIST[39] = function()
 						end
 						rt_store_i64(memory_at_0, loc_12 + 20, rt_i64_ZERO)
 						rt_store_i64(memory_at_0, loc_12 + 12, rt_i64_from_u32(1, 4))
-						rt_store_i32(memory_at_0, loc_12 + 8, 1075024)
+						rt_store_i32(memory_at_0, loc_12 + 8, 1075040)
 						loc_1 = rt_sub_i32(GLOBAL_LIST[0].value, 16)
 						GLOBAL_LIST[0].value = loc_1
-						rt_store_i32(memory_at_0, loc_1 + 12, 1074320)
+						rt_store_i32(memory_at_0, loc_1 + 12, 1074340)
 						rt_store_i32(memory_at_0, loc_1 + 8, rt_add_i32(loc_12, 7))
-						FUNC_LIST[61](rt_add_i32(loc_1, 8), 1074324, rt_add_i32(loc_1, 12), 1074324, rt_add_i32(loc_12, 8), 1075076)
+						FUNC_LIST[61](rt_add_i32(loc_1, 8), 1074344, rt_add_i32(loc_1, 12), 1074344, rt_add_i32(loc_12, 8), 1075092)
 						error("out of code bounds")
 					end
 					if desired then
@@ -13361,7 +13306,7 @@ FUNC_LIST[39] = function()
 			break
 		end
 		rt_store_i64(memory_at_0, loc_7 + 40, rt_load_i64(memory_at_0, loc_7 + 24))
-		FUNC_LIST[17](1074588, 43, rt_add_i32(loc_7, 40), 1048824, 1048840)
+		FUNC_LIST[17](1074608, 43, rt_add_i32(loc_7, 40), 1048824, 1048840)
 		error("out of code bounds")
 	end
 end
@@ -13390,7 +13335,7 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 						while true do
 							rt_store_i64(memory_at_0, loc_0, rt_i64_from_u32(1, 1))
 							rt_store_i32(memory_at_0, loc_0 + 16, 0)
-							loc_2 = rt_load_i64(memory_at_0, 1223352)
+							loc_2 = rt_load_i64(memory_at_0, 1223432)
 							while true do
 								loc_3 = rt_add_i64(loc_2, rt_i64_ONE)
 								if rt_eq_i64(loc_3, rt_i64_ZERO) then
@@ -13398,9 +13343,9 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 									break
 								end
 								reg_0 = loc_2
-								loc_2 = rt_load_i64(memory_at_0, 1223352)
+								loc_2 = rt_load_i64(memory_at_0, 1223432)
 								loc_6 = (if rt_eq_i64(reg_0, loc_2) then 1 else 0)
-								rt_store_i64(memory_at_0, 1223352, (if loc_6 ~= 0 then loc_3 else loc_2))
+								rt_store_i64(memory_at_0, 1223432, (if loc_6 ~= 0 then loc_3 else loc_2))
 								if loc_6 == 0 then
 									continue
 								end
@@ -13410,13 +13355,13 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 								break
 							end
 							rt_store_i64(memory_at_0, loc_0 + 8, loc_3)
-							if rt_load_i32(memory_at_0, 1223820) ~= 0 then
+							if rt_load_i32(memory_at_0, 1223900) ~= 0 then
 								desired = 2
 								break
 							end
-							rt_store_i32(memory_at_0, 1223820, loc_0)
+							rt_store_i32(memory_at_0, 1223900, loc_0)
 							TABLE_LIST[0].data[rt_load_i32(memory_at_0, loc_7)]()
-							if rt_load_i32_u8(memory_at_0, 1223277) ~= 3 then
+							if rt_load_i32_u8(memory_at_0, 1223357) ~= 3 then
 								while true do
 									rt_store_i32_n8(memory_at_0, loc_1 + 15, 1)
 									FUNC_LIST[103](rt_add_i32(loc_1, 15))
@@ -13449,9 +13394,9 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 				GLOBAL_LIST[0].value = loc_0
 				rt_store_i32(memory_at_0, loc_0 + 24, 0)
 				rt_store_i32(memory_at_0, loc_0 + 12, 1)
-				rt_store_i32(memory_at_0, loc_0 + 8, 1074732)
+				rt_store_i32(memory_at_0, loc_0 + 8, 1074752)
 				rt_store_i64(memory_at_0, loc_0 + 16, rt_i64_from_u32(4, 0))
-				FUNC_LIST[14](rt_add_i32(loc_0, 8), 1074740)
+				FUNC_LIST[14](rt_add_i32(loc_0, 8), 1074760)
 				error("out of code bounds")
 			end
 			if desired then
@@ -13461,7 +13406,7 @@ FUNC_LIST[40] = function(loc_0, loc_1)
 				break
 			end
 			rt_store_i32(memory_at_0, loc_1 + 8, loc_0)
-			FUNC_LIST[17](1074588, 43, rt_add_i32(loc_1, 8), 1074572, 1074660)
+			FUNC_LIST[17](1074608, 43, rt_add_i32(loc_1, 8), 1074592, 1074680)
 			error("out of code bounds")
 		end
 		GLOBAL_LIST[0].value = rt_add_i32(loc_5, 16)
@@ -13665,7 +13610,7 @@ FUNC_LIST[44] = function(loc_0)
 												end
 												loc_0 = rt_add_i32(loc_0, 11)
 												loc_5 = bit_and(loc_0, 4294967288)
-												loc_8 = rt_load_i32(memory_at_0, 1223772)
+												loc_8 = rt_load_i32(memory_at_0, 1223852)
 												if loc_8 == 0 then
 													desired = 5
 													break
@@ -13688,7 +13633,7 @@ FUNC_LIST[44] = function(loc_0)
 													break
 												end
 												loc_7 = reg_0
-												loc_2 = rt_load_i32(memory_at_0, rt_add_i32(rt_shl_i32(loc_7, 2), 1223360))
+												loc_2 = rt_load_i32(memory_at_0, rt_add_i32(rt_shl_i32(loc_7, 2), 1223440))
 												if loc_2 == 0 then
 													while true do
 														loc_0 = 0
@@ -13750,7 +13695,7 @@ FUNC_LIST[44] = function(loc_0)
 												break
 											end
 										end
-										loc_2 = rt_load_i32(memory_at_0, 1223768)
+										loc_2 = rt_load_i32(memory_at_0, 1223848)
 										loc_5 = (if loc_0 < 11 then 16 else bit_and(rt_add_i32(loc_0, 11), 504))
 										loc_0 = rt_shr_u32(loc_5, 3)
 										loc_1 = rt_shr_u32(loc_2, loc_0)
@@ -13759,8 +13704,8 @@ FUNC_LIST[44] = function(loc_0)
 												while true do
 													loc_1 = rt_add_i32(bit_and(bit_xor(loc_1, 4294967295), 1), loc_0)
 													loc_0 = rt_shl_i32(loc_1, 3)
-													loc_3 = rt_add_i32(loc_0, 1223504)
-													loc_0 = rt_load_i32(memory_at_0, rt_add_i32(loc_0, 1223512))
+													loc_3 = rt_add_i32(loc_0, 1223584)
+													loc_0 = rt_load_i32(memory_at_0, rt_add_i32(loc_0, 1223592))
 													loc_4 = rt_load_i32(memory_at_0, loc_0 + 8)
 													if loc_3 ~= loc_4 then
 														while true do
@@ -13776,7 +13721,7 @@ FUNC_LIST[44] = function(loc_0)
 															break
 														end
 													end
-													rt_store_i32(memory_at_0, 1223768, bit_and(loc_2, rt_rotl_i32(4294967294, loc_1)))
+													rt_store_i32(memory_at_0, 1223848, bit_and(loc_2, rt_rotl_i32(4294967294, loc_1)))
 													break
 												end
 												if desired then
@@ -13796,7 +13741,7 @@ FUNC_LIST[44] = function(loc_0)
 												break
 											end
 										end
-										if loc_5 <= rt_load_i32(memory_at_0, 1223776) then
+										if loc_5 <= rt_load_i32(memory_at_0, 1223856) then
 											desired = 5
 											break
 										end
@@ -13804,12 +13749,12 @@ FUNC_LIST[44] = function(loc_0)
 											while true do
 												if loc_1 == 0 then
 													while true do
-														loc_0 = rt_load_i32(memory_at_0, 1223772)
+														loc_0 = rt_load_i32(memory_at_0, 1223852)
 														if loc_0 == 0 then
 															desired = 5
 															break
 														end
-														loc_1 = rt_load_i32(memory_at_0, rt_add_i32(rt_shl_i32(bit_countrz(loc_0), 2), 1223360))
+														loc_1 = rt_load_i32(memory_at_0, rt_add_i32(rt_shl_i32(bit_countrz(loc_0), 2), 1223440))
 														loc_4 = rt_sub_i32(bit_and(rt_load_i32(memory_at_0, loc_1 + 4), 4294967288), loc_5)
 														loc_2 = loc_1
 														while true do
@@ -13888,7 +13833,7 @@ FUNC_LIST[44] = function(loc_0)
 																	desired = 9
 																	break
 																end
-																loc_1 = rt_add_i32(rt_shl_i32(rt_load_i32(memory_at_0, loc_2 + 28), 2), 1223360)
+																loc_1 = rt_add_i32(rt_shl_i32(rt_load_i32(memory_at_0, loc_2 + 28), 2), 1223440)
 																if loc_2 ~= rt_load_i32(memory_at_0, loc_1) then
 																	while true do
 																		rt_store_i32(memory_at_0, rt_add_i32(loc_7, (if rt_load_i32(memory_at_0, loc_7 + 16) == loc_2 then 16 else 20)), loc_0)
@@ -13911,7 +13856,7 @@ FUNC_LIST[44] = function(loc_0)
 																	desired = 10
 																	break
 																end
-																rt_store_i32(memory_at_0, 1223772, bit_and(rt_load_i32(memory_at_0, 1223772), rt_rotl_i32(4294967294, rt_load_i32(memory_at_0, loc_2 + 28))))
+																rt_store_i32(memory_at_0, 1223852, bit_and(rt_load_i32(memory_at_0, 1223852), rt_rotl_i32(4294967294, rt_load_i32(memory_at_0, loc_2 + 28))))
 																desired = 9
 																break
 															end
@@ -13945,8 +13890,8 @@ FUNC_LIST[44] = function(loc_0)
 													loc_3 = rt_shl_i32(2, loc_0)
 													loc_0 = bit_countrz(bit_and(bit_or(rt_sub_i32(0, loc_3), loc_3), rt_shl_i32(loc_1, loc_0)))
 													loc_1 = rt_shl_i32(loc_0, 3)
-													loc_3 = rt_add_i32(loc_1, 1223504)
-													loc_1 = rt_load_i32(memory_at_0, rt_add_i32(loc_1, 1223512))
+													loc_3 = rt_add_i32(loc_1, 1223584)
+													loc_1 = rt_load_i32(memory_at_0, rt_add_i32(loc_1, 1223592))
 													loc_4 = rt_load_i32(memory_at_0, loc_1 + 8)
 													if loc_3 ~= loc_4 then
 														while true do
@@ -13962,7 +13907,7 @@ FUNC_LIST[44] = function(loc_0)
 															break
 														end
 													end
-													rt_store_i32(memory_at_0, 1223768, bit_and(loc_2, rt_rotl_i32(4294967294, loc_0)))
+													rt_store_i32(memory_at_0, 1223848, bit_and(loc_2, rt_rotl_i32(4294967294, loc_0)))
 													break
 												end
 												if desired then
@@ -13977,17 +13922,17 @@ FUNC_LIST[44] = function(loc_0)
 												loc_4 = rt_sub_i32(loc_0, loc_5)
 												rt_store_i32(memory_at_0, loc_6 + 4, bit_or(loc_4, 1))
 												rt_store_i32(memory_at_0, rt_add_i32(loc_0, loc_1), loc_4)
-												loc_2 = rt_load_i32(memory_at_0, 1223776)
+												loc_2 = rt_load_i32(memory_at_0, 1223856)
 												if loc_2 ~= 0 then
 													while true do
-														loc_0 = rt_add_i32(bit_and(loc_2, 4294967288), 1223504)
-														loc_3 = rt_load_i32(memory_at_0, 1223784)
+														loc_0 = rt_add_i32(bit_and(loc_2, 4294967288), 1223584)
+														loc_3 = rt_load_i32(memory_at_0, 1223864)
 														while true do
-															loc_5 = rt_load_i32(memory_at_0, 1223768)
+															loc_5 = rt_load_i32(memory_at_0, 1223848)
 															loc_2 = rt_shl_i32(1, rt_shr_u32(loc_2, 3))
 															if bit_and(loc_5, loc_2) == 0 then
 																while true do
-																	rt_store_i32(memory_at_0, 1223768, bit_or(loc_2, loc_5))
+																	rt_store_i32(memory_at_0, 1223848, bit_or(loc_2, loc_5))
 																	reg_0 = loc_0
 																	desired = 12
 																	break
@@ -14019,8 +13964,8 @@ FUNC_LIST[44] = function(loc_0)
 														break
 													end
 												end
-												rt_store_i32(memory_at_0, 1223784, loc_6)
-												rt_store_i32(memory_at_0, 1223776, loc_4)
+												rt_store_i32(memory_at_0, 1223864, loc_6)
+												rt_store_i32(memory_at_0, 1223856, loc_4)
 												reg_0 = rt_add_i32(loc_1, 8)
 												desired = 0
 												break
@@ -14068,19 +14013,19 @@ FUNC_LIST[44] = function(loc_0)
 														loc_5 = rt_add_i32(loc_2, loc_5)
 														rt_store_i32(memory_at_0, loc_5 + 4, bit_or(loc_4, 1))
 														rt_store_i32(memory_at_0, rt_add_i32(loc_4, loc_5), loc_4)
-														loc_3 = rt_load_i32(memory_at_0, 1223776)
+														loc_3 = rt_load_i32(memory_at_0, 1223856)
 														if loc_3 == 0 then
 															desired = 10
 															break
 														end
-														loc_0 = rt_add_i32(bit_and(loc_3, 4294967288), 1223504)
-														loc_1 = rt_load_i32(memory_at_0, 1223784)
+														loc_0 = rt_add_i32(bit_and(loc_3, 4294967288), 1223584)
+														loc_1 = rt_load_i32(memory_at_0, 1223864)
 														while true do
-															loc_6 = rt_load_i32(memory_at_0, 1223768)
+															loc_6 = rt_load_i32(memory_at_0, 1223848)
 															loc_3 = rt_shl_i32(1, rt_shr_u32(loc_3, 3))
 															if bit_and(loc_6, loc_3) == 0 then
 																while true do
-																	rt_store_i32(memory_at_0, 1223768, bit_or(loc_3, loc_6))
+																	rt_store_i32(memory_at_0, 1223848, bit_or(loc_3, loc_6))
 																	reg_0 = loc_0
 																	desired = 12
 																	break
@@ -14126,8 +14071,8 @@ FUNC_LIST[44] = function(loc_0)
 												end
 												break
 											end
-											rt_store_i32(memory_at_0, 1223784, loc_5)
-											rt_store_i32(memory_at_0, 1223776, loc_4)
+											rt_store_i32(memory_at_0, 1223864, loc_5)
+											rt_store_i32(memory_at_0, 1223856, loc_4)
 											break
 										end
 										if desired then
@@ -14155,7 +14100,7 @@ FUNC_LIST[44] = function(loc_0)
 												desired = 5
 												break
 											end
-											loc_0 = rt_load_i32(memory_at_0, rt_add_i32(rt_shl_i32(bit_countrz(loc_0), 2), 1223360))
+											loc_0 = rt_load_i32(memory_at_0, rt_add_i32(rt_shl_i32(bit_countrz(loc_0), 2), 1223440))
 											break
 										end
 										if desired then
@@ -14233,7 +14178,7 @@ FUNC_LIST[44] = function(loc_0)
 							if loc_1 == 0 then
 								break
 							end
-							loc_0 = rt_load_i32(memory_at_0, 1223776)
+							loc_0 = rt_load_i32(memory_at_0, 1223856)
 							if bit_and((if loc_5 <= loc_0 then 1 else 0), (if loc_4 >= rt_sub_i32(loc_0, loc_5) then 1 else 0)) ~= 0 then
 								break
 							end
@@ -14303,7 +14248,7 @@ FUNC_LIST[44] = function(loc_0)
 								desired = 2
 								break
 							end
-							loc_2 = rt_add_i32(rt_shl_i32(rt_load_i32(memory_at_0, loc_1 + 28), 2), 1223360)
+							loc_2 = rt_add_i32(rt_shl_i32(rt_load_i32(memory_at_0, loc_1 + 28), 2), 1223440)
 							if loc_1 ~= rt_load_i32(memory_at_0, loc_2) then
 								while true do
 									rt_store_i32(memory_at_0, rt_add_i32(loc_7, (if rt_load_i32(memory_at_0, loc_7 + 16) == loc_1 then 16 else 20)), loc_0)
@@ -14326,7 +14271,7 @@ FUNC_LIST[44] = function(loc_0)
 								desired = 3
 								break
 							end
-							rt_store_i32(memory_at_0, 1223772, bit_and(rt_load_i32(memory_at_0, 1223772), rt_rotl_i32(4294967294, rt_load_i32(memory_at_0, loc_1 + 28))))
+							rt_store_i32(memory_at_0, 1223852, bit_and(rt_load_i32(memory_at_0, 1223852), rt_rotl_i32(4294967294, rt_load_i32(memory_at_0, loc_1 + 28))))
 							desired = 2
 							break
 						end
@@ -14341,10 +14286,10 @@ FUNC_LIST[44] = function(loc_0)
 								while true do
 									while true do
 										while true do
-											loc_1 = rt_load_i32(memory_at_0, 1223776)
+											loc_1 = rt_load_i32(memory_at_0, 1223856)
 											if loc_5 > loc_1 then
 												while true do
-													loc_0 = rt_load_i32(memory_at_0, 1223780)
+													loc_0 = rt_load_i32(memory_at_0, 1223860)
 													if loc_5 >= loc_0 then
 														while true do
 															loc_4 = 0
@@ -14362,16 +14307,16 @@ FUNC_LIST[44] = function(loc_0)
 																break
 															end
 															loc_4 = (if loc_3 ~= 0 then 0 else bit_and(loc_0, 4294901760))
-															loc_0 = rt_add_i32(loc_4, rt_load_i32(memory_at_0, 1223792))
-															rt_store_i32(memory_at_0, 1223792, loc_0)
-															loc_1 = rt_load_i32(memory_at_0, 1223796)
-															rt_store_i32(memory_at_0, 1223796, (if loc_0 < loc_1 then loc_1 else loc_0))
+															loc_0 = rt_add_i32(loc_4, rt_load_i32(memory_at_0, 1223872))
+															rt_store_i32(memory_at_0, 1223872, loc_0)
+															loc_1 = rt_load_i32(memory_at_0, 1223876)
+															rt_store_i32(memory_at_0, 1223876, (if loc_0 < loc_1 then loc_1 else loc_0))
 															while true do
 																while true do
-																	loc_3 = rt_load_i32(memory_at_0, 1223788)
+																	loc_3 = rt_load_i32(memory_at_0, 1223868)
 																	if loc_3 ~= 0 then
 																		while true do
-																			loc_0 = 1223488
+																			loc_0 = 1223568
 																			while true do
 																				loc_1 = rt_load_i32(memory_at_0, loc_0)
 																				loc_6 = rt_load_i32(memory_at_0, loc_0 + 4)
@@ -14398,10 +14343,10 @@ FUNC_LIST[44] = function(loc_0)
 																			break
 																		end
 																	end
-																	loc_0 = rt_load_i32(memory_at_0, 1223804)
+																	loc_0 = rt_load_i32(memory_at_0, 1223884)
 																	if bit_and((if loc_0 ~= 0 then 1 else 0), (if loc_0 <= loc_2 then 1 else 0)) == 0 then
 																		while true do
-																			rt_store_i32(memory_at_0, 1223804, loc_2)
+																			rt_store_i32(memory_at_0, 1223884, loc_2)
 																			break
 																		end
 																		if desired then
@@ -14411,63 +14356,43 @@ FUNC_LIST[44] = function(loc_0)
 																			break
 																		end
 																	end
-																	rt_store_i32(memory_at_0, 1223808, 4095)
-																	rt_store_i32(memory_at_0, 1223492, loc_4)
-																	rt_store_i32(memory_at_0, 1223488, loc_2)
-																	rt_store_i32(memory_at_0, 1223516, 1223504)
-																	rt_store_i32(memory_at_0, 1223524, 1223512)
-																	rt_store_i32(memory_at_0, 1223512, 1223504)
-																	rt_store_i32(memory_at_0, 1223532, 1223520)
-																	rt_store_i32(memory_at_0, 1223520, 1223512)
-																	rt_store_i32(memory_at_0, 1223540, 1223528)
-																	rt_store_i32(memory_at_0, 1223528, 1223520)
-																	rt_store_i32(memory_at_0, 1223548, 1223536)
-																	rt_store_i32(memory_at_0, 1223536, 1223528)
-																	rt_store_i32(memory_at_0, 1223556, 1223544)
-																	rt_store_i32(memory_at_0, 1223544, 1223536)
-																	rt_store_i32(memory_at_0, 1223564, 1223552)
-																	rt_store_i32(memory_at_0, 1223552, 1223544)
-																	rt_store_i32(memory_at_0, 1223572, 1223560)
-																	rt_store_i32(memory_at_0, 1223560, 1223552)
-																	rt_store_i32(memory_at_0, 1223500, 0)
-																	rt_store_i32(memory_at_0, 1223580, 1223568)
-																	rt_store_i32(memory_at_0, 1223568, 1223560)
-																	rt_store_i32(memory_at_0, 1223576, 1223568)
-																	rt_store_i32(memory_at_0, 1223588, 1223576)
-																	rt_store_i32(memory_at_0, 1223584, 1223576)
+																	rt_store_i32(memory_at_0, 1223888, 4095)
+																	rt_store_i32(memory_at_0, 1223572, loc_4)
+																	rt_store_i32(memory_at_0, 1223568, loc_2)
 																	rt_store_i32(memory_at_0, 1223596, 1223584)
-																	rt_store_i32(memory_at_0, 1223592, 1223584)
 																	rt_store_i32(memory_at_0, 1223604, 1223592)
-																	rt_store_i32(memory_at_0, 1223600, 1223592)
+																	rt_store_i32(memory_at_0, 1223592, 1223584)
 																	rt_store_i32(memory_at_0, 1223612, 1223600)
-																	rt_store_i32(memory_at_0, 1223608, 1223600)
+																	rt_store_i32(memory_at_0, 1223600, 1223592)
 																	rt_store_i32(memory_at_0, 1223620, 1223608)
-																	rt_store_i32(memory_at_0, 1223616, 1223608)
+																	rt_store_i32(memory_at_0, 1223608, 1223600)
 																	rt_store_i32(memory_at_0, 1223628, 1223616)
-																	rt_store_i32(memory_at_0, 1223624, 1223616)
+																	rt_store_i32(memory_at_0, 1223616, 1223608)
 																	rt_store_i32(memory_at_0, 1223636, 1223624)
-																	rt_store_i32(memory_at_0, 1223632, 1223624)
+																	rt_store_i32(memory_at_0, 1223624, 1223616)
 																	rt_store_i32(memory_at_0, 1223644, 1223632)
+																	rt_store_i32(memory_at_0, 1223632, 1223624)
 																	rt_store_i32(memory_at_0, 1223652, 1223640)
 																	rt_store_i32(memory_at_0, 1223640, 1223632)
+																	rt_store_i32(memory_at_0, 1223580, 0)
 																	rt_store_i32(memory_at_0, 1223660, 1223648)
 																	rt_store_i32(memory_at_0, 1223648, 1223640)
-																	rt_store_i32(memory_at_0, 1223668, 1223656)
 																	rt_store_i32(memory_at_0, 1223656, 1223648)
-																	rt_store_i32(memory_at_0, 1223676, 1223664)
+																	rt_store_i32(memory_at_0, 1223668, 1223656)
 																	rt_store_i32(memory_at_0, 1223664, 1223656)
-																	rt_store_i32(memory_at_0, 1223684, 1223672)
+																	rt_store_i32(memory_at_0, 1223676, 1223664)
 																	rt_store_i32(memory_at_0, 1223672, 1223664)
-																	rt_store_i32(memory_at_0, 1223692, 1223680)
+																	rt_store_i32(memory_at_0, 1223684, 1223672)
 																	rt_store_i32(memory_at_0, 1223680, 1223672)
-																	rt_store_i32(memory_at_0, 1223700, 1223688)
+																	rt_store_i32(memory_at_0, 1223692, 1223680)
 																	rt_store_i32(memory_at_0, 1223688, 1223680)
-																	rt_store_i32(memory_at_0, 1223708, 1223696)
+																	rt_store_i32(memory_at_0, 1223700, 1223688)
 																	rt_store_i32(memory_at_0, 1223696, 1223688)
-																	rt_store_i32(memory_at_0, 1223716, 1223704)
+																	rt_store_i32(memory_at_0, 1223708, 1223696)
 																	rt_store_i32(memory_at_0, 1223704, 1223696)
-																	rt_store_i32(memory_at_0, 1223724, 1223712)
+																	rt_store_i32(memory_at_0, 1223716, 1223704)
 																	rt_store_i32(memory_at_0, 1223712, 1223704)
+																	rt_store_i32(memory_at_0, 1223724, 1223712)
 																	rt_store_i32(memory_at_0, 1223732, 1223720)
 																	rt_store_i32(memory_at_0, 1223720, 1223712)
 																	rt_store_i32(memory_at_0, 1223740, 1223728)
@@ -14478,13 +14403,33 @@ FUNC_LIST[44] = function(loc_0)
 																	rt_store_i32(memory_at_0, 1223744, 1223736)
 																	rt_store_i32(memory_at_0, 1223764, 1223752)
 																	rt_store_i32(memory_at_0, 1223752, 1223744)
-																	rt_store_i32(memory_at_0, 1223788, loc_2)
+																	rt_store_i32(memory_at_0, 1223772, 1223760)
 																	rt_store_i32(memory_at_0, 1223760, 1223752)
+																	rt_store_i32(memory_at_0, 1223780, 1223768)
+																	rt_store_i32(memory_at_0, 1223768, 1223760)
+																	rt_store_i32(memory_at_0, 1223788, 1223776)
+																	rt_store_i32(memory_at_0, 1223776, 1223768)
+																	rt_store_i32(memory_at_0, 1223796, 1223784)
+																	rt_store_i32(memory_at_0, 1223784, 1223776)
+																	rt_store_i32(memory_at_0, 1223804, 1223792)
+																	rt_store_i32(memory_at_0, 1223792, 1223784)
+																	rt_store_i32(memory_at_0, 1223812, 1223800)
+																	rt_store_i32(memory_at_0, 1223800, 1223792)
+																	rt_store_i32(memory_at_0, 1223820, 1223808)
+																	rt_store_i32(memory_at_0, 1223808, 1223800)
+																	rt_store_i32(memory_at_0, 1223828, 1223816)
+																	rt_store_i32(memory_at_0, 1223816, 1223808)
+																	rt_store_i32(memory_at_0, 1223836, 1223824)
+																	rt_store_i32(memory_at_0, 1223824, 1223816)
+																	rt_store_i32(memory_at_0, 1223844, 1223832)
+																	rt_store_i32(memory_at_0, 1223832, 1223824)
+																	rt_store_i32(memory_at_0, 1223868, loc_2)
+																	rt_store_i32(memory_at_0, 1223840, 1223832)
 																	loc_0 = rt_sub_i32(loc_4, 40)
-																	rt_store_i32(memory_at_0, 1223780, loc_0)
+																	rt_store_i32(memory_at_0, 1223860, loc_0)
 																	rt_store_i32(memory_at_0, loc_2 + 4, bit_or(loc_0, 1))
 																	rt_store_i32(memory_at_0, rt_add_i32(loc_0, loc_2) + 4, 40)
-																	rt_store_i32(memory_at_0, 1223800, 2097152)
+																	rt_store_i32(memory_at_0, 1223880, 2097152)
 																	desired = 5
 																	break
 																end
@@ -14509,10 +14454,10 @@ FUNC_LIST[44] = function(loc_0)
 															if desired then
 																break
 															end
-															loc_0 = rt_load_i32(memory_at_0, 1223804)
-															rt_store_i32(memory_at_0, 1223804, (if loc_0 < loc_2 then loc_0 else loc_2))
+															loc_0 = rt_load_i32(memory_at_0, 1223884)
+															rt_store_i32(memory_at_0, 1223884, (if loc_0 < loc_2 then loc_0 else loc_2))
 															loc_1 = rt_add_i32(loc_2, loc_4)
-															loc_0 = 1223488
+															loc_0 = 1223568
 															while true do
 																while true do
 																	while true do
@@ -14554,7 +14499,7 @@ FUNC_LIST[44] = function(loc_0)
 																	end
 																	break
 																end
-																loc_0 = 1223488
+																loc_0 = 1223568
 																while true do
 																	while true do
 																		loc_1 = rt_load_i32(memory_at_0, loc_0)
@@ -14593,22 +14538,22 @@ FUNC_LIST[44] = function(loc_0)
 																	end
 																	break
 																end
-																rt_store_i32(memory_at_0, 1223788, loc_2)
+																rt_store_i32(memory_at_0, 1223868, loc_2)
 																loc_0 = rt_sub_i32(loc_4, 40)
-																rt_store_i32(memory_at_0, 1223780, loc_0)
+																rt_store_i32(memory_at_0, 1223860, loc_0)
 																rt_store_i32(memory_at_0, loc_2 + 4, bit_or(loc_0, 1))
 																rt_store_i32(memory_at_0, rt_add_i32(loc_0, loc_2) + 4, 40)
-																rt_store_i32(memory_at_0, 1223800, 2097152)
+																rt_store_i32(memory_at_0, 1223880, 2097152)
 																loc_0 = rt_sub_i32(bit_and(rt_sub_i32(loc_6, 32), 4294967288), 8)
 																loc_1 = (if loc_0 < rt_add_i32(loc_3, 16) then loc_3 else loc_0)
 																rt_store_i32(memory_at_0, loc_1 + 4, 27)
-																loc_9 = rt_load_i64(memory_at_0, 1223488)
-																rt_store_i64(memory_at_0, rt_add_i32(loc_1, 16), rt_load_i64(memory_at_0, 1223496))
+																loc_9 = rt_load_i64(memory_at_0, 1223568)
+																rt_store_i64(memory_at_0, rt_add_i32(loc_1, 16), rt_load_i64(memory_at_0, 1223576))
 																rt_store_i64(memory_at_0, loc_1 + 8, loc_9)
-																rt_store_i32(memory_at_0, 1223492, loc_4)
-																rt_store_i32(memory_at_0, 1223488, loc_2)
-																rt_store_i32(memory_at_0, 1223496, rt_add_i32(loc_1, 8))
-																rt_store_i32(memory_at_0, 1223500, 0)
+																rt_store_i32(memory_at_0, 1223572, loc_4)
+																rt_store_i32(memory_at_0, 1223568, loc_2)
+																rt_store_i32(memory_at_0, 1223576, rt_add_i32(loc_1, 8))
+																rt_store_i32(memory_at_0, 1223580, 0)
 																loc_0 = rt_add_i32(loc_1, 28)
 																while true do
 																	rt_store_i32(memory_at_0, loc_0, 7)
@@ -14645,13 +14590,13 @@ FUNC_LIST[44] = function(loc_0)
 																		break
 																	end
 																end
-																loc_1 = rt_add_i32(bit_and(loc_0, 4294967288), 1223504)
+																loc_1 = rt_add_i32(bit_and(loc_0, 4294967288), 1223584)
 																while true do
-																	loc_2 = rt_load_i32(memory_at_0, 1223768)
+																	loc_2 = rt_load_i32(memory_at_0, 1223848)
 																	loc_0 = rt_shl_i32(1, rt_shr_u32(loc_0, 3))
 																	if bit_and(loc_2, loc_0) == 0 then
 																		while true do
-																			rt_store_i32(memory_at_0, 1223768, bit_or(loc_0, loc_2))
+																			rt_store_i32(memory_at_0, 1223848, bit_or(loc_0, loc_2))
 																			reg_0 = loc_1
 																			desired = 13
 																			break
@@ -14688,11 +14633,11 @@ FUNC_LIST[44] = function(loc_0)
 															rt_store_i32(memory_at_0, loc_2 + 4, bit_or(loc_5, 3))
 															loc_3 = rt_add_i32(loc_2, loc_5)
 															loc_5 = rt_sub_i32(loc_1, loc_3)
-															if loc_1 == rt_load_i32(memory_at_0, 1223788) then
+															if loc_1 == rt_load_i32(memory_at_0, 1223868) then
 																desired = 8
 																break
 															end
-															if loc_1 == rt_load_i32(memory_at_0, 1223784) then
+															if loc_1 == rt_load_i32(memory_at_0, 1223864) then
 																desired = 7
 																break
 															end
@@ -14723,13 +14668,13 @@ FUNC_LIST[44] = function(loc_0)
 																	break
 																end
 															end
-															loc_0 = rt_add_i32(bit_and(loc_5, 4294967288), 1223504)
+															loc_0 = rt_add_i32(bit_and(loc_5, 4294967288), 1223584)
 															while true do
-																loc_1 = rt_load_i32(memory_at_0, 1223768)
+																loc_1 = rt_load_i32(memory_at_0, 1223848)
 																loc_4 = rt_shl_i32(1, rt_shr_u32(loc_5, 3))
 																if bit_and(loc_1, loc_4) == 0 then
 																	while true do
-																		rt_store_i32(memory_at_0, 1223768, bit_or(loc_1, loc_4))
+																		rt_store_i32(memory_at_0, 1223848, bit_or(loc_1, loc_4))
 																		reg_0 = loc_0
 																		desired = 12
 																		break
@@ -14760,10 +14705,10 @@ FUNC_LIST[44] = function(loc_0)
 														end
 													end
 													loc_1 = rt_sub_i32(loc_0, loc_5)
-													rt_store_i32(memory_at_0, 1223780, loc_1)
-													loc_0 = rt_load_i32(memory_at_0, 1223788)
+													rt_store_i32(memory_at_0, 1223860, loc_1)
+													loc_0 = rt_load_i32(memory_at_0, 1223868)
 													loc_2 = rt_add_i32(loc_0, loc_5)
-													rt_store_i32(memory_at_0, 1223788, loc_2)
+													rt_store_i32(memory_at_0, 1223868, loc_2)
 													rt_store_i32(memory_at_0, loc_2 + 4, bit_or(loc_1, 1))
 													rt_store_i32(memory_at_0, loc_0 + 4, bit_or(loc_5, 3))
 													loc_4 = rt_add_i32(loc_0, 8)
@@ -14777,13 +14722,13 @@ FUNC_LIST[44] = function(loc_0)
 													break
 												end
 											end
-											loc_0 = rt_load_i32(memory_at_0, 1223784)
+											loc_0 = rt_load_i32(memory_at_0, 1223864)
 											while true do
 												loc_2 = rt_sub_i32(loc_1, loc_5)
 												if loc_2 <= 15 then
 													while true do
-														rt_store_i32(memory_at_0, 1223784, 0)
-														rt_store_i32(memory_at_0, 1223776, 0)
+														rt_store_i32(memory_at_0, 1223864, 0)
+														rt_store_i32(memory_at_0, 1223856, 0)
 														rt_store_i32(memory_at_0, loc_0 + 4, bit_or(loc_1, 3))
 														loc_1 = rt_add_i32(loc_0, loc_1)
 														rt_store_i32(memory_at_0, loc_1 + 4, bit_or(rt_load_i32(memory_at_0, loc_1 + 4), 1))
@@ -14797,9 +14742,9 @@ FUNC_LIST[44] = function(loc_0)
 														break
 													end
 												end
-												rt_store_i32(memory_at_0, 1223776, loc_2)
+												rt_store_i32(memory_at_0, 1223856, loc_2)
 												loc_3 = rt_add_i32(loc_0, loc_5)
-												rt_store_i32(memory_at_0, 1223784, loc_3)
+												rt_store_i32(memory_at_0, 1223864, loc_3)
 												rt_store_i32(memory_at_0, loc_3 + 4, bit_or(loc_2, 1))
 												rt_store_i32(memory_at_0, rt_add_i32(loc_0, loc_1), loc_2)
 												rt_store_i32(memory_at_0, loc_0 + 4, bit_or(loc_5, 3))
@@ -14821,16 +14766,16 @@ FUNC_LIST[44] = function(loc_0)
 											break
 										end
 										rt_store_i32(memory_at_0, loc_0 + 4, rt_add_i32(loc_4, loc_6))
-										loc_0 = rt_load_i32(memory_at_0, 1223788)
+										loc_0 = rt_load_i32(memory_at_0, 1223868)
 										loc_1 = bit_and(rt_add_i32(loc_0, 15), 4294967288)
 										loc_2 = rt_sub_i32(loc_1, 8)
-										rt_store_i32(memory_at_0, 1223788, loc_2)
-										loc_3 = rt_add_i32(rt_load_i32(memory_at_0, 1223780), loc_4)
+										rt_store_i32(memory_at_0, 1223868, loc_2)
+										loc_3 = rt_add_i32(rt_load_i32(memory_at_0, 1223860), loc_4)
 										loc_1 = rt_add_i32(rt_add_i32(loc_3, rt_sub_i32(loc_0, loc_1)), 8)
-										rt_store_i32(memory_at_0, 1223780, loc_1)
+										rt_store_i32(memory_at_0, 1223860, loc_1)
 										rt_store_i32(memory_at_0, loc_2 + 4, bit_or(loc_1, 1))
 										rt_store_i32(memory_at_0, rt_add_i32(loc_0, loc_3) + 4, 40)
-										rt_store_i32(memory_at_0, 1223800, 2097152)
+										rt_store_i32(memory_at_0, 1223880, 2097152)
 										desired = 5
 										break
 									end
@@ -14840,9 +14785,9 @@ FUNC_LIST[44] = function(loc_0)
 										end
 										break
 									end
-									rt_store_i32(memory_at_0, 1223788, loc_3)
-									loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223780), loc_5)
-									rt_store_i32(memory_at_0, 1223780, loc_0)
+									rt_store_i32(memory_at_0, 1223868, loc_3)
+									loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223860), loc_5)
+									rt_store_i32(memory_at_0, 1223860, loc_0)
 									rt_store_i32(memory_at_0, loc_3 + 4, bit_or(loc_0, 1))
 									desired = 6
 									break
@@ -14853,9 +14798,9 @@ FUNC_LIST[44] = function(loc_0)
 									end
 									break
 								end
-								rt_store_i32(memory_at_0, 1223784, loc_3)
-								loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223776), loc_5)
-								rt_store_i32(memory_at_0, 1223776, loc_0)
+								rt_store_i32(memory_at_0, 1223864, loc_3)
+								loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223856), loc_5)
+								rt_store_i32(memory_at_0, 1223856, loc_0)
 								rt_store_i32(memory_at_0, loc_3 + 4, bit_or(loc_0, 1))
 								rt_store_i32(memory_at_0, rt_add_i32(loc_0, loc_3), loc_0)
 								break
@@ -14877,15 +14822,15 @@ FUNC_LIST[44] = function(loc_0)
 							break
 						end
 						loc_4 = 0
-						loc_0 = rt_load_i32(memory_at_0, 1223780)
+						loc_0 = rt_load_i32(memory_at_0, 1223860)
 						if loc_0 <= loc_5 then
 							break
 						end
 						loc_1 = rt_sub_i32(loc_0, loc_5)
-						rt_store_i32(memory_at_0, 1223780, loc_1)
-						loc_0 = rt_load_i32(memory_at_0, 1223788)
+						rt_store_i32(memory_at_0, 1223860, loc_1)
+						loc_0 = rt_load_i32(memory_at_0, 1223868)
 						loc_2 = rt_add_i32(loc_0, loc_5)
-						rt_store_i32(memory_at_0, 1223788, loc_2)
+						rt_store_i32(memory_at_0, 1223868, loc_2)
 						rt_store_i32(memory_at_0, loc_2 + 4, bit_or(loc_1, 1))
 						rt_store_i32(memory_at_0, loc_0 + 4, bit_or(loc_5, 3))
 						desired = 1
@@ -14953,13 +14898,13 @@ FUNC_LIST[44] = function(loc_0)
 								break
 							end
 						end
-						loc_0 = rt_add_i32(bit_and(loc_4, 4294967288), 1223504)
+						loc_0 = rt_add_i32(bit_and(loc_4, 4294967288), 1223584)
 						while true do
-							loc_3 = rt_load_i32(memory_at_0, 1223768)
+							loc_3 = rt_load_i32(memory_at_0, 1223848)
 							loc_4 = rt_shl_i32(1, rt_shr_u32(loc_4, 3))
 							if bit_and(loc_3, loc_4) == 0 then
 								while true do
-									rt_store_i32(memory_at_0, 1223768, bit_or(loc_3, loc_4))
+									rt_store_i32(memory_at_0, 1223848, bit_or(loc_3, loc_4))
 									reg_0 = loc_0
 									desired = 4
 									break
@@ -15307,7 +15252,7 @@ end
 FUNC_LIST[46] = function(loc_0, loc_1)
 	local reg_0
 	while true do
-		reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074871, 5)
+		reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074887, 5)
 		break
 	end
 	return reg_0
@@ -15354,7 +15299,7 @@ FUNC_LIST[47] = function(loc_0)
 				end
 				break
 			end
-			FUNC_LIST[34](1074405, 46, 1074452)
+			FUNC_LIST[34](1074425, 46, 1074472)
 			error("out of code bounds")
 		end
 		if desired then
@@ -15363,7 +15308,7 @@ FUNC_LIST[47] = function(loc_0)
 			end
 			break
 		end
-		FUNC_LIST[34](1074468, 46, 1074516)
+		FUNC_LIST[34](1074488, 46, 1074536)
 		error("out of code bounds")
 	end
 end
@@ -15392,13 +15337,13 @@ FUNC_LIST[48] = function(loc_0)
 				loc_3 = rt_load_i32(memory_at_0, loc_1)
 				loc_0 = rt_add_i32(loc_3, loc_0)
 				loc_1 = rt_sub_i32(loc_1, loc_3)
-				if loc_1 == rt_load_i32(memory_at_0, 1223784) then
+				if loc_1 == rt_load_i32(memory_at_0, 1223864) then
 					while true do
 						if bit_and(rt_load_i32(memory_at_0, loc_2 + 4), 3) ~= 3 then
 							desired = 2
 							break
 						end
-						rt_store_i32(memory_at_0, 1223776, loc_0)
+						rt_store_i32(memory_at_0, 1223856, loc_0)
 						rt_store_i32(memory_at_0, loc_2 + 4, bit_and(rt_load_i32(memory_at_0, loc_2 + 4), 4294967294))
 						rt_store_i32(memory_at_0, loc_1 + 4, bit_or(loc_0, 1))
 						rt_store_i32(memory_at_0, loc_2, loc_0)
@@ -15430,11 +15375,11 @@ FUNC_LIST[48] = function(loc_0)
 									loc_3 = rt_load_i32(memory_at_0, loc_2 + 4)
 									if bit_and(loc_3, 2) == 0 then
 										while true do
-											if loc_2 == rt_load_i32(memory_at_0, 1223788) then
+											if loc_2 == rt_load_i32(memory_at_0, 1223868) then
 												desired = 6
 												break
 											end
-											if loc_2 == rt_load_i32(memory_at_0, 1223784) then
+											if loc_2 == rt_load_i32(memory_at_0, 1223864) then
 												desired = 2
 												break
 											end
@@ -15444,11 +15389,11 @@ FUNC_LIST[48] = function(loc_0)
 											loc_0 = rt_add_i32(loc_0, loc_2)
 											rt_store_i32(memory_at_0, loc_1 + 4, bit_or(loc_0, 1))
 											rt_store_i32(memory_at_0, rt_add_i32(loc_0, loc_1), loc_0)
-											if loc_1 ~= rt_load_i32(memory_at_0, 1223784) then
+											if loc_1 ~= rt_load_i32(memory_at_0, 1223864) then
 												desired = 7
 												break
 											end
-											rt_store_i32(memory_at_0, 1223776, loc_0)
+											rt_store_i32(memory_at_0, 1223856, loc_0)
 											desired = 0
 											break
 										end
@@ -15490,9 +15435,9 @@ FUNC_LIST[48] = function(loc_0)
 									end
 								end
 								rt_store_i32(memory_at_0, loc_1 + 28, loc_2)
-								loc_3 = rt_add_i32(rt_shl_i32(loc_2, 2), 1223360)
+								loc_3 = rt_add_i32(rt_shl_i32(loc_2, 2), 1223440)
 								loc_4 = rt_shl_i32(1, loc_2)
-								if bit_and(loc_4, rt_load_i32(memory_at_0, 1223772)) ~= 0 then
+								if bit_and(loc_4, rt_load_i32(memory_at_0, 1223852)) ~= 0 then
 									desired = 5
 									break
 								end
@@ -15500,7 +15445,7 @@ FUNC_LIST[48] = function(loc_0)
 								rt_store_i32(memory_at_0, loc_1 + 24, loc_3)
 								rt_store_i32(memory_at_0, loc_1 + 12, loc_1)
 								rt_store_i32(memory_at_0, loc_1 + 8, loc_1)
-								rt_store_i32(memory_at_0, 1223772, bit_or(rt_load_i32(memory_at_0, 1223772), loc_4))
+								rt_store_i32(memory_at_0, 1223852, bit_or(rt_load_i32(memory_at_0, 1223852), loc_4))
 								desired = 4
 								break
 							end
@@ -15510,14 +15455,14 @@ FUNC_LIST[48] = function(loc_0)
 								end
 								break
 							end
-							rt_store_i32(memory_at_0, 1223788, loc_1)
-							loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223780), loc_0)
-							rt_store_i32(memory_at_0, 1223780, loc_0)
+							rt_store_i32(memory_at_0, 1223868, loc_1)
+							loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223860), loc_0)
+							rt_store_i32(memory_at_0, 1223860, loc_0)
 							rt_store_i32(memory_at_0, loc_1 + 4, bit_or(loc_0, 1))
-							if rt_load_i32(memory_at_0, 1223784) == loc_1 then
+							if rt_load_i32(memory_at_0, 1223864) == loc_1 then
 								while true do
-									rt_store_i32(memory_at_0, 1223776, 0)
-									rt_store_i32(memory_at_0, 1223784, 0)
+									rt_store_i32(memory_at_0, 1223856, 0)
+									rt_store_i32(memory_at_0, 1223864, 0)
 									break
 								end
 								if desired then
@@ -15527,23 +15472,23 @@ FUNC_LIST[48] = function(loc_0)
 									break
 								end
 							end
-							loc_3 = rt_load_i32(memory_at_0, 1223800)
+							loc_3 = rt_load_i32(memory_at_0, 1223880)
 							if loc_3 >= loc_0 then
 								desired = 1
 								break
 							end
-							loc_2 = rt_load_i32(memory_at_0, 1223788)
+							loc_2 = rt_load_i32(memory_at_0, 1223868)
 							if loc_2 == 0 then
 								desired = 1
 								break
 							end
 							loc_1 = 0
 							while true do
-								loc_4 = rt_load_i32(memory_at_0, 1223780)
+								loc_4 = rt_load_i32(memory_at_0, 1223860)
 								if loc_4 < 41 then
 									break
 								end
-								loc_0 = 1223488
+								loc_0 = 1223568
 								while true do
 									loc_5 = rt_load_i32(memory_at_0, loc_0)
 									if loc_2 >= loc_5 then
@@ -15582,7 +15527,7 @@ FUNC_LIST[48] = function(loc_0)
 								end
 								break
 							end
-							loc_0 = rt_load_i32(memory_at_0, 1223496)
+							loc_0 = rt_load_i32(memory_at_0, 1223576)
 							if loc_0 ~= 0 then
 								while true do
 									while true do
@@ -15605,12 +15550,12 @@ FUNC_LIST[48] = function(loc_0)
 									break
 								end
 							end
-							rt_store_i32(memory_at_0, 1223808, (if loc_1 <= 4095 then 4095 else loc_1))
+							rt_store_i32(memory_at_0, 1223888, (if loc_1 <= 4095 then 4095 else loc_1))
 							if loc_3 >= loc_4 then
 								desired = 1
 								break
 							end
-							rt_store_i32(memory_at_0, 1223800, 4294967295)
+							rt_store_i32(memory_at_0, 1223880, 4294967295)
 							desired = 1
 							break
 						end
@@ -15693,13 +15638,13 @@ FUNC_LIST[48] = function(loc_0)
 						break
 					end
 					loc_1 = 0
-					loc_0 = rt_sub_i32(rt_load_i32(memory_at_0, 1223808), 1)
-					rt_store_i32(memory_at_0, 1223808, loc_0)
+					loc_0 = rt_sub_i32(rt_load_i32(memory_at_0, 1223888), 1)
+					rt_store_i32(memory_at_0, 1223888, loc_0)
 					if loc_0 ~= 0 then
 						desired = 1
 						break
 					end
-					loc_0 = rt_load_i32(memory_at_0, 1223496)
+					loc_0 = rt_load_i32(memory_at_0, 1223576)
 					if loc_0 ~= 0 then
 						while true do
 							while true do
@@ -15722,7 +15667,7 @@ FUNC_LIST[48] = function(loc_0)
 							break
 						end
 					end
-					rt_store_i32(memory_at_0, 1223808, (if loc_1 <= 4095 then 4095 else loc_1))
+					rt_store_i32(memory_at_0, 1223888, (if loc_1 <= 4095 then 4095 else loc_1))
 					desired = 0
 					break
 				end
@@ -15732,13 +15677,13 @@ FUNC_LIST[48] = function(loc_0)
 					end
 					break
 				end
-				loc_2 = rt_add_i32(bit_and(loc_0, 4294967288), 1223504)
+				loc_2 = rt_add_i32(bit_and(loc_0, 4294967288), 1223584)
 				while true do
-					loc_3 = rt_load_i32(memory_at_0, 1223768)
+					loc_3 = rt_load_i32(memory_at_0, 1223848)
 					loc_0 = rt_shl_i32(1, rt_shr_u32(loc_0, 3))
 					if bit_and(loc_3, loc_0) == 0 then
 						while true do
-							rt_store_i32(memory_at_0, 1223768, bit_or(loc_0, loc_3))
+							rt_store_i32(memory_at_0, 1223848, bit_or(loc_0, loc_3))
 							reg_0 = loc_2
 							desired = 3
 							break
@@ -15773,9 +15718,9 @@ FUNC_LIST[48] = function(loc_0)
 				end
 				break
 			end
-			rt_store_i32(memory_at_0, 1223784, loc_1)
-			loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223776), loc_0)
-			rt_store_i32(memory_at_0, 1223776, loc_0)
+			rt_store_i32(memory_at_0, 1223864, loc_1)
+			loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223856), loc_0)
+			rt_store_i32(memory_at_0, 1223856, loc_0)
 			rt_store_i32(memory_at_0, loc_1 + 4, bit_or(loc_0, 1))
 			rt_store_i32(memory_at_0, rt_add_i32(loc_0, loc_1), loc_0)
 			break
@@ -17340,7 +17285,7 @@ FUNC_LIST[68] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 						desired = 1
 						break
 					end
-					reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_5 + 24) + 12)](rt_load_i32(memory_at_0, loc_5 + 20), 1074168, 2)
+					reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_5 + 24) + 12)](rt_load_i32(memory_at_0, loc_5 + 20), 1074188, 2)
 					if reg_0 ~= 0 then
 						desired = 1
 						break
@@ -17390,7 +17335,7 @@ FUNC_LIST[68] = function(loc_0, loc_1, loc_2, loc_3, loc_4)
 			if reg_0 ~= 0 then
 				break
 			end
-			reg_0 = FUNC_LIST[69](loc_5, 1074168, 2)
+			reg_0 = FUNC_LIST[69](loc_5, 1074188, 2)
 			if reg_0 ~= 0 then
 				break
 			end
@@ -17858,7 +17803,7 @@ FUNC_LIST[74] = function(loc_0, loc_1)
 	local reg_0
 	while true do
 		loc_0 = rt_shl_i32(rt_load_i32_u8(memory_at_0, rt_load_i32(memory_at_0, loc_0)), 2)
-		reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), rt_load_i32(memory_at_0, rt_add_i32(loc_0, 1076260)), rt_load_i32(memory_at_0, rt_add_i32(loc_0, 1076240)))
+		reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), rt_load_i32(memory_at_0, rt_add_i32(loc_0, 1076276)), rt_load_i32(memory_at_0, rt_add_i32(loc_0, 1076256)))
 		break
 	end
 	return reg_0
@@ -17876,7 +17821,7 @@ FUNC_LIST[75] = function(loc_0, loc_1, loc_2, loc_3)
 		rt_store_i32(memory_at_0, loc_4 + 8, loc_0)
 		rt_store_i32_n8(memory_at_0, loc_4 + 13, 0)
 		rt_store_i32(memory_at_0, loc_4 + 4, 0)
-		reg_0 = FUNC_LIST[73](rt_add_i32(loc_4, 4), loc_3, 1074196)
+		reg_0 = FUNC_LIST[73](rt_add_i32(loc_4, 4), loc_3, 1074216)
 		loc_0 = reg_0
 		while true do
 			loc_2 = rt_load_i32_u8(memory_at_0, loc_4 + 12)
@@ -19617,7 +19562,7 @@ FUNC_LIST[85] = function(loc_0, loc_1)
 		rt_store_i32_n8(memory_at_0, loc_0 + 13, 0)
 		rt_store_i32_n8(memory_at_0, loc_0 + 12, loc_3)
 		rt_store_i32(memory_at_0, loc_0 + 8, loc_1)
-		reg_0 = FUNC_LIST[68](rt_add_i32(loc_0, 8), 1074838, 4, rt_add_i32(loc_2, 12), 18)
+		reg_0 = FUNC_LIST[68](rt_add_i32(loc_0, 8), 1074854, 4, rt_add_i32(loc_2, 12), 18)
 		loc_3 = reg_0
 		while true do
 			loc_1 = rt_load_i32_u8(memory_at_0, loc_0 + 12)
@@ -20153,7 +20098,7 @@ FUNC_LIST[89] = function(loc_0)
 			while true do
 				while true do
 					while true do
-						loc_2 = rt_load_i32_u8(memory_at_0, 1223264)
+						loc_2 = rt_load_i32_u8(memory_at_0, 1223344)
 						if loc_2 >= 2 then
 							while true do
 								if rt_sub_i32(loc_2, 3) ~= 0 then
@@ -20170,7 +20115,7 @@ FUNC_LIST[89] = function(loc_0)
 								break
 							end
 						end
-						rt_store_i32_n8(memory_at_0, 1223264, 2)
+						rt_store_i32_n8(memory_at_0, 1223344, 2)
 						loc_2 = rt_load_i32(memory_at_0, loc_0)
 						rt_store_i32(memory_at_0, loc_0, 0)
 						if loc_2 == 0 then
@@ -20185,7 +20130,7 @@ FUNC_LIST[89] = function(loc_0)
 							break
 						end
 						rt_store_i32(memory_at_0, loc_2, loc_0)
-						rt_store_i32_n8(memory_at_0, 1223264, 3)
+						rt_store_i32_n8(memory_at_0, 1223344, 3)
 						break
 					end
 					if desired then
@@ -20215,7 +20160,7 @@ FUNC_LIST[89] = function(loc_0)
 			end
 			rt_store_i32(memory_at_0, loc_1 + 12, loc_3)
 			rt_store_i32(memory_at_0, loc_1 + 8, loc_0)
-			FUNC_LIST[17](1074588, 43, rt_add_i32(loc_1, 8), 1067840, 1067856)
+			FUNC_LIST[17](1074608, 43, rt_add_i32(loc_1, 8), 1067840, 1067856)
 			error("out of code bounds")
 		end
 		if desired then
@@ -20226,7 +20171,7 @@ FUNC_LIST[89] = function(loc_0)
 		end
 		rt_store_i32(memory_at_0, loc_1 + 24, 0)
 		rt_store_i32(memory_at_0, loc_1 + 12, 1)
-		rt_store_i32(memory_at_0, loc_1 + 8, 1075904)
+		rt_store_i32(memory_at_0, loc_1 + 8, 1075920)
 		rt_store_i64(memory_at_0, loc_1 + 16, rt_i64_from_u32(4, 0))
 		FUNC_LIST[14](rt_add_i32(loc_1, 8), 1052828)
 		error("out of code bounds")
@@ -20525,7 +20470,7 @@ FUNC_LIST[93] = function(loc_0, loc_1)
 		loc_2 = rt_sub_i32(GLOBAL_LIST[0].value, 16)
 		GLOBAL_LIST[0].value = loc_2
 		rt_store_i32(memory_at_0, loc_2 + 12, rt_load_i32(memory_at_0, loc_0))
-		reg_0 = FUNC_LIST[75](loc_1, 1074188, 8, rt_add_i32(loc_2, 12))
+		reg_0 = FUNC_LIST[75](loc_1, 1074208, 8, rt_add_i32(loc_2, 12))
 		GLOBAL_LIST[0].value = rt_add_i32(loc_2, 16)
 		break
 	end
@@ -20648,7 +20593,7 @@ FUNC_LIST[95] = function(loc_0)
 			while true do
 				while true do
 					while true do
-						loc_2 = rt_load_i32_u8(memory_at_0, 1223272)
+						loc_2 = rt_load_i32_u8(memory_at_0, 1223352)
 						if loc_2 >= 2 then
 							while true do
 								if rt_sub_i32(loc_2, 3) ~= 0 then
@@ -20665,7 +20610,7 @@ FUNC_LIST[95] = function(loc_0)
 								break
 							end
 						end
-						rt_store_i32_n8(memory_at_0, 1223272, 2)
+						rt_store_i32_n8(memory_at_0, 1223352, 2)
 						loc_2 = rt_load_i32(memory_at_0, loc_0)
 						rt_store_i32(memory_at_0, loc_0, 0)
 						if loc_2 == 0 then
@@ -20680,7 +20625,7 @@ FUNC_LIST[95] = function(loc_0)
 							break
 						end
 						rt_store_i32(memory_at_0, loc_2, loc_0)
-						rt_store_i32_n8(memory_at_0, 1223272, 3)
+						rt_store_i32_n8(memory_at_0, 1223352, 3)
 						break
 					end
 					if desired then
@@ -20710,7 +20655,7 @@ FUNC_LIST[95] = function(loc_0)
 			end
 			rt_store_i32(memory_at_0, loc_1 + 12, loc_3)
 			rt_store_i32(memory_at_0, loc_1 + 8, loc_0)
-			FUNC_LIST[17](1074588, 43, rt_add_i32(loc_1, 8), 1067840, 1069424)
+			FUNC_LIST[17](1074608, 43, rt_add_i32(loc_1, 8), 1067840, 1069424)
 			error("out of code bounds")
 		end
 		if desired then
@@ -20721,7 +20666,7 @@ FUNC_LIST[95] = function(loc_0)
 		end
 		rt_store_i32(memory_at_0, loc_1 + 24, 0)
 		rt_store_i32(memory_at_0, loc_1 + 12, 1)
-		rt_store_i32(memory_at_0, loc_1 + 8, 1075904)
+		rt_store_i32(memory_at_0, loc_1 + 8, 1075920)
 		rt_store_i64(memory_at_0, loc_1 + 16, rt_i64_from_u32(4, 0))
 		FUNC_LIST[14](rt_add_i32(loc_1, 8), 1052828)
 		error("out of code bounds")
@@ -20742,7 +20687,7 @@ FUNC_LIST[96] = function()
 	local loc_11 = 0
 	local reg_0
 	while true do
-		loc_0 = rt_load_i64(memory_at_0, 1076304)
+		loc_0 = rt_load_i64(memory_at_0, 1076320)
 		if rt_ne_i64(loc_0, rt_i64_ZERO) then
 			while true do
 				while true do
@@ -20758,7 +20703,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_1 = rt_load_i64(memory_at_0, 1076312)
+		loc_1 = rt_load_i64(memory_at_0, 1076328)
 		if rt_ne_i64(loc_1, rt_i64_ZERO) then
 			while true do
 				loc_0 = loc_1
@@ -20775,7 +20720,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_2 = rt_load_i64(memory_at_0, 1076320)
+		loc_2 = rt_load_i64(memory_at_0, 1076336)
 		if rt_ne_i64(loc_2, rt_i64_ZERO) then
 			while true do
 				loc_0 = loc_2
@@ -20792,7 +20737,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_3 = rt_load_i64(memory_at_0, 1076328)
+		loc_3 = rt_load_i64(memory_at_0, 1076344)
 		if rt_ne_i64(loc_3, rt_i64_ZERO) then
 			while true do
 				loc_0 = loc_3
@@ -20809,7 +20754,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_4 = rt_load_i64(memory_at_0, 1076336)
+		loc_4 = rt_load_i64(memory_at_0, 1076352)
 		if rt_ne_i64(loc_4, rt_i64_ZERO) then
 			while true do
 				loc_0 = loc_4
@@ -20826,7 +20771,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_0 = rt_load_i64(memory_at_0, 1076344)
+		loc_0 = rt_load_i64(memory_at_0, 1076360)
 		if rt_ne_i64(loc_0, rt_i64_ZERO) then
 			while true do
 				while true do
@@ -20842,7 +20787,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_0 = rt_load_i64(memory_at_0, 1076352)
+		loc_0 = rt_load_i64(memory_at_0, 1076368)
 		if rt_ne_i64(loc_0, rt_i64_ZERO) then
 			while true do
 				while true do
@@ -20858,7 +20803,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_5 = rt_load_i64(memory_at_0, 1076360)
+		loc_5 = rt_load_i64(memory_at_0, 1076376)
 		if rt_ne_i64(loc_5, rt_i64_ZERO) then
 			while true do
 				loc_0 = loc_5
@@ -20875,7 +20820,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_6 = rt_load_i64(memory_at_0, 1076368)
+		loc_6 = rt_load_i64(memory_at_0, 1076384)
 		if rt_ne_i64(loc_6, rt_i64_ZERO) then
 			while true do
 				loc_0 = loc_6
@@ -20892,7 +20837,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_7 = rt_load_i64(memory_at_0, 1076376)
+		loc_7 = rt_load_i64(memory_at_0, 1076392)
 		if rt_ne_i64(loc_7, rt_i64_ZERO) then
 			while true do
 				loc_0 = loc_7
@@ -20909,7 +20854,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_8 = rt_load_i64(memory_at_0, 1076384)
+		loc_8 = rt_load_i64(memory_at_0, 1076400)
 		if rt_ne_i64(loc_8, rt_i64_ZERO) then
 			while true do
 				loc_0 = loc_8
@@ -20926,7 +20871,7 @@ FUNC_LIST[96] = function()
 				break
 			end
 		end
-		loc_0 = rt_load_i64(memory_at_0, 1076392)
+		loc_0 = rt_load_i64(memory_at_0, 1076408)
 		if rt_ne_i64(loc_0, rt_i64_ZERO) then
 			while true do
 				while true do
@@ -20946,7 +20891,7 @@ FUNC_LIST[96] = function()
 		loc_9 = rt_add_i32(rt_add_i32(rt_add_i32(rt_mul_i32(rt_wrap_i32_i64(rt_popcnt_i64(rt_bit_or_i64(loc_1, loc_5))), 81), rt_mul_i32(rt_wrap_i32_i64(rt_popcnt_i64(rt_bit_or_i64(loc_2, loc_6))), 114)), rt_mul_i32(rt_wrap_i32_i64(rt_popcnt_i64(rt_bit_or_i64(loc_3, loc_7))), 174)), rt_mul_i32(rt_wrap_i32_i64(rt_popcnt_i64(rt_bit_or_i64(loc_4, loc_8))), 430))
 		loc_9 = (if loc_9 >= 2336 then 2336 else loc_9)
 		loc_9 = rt_div_i32(rt_add_i32(rt_mul_i32(reg_0, rt_sub_i32(2336, loc_9)), rt_mul_i32(loc_9, loc_10)), 2336)
-		reg_0 = (if rt_load_i32_u8(memory_at_0, 1076420) ~= 0 then loc_9 else rt_sub_i32(0, loc_9))
+		reg_0 = (if rt_load_i32_u8(memory_at_0, 1076436) ~= 0 then loc_9 else rt_sub_i32(0, loc_9))
 		break
 	end
 	return reg_0
@@ -20958,7 +20903,7 @@ FUNC_LIST[97] = function(loc_0, loc_1)
 		loc_2 = rt_sub_i32(GLOBAL_LIST[0].value, 16)
 		GLOBAL_LIST[0].value = loc_2
 		rt_store_i32(memory_at_0, loc_2 + 12, rt_load_i32(memory_at_0, loc_0))
-		reg_0 = FUNC_LIST[75](loc_1, 1074212, 7, rt_add_i32(loc_2, 12))
+		reg_0 = FUNC_LIST[75](loc_1, 1074232, 7, rt_add_i32(loc_2, 12))
 		GLOBAL_LIST[0].value = rt_add_i32(loc_2, 16)
 		break
 	end
@@ -20985,7 +20930,7 @@ FUNC_LIST[98] = function(loc_0, loc_1)
 	while true do
 		loc_3 = rt_sub_i32(GLOBAL_LIST[0].value, 1312)
 		GLOBAL_LIST[0].value = loc_3
-		rt_store_i32(memory_at_0, 1092896, rt_add_i32(rt_load_i32(memory_at_0, 1092896), 1))
+		rt_store_i32(memory_at_0, 1092976, rt_add_i32(rt_load_i32(memory_at_0, 1092976), 1))
 		while true do
 			reg_0 = FUNC_LIST[96]()
 			loc_6 = reg_0
@@ -21005,9 +20950,9 @@ FUNC_LIST[98] = function(loc_0, loc_1)
 					break
 				end
 			end
-			FUNC_LIST[23](loc_3, 1076304)
+			FUNC_LIST[23](loc_3, 1076320)
 			rt_store_i32(memory_at_0, loc_3 + 1308, 0)
-			rt_store_i32(memory_at_0, loc_3 + 128, 1076304)
+			rt_store_i32(memory_at_0, loc_3 + 128, 1076320)
 			rt_store_i32(memory_at_0, loc_3 + 124, rt_add_i32(loc_3, 1308))
 			loc_4 = rt_add_i32(loc_3, 712)
 			rt_store_i32(memory_at_0, loc_3 + 120, loc_4)
@@ -21128,10 +21073,10 @@ FUNC_LIST[98] = function(loc_0, loc_1)
 									rt_store_i32_n16(memory_at_0, loc_3 + 1308, bit_or(rt_load_i32_u8(memory_at_0, rt_add_i32(loc_5, 1070588)), rt_shl_i32(bit_and(loc_2, 63), 8)))
 									loc_2 = rt_add_i32(loc_3, 712)
 									loc_5 = rt_add_i32(loc_3, 1308)
-									FUNC_LIST[22](loc_2, 1076304, loc_5)
+									FUNC_LIST[22](loc_2, 1076320, loc_5)
 									reg_0 = FUNC_LIST[98](loc_14, rt_sub_i32(0, loc_0))
 									loc_7 = reg_0
-									FUNC_LIST[88](1076304, loc_5, loc_2)
+									FUNC_LIST[88](1076320, loc_5, loc_2)
 									loc_2 = rt_sub_i32(0, loc_7)
 									if rt_le_i32(loc_2, loc_6) then
 										desired = 3
@@ -21785,7 +21730,7 @@ FUNC_LIST[100] = function(loc_0, loc_1)
 						end
 						break
 					end
-					loc_3 = rt_load_i32_i16(memory_at_0, rt_add_i32(rt_add_i32(rt_add_i32(loc_2, rt_shl_i32(rt_load_i32_u8(memory_at_0, loc_2 + 116), 13)), rt_shl_i32(loc_1, 1)), 184))
+					loc_3 = rt_load_i32_i16(memory_at_0, rt_add_i32(rt_add_i32(rt_add_i32(loc_2, rt_shl_i32(rt_load_i32_u8(memory_at_0, loc_2 + 116), 13)), rt_shl_i32(loc_1, 1)), 248))
 					desired = 1
 					break
 				end
@@ -21795,7 +21740,7 @@ FUNC_LIST[100] = function(loc_0, loc_1)
 					end
 					break
 				end
-				loc_3 = rt_load_i32_i16(memory_at_0, rt_add_i32(rt_add_i32(rt_add_i32(loc_2, rt_shl_i32(loc_3, 13)), rt_shl_i32(loc_1, 1)), 184))
+				loc_3 = rt_load_i32_i16(memory_at_0, rt_add_i32(rt_add_i32(rt_add_i32(loc_2, rt_shl_i32(loc_3, 13)), rt_shl_i32(loc_1, 1)), 248))
 				desired = 1
 				break
 			end
@@ -22012,7 +21957,7 @@ FUNC_LIST[103] = function(loc_0)
 													return { [0] = 2, 7, 1, }
 												end)()
 											end
-											temp = br_map[1][rt_sub_i32(rt_load_i32_u8(memory_at_0, 1223277), 1)] or 0
+											temp = br_map[1][rt_sub_i32(rt_load_i32_u8(memory_at_0, 1223357), 1)] or 0
 											if temp < 2 then
 												if temp < 1 then
 													break
@@ -22034,7 +21979,7 @@ FUNC_LIST[103] = function(loc_0)
 											end
 											break
 										end
-										rt_store_i32_n8(memory_at_0, 1223277, 2)
+										rt_store_i32_n8(memory_at_0, 1223357, 2)
 										reg_0 = rt_load_i32_u8(memory_at_0, loc_0)
 										rt_store_i32_n8(memory_at_0, loc_0, 0)
 										if reg_0 == 0 then
@@ -22043,9 +21988,9 @@ FUNC_LIST[103] = function(loc_0)
 										end
 										rt_store_i32_n8(memory_at_0, loc_2 + 30, 0)
 										while true do
-											if rt_load_i32_u8(memory_at_0, 1223340) ~= 3 then
+											if rt_load_i32_u8(memory_at_0, 1223420) ~= 3 then
 												while true do
-													rt_store_i32(memory_at_0, loc_2 + 8, 1223308)
+													rt_store_i32(memory_at_0, loc_2 + 8, 1223388)
 													rt_store_i32(memory_at_0, loc_2 + 12, rt_add_i32(loc_2, 31))
 													rt_store_i32(memory_at_0, loc_2 + 4, rt_add_i32(loc_2, 30))
 													loc_1 = rt_add_i32(loc_2, 4)
@@ -22055,7 +22000,7 @@ FUNC_LIST[103] = function(loc_0)
 														while true do
 															while true do
 																while true do
-																	loc_3 = rt_load_i32_u8(memory_at_0, 1223340)
+																	loc_3 = rt_load_i32_u8(memory_at_0, 1223420)
 																	if loc_3 >= 2 then
 																		while true do
 																			if rt_sub_i32(loc_3, 3) ~= 0 then
@@ -22072,7 +22017,7 @@ FUNC_LIST[103] = function(loc_0)
 																			break
 																		end
 																	end
-																	rt_store_i32_n8(memory_at_0, 1223340, 2)
+																	rt_store_i32_n8(memory_at_0, 1223420, 2)
 																	loc_3 = rt_load_i32(memory_at_0, loc_1)
 																	rt_store_i32(memory_at_0, loc_1, 0)
 																	if loc_3 == 0 then
@@ -22086,7 +22031,7 @@ FUNC_LIST[103] = function(loc_0)
 																	rt_store_i32_n8(memory_at_0, loc_1 + 28, 0)
 																	rt_store_i64(memory_at_0, loc_1 + 20, rt_i64_ONE)
 																	rt_store_i64(memory_at_0, loc_1 + 12, rt_i64_ZERO)
-																	rt_store_i32_n8(memory_at_0, 1223340, 3)
+																	rt_store_i32_n8(memory_at_0, 1223420, 3)
 																	break
 																end
 																if desired then
@@ -22105,7 +22050,7 @@ FUNC_LIST[103] = function(loc_0)
 																end
 																break
 															end
-															FUNC_LIST[15](1075152)
+															FUNC_LIST[15](1075168)
 															error("out of code bounds")
 														end
 														if desired then
@@ -22116,9 +22061,9 @@ FUNC_LIST[103] = function(loc_0)
 														end
 														rt_store_i32(memory_at_0, loc_0 + 24, 0)
 														rt_store_i32(memory_at_0, loc_0 + 12, 1)
-														rt_store_i32(memory_at_0, loc_0 + 8, 1075904)
+														rt_store_i32(memory_at_0, loc_0 + 8, 1075920)
 														rt_store_i64(memory_at_0, loc_0 + 16, rt_i64_from_u32(4, 0))
-														FUNC_LIST[14](rt_add_i32(loc_0, 8), 1075136)
+														FUNC_LIST[14](rt_add_i32(loc_0, 8), 1075152)
 														error("out of code bounds")
 													end
 													if desired then
@@ -22138,16 +22083,16 @@ FUNC_LIST[103] = function(loc_0)
 												end
 											end
 											while true do
-												if rt_load_i32(memory_at_0, 1223308) ~= 1223817 then
+												if rt_load_i32(memory_at_0, 1223388) ~= 1223897 then
 													while true do
 														loc_0 = 1
-														reg_0 = rt_load_i32_u8(memory_at_0, 1223316)
-														rt_store_i32_n8(memory_at_0, 1223316, 1)
+														reg_0 = rt_load_i32_u8(memory_at_0, 1223396)
+														rt_store_i32_n8(memory_at_0, 1223396, 1)
 														if reg_0 ~= 0 then
 															desired = 9
 															break
 														end
-														rt_store_i32(memory_at_0, 1223308, 1223817)
+														rt_store_i32(memory_at_0, 1223388, 1223897)
 														desired = 10
 														break
 													end
@@ -22158,7 +22103,7 @@ FUNC_LIST[103] = function(loc_0)
 														break
 													end
 												end
-												loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223312), 1)
+												loc_0 = rt_add_i32(rt_load_i32(memory_at_0, 1223392), 1)
 												if loc_0 == 0 then
 													desired = 9
 													break
@@ -22172,16 +22117,16 @@ FUNC_LIST[103] = function(loc_0)
 												break
 											end
 											loc_1 = 0
-											rt_store_i32(memory_at_0, 1223312, loc_0)
-											if rt_load_i32(memory_at_0, 1223320) ~= 0 then
+											rt_store_i32(memory_at_0, 1223392, loc_0)
+											if rt_load_i32(memory_at_0, 1223400) ~= 0 then
 												desired = 3
 												break
 											end
-											rt_store_i32(memory_at_0, 1223320, 4294967295)
-											loc_3 = rt_load_i32(memory_at_0, 1223324)
+											rt_store_i32(memory_at_0, 1223400, 4294967295)
+											loc_3 = rt_load_i32(memory_at_0, 1223404)
 											if loc_3 ~= 0 then
 												while true do
-													loc_1 = rt_load_i32(memory_at_0, 1223328)
+													loc_1 = rt_load_i32(memory_at_0, 1223408)
 													loc_4 = rt_load_i32(memory_at_0, rt_sub_i32(loc_1, 4))
 													loc_0 = bit_and(loc_4, 4294967288)
 													loc_4 = bit_and(loc_4, 3)
@@ -22194,8 +22139,8 @@ FUNC_LIST[103] = function(loc_0)
 														break
 													end
 													FUNC_LIST[48](loc_1)
-													loc_1 = rt_add_i32(rt_load_i32(memory_at_0, 1223320), 1)
-													loc_0 = rt_load_i32(memory_at_0, 1223312)
+													loc_1 = rt_add_i32(rt_load_i32(memory_at_0, 1223400), 1)
+													loc_0 = rt_load_i32(memory_at_0, 1223392)
 													break
 												end
 												if desired then
@@ -22205,17 +22150,17 @@ FUNC_LIST[103] = function(loc_0)
 													break
 												end
 											end
-											rt_store_i64(memory_at_0, 1223324, rt_i64_from_u32(0, 1))
-											rt_store_i32(memory_at_0, 1223320, loc_1)
+											rt_store_i64(memory_at_0, 1223404, rt_i64_from_u32(0, 1))
+											rt_store_i32(memory_at_0, 1223400, loc_1)
 											loc_0 = rt_sub_i32(loc_0, 1)
-											rt_store_i32(memory_at_0, 1223312, loc_0)
-											rt_store_i32_n8(memory_at_0, 1223336, 0)
-											rt_store_i32(memory_at_0, 1223332, 0)
+											rt_store_i32(memory_at_0, 1223392, loc_0)
+											rt_store_i32_n8(memory_at_0, 1223416, 0)
+											rt_store_i32(memory_at_0, 1223412, 0)
 											if loc_0 ~= 0 then
 												break
 											end
-											rt_store_i32_n8(memory_at_0, 1223316, 0)
-											rt_store_i32(memory_at_0, 1223308, 0)
+											rt_store_i32_n8(memory_at_0, 1223396, 0)
+											rt_store_i32(memory_at_0, 1223388, 0)
 											break
 										end
 										if desired then
@@ -22224,7 +22169,7 @@ FUNC_LIST[103] = function(loc_0)
 											end
 											break
 										end
-										rt_store_i32_n8(memory_at_0, 1223277, 3)
+										rt_store_i32_n8(memory_at_0, 1223357, 3)
 										break
 									end
 									if desired then
@@ -22245,7 +22190,7 @@ FUNC_LIST[103] = function(loc_0)
 								end
 								rt_store_i32(memory_at_0, loc_2 + 20, 0)
 								rt_store_i32(memory_at_0, loc_2 + 8, 1)
-								rt_store_i32(memory_at_0, loc_2 + 4, 1075840)
+								rt_store_i32(memory_at_0, loc_2 + 4, 1075856)
 								desired = 1
 								break
 							end
@@ -22255,7 +22200,7 @@ FUNC_LIST[103] = function(loc_0)
 								end
 								break
 							end
-							FUNC_LIST[15](1075120)
+							FUNC_LIST[15](1075136)
 							error("out of code bounds")
 						end
 						if desired then
@@ -22264,7 +22209,7 @@ FUNC_LIST[103] = function(loc_0)
 							end
 							break
 						end
-						FUNC_LIST[34](1074405, 46, 1074452)
+						FUNC_LIST[34](1074425, 46, 1074472)
 						error("out of code bounds")
 					end
 					if desired then
@@ -22273,7 +22218,7 @@ FUNC_LIST[103] = function(loc_0)
 						end
 						break
 					end
-					FUNC_LIST[34](1074468, 46, 1074516)
+					FUNC_LIST[34](1074488, 46, 1074536)
 					error("out of code bounds")
 				end
 				if desired then
@@ -22282,7 +22227,7 @@ FUNC_LIST[103] = function(loc_0)
 					end
 					break
 				end
-				FUNC_LIST[11](1074916)
+				FUNC_LIST[11](1074932)
 				error("out of code bounds")
 			end
 			if desired then
@@ -22293,7 +22238,7 @@ FUNC_LIST[103] = function(loc_0)
 			end
 			rt_store_i32(memory_at_0, loc_2 + 20, 0)
 			rt_store_i32(memory_at_0, loc_2 + 8, 1)
-			rt_store_i32(memory_at_0, loc_2 + 4, 1075904)
+			rt_store_i32(memory_at_0, loc_2 + 4, 1075920)
 			break
 		end
 		if desired then
@@ -22303,7 +22248,7 @@ FUNC_LIST[103] = function(loc_0)
 			break
 		end
 		rt_store_i64(memory_at_0, loc_2 + 12, rt_i64_from_u32(4, 0))
-		FUNC_LIST[14](rt_add_i32(loc_2, 4), 1074556)
+		FUNC_LIST[14](rt_add_i32(loc_2, 4), 1074576)
 		error("out of code bounds")
 	end
 end
@@ -22393,7 +22338,7 @@ FUNC_LIST[104] = function(loc_0)
 									end
 									break
 								end
-								FUNC_LIST[34](1074405, 46, 1074452)
+								FUNC_LIST[34](1074425, 46, 1074472)
 								error("out of code bounds")
 							end
 							if desired then
@@ -22402,7 +22347,7 @@ FUNC_LIST[104] = function(loc_0)
 								end
 								break
 							end
-							FUNC_LIST[34](1074468, 46, 1074516)
+							FUNC_LIST[34](1074488, 46, 1074536)
 							error("out of code bounds")
 						end
 						if desired then
@@ -22411,7 +22356,7 @@ FUNC_LIST[104] = function(loc_0)
 							end
 							break
 						end
-						FUNC_LIST[34](1074405, 46, 1074452)
+						FUNC_LIST[34](1074425, 46, 1074472)
 						error("out of code bounds")
 					end
 					if desired then
@@ -22420,7 +22365,7 @@ FUNC_LIST[104] = function(loc_0)
 						end
 						break
 					end
-					FUNC_LIST[34](1074468, 46, 1074516)
+					FUNC_LIST[34](1074488, 46, 1074536)
 					error("out of code bounds")
 				end
 				break
@@ -22440,15 +22385,15 @@ FUNC_LIST[105] = function(loc_0, loc_1)
 	while true do
 		loc_2 = rt_sub_i32(GLOBAL_LIST[0].value, 48)
 		GLOBAL_LIST[0].value = loc_2
-		reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074761, 6)
+		reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074781, 6)
 		loc_3 = reg_0
 		rt_store_i32_n8(memory_at_0, loc_2 + 13, 0)
 		rt_store_i32_n8(memory_at_0, loc_2 + 12, loc_3)
 		rt_store_i32(memory_at_0, loc_2 + 8, loc_1)
 		loc_3 = rt_load_i32(memory_at_0, loc_0)
 		rt_store_i64(memory_at_0, loc_2 + 16, rt_load_i64(memory_at_0, loc_3 + 8))
-		reg_0 = FUNC_LIST[68](rt_add_i32(loc_2, 8), 1074767, 2, rt_add_i32(loc_2, 16), 23)
-		loc_1 = 1074756
+		reg_0 = FUNC_LIST[68](rt_add_i32(loc_2, 8), 1074787, 2, rt_add_i32(loc_2, 16), 23)
+		loc_1 = 1074776
 		loc_0 = 4
 		while true do
 			while true do
@@ -22491,7 +22436,7 @@ FUNC_LIST[105] = function(loc_0, loc_1)
 		end
 		rt_store_i32(memory_at_0, loc_2 + 28, loc_0)
 		rt_store_i32(memory_at_0, loc_2 + 24, loc_1)
-		reg_0 = FUNC_LIST[68](reg_0, 1074769, 4, rt_add_i32(loc_2, 24), 24)
+		reg_0 = FUNC_LIST[68](reg_0, 1074789, 4, rt_add_i32(loc_2, 24), 24)
 		loc_0 = reg_0
 		while true do
 			reg_0 = 1
@@ -22550,12 +22495,12 @@ FUNC_LIST[106] = function(loc_0, loc_1)
 		loc_2 = rt_sub_i32(GLOBAL_LIST[0].value, 16)
 		GLOBAL_LIST[0].value = loc_2
 		rt_store_i32(memory_at_0, loc_2, loc_0)
-		reg_1 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1075212, 8)
+		reg_1 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1075228, 8)
 		rt_store_i32_n8(memory_at_0, loc_2 + 12, reg_1)
 		rt_store_i32(memory_at_0, loc_2 + 8, loc_1)
 		rt_store_i32_n8(memory_at_0, loc_2 + 13, 0)
 		rt_store_i32(memory_at_0, loc_2 + 4, 0)
-		reg_0 = FUNC_LIST[73](rt_add_i32(loc_2, 4), loc_2, 1075220)
+		reg_0 = FUNC_LIST[73](rt_add_i32(loc_2, 4), loc_2, 1075236)
 		loc_1 = reg_0
 		loc_0 = rt_load_i32_u8(memory_at_0, loc_2 + 12)
 		while true do
@@ -22612,7 +22557,7 @@ FUNC_LIST[107] = function(loc_0, loc_1)
 		while true do
 			if rt_load_i32(memory_at_0, loc_0) == 0 then
 				while true do
-					reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074340, 4)
+					reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074360, 4)
 					desired = 1
 					break
 				end
@@ -22624,12 +22569,12 @@ FUNC_LIST[107] = function(loc_0, loc_1)
 				end
 			end
 			rt_store_i32(memory_at_0, loc_2, loc_0)
-			reg_1 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074344, 4)
+			reg_1 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074364, 4)
 			rt_store_i32_n8(memory_at_0, loc_2 + 12, reg_1)
 			rt_store_i32(memory_at_0, loc_2 + 8, loc_1)
 			rt_store_i32_n8(memory_at_0, loc_2 + 13, 0)
 			rt_store_i32(memory_at_0, loc_2 + 4, 0)
-			reg_0 = FUNC_LIST[73](rt_add_i32(loc_2, 4), loc_2, 1074348)
+			reg_0 = FUNC_LIST[73](rt_add_i32(loc_2, 4), loc_2, 1074368)
 			loc_1 = reg_0
 			loc_0 = rt_load_i32_u8(memory_at_0, loc_2 + 12)
 			loc_1 = rt_load_i32(memory_at_0, loc_1)
@@ -23013,27 +22958,27 @@ FUNC_LIST[112] = function(loc_0, loc_1)
 											break
 										end
 										rt_store_i32(memory_at_0, loc_2 + 4, rt_load_i32(memory_at_0, loc_0 + 4))
-										reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074832, 2)
+										reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074848, 2)
 										loc_0 = reg_0
 										rt_store_i32_n8(memory_at_0, loc_2 + 13, 0)
 										rt_store_i32_n8(memory_at_0, loc_2 + 12, loc_0)
 										rt_store_i32(memory_at_0, loc_2 + 8, loc_1)
-										reg_0 = FUNC_LIST[68](rt_add_i32(loc_2, 8), 1074834, 4, rt_add_i32(loc_2, 4), 25)
+										reg_0 = FUNC_LIST[68](rt_add_i32(loc_2, 8), 1074850, 4, rt_add_i32(loc_2, 4), 25)
 										rt_store_i32_n8(memory_at_0, loc_2 + 19, 40)
-										reg_0 = FUNC_LIST[68](reg_0, 1074838, 4, rt_add_i32(loc_2, 19), 26)
+										reg_0 = FUNC_LIST[68](reg_0, 1074854, 4, rt_add_i32(loc_2, 19), 26)
 										reg_1 = FUNC_LIST[44](20)
 										loc_0 = reg_1
 										if loc_0 == 0 then
 											desired = 5
 											break
 										end
-										rt_store_i32(memory_at_0, rt_add_i32(loc_0, 16), rt_load_i32(memory_at_0, 1075794))
-										rt_store_i64(memory_at_0, rt_add_i32(loc_0, 8), rt_load_i64(memory_at_0, 1075786))
-										rt_store_i64(memory_at_0, loc_0, rt_load_i64(memory_at_0, 1075778))
+										rt_store_i32(memory_at_0, rt_add_i32(loc_0, 16), rt_load_i32(memory_at_0, 1075810))
+										rt_store_i64(memory_at_0, rt_add_i32(loc_0, 8), rt_load_i64(memory_at_0, 1075802))
+										rt_store_i64(memory_at_0, loc_0, rt_load_i64(memory_at_0, 1075794))
 										rt_store_i32(memory_at_0, loc_2 + 28, 20)
 										rt_store_i32(memory_at_0, loc_2 + 24, loc_0)
 										rt_store_i32(memory_at_0, loc_2 + 20, 20)
-										reg_0 = FUNC_LIST[68](reg_0, 1074860, 7, rt_add_i32(loc_2, 20), 27)
+										reg_0 = FUNC_LIST[68](reg_0, 1074876, 7, rt_add_i32(loc_2, 20), 27)
 										loc_3 = reg_0
 										loc_0 = rt_load_i32_u8(memory_at_0, loc_2 + 12)
 										while true do
@@ -23117,12 +23062,12 @@ FUNC_LIST[112] = function(loc_0, loc_1)
 										break
 									end
 									rt_store_i32_n8(memory_at_0, loc_2 + 8, rt_load_i32_u8(memory_at_0, loc_0 + 1))
-									reg_1 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074867, 4)
+									reg_1 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074883, 4)
 									rt_store_i32_n8(memory_at_0, loc_2 + 28, reg_1)
 									rt_store_i32(memory_at_0, loc_2 + 24, loc_1)
 									rt_store_i32_n8(memory_at_0, loc_2 + 29, 0)
 									rt_store_i32(memory_at_0, loc_2 + 20, 0)
-									reg_0 = FUNC_LIST[73](rt_add_i32(loc_2, 20), rt_add_i32(loc_2, 8), 1074844)
+									reg_0 = FUNC_LIST[73](rt_add_i32(loc_2, 20), rt_add_i32(loc_2, 8), 1074860)
 									loc_0 = rt_load_i32_u8(memory_at_0, loc_2 + 28)
 									loc_3 = rt_load_i32(memory_at_0, reg_0)
 									if loc_3 == 0 then
@@ -23171,13 +23116,13 @@ FUNC_LIST[112] = function(loc_0, loc_1)
 									break
 								end
 								loc_0 = rt_load_i32(memory_at_0, loc_0 + 4)
-								reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074871, 5)
+								reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074887, 5)
 								loc_3 = reg_0
 								rt_store_i32_n8(memory_at_0, loc_2 + 25, 0)
 								rt_store_i32_n8(memory_at_0, loc_2 + 24, loc_3)
 								rt_store_i32(memory_at_0, loc_2 + 20, loc_1)
-								reg_0 = FUNC_LIST[68](rt_add_i32(loc_2, 20), 1074838, 4, rt_add_i32(loc_0, 8), 26)
-								reg_0 = FUNC_LIST[68](reg_0, 1074860, 7, loc_0, 28)
+								reg_0 = FUNC_LIST[68](rt_add_i32(loc_2, 20), 1074854, 4, rt_add_i32(loc_0, 8), 26)
+								reg_0 = FUNC_LIST[68](reg_0, 1074876, 7, loc_0, 28)
 								loc_0 = rt_load_i32_u8(memory_at_0, loc_2 + 24)
 								if rt_load_i32_u8(memory_at_0, loc_2 + 25) == 0 then
 									while true do
@@ -23225,13 +23170,13 @@ FUNC_LIST[112] = function(loc_0, loc_1)
 							end
 							loc_0 = rt_load_i32(memory_at_0, loc_0 + 4)
 							rt_store_i32(memory_at_0, loc_2 + 8, loc_0)
-							reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074876, 6)
+							reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), 1074892, 6)
 							loc_3 = reg_0
 							rt_store_i32_n8(memory_at_0, loc_2 + 25, 0)
 							rt_store_i32_n8(memory_at_0, loc_2 + 24, loc_3)
 							rt_store_i32(memory_at_0, loc_2 + 20, loc_1)
-							reg_0 = FUNC_LIST[68](rt_add_i32(loc_2, 20), 1074838, 4, rt_add_i32(loc_0, 8), 26)
-							reg_0 = FUNC_LIST[68](reg_0, 1074882, 5, rt_add_i32(loc_2, 8), 29)
+							reg_0 = FUNC_LIST[68](rt_add_i32(loc_2, 20), 1074854, 4, rt_add_i32(loc_0, 8), 26)
+							reg_0 = FUNC_LIST[68](reg_0, 1074898, 5, rt_add_i32(loc_2, 8), 29)
 							loc_0 = rt_load_i32_u8(memory_at_0, loc_2 + 24)
 							if rt_load_i32_u8(memory_at_0, loc_2 + 25) == 0 then
 								while true do
@@ -23286,7 +23231,7 @@ FUNC_LIST[112] = function(loc_0, loc_1)
 						end
 						break
 					end
-					FUNC_LIST[34](1074405, 46, 1074452)
+					FUNC_LIST[34](1074425, 46, 1074472)
 					error("out of code bounds")
 				end
 				if desired then
@@ -23295,7 +23240,7 @@ FUNC_LIST[112] = function(loc_0, loc_1)
 					end
 					break
 				end
-				FUNC_LIST[34](1074468, 46, 1074516)
+				FUNC_LIST[34](1074488, 46, 1074536)
 				error("out of code bounds")
 			end
 			if desired then
@@ -23445,7 +23390,7 @@ FUNC_LIST[114] = function(loc_0, loc_1)
 	local reg_0
 	while true do
 		loc_0 = rt_shl_i32(rt_load_i32_u8(memory_at_0, loc_0), 2)
-		reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), rt_load_i32(memory_at_0, rt_add_i32(loc_0, 1076076)), rt_load_i32(memory_at_0, rt_add_i32(loc_0, 1075912)))
+		reg_0 = TABLE_LIST[0].data[rt_load_i32(memory_at_0, rt_load_i32(memory_at_0, loc_1 + 24) + 12)](rt_load_i32(memory_at_0, loc_1 + 20), rt_load_i32(memory_at_0, rt_add_i32(loc_0, 1076092)), rt_load_i32(memory_at_0, rt_add_i32(loc_0, 1075928)))
 		break
 	end
 	return reg_0
@@ -23490,15 +23435,15 @@ FUNC_LIST[117] = function(loc_0, loc_1)
 			end
 		end
 		rt_store_i32(memory_at_0, loc_0 + 28, loc_2)
-		loc_4 = rt_add_i32(rt_shl_i32(loc_2, 2), 1223360)
+		loc_4 = rt_add_i32(rt_shl_i32(loc_2, 2), 1223440)
 		loc_3 = rt_shl_i32(1, loc_2)
-		if bit_and(loc_3, rt_load_i32(memory_at_0, 1223772)) == 0 then
+		if bit_and(loc_3, rt_load_i32(memory_at_0, 1223852)) == 0 then
 			while true do
 				rt_store_i32(memory_at_0, loc_4, loc_0)
 				rt_store_i32(memory_at_0, loc_0 + 24, loc_4)
 				rt_store_i32(memory_at_0, loc_0 + 12, loc_0)
 				rt_store_i32(memory_at_0, loc_0 + 8, loc_0)
-				rt_store_i32(memory_at_0, 1223772, bit_or(rt_load_i32(memory_at_0, 1223772), loc_3))
+				rt_store_i32(memory_at_0, 1223852, bit_or(rt_load_i32(memory_at_0, 1223852), loc_3))
 				desired = 0
 				break
 			end
@@ -23650,7 +23595,7 @@ FUNC_LIST[118] = function(loc_0, loc_1)
 							desired = 1
 							break
 						end
-						loc_1 = rt_add_i32(rt_shl_i32(rt_load_i32(memory_at_0, loc_0 + 28), 2), 1223360)
+						loc_1 = rt_add_i32(rt_shl_i32(rt_load_i32(memory_at_0, loc_0 + 28), 2), 1223440)
 						if loc_0 ~= rt_load_i32(memory_at_0, loc_1) then
 							while true do
 								rt_store_i32(memory_at_0, rt_add_i32(loc_3, (if rt_load_i32(memory_at_0, loc_3 + 16) == loc_0 then 16 else 20)), loc_2)
@@ -23670,7 +23615,7 @@ FUNC_LIST[118] = function(loc_0, loc_1)
 							desired = 2
 							break
 						end
-						rt_store_i32(memory_at_0, 1223772, bit_and(rt_load_i32(memory_at_0, 1223772), rt_rotl_i32(4294967294, rt_load_i32(memory_at_0, loc_0 + 28))))
+						rt_store_i32(memory_at_0, 1223852, bit_and(rt_load_i32(memory_at_0, 1223852), rt_rotl_i32(4294967294, rt_load_i32(memory_at_0, loc_0 + 28))))
 						desired = 1
 						break
 					end
@@ -23696,7 +23641,7 @@ FUNC_LIST[118] = function(loc_0, loc_1)
 						break
 					end
 				end
-				rt_store_i32(memory_at_0, 1223768, bit_and(rt_load_i32(memory_at_0, 1223768), rt_rotl_i32(4294967294, rt_shr_u32(loc_1, 3))))
+				rt_store_i32(memory_at_0, 1223848, bit_and(rt_load_i32(memory_at_0, 1223848), rt_rotl_i32(4294967294, rt_shr_u32(loc_1, 3))))
 				desired = 0
 				break
 			end
@@ -23760,13 +23705,13 @@ FUNC_LIST[119] = function(loc_0, loc_1)
 				loc_3 = rt_load_i32(memory_at_0, loc_0)
 				loc_1 = rt_add_i32(loc_3, loc_1)
 				loc_0 = rt_sub_i32(loc_0, loc_3)
-				if loc_0 == rt_load_i32(memory_at_0, 1223784) then
+				if loc_0 == rt_load_i32(memory_at_0, 1223864) then
 					while true do
 						if bit_and(rt_load_i32(memory_at_0, loc_2 + 4), 3) ~= 3 then
 							desired = 2
 							break
 						end
-						rt_store_i32(memory_at_0, 1223776, loc_1)
+						rt_store_i32(memory_at_0, 1223856, loc_1)
 						rt_store_i32(memory_at_0, loc_2 + 4, bit_and(rt_load_i32(memory_at_0, loc_2 + 4), 4294967294))
 						rt_store_i32(memory_at_0, loc_0 + 4, bit_or(loc_1, 1))
 						rt_store_i32(memory_at_0, loc_2, loc_1)
@@ -23795,11 +23740,11 @@ FUNC_LIST[119] = function(loc_0, loc_1)
 						loc_3 = rt_load_i32(memory_at_0, loc_2 + 4)
 						if bit_and(loc_3, 2) == 0 then
 							while true do
-								if loc_2 == rt_load_i32(memory_at_0, 1223788) then
+								if loc_2 == rt_load_i32(memory_at_0, 1223868) then
 									desired = 3
 									break
 								end
-								if loc_2 == rt_load_i32(memory_at_0, 1223784) then
+								if loc_2 == rt_load_i32(memory_at_0, 1223864) then
 									desired = 2
 									break
 								end
@@ -23808,11 +23753,11 @@ FUNC_LIST[119] = function(loc_0, loc_1)
 								loc_1 = rt_add_i32(loc_1, loc_3)
 								rt_store_i32(memory_at_0, loc_0 + 4, bit_or(loc_1, 1))
 								rt_store_i32(memory_at_0, rt_add_i32(loc_0, loc_1), loc_1)
-								if loc_0 ~= rt_load_i32(memory_at_0, 1223784) then
+								if loc_0 ~= rt_load_i32(memory_at_0, 1223864) then
 									desired = 4
 									break
 								end
-								rt_store_i32(memory_at_0, 1223776, loc_1)
+								rt_store_i32(memory_at_0, 1223856, loc_1)
 								desired = 0
 								break
 							end
@@ -23849,15 +23794,15 @@ FUNC_LIST[119] = function(loc_0, loc_1)
 								end
 							end
 							rt_store_i32(memory_at_0, loc_0 + 28, loc_2)
-							loc_4 = rt_add_i32(rt_shl_i32(loc_2, 2), 1223360)
+							loc_4 = rt_add_i32(rt_shl_i32(loc_2, 2), 1223440)
 							loc_3 = rt_shl_i32(1, loc_2)
-							if bit_and(loc_3, rt_load_i32(memory_at_0, 1223772)) == 0 then
+							if bit_and(loc_3, rt_load_i32(memory_at_0, 1223852)) == 0 then
 								while true do
 									rt_store_i32(memory_at_0, loc_4, loc_0)
 									rt_store_i32(memory_at_0, loc_0 + 24, loc_4)
 									rt_store_i32(memory_at_0, loc_0 + 12, loc_0)
 									rt_store_i32(memory_at_0, loc_0 + 8, loc_0)
-									rt_store_i32(memory_at_0, 1223772, bit_or(rt_load_i32(memory_at_0, 1223772), loc_3))
+									rt_store_i32(memory_at_0, 1223852, bit_or(rt_load_i32(memory_at_0, 1223852), loc_3))
 									desired = 0
 									break
 								end
@@ -23936,13 +23881,13 @@ FUNC_LIST[119] = function(loc_0, loc_1)
 							break
 						end
 					end
-					loc_3 = rt_add_i32(bit_and(loc_1, 4294967288), 1223504)
+					loc_3 = rt_add_i32(bit_and(loc_1, 4294967288), 1223584)
 					while true do
-						loc_2 = rt_load_i32(memory_at_0, 1223768)
+						loc_2 = rt_load_i32(memory_at_0, 1223848)
 						loc_1 = rt_shl_i32(1, rt_shr_u32(loc_1, 3))
 						if bit_and(loc_2, loc_1) == 0 then
 							while true do
-								rt_store_i32(memory_at_0, 1223768, bit_or(loc_1, loc_2))
+								rt_store_i32(memory_at_0, 1223848, bit_or(loc_1, loc_2))
 								reg_0 = loc_3
 								desired = 4
 								break
@@ -23977,16 +23922,16 @@ FUNC_LIST[119] = function(loc_0, loc_1)
 					end
 					break
 				end
-				rt_store_i32(memory_at_0, 1223788, loc_0)
-				loc_1 = rt_add_i32(rt_load_i32(memory_at_0, 1223780), loc_1)
-				rt_store_i32(memory_at_0, 1223780, loc_1)
+				rt_store_i32(memory_at_0, 1223868, loc_0)
+				loc_1 = rt_add_i32(rt_load_i32(memory_at_0, 1223860), loc_1)
+				rt_store_i32(memory_at_0, 1223860, loc_1)
 				rt_store_i32(memory_at_0, loc_0 + 4, bit_or(loc_1, 1))
-				if loc_0 ~= rt_load_i32(memory_at_0, 1223784) then
+				if loc_0 ~= rt_load_i32(memory_at_0, 1223864) then
 					desired = 1
 					break
 				end
-				rt_store_i32(memory_at_0, 1223776, 0)
-				rt_store_i32(memory_at_0, 1223784, 0)
+				rt_store_i32(memory_at_0, 1223856, 0)
+				rt_store_i32(memory_at_0, 1223864, 0)
 				desired = 0
 				break
 			end
@@ -23996,9 +23941,9 @@ FUNC_LIST[119] = function(loc_0, loc_1)
 				end
 				break
 			end
-			rt_store_i32(memory_at_0, 1223784, loc_0)
-			loc_1 = rt_add_i32(rt_load_i32(memory_at_0, 1223776), loc_1)
-			rt_store_i32(memory_at_0, 1223776, loc_1)
+			rt_store_i32(memory_at_0, 1223864, loc_0)
+			loc_1 = rt_add_i32(rt_load_i32(memory_at_0, 1223856), loc_1)
+			rt_store_i32(memory_at_0, 1223856, loc_1)
 			rt_store_i32(memory_at_0, loc_0 + 4, bit_or(loc_1, 1))
 			rt_store_i32(memory_at_0, rt_add_i32(loc_0, loc_1), loc_1)
 			break
@@ -24335,8 +24280,8 @@ local function run_init_code()
 	TABLE_LIST[0] = { min = 58, max = 58, data = {} }
 	MEMORY_LIST[0] = rt_allocator_new(19, 65535)
 	GLOBAL_LIST[0] = { value = 1048576 }
-	GLOBAL_LIST[1] = { value = 1223824 }
-	GLOBAL_LIST[2] = { value = 1223824 }
+	GLOBAL_LIST[1] = { value = 1223904 }
+	GLOBAL_LIST[2] = { value = 1223904 }
 	do
 		local target = TABLE_LIST[0].data
 		local offset = 1
@@ -24450,7 +24395,7 @@ local function run_init_code()
 	rt_store_string(MEMORY_LIST[0], 1071080,"\x9e\x00\xb4\x00\xaa\x00\xc3\x00\xb4\x00\xa3\x00`\x00L\x00O\x00]\x00|\x00\x83\x00\x86\x00\x9a\x00\x87\x00[\x00>\x00V\x00W\x00Y\x00n\x00e\x00i\x00Q\x003\x00M\x00K\x00Z\x00Z\x00R\x00[\x00D\x001\x00J\x00G\x00H\x00W\x00J\x00i\x00J\x000\x00J\x00D\x007\x00L\x00\\\x00s\x00B")
 	rt_store_string(MEMORY_LIST[0], 1071192,"\x98\x00\xe3\x00\x13\x01@\x01W\x01\x14\x01\xfe\x00\xd2\x008\x01J\x01k\x01z\x01l\x01\xad\x01O\x01g\x01G\x01q\x01\x81\x01\x92\x01\xb9\x01\xba\x01\x8b\x01i\x01H\x01V\x01p\x01\x87\x01u\x01\x90\x01e\x01m\x01<\x01J\x01\\\x01]\x01g\x01b\x01`\x01G\x01)\x01@\x01N\x01R\x01^\x01S\x01V\x01:\x01\x1b\x01(\x01:\x01E\x01F\x01I\x01;\x017\x01\xf0\x00$\x01\x18\x01(\x01-\x01:\x01&\x01\n\x01I\x01?\x01H\x01*\x01-\x01;\x01a\x01-\x01]\x01x\x01v\x01b\x01\x80\x01\x83\x01x\x01p\x01m\x01\x85\x01\x86\x01\xa1\x01\x94\x01\xb0\x01\x9e\x01\x8f\x01c\x01u\x01\x8a\x01\x98\x01\x94\x01\x90\x01w\x01h\x01`\x01m\x01v\x01\x89\x01\x86\x01w\x01n\x01i\x01l\x01s\x01r\x01w\x01w\x01s\x01t\x01y\x01m\x01o\x01{\x01c\x01m\x01y\x01\x81\x01p\x01W\x01k\x01Z\x01T\x01W\x01W\x01p\x01b\x01\x08\x02\x02\x02\x08\x02\x11\x02\x1d\x02\x1f\x02\x11\x02.\x02\xf4\x01\xf3\x01\t\x02\x1c\x02\x0e\x02+\x02\x1c\x021\x02\xde\x01\xf5\x01\xf7\x01\xfb\x01\x16\x02\x15\x027\x02\"\x02\xcd\x01\xdd\x01\xde\x01\xe5\x01\xed\x01\xed\x01\xf7\x01\xf7\x01\xbb\x01\xbd\x01\xc8\x01\xd4\x01\xd4\x01\xc5\x01\xdd\x01\xd4\x01\xb4\x01\xbf\x01\xc7\x01\xc7\x01\xcc\x01\xc9\x01\xec\x01\xd5\x01\xb1\x01\xbf\x01\xcd\x01\xca\x01\xcd\x01\xcf\x01\xde\x01\xc2\x01\xc3\x01\xc7\x01\xd1\x01\xd8\x01\xd9\x01\xce\x01\xe0\x01\xc6\x01\xe0\x03\xfa\x03\x16\x04+\x04-\x04/\x043\x04\x02\x04\x02\x04\xea\x03\xfa\x03\xf2\x03\xfc\x03\x1f\x04\x07\x046\x04\x04\x04\x07\x04\x06\x04\x13\x04\x1f\x04?\x04E\x04@\x04\xf4\x03\xfb\x03\xfe\x03\xfc\x03\x04\x04\x12\x04\x0f\x04\x15\x04\xfb\x03\xf7\x03\xf7\x03\xfe\x03\xfe\x03\xfe\x03\x08\x04\r\x04\xf6\x03\xff\x03\xfa\x03\xf9\x03\xfd\x03\x03\x04\x10\x04\x08\x04\xf7\x03\xfc\x03\x06\x04\x05\x04\x04\x04\x0b\x04\r\x04\x16\x04\xf6\x03\xe9\x03\xf0\x03\xff\x03\xf7\x03\xeb\x03\xfa\x03\xf6\x03\xf9\xff\xff\xff\xfa\xff\xcd\xff\xe0\xff\t\x00\"\x00\x19\x00\xda\xff\xe8\xff\xd4\xff\x05\x00\xf7\xff\xfa\xff\x0e\x00\x00\x00\xbf\xff\x08\x00\xd4\xff\xcc\xff\xe2\xff\x14\x00\x18\x00\xe9\xff\xba\xff\xb7\xff\xae\xff\x85\xff\x88\xff\xac\xff\xb0\xff\xa5\xff\xb5\xff\xb1\xff\x96\xff}\xffw\xff\x9b\xff\x9e\xff\x87\xff\xd7\xff\xea\xff\xaf\xff\xa6\xff\xa8\xff\xac\xff\xd9\xff\xc9\xff*\x00\x02\x00\xf5\xff\xd0\xff\xcf\xff\xe3\xff\x15\x00\x1d\x00#\x00;\x00\x1f\x00\xbb\xff\xfd\xff\xda\xff,\x00-")
 	rt_store_string(MEMORY_LIST[0], 1071848,"\xfc\x00\xf4\x00\xf1\x00\xc5\x00\xc2\x00\xca\x00\xf2\x00\xfe\x00\xc9\x00\xcf\x00\xb1\x00\x9c\x00\x94\x00\x87\x00\xb2\x00\xb0\x00\x88\x00~\x00m\x00e\x00^\x00a\x00s\x00s\x00q\x00o\x00_\x00^\x00\\\x00^\x00h\x00a\x00l\x00l\x00^\x00i\x00c\x00b\x00g\x00^\x00r\x00p\x00e\x00m\x00r\x00f\x00f\x00`")
-	rt_store_string(MEMORY_LIST[0], 1071960,"\xe4\x00\x0b\x01\x1b\x01\x0f\x01\x15\x01\x05\x01\x0c\x01\xce\x00\x07\x01\x1b\x01\x1d\x01\x1e\x01\x16\x01\t\x01\x15\x01\xf6\x00\x16\x01\"\x011\x01.\x01\x1f\x01\x1c\x01\x16\x01\t\x01\x1d\x011\x01;\x01;\x01<\x016\x01+\x01\x15\x01\x1f\x01*\x01<\x01<\x01=\x015\x01(\x01\x14\x01\x0e\x01\x1f\x01(\x015\x014\x01#\x01\x1c\x01\x0f\x01\x07\x01\x15\x01\x1d\x01\x1f\x01 \x01\x1b\x01\r\x01\x11\x01\xff\x00\xf5\x00\x10\x01\x12\x01\x11\x01\x07\x01\xfb\x00\xfa\x00*\x010\x01/\x018\x014\x01,\x01#\x01(\x01\x1c\x01,\x01-\x012\x01)\x01&\x01.\x01\x13\x014\x01/\x018\x01,\x010\x013\x01)\x01*\x011\x01>\x019\x01C\x01=\x019\x019\x01.\x01*\x01;\x01?\x01>\x01=\x01;\x017\x01 \x01)\x012\x01;\x018\x01>\x018\x01*\x01\x1f\x01%\x01#\x01!\x012\x010\x01(\x01&\x01\x13\x01\x15\x01%\x01\x12\x01&\x01$\x01\"\x01\x18\x01\n\x01\x18\x02\x1e\x02\'\x02\"\x02\x1c\x02\x16\x02\x18\x02\x10\x02\x18\x02$\x02&\x02\x1f\x02\x1f\x02\x12\x02\x10\x02\x06\x02\x1a\x02\x1d\x02\x1d\x02\x1a\x02\x10\x02\x0b\x02\x05\x02\x01\x02\x1d\x02\x1a\x02#\x02 \x02\x11\x02\r\x02\t\x02\x05\x02\x15\x02\x19\x02\x1b\x02\x1a\x02\x15\x02\x13\x02\x07\x02\x03\x02\x10\x02\x0e\x02\x0f\x02\x13\x02\x0e\x02\x08\x02\xf5\x01\xf6\x01\x0b\x02\x0e\x02\x0f\x02\x10\x02\n\x02\x06\x02\xff\x01\x02\x02\x05\x02\r\x02\x14\x02\x11\x02\r\x02\t\x02\x02\x02\xfc\x01\xc1\x03\xbd\x03\xd0\x03\xcc\x03\xc9\x03\xc4\x03\xa0\x03\xc0\x03\x9d\x03\xcd\x03\xe3\x03\xf9\x03\x05\x04\xdf\x03\xcf\x03\xb1\x03\xa8\x03\xb3\x03\xdb\x03\xe5\x03\xeb\x03\xe0\x03\xb8\x03\xb0\x03\xb1\x03\xc6\x03\xd6\x03\xf1\x03\xf6\x03\xe6\x03\xda\x03\xc5\x03\xa6\x03\xc7\x03\xd1\x03\xe7\x03\xe2\x03\xd7\x03\xc8\x03\xb6\x03\xa1\x03\xab\x03\xc4\x03\xc2\x03\xc3\x03\xbd\x03\xa5\x03\xa0\x03\x94\x03\x99\x03\x92\x03\xa0\x03\xa1\x03\x8d\x03y\x03a\x03\x8f\x03\x9a\x03\x9e\x03\x91\x03\x95\x03\x95\x03\x87\x03\x85\x03\xb6\xff\xdd\xff\xee\xff\t\x00\xff\xff\x03\x00\x01\x00\xb5\xff\xfc\xff\x1a\x00!\x00\x1a\x00\'\x002\x00,\x00\x0f\x00\r\x00!\x000\x008\x00:\x007\x003\x00\x19\x00\t\x00\'\x006\x00A\x00B\x00=\x004\x00\x1a\x00\xff\xff\x1a\x000\x00=\x00=\x002\x00%\x00\x16\x00\xf7\xff\x0b\x00\x1f\x00)\x00*\x00\"\x00\x10\x00\x05\x00\xe6\xff\xfe\xff\t\x00\x13\x00\x16\x00\r\x00\xfc\xff\xeb\xff\xc9\xff\xdb\xff\xee\xff\xfa\xff\xe5\xff\xf6\xff\xdf\xff\xc5\xffsrc\\search\\mod.rs\x00\x00\x00\xd8]\x10\x00\x11\x00\x00\x00\xb1\x00\x00\x00\t\x00\x00\x00\xd8]\x10\x00\x11\x00\x00\x00\xd5\x00\x00\x006\x00\x00\x00\xd8]\x10\x00\x11\x00\x00\x00\xdd\x01\x00\x00!\x00\x00\x00searchmovesponderwtimebtimemovestogodepthnodesperftUnknown parameterO^\x10\x00\x11\x00\x00\x00src\\uci\\go_params.rsh^\x10\x00\x14\x00\x00\x00{\x00\x00\x00\x16\x00\x00\x00Conflicting move time\x00\x00\x00\x8c^\x10\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00x\x00\x00\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00u\x00\x00\x00\"\x00\x00\x00h^\x10\x00\x14\x00\x00\x00p\x00\x00\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00q\x00\x00\x00=\x00\x00\x00Conflicting mate\xec^\x10\x00\x10\x00\x00\x00h^\x10\x00\x14\x00\x00\x00l\x00\x00\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00m\x00\x00\x00&\x00\x00\x00Conflicting nodes\x00\x00\x00$_\x10\x00\x11\x00\x00\x00h^\x10\x00\x14\x00\x00\x00h\x00\x00\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00i\x00\x00\x00\"\x00\x00\x00Conflicting depth\x00\x00\x00`_\x10\x00\x11\x00\x00\x00h^\x10\x00\x14\x00\x00\x00d\x00\x00\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00e\x00\x00\x00\"\x00\x00\x00h^\x10\x00\x14\x00\x00\x00_\x00\x00\x00\x1e\x00\x00\x00Overwritten movestogo\x00\x00\x00\xac_\x10\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00[\x00\x00\x00\x1d\x00\x00\x00h^\x10\x00\x14\x00\x00\x00\\\x00\x00\x005\x00\x00\x00Overwritten binc\xec_\x10\x00\x10\x00\x00\x00h^\x10\x00\x14\x00\x00\x00W\x00\x00\x00\x1d\x00\x00\x00h^\x10\x00\x14\x00\x00\x00X\x00\x00\x009\x00\x00\x00Overwritten winc$`\x10\x00\x10\x00\x00\x00h^\x10\x00\x14\x00\x00\x00S\x00\x00\x00\x1d\x00\x00\x00h^\x10\x00\x14\x00\x00\x00T\x00\x00\x009\x00\x00\x00Overwritten btime\x00\x00\x00\\`\x10\x00\x11\x00\x00\x00h^\x10\x00\x14\x00\x00\x00O\x00\x00\x00\x1d\x00\x00\x00h^\x10\x00\x14\x00\x00\x00P\x00\x00\x004\x00\x00\x00Overwritten wtime\x00\x00\x00\x98`\x10\x00\x11\x00\x00\x00h^\x10\x00\x14\x00\x00\x00K\x00\x00\x00\x1d\x00\x00\x00h^\x10\x00\x14\x00\x00\x00L\x00\x00\x004\x00\x00\x00h^\x10\x00\x14\x00\x00\x00F\x00\x00\x00\x1e\x00\x00\x00not yet implemented: Pondering\x00\x00\xe4`\x10\x00\x1e\x00\x00\x00h^\x10\x00\x14\x00\x00\x00<\x00\x00\x00\x1d\x00\x00\x00not yet implemented\x00h^\x10\x00\x14\x00\x00\x00;\x00\x00\x00\"\x00\x00\x00Tried to play illegal move {uci_move} on {board}src\\uci\\mod.rs\x00\x00pa\x10\x00\x0e\x00\x00\x00.\x00\x00\x00\n\x00\x00\x00id name chess\nid author someone\noption name Hash type spin default 32 min 32 max 32\noption name Threads type spin default 1 min 1 max 1\nuciokreadyokrnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1fenmovespa\x10\x00\x0e\x00\x00\x00r\x00\x00\x004\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00r\x00\x00\x00E\x00\x00\x00Invalid promotion notation in \x00\x00\x84b\x10\x00\x1e\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00{\x00\x00\x00!\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00\x98\x00\x00\x00;\x00\x00\x00Nodes searched: \xccb\x10\x00\x10\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00\xa0\x00\x00\x009\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00\xb5\x00\x00\x00M\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00\xbe\x00\x00\x00\x12\x00\x00\x00bestmove \x00\x00\x00\x14c\x10\x00\t\x00\x00\x00score cp \x00\x00\x00(c\x10\x00\t\x00\x00\x00score mate \x00<c\x10\x00\x0b\x00\x00\x00info depth  time  nodes  nps  pvPc\x10\x00\x0b\x00\x00\x00\x14\x13\x10\x00\x01\x00\x00\x00[c\x10\x00\x06\x00\x00\x00ac\x10\x00\x07\x00\x00\x00hc\x10\x00\x05\x00\x00\x00mc\x10\x00\x03\x00\x00\x00not yet implemented: Stop search immediately\xa0c\x10\x00,\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00\x00\x01\x00\x00\t\x00\x00\x00: 1\x00\x01\x00\x00\x00\x00\x00\x00\x00\xe4c\x10\x00\x03\x00\x00\x00: \x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\xf8c\x10\x00\x02\x00\x00\x00BitBoard+\x00\x00\x00\x04\x00\x00\x00\x04\x00\x00\x003\x00\x00\x00Zobrist/rustc/129f3b9964af4d4a709d1383930ade12dfe7c081/library/core/src/io/borrowed_buf.rs\x00\x00+d\x10\x00S\x00\x00\x00\xe1\x00\x00\x00\x1a\x00\x00\x00\x00\x00\x00\x00\'\x00\x00\x00\x04\x00\x00\x00\x04\x00\x00\x004\x00\x00\x00NoneSome\'\x00\x00\x00\x04\x00\x00\x00\x04\x00\x00\x005\x00\x00\x00/rust/deps/dlmalloc-0.2.6/src/dlmalloc.rsassertion failed: psize >= size + min_overhead\x00\xbcd\x10\x00)\x00\x00\x00\xa8\x04\x00\x00\t\x00\x00\x00assertion failed: psize <= size + max_overhead\x00\x00\xbcd\x10\x00)\x00\x00\x00\xae\x04\x00\x00\r\x00\x00\x00library/std/src/rt.rs\x00\x00\x00de\x10\x00\x15\x00\x00\x00k\x00\x00\x00\r\x00\x00\x006\x00\x00\x00\x04\x00\x00\x00\x04\x00\x00\x007\x00\x00\x00called `Result::unwrap()` on an `Err` valuelibrary/std/src/thread/mod.rs\xc7e\x10\x00\x1d\x00\x00\x00\xc4\x02\x00\x000\x00\x00\x00failed to generate unique thread ID: bitspace exhausted\x00\xf4e\x10\x007\x00\x00\x00\xc7e\x10\x00\x1d\x00\x00\x00\xb8\x04\x00\x00\r\x00\x00\x00main\x00Threadidnamestream did not contain valid UTF-8\x00Uf\x10\x00\"\x00\x00\x00\x15\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00xf\x10\x00Oscodekind\x00\x008\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x1a\x00\x00\x00messageKindErrorCustomerrorlibrary/std/src/io/stdio.rs\x00\x00\xc7f\x10\x00\x1b\x00\x00\x00\xb4\x02\x00\x00\x13\x00\x00\x00library/std/src/io/mod.rs\x00\x00\x00\xf4f\x10\x00\x19\x00\x00\x00\x83\x01\x00\x00\x1d\x00\x00\x00\xf4f\x10\x00\x19\x00\x00\x004\x08\x00\x005\x00\x00\x00cannot recursively acquire mutex0g\x10\x00 \x00\x00\x00library/std/src/sys/sync/mutex/no_threads.rsXg\x10\x00,\x00\x00\x00\x14\x00\x00\x00\t\x00\x00\x00library/std/src/sync/once.rs\x94g\x10\x00\x1c\x00\x00\x00\x95\x00\x00\x002\x00\x00\x00\x94g\x10\x00\x1c\x00\x00\x00\xd0\x00\x00\x00\x14\x00\x00\x00\x94g\x10\x00\x1c\x00\x00\x00\xd0\x00\x00\x001\x00\x00\x00library/std/src/panicking.rs\xe0g\x10\x00\x1c\x00\x00\x00\x8b\x02\x00\x00\x1e\x00\x00\x00ThreadId\'\x00\x00\x00\x04\x00\x00\x00\x04\x00\x00\x009\x00\x00\x00NotFoundPermissionDeniedConnectionRefusedConnectionResetHostUnreachableNetworkUnreachableConnectionAbortedNotConnectedAddrInUseAddrNotAvailableNetworkDownBrokenPipeAlreadyExistsWouldBlockNotADirectoryIsADirectoryDirectoryNotEmptyReadOnlyFilesystemFilesystemLoopStaleNetworkFileHandleInvalidInputInvalidDataTimedOutWriteZeroStorageFullNotSeekableFilesystemQuotaExceededFileTooLargeResourceBusyExecutableFileBusyDeadlockCrossesDevicesTooManyLinksInvalidFilenameArgumentListTooLongInterruptedUnsupportedUnexpectedEofOutOfMemoryOtherUncategorizedoperation successfulOnce instance has previously been poisonedVj\x10\x00*\x00\x00\x00one-time initialization may not be performed recursively\x88j\x10\x008\x00\x00\x00\x08\x00\x00\x00\x10\x00\x00\x00\x11\x00\x00\x00\x0f\x00\x00\x00\x0f\x00\x00\x00\x12\x00\x00\x00\x11\x00\x00\x00\x0c\x00\x00\x00\t\x00\x00\x00\x10\x00\x00\x00\x0b\x00\x00\x00\n\x00\x00\x00\r\x00\x00\x00\n\x00\x00\x00\r\x00\x00\x00\x0c\x00\x00\x00\x11\x00\x00\x00\x12\x00\x00\x00\x0e\x00\x00\x00\x16\x00\x00\x00\x0c\x00\x00\x00\x0b\x00\x00\x00\x08\x00\x00\x00\t\x00\x00\x00\x0b\x00\x00\x00\x0b\x00\x00\x00\x17\x00\x00\x00\x0c\x00\x00\x00\x0c\x00\x00\x00\x12\x00\x00\x00\x08\x00\x00\x00\x0e\x00\x00\x00\x0c\x00\x00\x00\x0f\x00\x00\x00\x13\x00\x00\x00\x0b\x00\x00\x00\x0b\x00\x00\x00\r\x00\x00\x00\x0b\x00\x00\x00\x05\x00\x00\x00\r\x00\x00\x00$h\x10\x00,h\x10\x00<h\x10\x00Mh\x10\x00\\h\x10\x00kh\x10\x00}h\x10\x00\x8eh\x10\x00\x9ah\x10\x00\xa3h\x10\x00\xb3h\x10\x00\xbeh\x10\x00\xc8h\x10\x00\xd5h\x10\x00\xdfh\x10\x00\xech\x10\x00\xf8h\x10\x00\ti\x10\x00\x1bi\x10\x00)i\x10\x00?i\x10\x00Ki\x10\x00Vi\x10\x00^i\x10\x00gi\x10\x00ri\x10\x00}i\x10\x00\x94i\x10\x00\xa0i\x10\x00\xaci\x10\x00\xbei\x10\x00\xc6i\x10\x00\xd4i\x10\x00\xe0i\x10\x00\xefi\x10\x00\x02j\x10\x00\rj\x10\x00\x18j\x10\x00%j\x10\x000j\x10\x005j\x10\x00\x05\x00\x00\x00\x0c\x00\x00\x00\x0b\x00\x00\x00\x0b\x00\x00\x00\x04\x00\x00\x00\xdc\x11\x10\x00\xe1\x11\x10\x00\xed\x11\x10\x00\xf8\x11\x10\x00\x03\x12\x10")
+	rt_store_string(MEMORY_LIST[0], 1071960,"\xe4\x00\x0b\x01\x1b\x01\x0f\x01\x15\x01\x05\x01\x0c\x01\xce\x00\x07\x01\x1b\x01\x1d\x01\x1e\x01\x16\x01\t\x01\x15\x01\xf6\x00\x16\x01\"\x011\x01.\x01\x1f\x01\x1c\x01\x16\x01\t\x01\x1d\x011\x01;\x01;\x01<\x016\x01+\x01\x15\x01\x1f\x01*\x01<\x01<\x01=\x015\x01(\x01\x14\x01\x0e\x01\x1f\x01(\x015\x014\x01#\x01\x1c\x01\x0f\x01\x07\x01\x15\x01\x1d\x01\x1f\x01 \x01\x1b\x01\r\x01\x11\x01\xff\x00\xf5\x00\x10\x01\x12\x01\x11\x01\x07\x01\xfb\x00\xfa\x00*\x010\x01/\x018\x014\x01,\x01#\x01(\x01\x1c\x01,\x01-\x012\x01)\x01&\x01.\x01\x13\x014\x01/\x018\x01,\x010\x013\x01)\x01*\x011\x01>\x019\x01C\x01=\x019\x019\x01.\x01*\x01;\x01?\x01>\x01=\x01;\x017\x01 \x01)\x012\x01;\x018\x01>\x018\x01*\x01\x1f\x01%\x01#\x01!\x012\x010\x01(\x01&\x01\x13\x01\x15\x01%\x01\x12\x01&\x01$\x01\"\x01\x18\x01\n\x01\x18\x02\x1e\x02\'\x02\"\x02\x1c\x02\x16\x02\x18\x02\x10\x02\x18\x02$\x02&\x02\x1f\x02\x1f\x02\x12\x02\x10\x02\x06\x02\x1a\x02\x1d\x02\x1d\x02\x1a\x02\x10\x02\x0b\x02\x05\x02\x01\x02\x1d\x02\x1a\x02#\x02 \x02\x11\x02\r\x02\t\x02\x05\x02\x15\x02\x19\x02\x1b\x02\x1a\x02\x15\x02\x13\x02\x07\x02\x03\x02\x10\x02\x0e\x02\x0f\x02\x13\x02\x0e\x02\x08\x02\xf5\x01\xf6\x01\x0b\x02\x0e\x02\x0f\x02\x10\x02\n\x02\x06\x02\xff\x01\x02\x02\x05\x02\r\x02\x14\x02\x11\x02\r\x02\t\x02\x02\x02\xfc\x01\xc1\x03\xbd\x03\xd0\x03\xcc\x03\xc9\x03\xc4\x03\xa0\x03\xc0\x03\x9d\x03\xcd\x03\xe3\x03\xf9\x03\x05\x04\xdf\x03\xcf\x03\xb1\x03\xa8\x03\xb3\x03\xdb\x03\xe5\x03\xeb\x03\xe0\x03\xb8\x03\xb0\x03\xb1\x03\xc6\x03\xd6\x03\xf1\x03\xf6\x03\xe6\x03\xda\x03\xc5\x03\xa6\x03\xc7\x03\xd1\x03\xe7\x03\xe2\x03\xd7\x03\xc8\x03\xb6\x03\xa1\x03\xab\x03\xc4\x03\xc2\x03\xc3\x03\xbd\x03\xa5\x03\xa0\x03\x94\x03\x99\x03\x92\x03\xa0\x03\xa1\x03\x8d\x03y\x03a\x03\x8f\x03\x9a\x03\x9e\x03\x91\x03\x95\x03\x95\x03\x87\x03\x85\x03\xb6\xff\xdd\xff\xee\xff\t\x00\xff\xff\x03\x00\x01\x00\xb5\xff\xfc\xff\x1a\x00!\x00\x1a\x00\'\x002\x00,\x00\x0f\x00\r\x00!\x000\x008\x00:\x007\x003\x00\x19\x00\t\x00\'\x006\x00A\x00B\x00=\x004\x00\x1a\x00\xff\xff\x1a\x000\x00=\x00=\x002\x00%\x00\x16\x00\xf7\xff\x0b\x00\x1f\x00)\x00*\x00\"\x00\x10\x00\x05\x00\xe6\xff\xfe\xff\t\x00\x13\x00\x16\x00\r\x00\xfc\xff\xeb\xff\xc9\xff\xdb\xff\xee\xff\xfa\xff\xe5\xff\xf6\xff\xdf\xff\xc5\xffsrc\\search\\mod.rs\x00\x00\x00\xd8]\x10\x00\x11\x00\x00\x00\xb5\x00\x00\x00\t\x00\x00\x00\xd8]\x10\x00\x11\x00\x00\x00\xdd\x00\x00\x006\x00\x00\x00\xd8]\x10\x00\x11\x00\x00\x00\xe6\x01\x00\x00!\x00\x00\x00searchmovesponderwtimebtimemovestogodepthnodesperftUnknown parameterO^\x10\x00\x11\x00\x00\x00src\\uci\\go_params.rsh^\x10\x00\x14\x00\x00\x00{\x00\x00\x00\x16\x00\x00\x00Conflicting move time\x00\x00\x00\x8c^\x10\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00x\x00\x00\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00u\x00\x00\x00\"\x00\x00\x00h^\x10\x00\x14\x00\x00\x00p\x00\x00\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00q\x00\x00\x00=\x00\x00\x00Conflicting mate\xec^\x10\x00\x10\x00\x00\x00h^\x10\x00\x14\x00\x00\x00l\x00\x00\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00m\x00\x00\x00&\x00\x00\x00Conflicting nodes\x00\x00\x00$_\x10\x00\x11\x00\x00\x00h^\x10\x00\x14\x00\x00\x00h\x00\x00\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00i\x00\x00\x00\"\x00\x00\x00Conflicting depth\x00\x00\x00`_\x10\x00\x11\x00\x00\x00h^\x10\x00\x14\x00\x00\x00d\x00\x00\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00e\x00\x00\x00\"\x00\x00\x00h^\x10\x00\x14\x00\x00\x00_\x00\x00\x00\x1e\x00\x00\x00Overwritten movestogo\x00\x00\x00\xac_\x10\x00\x15\x00\x00\x00h^\x10\x00\x14\x00\x00\x00[\x00\x00\x00\x1d\x00\x00\x00h^\x10\x00\x14\x00\x00\x00\\\x00\x00\x005\x00\x00\x00Overwritten binc\xec_\x10\x00\x10\x00\x00\x00h^\x10\x00\x14\x00\x00\x00W\x00\x00\x00\x1d\x00\x00\x00h^\x10\x00\x14\x00\x00\x00X\x00\x00\x009\x00\x00\x00Overwritten winc$`\x10\x00\x10\x00\x00\x00h^\x10\x00\x14\x00\x00\x00S\x00\x00\x00\x1d\x00\x00\x00h^\x10\x00\x14\x00\x00\x00T\x00\x00\x009\x00\x00\x00Overwritten btime\x00\x00\x00\\`\x10\x00\x11\x00\x00\x00h^\x10\x00\x14\x00\x00\x00O\x00\x00\x00\x1d\x00\x00\x00h^\x10\x00\x14\x00\x00\x00P\x00\x00\x004\x00\x00\x00Overwritten wtime\x00\x00\x00\x98`\x10\x00\x11\x00\x00\x00h^\x10\x00\x14\x00\x00\x00K\x00\x00\x00\x1d\x00\x00\x00h^\x10\x00\x14\x00\x00\x00L\x00\x00\x004\x00\x00\x00h^\x10\x00\x14\x00\x00\x00F\x00\x00\x00\x1e\x00\x00\x00not yet implemented: Pondering\x00\x00\xe4`\x10\x00\x1e\x00\x00\x00h^\x10\x00\x14\x00\x00\x00<\x00\x00\x00\x1d\x00\x00\x00not yet implemented\x00h^\x10\x00\x14\x00\x00\x00;\x00\x00\x00\"\x00\x00\x00Tried to play illegal move {uci_move} on {board}src\\uci\\mod.rs\x00\x00pa\x10\x00\x0e\x00\x00\x00.\x00\x00\x00\n\x00\x00\x00id name chess\nid author someone\noption name Hash type spin default 32 min 32 max 32\noption name Threads type spin default 1 min 1 max 1\nuciokreadyokrnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1fenmovespa\x10\x00\x0e\x00\x00\x00r\x00\x00\x004\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00r\x00\x00\x00E\x00\x00\x00Invalid promotion notation in \x00\x00\x84b\x10\x00\x1e\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00{\x00\x00\x00!\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00\x98\x00\x00\x00;\x00\x00\x00Nodes searched: \xccb\x10\x00\x10\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00\xa0\x00\x00\x009\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00\xb5\x00\x00\x00M\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00\xbe\x00\x00\x00\x12\x00\x00\x00bestmove \x00\x00\x00\x14c\x10\x00\t\x00\x00\x00score cp \x00\x00\x00(c\x10\x00\t\x00\x00\x00score mate \x00<c\x10\x00\x0b\x00\x00\x00info depth  seldepth  time  nodes  nps  pv\x00\x00Pc\x10\x00\x0b\x00\x00\x00[c\x10\x00\n\x00\x00\x00\x14\x13\x10\x00\x01\x00\x00\x00ec\x10\x00\x06\x00\x00\x00kc\x10\x00\x07\x00\x00\x00rc\x10\x00\x05\x00\x00\x00wc\x10\x00\x03\x00\x00\x00not yet implemented: Stop search immediately\xb4c\x10\x00,\x00\x00\x00pa\x10\x00\x0e\x00\x00\x00\x02\x01\x00\x00\t\x00\x00\x00: 1\x00\x01\x00\x00\x00\x00\x00\x00\x00\xf8c\x10\x00\x03\x00\x00\x00: \x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x0cd\x10\x00\x02\x00\x00\x00BitBoard+\x00\x00\x00\x04\x00\x00\x00\x04\x00\x00\x003\x00\x00\x00Zobrist/rustc/129f3b9964af4d4a709d1383930ade12dfe7c081/library/core/src/io/borrowed_buf.rs\x00\x00?d\x10\x00S\x00\x00\x00\xe1\x00\x00\x00\x1a\x00\x00\x00\x00\x00\x00\x00\'\x00\x00\x00\x04\x00\x00\x00\x04\x00\x00\x004\x00\x00\x00NoneSome\'\x00\x00\x00\x04\x00\x00\x00\x04\x00\x00\x005\x00\x00\x00/rust/deps/dlmalloc-0.2.6/src/dlmalloc.rsassertion failed: psize >= size + min_overhead\x00\xd0d\x10\x00)\x00\x00\x00\xa8\x04\x00\x00\t\x00\x00\x00assertion failed: psize <= size + max_overhead\x00\x00\xd0d\x10\x00)\x00\x00\x00\xae\x04\x00\x00\r\x00\x00\x00library/std/src/rt.rs\x00\x00\x00xe\x10\x00\x15\x00\x00\x00k\x00\x00\x00\r\x00\x00\x006\x00\x00\x00\x04\x00\x00\x00\x04\x00\x00\x007\x00\x00\x00called `Result::unwrap()` on an `Err` valuelibrary/std/src/thread/mod.rs\xdbe\x10\x00\x1d\x00\x00\x00\xc4\x02\x00\x000\x00\x00\x00failed to generate unique thread ID: bitspace exhausted\x00\x08f\x10\x007\x00\x00\x00\xdbe\x10\x00\x1d\x00\x00\x00\xb8\x04\x00\x00\r\x00\x00\x00main\x00Threadidnamestream did not contain valid UTF-8\x00if\x10\x00\"\x00\x00\x00\x15\x00\x00\x00\x02\x00\x00\x00\x8cf\x10\x00Oscodekind\x00\x008\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x1a\x00\x00\x00messageKindErrorCustomerrorlibrary/std/src/io/stdio.rs\x00\x00\xd7f\x10\x00\x1b\x00\x00\x00\xb4\x02\x00\x00\x13\x00\x00\x00library/std/src/io/mod.rs\x00\x00\x00\x04g\x10\x00\x19\x00\x00\x00\x83\x01\x00\x00\x1d\x00\x00\x00\x04g\x10\x00\x19\x00\x00\x004\x08\x00\x005\x00\x00\x00cannot recursively acquire mutex@g\x10\x00 \x00\x00\x00library/std/src/sys/sync/mutex/no_threads.rshg\x10\x00,\x00\x00\x00\x14\x00\x00\x00\t\x00\x00\x00library/std/src/sync/once.rs\xa4g\x10\x00\x1c\x00\x00\x00\x95\x00\x00\x002\x00\x00\x00\xa4g\x10\x00\x1c\x00\x00\x00\xd0\x00\x00\x00\x14\x00\x00\x00\xa4g\x10\x00\x1c\x00\x00\x00\xd0\x00\x00\x001\x00\x00\x00library/std/src/panicking.rs\xf0g\x10\x00\x1c\x00\x00\x00\x8b\x02\x00\x00\x1e\x00\x00\x00ThreadId\'\x00\x00\x00\x04\x00\x00\x00\x04\x00\x00\x009\x00\x00\x00NotFoundPermissionDeniedConnectionRefusedConnectionResetHostUnreachableNetworkUnreachableConnectionAbortedNotConnectedAddrInUseAddrNotAvailableNetworkDownBrokenPipeAlreadyExistsWouldBlockNotADirectoryIsADirectoryDirectoryNotEmptyReadOnlyFilesystemFilesystemLoopStaleNetworkFileHandleInvalidInputInvalidDataTimedOutWriteZeroStorageFullNotSeekableFilesystemQuotaExceededFileTooLargeResourceBusyExecutableFileBusyDeadlockCrossesDevicesTooManyLinksInvalidFilenameArgumentListTooLongInterruptedUnsupportedUnexpectedEofOutOfMemoryOtherUncategorizedoperation successfulOnce instance has previously been poisonedfj\x10\x00*\x00\x00\x00one-time initialization may not be performed recursively\x98j\x10\x008\x00\x00\x00\x08\x00\x00\x00\x10\x00\x00\x00\x11\x00\x00\x00\x0f\x00\x00\x00\x0f\x00\x00\x00\x12\x00\x00\x00\x11\x00\x00\x00\x0c\x00\x00\x00\t\x00\x00\x00\x10\x00\x00\x00\x0b\x00\x00\x00\n\x00\x00\x00\r\x00\x00\x00\n\x00\x00\x00\r\x00\x00\x00\x0c\x00\x00\x00\x11\x00\x00\x00\x12\x00\x00\x00\x0e\x00\x00\x00\x16\x00\x00\x00\x0c\x00\x00\x00\x0b\x00\x00\x00\x08\x00\x00\x00\t\x00\x00\x00\x0b\x00\x00\x00\x0b\x00\x00\x00\x17\x00\x00\x00\x0c\x00\x00\x00\x0c\x00\x00\x00\x12\x00\x00\x00\x08\x00\x00\x00\x0e\x00\x00\x00\x0c\x00\x00\x00\x0f\x00\x00\x00\x13\x00\x00\x00\x0b\x00\x00\x00\x0b\x00\x00\x00\r\x00\x00\x00\x0b\x00\x00\x00\x05\x00\x00\x00\r\x00\x00\x004h\x10\x00<h\x10\x00Lh\x10\x00]h\x10\x00lh\x10\x00{h\x10\x00\x8dh\x10\x00\x9eh\x10\x00\xaah\x10\x00\xb3h\x10\x00\xc3h\x10\x00\xceh\x10\x00\xd8h\x10\x00\xe5h\x10\x00\xefh\x10\x00\xfch\x10\x00\x08i\x10\x00\x19i\x10\x00+i\x10\x009i\x10\x00Oi\x10\x00[i\x10\x00fi\x10\x00ni\x10\x00wi\x10\x00\x82i\x10\x00\x8di\x10\x00\xa4i\x10\x00\xb0i\x10\x00\xbci\x10\x00\xcei\x10\x00\xd6i\x10\x00\xe4i\x10\x00\xf0i\x10\x00\xffi\x10\x00\x12j\x10\x00\x1dj\x10\x00(j\x10\x005j\x10\x00@j\x10\x00Ej\x10\x00\x05\x00\x00\x00\x0c\x00\x00\x00\x0b\x00\x00\x00\x0b\x00\x00\x00\x04\x00\x00\x00\xdc\x11\x10\x00\xe1\x11\x10\x00\xed\x11\x10\x00\xf8\x11\x10\x00\x03\x12\x10")
 end
 return function(wasm)
 	FUNC_LIST[0] = wasm["env"].func_list["print_string"]
