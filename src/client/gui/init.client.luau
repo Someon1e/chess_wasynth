@@ -313,8 +313,11 @@ local function makeGui(initialFen)
 		local result = Engine.getBestMove(initialFen, table.concat(moveHistory, " "), function(mate, evaluation)
 			evalBar.Visible = true
 			if mate then
-				local engineIsMating = if evaluation > 0 then 1 else 0
-				blackEvalFill.Size = UDim2.fromScale(1, if state.whiteToPlay then -engineIsMating else engineIsMating)
+				if evaluation ~= 0 then
+					local engineIsMating = if evaluation > 0 then 1 else 0
+					blackEvalFill.Size =
+						UDim2.fromScale(1, if state.whiteToPlay then -engineIsMating else engineIsMating)
+				end
 			else
 				local blackEvaluation = if state.whiteToPlay then -evaluation else evaluation
 				blackEvalFill.Size = UDim2.fromScale(1, 0.5 + blackEvaluation / 1800)
