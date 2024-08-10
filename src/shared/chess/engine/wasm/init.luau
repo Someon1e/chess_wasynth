@@ -6,7 +6,8 @@ local line = {}
 
 local messageListener: (string) -> ...any? = print
 
-local rust rust = require(script:WaitForChild("compiled"))({
+local rust
+rust = require(script:WaitForChild("compiled"))({
 	env = {
 		func_list = {
 			time = os.clock,

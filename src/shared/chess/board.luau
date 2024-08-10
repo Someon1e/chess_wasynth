@@ -245,12 +245,15 @@ function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, on
 
 		local promotion = string.sub(moveNotation, 5, 5)
 		if promotion ~= "" then
-			local promotionIncrease = assert(({
-				r = 1,
-				n = 2,
-				b = 3,
-				q = 4,
-			})[promotion], "Invalid promotion")
+			local promotionIncrease = assert(
+				({
+					r = 1,
+					n = 2,
+					b = 3,
+					q = 4,
+				})[promotion],
+				"Invalid promotion"
+			)
 			buffer.writeu8(state.board, squareMoveTo, movingPiece + promotionIncrease)
 			onPromotion(squareMoveTo, movingPiece + promotionIncrease)
 		else

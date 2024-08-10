@@ -1,4 +1,5 @@
 --!strict
+
 local Notation = {}
 
 Notation.FILE_NUMBER_TO_NAME = buffer.fromstring("abcdefgh")
