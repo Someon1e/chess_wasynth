@@ -47,7 +47,7 @@ function Engine.getBestMove(initialFen: string, moves, updateEval: (mate: boolea
 
 		local move = string.match(output, "bestmove (.+)")
 		if move then
-			result = if move == "a1a1" then nil else move
+			result = if move == "0000" then nil else move
 			WASM.setListener(print)
 		else
 			local eval = tonumber(string.match(output, "cp ([^ ]+)"))
