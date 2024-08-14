@@ -25,7 +25,7 @@ type boardState = {
 
 --[[
 	FEN (Forsynth Edward's Notation) is a string that describes a chess position
-	https://chessprogrammingwiki.netlify.app/forsythedwards_notation/
+	https://www.chessprogramming.org/Forsyth-Edwards_Notation
 ]]
 function Board.fromFEN(fen): boardState
 	local sections = string.split(fen, " ")
