@@ -5,7 +5,7 @@ local WASM = require(script:WaitForChild("wasm"))
 local Engine = {}
 
 function Engine.perft(out, fen: string, moves, depth)
-	-- https://chessprogrammingwiki.netlify.app/perft/
+	-- https://www.chessprogramming.org/Perft
 	local moveCount
 
 	WASM.setListener(function(output)
