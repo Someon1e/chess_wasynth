@@ -45,13 +45,15 @@ local function makeSquareGui(boardFrame, state)
 	local labels = table.create(63)
 	for y = 7, 0, -1 do
 		for x = 0, 7 do
+			local number = x + y * 8
+
 			local label = Instance.new("ImageLabel")
 
-			label.LayoutOrder = y * 8 + x
-			label.Name = Notation.SQUARE_NUMBER_TO_NAME[x + y * 8]
+			label.LayoutOrder = number
+			label.Name = Notation.SQUARE_NUMBER_TO_NAME[number]
 			label.BackgroundColor3 = if (y + x) % 2 == 0 then Config.DARK_SQUARE_COLOUR else Config.LIGHT_SQUARE_COLOUR
 
-			local piece = buffer.readu8(state.board, x + y * 8)
+			local piece = buffer.readu8(state.board, number)
 			label.Active = piece ~= 0
 			label.Image = Config.PIECE_TEXTURES[piece] or ""
 
@@ -59,7 +61,7 @@ local function makeSquareGui(boardFrame, state)
 
 			local corner = Instance.new("TextLabel")
 			corner.ZIndex = 2
-			corner.Text = Notation.SQUARE_NUMBER_TO_NAME[x + y * 8]
+			corner.Text = Notation.SQUARE_NUMBER_TO_NAME[number]
 			corner.FontFace = Config.FONT
 			corner.TextScaled = true
 			corner.Size = UDim2.fromScale(0.2, 0.2)
@@ -67,7 +69,7 @@ local function makeSquareGui(boardFrame, state)
 			corner.BackgroundTransparency = 1
 			corner.Parent = label
 
-			labels[x + y * 8] = label
+			labels[number] = label
 			label.Parent = boardFrame
 		end
 	end
