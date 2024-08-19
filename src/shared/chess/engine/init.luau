@@ -27,6 +27,12 @@ function Engine.setOptionValue(option, value)
 	WASM.sendInput("setoption name " .. option .. " value " .. value)
 end
 
+function Engine.uci(listener)
+	-- TODO: parsing UCI output
+	WASM.setListener(listener)
+	WASM.sendInput("uci")
+end
+
 function Engine.getLegalMoves(out, fen: string, moves: string)
 	WASM.setListener(function(output)
 		local prefix = string.match(output, "(.+):")
