@@ -61,11 +61,9 @@ function Engine.getBestMove(initialFen: string, moves, updateEval: (mate: boolea
 				updateEval(false, eval)
 			else
 				local mate = tonumber(string.match(output, "mate ([^ ]+)"))
-				if not mate then
-					return
+				if mate then
+					updateEval(true, mate)
 				end
-				updateEval(true, mate)
-				return
 			end
 		end
 	end)
