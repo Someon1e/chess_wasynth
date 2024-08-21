@@ -120,7 +120,7 @@ function Board.fromFEN(fen): boardState
 end
 
 function Board.toFEN(state: boardState)
-	local result: { string | number } = table.create(87)
+	local result: { string | number } = table.create(72)
 
 	for y = 7, 0, -1 do
 		local empty = 0
