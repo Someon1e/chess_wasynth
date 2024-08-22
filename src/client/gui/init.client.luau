@@ -308,6 +308,7 @@ local function makeGui(initialFen)
 			label.Image = Config.PIECE_TEXTURES[piece] or ""
 		end
 		resetLabels()
+		fenBox.Text = Board.toFEN(state)
 	end)
 	undoButton.Parent = gui
 
