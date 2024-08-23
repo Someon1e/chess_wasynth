@@ -97,8 +97,6 @@ function Board.fromFEN(fen): boardState
 		enPassantSquare = Notation.SQUARE_NAME_TO_NUMBER[enPassant]
 	end
 
-	print(sections)
-
 	local halfMoveClock = tonumber(sections[5])
 	local fullMoveCounter = tonumber(sections[6])
 
