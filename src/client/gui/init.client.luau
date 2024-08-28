@@ -1,5 +1,7 @@
 --!strict
 
+game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false)
+
 local Config = require(script:WaitForChild("config"))
 local chess = game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess")
 local Engine = require(chess:WaitForChild("engine"))
