@@ -223,13 +223,10 @@ local function makeGui(initialFen)
 	aiMoveTimeBox.Position = UDim2.fromScale(0.85, 0.797)
 	aiMoveTimeBox.FocusLost:Connect(function()
 		local number = tonumber(aiMoveTimeBox.Text)
-		if not number then
-			aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
-			return
+		if number then
+			aiMoveTimeInMilliseconds = math.clamp(number, 100, 10000)
 		end
-		local clamped = math.clamp(number, 100, 10000)
-		aiMoveTimeInMilliseconds = clamped
-		aiMoveTimeBox.Text = tostring(clamped)
+		aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
 	end)
 	constrain(aiMoveTimeBox, 3)
 
