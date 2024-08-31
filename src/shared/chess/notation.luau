@@ -43,6 +43,7 @@ Notation.WHITE_KNIGHT = 9
 Notation.WHITE_BISHOP = 10
 Notation.WHITE_QUEEN = 11
 Notation.WHITE_KING = 12
+
 Notation.PIECE_ENUM_TO_NAME = {
 	[Notation.BLACK_PAWN] = "p",
 	[Notation.BLACK_ROOK] = "r",
@@ -58,6 +59,7 @@ Notation.PIECE_ENUM_TO_NAME = {
 	[Notation.WHITE_QUEEN] = "Q",
 	[Notation.WHITE_KING] = "K",
 }
+
 Notation.PIECE_NAME_TO_ENUM = {
 	p = Notation.BLACK_PAWN,
 	r = Notation.BLACK_ROOK,
