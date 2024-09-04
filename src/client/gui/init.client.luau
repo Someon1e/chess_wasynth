@@ -37,7 +37,7 @@ local function makeBoardFrame()
 	gridLayout.StartCorner = Enum.StartCorner.BottomLeft
 	gridLayout.Parent = boardFrame
 
-	boardFrame.Size = UDim2.fromScale(0.8, 0.8)
+	boardFrame.Size = UDim2.fromScale(0.85, 0.85)
 	boardFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 	boardFrame.Position = UDim2.fromScale(0.5, 0.5)
 
