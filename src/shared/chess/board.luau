@@ -99,10 +99,12 @@ function Board.fromFEN(fen): boardState
 
 	local halfMoveClock = tonumber(sections[5])
 	if halfMoveClock then
+		assert(halfMoveClock >= 0, "Half move clock must be positive")
 		assert(math.floor(halfMoveClock) == halfMoveClock, "Half move clock must be an integer")
 	end
 	local fullMoveCounter = tonumber(sections[6])
 	if fullMoveCounter then
+		assert(fullMoveCounter >= 0, "Full move counter must be positive")
 		assert(math.floor(fullMoveCounter) == fullMoveCounter, "Full move counter must be an integer")
 	end
 
