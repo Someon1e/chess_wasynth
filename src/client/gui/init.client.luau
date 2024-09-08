@@ -1,109 +1,127 @@
---!strict
-
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false)
 
+local UserInputService = game:GetService("UserInputService")
+
 local Config = require(script:WaitForChild("config"))
+
 local chess = game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess")
 local Engine = require(chess:WaitForChild("engine"))
 local Notation = require(chess:WaitForChild("notation"))
 local Board = require(chess:WaitForChild("board"))
 
-local pieceMoveSound = Instance.new("Sound")
-pieceMoveSound.SoundId = Config.PIECE_MOVE_SOUND
-pieceMoveSound.Parent = workspace
+local Fusion = require(script:WaitForChild("Fusion"))
+local scope = Fusion.scoped({
+	New = Fusion.New,
+	Value = Fusion.Value,
+	Hydrate = Fusion.Hydrate,
+	Computed = Fusion.Computed,
+})
+
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+local pieceMoveSound = scope:New("Sound")({
+	SoundId = Config.PIECE_MOVE_SOUND,
+	Parent = workspace,
+})
 
 -- Only used because the type checker is wrong
 local unneeded_assert = assert
 
-local UserInputService = game:GetService("UserInputService")
-local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local function makeBoardFrame(startCorner)
+	return scope:New("Frame")({
+		Name = "Board",
+		Size = UDim2.fromScale(0.85, 0.85),
+		AnchorPoint = Vector2.new(0.5, 0.5),
+		Position = UDim2.fromScale(0.5, 0.5),
 
-local function constrain(object, aspectRatio)
-	local constraint = Instance.new("UIAspectRatioConstraint")
-	constraint.AspectRatio = aspectRatio
-	constraint.Parent = object
+		[Fusion.Children] = {
+			scope:New("UIAspectRatioConstraint")({
+				AspectRatio = 1,
+			}),
+			scope:New("UIGridLayout")({
+				CellSize = UDim2.fromScale(1 / 8, 1 / 8),
+				CellPadding = UDim2.fromScale(0, 0),
+				SortOrder = Enum.SortOrder.LayoutOrder,
+				StartCorner = startCorner,
+			}),
+		},
+	})
 end
-
-local function makeBoardFrame()
-	local boardFrame = Instance.new("Frame")
-	boardFrame.Name = "Board"
-
-	constrain(boardFrame, 1)
-
-	local gridLayout = Instance.new("UIGridLayout")
-	gridLayout.CellSize = UDim2.fromScale(1 / 8, 1 / 8)
-	gridLayout.CellPadding = UDim2.fromScale(0, 0)
-	gridLayout.SortOrder = Enum.SortOrder.LayoutOrder
-	gridLayout.StartCorner = Enum.StartCorner.BottomLeft
-	gridLayout.Parent = boardFrame
-
-	boardFrame.Size = UDim2.fromScale(0.85, 0.85)
-	boardFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-	boardFrame.Position = UDim2.fromScale(0.5, 0.5)
-
-	return boardFrame, gridLayout
-end
-local function makeSquareGui(boardFrame, state)
+local function makeSquareGui(parent, state)
 	local labels = table.create(63)
 	for y = 7, 0, -1 do
 		for x = 0, 7 do
 			local number = x + y * 8
 
-			local label = Instance.new("ImageLabel")
-
-			label.LayoutOrder = number
-			label.Name = Notation.SQUARE_NUMBER_TO_NAME[number]
-			label.BackgroundColor3 = if (y + x) % 2 == 0 then Config.DARK_SQUARE_COLOUR else Config.LIGHT_SQUARE_COLOUR
-
 			local piece = buffer.readu8(state.board, number)
-			label.Active = piece ~= 0
-			label.Image = Config.PIECE_TEXTURES[piece] or ""
 
-			label.BorderSizePixel = 0
+			local active = scope:Value(piece ~= 0)
 
-			local corner = Instance.new("TextLabel")
-			corner.ZIndex = 2
-			corner.Text = Notation.SQUARE_NUMBER_TO_NAME[number]
-			corner.FontFace = Config.FONT
-			corner.TextScaled = true
-			corner.Size = UDim2.fromScale(0.2, 0.2)
-			corner.Position = UDim2.fromScale(0.7, 0.8)
-			corner.BackgroundTransparency = 1
-			corner.Parent = label
+			local image = scope:Value(Config.PIECE_TEXTURES[piece] or "")
+			labels[number] = table.freeze({
+				label = scope:New("ImageLabel")({
+					LayoutOrder = number,
+					Name = Notation.SQUARE_NUMBER_TO_NAME[number],
+					BackgroundColor3 = if (y + x) % 2 == 0
+						then Config.DARK_SQUARE_COLOUR
+						else Config.LIGHT_SQUARE_COLOUR,
+					Image = image,
+					BorderSizePixel = 0,
+					Active = active,
 
-			labels[number] = label
-			label.Parent = boardFrame
+					[Fusion.Children] = scope:New("TextLabel")({
+						ZIndex = 2,
+						Text = Notation.SQUARE_NUMBER_TO_NAME[number],
+						FontFace = Config.FONT,
+						TextScaled = true,
+						Size = UDim2.fromScale(0.2, 0.2),
+						Position = UDim2.fromScale(0.7, 0.8),
+						BackgroundTransparency = 1,
+					}),
+
+					Parent = parent,
+				}),
+				active = active,
+				image = image,
+			})
 		end
 	end
 	return labels
 end
 
-local function makeEvalBar()
-	local evalBar = Instance.new("Frame")
-	evalBar.Name = "Evaluation"
-	evalBar.ClipsDescendants = true
-	evalBar.Size = UDim2.fromScale(0.02, 0.8)
-	evalBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	evalBar.Position = UDim2.fromScale(0.2, 0.1)
-	evalBar.ZIndex = 2
-	local blackEvalFill = Instance.new("Frame")
-	blackEvalFill.Size = UDim2.fromScale(1, 0.5)
-	blackEvalFill.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	blackEvalFill.Position = UDim2.fromScale(0, 0)
-	blackEvalFill.ZIndex = 2
-	blackEvalFill.Parent = evalBar
-	evalBar.Visible = false
-	return evalBar, blackEvalFill
+local function makeEvalBar(evalScale, visible)
+	return scope:New("Frame")({
+		Name = "Evaluation",
+		ClipsDescendants = true,
+		Size = UDim2.fromScale(0.02, 0.8),
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		Position = UDim2.fromScale(0.2, 0.1),
+		ZIndex = 2,
+		Visible = visible,
+
+		[Fusion.Children] = scope:New("Frame")({
+			Size = scope:Computed(function(use)
+				return UDim2.fromScale(1, use(evalScale))
+			end),
+			BackgroundColor3 = Color3.fromRGB(0, 0, 0),
+			Position = UDim2.fromScale(0, 0),
+			ZIndex = 2,
+		}),
+	})
 end
 
 local function makeButton(name)
-	local button = Instance.new("TextButton")
-	button.TextScaled = true
-	button.Size = UDim2.fromScale(0.07, 0.07)
-	button.BackgroundColor3 = Color3.fromRGB(0, 0, 30)
-	button.TextColor3 = Color3.fromRGB(232, 232, 232)
-	button.Name = name
-	constrain(button, 2)
+	local button = scope:New("TextButton")({
+		TextScaled = true,
+		Size = UDim2.fromScale(0.07, 0.07),
+		BackgroundColor3 = Color3.fromRGB(0, 0, 30),
+		TextColor3 = Color3.fromRGB(232, 232, 232),
+		Name = name,
+
+		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
+			AspectRatio = 2,
+		}),
+	})
 
 	return button
 end
@@ -119,27 +137,31 @@ local function makeGui(initialFen)
 	local moveHistory = {}
 	local stateHistory = {}
 
-	local gui = Instance.new("ScreenGui")
-	gui.Name = "Chess"
+	local startCorner = scope:Value(Enum.StartCorner.BottomLeft)
 
-	local boardFrame, boardGridLayout = makeBoardFrame()
+	local boardFrame = makeBoardFrame(startCorner)
 	local labels = makeSquareGui(boardFrame, state)
 
-	local usedCircles: { Frame }, unusedCircles = table.create(27), table.create(27)
+	local usedCircles, unusedCircles = table.create(27), table.create(27)
 	do
 		for index = 1, 27 do
-			local circle = Instance.new("Frame")
-			circle.Name = "Circle"
-			circle.Size = UDim2.fromScale(0.4, 0.4)
-			circle.AnchorPoint = Vector2.new(0.5, 0.5)
-			circle.Position = UDim2.fromScale(0.5, 0.5)
-			circle.BackgroundTransparency = 0.5
+			local parent = scope:Value(nil)
+			local color = scope:Value(Color3.fromRGB())
+			scope:New("Frame")({
+				Name = "Circle",
+				Size = UDim2.fromScale(0.4, 0.4),
+				AnchorPoint = Vector2.new(0.5, 0.5),
+				Position = UDim2.fromScale(0.5, 0.5),
+				BackgroundTransparency = 0.5,
+				BackgroundColor3 = color,
 
-			local corner = Instance.new("UICorner")
-			corner.CornerRadius = UDim.new(1)
-			corner.Parent = circle
+				Parent = parent,
 
-			unusedCircles[index] = circle
+				[Fusion.Children] = scope:New("UICorner")({
+					CornerRadius = UDim.new(1),
+				}),
+			})
+			unusedCircles[index] = table.freeze({ parent = parent, color = color })
 		end
 	end
 
@@ -147,45 +169,49 @@ local function makeGui(initialFen)
 		for y = 7, 0, -1 do
 			for x = 0, 7 do
 				local label = labels[x + y * 8]
-				label.Active = buffer.readu8(state.board, x + y * 8) ~= 0
+				label.active:set(buffer.readu8(state.board, x + y * 8) ~= 0)
 			end
 		end
 		for _, circle in usedCircles do
-			circle.Parent = nil
+			circle.parent:set(nil)
 			table.insert(unusedCircles, circle)
 		end
 		table.clear(usedCircles)
 	end
 
-	local evalBar, blackEvalFill = makeEvalBar()
-	evalBar.Parent = gui
+	local evalBarVisible = scope:Value(false)
 
 	local rotateButton = makeButton("Rotate")
-	rotateButton.Text = "Rotate"
-	rotateButton.FontFace = Config.FONT
-	rotateButton.Position = UDim2.fromScale(0.85, 0.9)
-	rotateButton.Activated:Connect(function()
-		if boardGridLayout.StartCorner == Enum.StartCorner.BottomLeft then
-			boardGridLayout.StartCorner = Enum.StartCorner.TopRight
-		else
-			boardGridLayout.StartCorner = Enum.StartCorner.BottomLeft
-		end
-	end)
-	rotateButton.Parent = gui
+	scope:Hydrate(rotateButton)({
+		Text = "Rotate",
+		FontFace = Config.FONT,
+		Position = UDim2.fromScale(0.85, 0.9),
 
-	local fenBox = Instance.new("TextBox")
-	fenBox.Name = "FEN"
-	fenBox.Text = initialFen
-	fenBox.FontFace = Config.FONT
-	fenBox.TextScaled = true
-	fenBox.Size = UDim2.fromScale(0.2, 0.06)
-	fenBox.ClearTextOnFocus = false
-	fenBox.ZIndex = 2
-	fenBox.BackgroundColor3 = Color3.fromRGB(0, 0, 30)
-	fenBox.TextColor3 = Color3.fromRGB(232, 232, 232)
-	fenBox.Position = UDim2.fromScale(0.75, 0.5)
-	constrain(fenBox, 6)
+		[Fusion.OnEvent("Activated")] = function()
+			if Fusion.peek(startCorner) == Enum.StartCorner.BottomLeft then
+				startCorner:set(Enum.StartCorner.TopRight)
+			else
+				startCorner:set(Enum.StartCorner.BottomLeft)
+			end
+		end,
+	})
 
+	local fenBox = scope:New("TextBox")({
+		Name = "FEN",
+		Text = initialFen,
+		FontFace = Config.FONT,
+		TextScaled = true,
+		Size = UDim2.fromScale(0.2, 0.06),
+		ClearTextOnFocus = false,
+		ZIndex = 2,
+		BackgroundColor3 = Color3.fromRGB(0, 0, 30),
+		TextColor3 = Color3.fromRGB(232, 232, 232),
+		Position = UDim2.fromScale(0.75, 0.5),
+
+		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
+			AspectRatio = 6,
+		}),
+	})
 	fenBox.FocusLost:Connect(function()
 		local isValid, newState = pcall(Board.fromFEN, fenBox.Text)
 		if not isValid then
@@ -193,7 +219,7 @@ local function makeGui(initialFen)
 			fenBox.Text = initialFen
 			return
 		end
-		evalBar.Visible = false
+		evalBarVisible:set(false)
 		state = newState
 		initialFen = Board.toFEN(state)
 		fenBox.Text = initialFen
@@ -202,33 +228,38 @@ local function makeGui(initialFen)
 		table.clear(stateHistory)
 		for square, label in labels do
 			local piece = buffer.readu8(state.board, square)
-			label.Image = Config.PIECE_TEXTURES[piece] or ""
+			label.image:set(Config.PIECE_TEXTURES[piece] or "")
 		end
 		resetLabels()
 	end)
-	fenBox.Parent = gui
 
 	local aiMoveTimeInMilliseconds = Config.DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS
 
-	local aiMoveTimeBox = Instance.new("TextBox")
-	aiMoveTimeBox.Name = "AIMoveTime"
-	aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
-	aiMoveTimeBox.FontFace = Config.FONT
-	aiMoveTimeBox.TextScaled = true
-	aiMoveTimeBox.Size = UDim2.fromScale(0.07, 0.07)
-	aiMoveTimeBox.ClearTextOnFocus = false
-	aiMoveTimeBox.ZIndex = 2
-	aiMoveTimeBox.BackgroundColor3 = Color3.fromRGB(0, 0, 30)
-	aiMoveTimeBox.TextColor3 = Color3.fromRGB(232, 232, 232)
-	aiMoveTimeBox.Position = UDim2.fromScale(0.85, 0.797)
-	aiMoveTimeBox.FocusLost:Connect(function()
-		local number = tonumber(aiMoveTimeBox.Text)
-		if number then
-			aiMoveTimeInMilliseconds = math.clamp(number, 100, 10000)
-		end
-		aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
-	end)
-	constrain(aiMoveTimeBox, 3)
+	local aiMoveTimeBox
+	aiMoveTimeBox = scope:New("TextBox")({
+		Name = "AIMoveTime",
+		Text = tostring(aiMoveTimeInMilliseconds),
+		FontFace = Config.FONT,
+		TextScaled = true,
+		Size = UDim2.fromScale(0.07, 0.07),
+		ClearTextOnFocus = false,
+		ZIndex = 2,
+		BackgroundColor3 = Color3.fromRGB(0, 0, 30),
+		TextColor3 = Color3.fromRGB(232, 232, 232),
+		Position = UDim2.fromScale(0.85, 0.797),
+
+		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
+			AspectRatio = 3,
+		}),
+
+		[Fusion.OnEvent("FocusLost")] = function()
+			local number = tonumber(aiMoveTimeBox.Text)
+			if number then
+				aiMoveTimeInMilliseconds = math.clamp(number, 100, 10000)
+			end
+			aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
+		end,
+	})
 
 	local aiMoveTimeLabel = Instance.new("TextLabel")
 	aiMoveTimeLabel.Text = "AI Move Time"
@@ -239,10 +270,6 @@ local function makeGui(initialFen)
 	aiMoveTimeLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 30)
 	aiMoveTimeLabel.TextColor3 = Color3.fromRGB(232, 232, 232)
 	aiMoveTimeLabel.Parent = aiMoveTimeBox
-	aiMoveTimeBox.Parent = gui
-
-	boardFrame.Parent = gui
-	gui.Parent = playerGui
 
 	local function highlightLegalMoves(from)
 		Engine.getLegalMoves(function(legalMove)
@@ -255,14 +282,14 @@ local function makeGui(initialFen)
 
 			local circle = assert(table.remove(unusedCircles), "Exceeded piece max possible moves")
 			if buffer.readu8(state.board, legalMoveTo) ~= 0 then
-				circle.BackgroundColor3 = Config.CAN_CAPTURE_SQUARE_COLOUR
+				circle.color:set(Config.CAN_CAPTURE_SQUARE_COLOUR)
 			else
-				circle.BackgroundColor3 = Config.CAN_MOVE_TO_SQUARE_COLOUR
+				circle.color:set(Config.CAN_MOVE_TO_SQUARE_COLOUR)
 			end
-			circle.Parent = labels[legalMoveTo]
+			circle.parent:set(labels[legalMoveTo].label)
 			table.insert(usedCircles, circle)
 
-			labels[legalMoveTo].Active = true
+			labels[legalMoveTo].active:set(true)
 		end, initialFen, table.concat(moveHistory, " "))
 	end
 
@@ -274,12 +301,12 @@ local function makeGui(initialFen)
 		table.insert(moveHistory, moveNotation)
 
 		Board.makeMove(state, moveNotation, function(squareMoveFrom, squareMoveTo)
-			labels[squareMoveTo].Image = labels[squareMoveFrom].Image
-			labels[squareMoveFrom].Image = ""
+			labels[squareMoveTo].image:set(Fusion.peek(labels[squareMoveFrom].image))
+			labels[squareMoveFrom].image:set("")
 		end, function(promotionSquare, promoteInto)
-			labels[promotionSquare].Image = Config.PIECE_TEXTURES[promoteInto]
+			labels[promotionSquare].image:set(Config.PIECE_TEXTURES[promoteInto])
 		end, function(captureSquare)
-			labels[captureSquare].Image = ""
+			labels[captureSquare].image:set("")
 		end)
 
 		resetLabels()
@@ -299,7 +326,7 @@ local function makeGui(initialFen)
 		end
 
 		state = prevState
-		evalBar.Visible = false
+		evalBarVisible:set(false)
 		table.remove(moveHistory)
 		table.remove(moveHistory)
 		for square, label in labels do
@@ -309,20 +336,20 @@ local function makeGui(initialFen)
 		resetLabels()
 		fenBox.Text = Board.toFEN(state)
 	end)
-	undoButton.Parent = gui
+
+	local evalScale = scope:Value(0.5)
 
 	local function getAIResponse()
 		local result = Engine.getBestMove(initialFen, table.concat(moveHistory, " "), function(mate, evaluation)
-			evalBar.Visible = true
+			evalBarVisible:set(true)
 			if mate then
 				if evaluation ~= 0 then
 					local engineIsMating = if evaluation > 0 then 1 else 0
-					blackEvalFill.Size =
-						UDim2.fromScale(1, if state.whiteToPlay then -engineIsMating else engineIsMating)
+					evalScale:set(if state.whiteToPlay then -engineIsMating else engineIsMating)
 				end
 			else
 				local blackEvaluation = if state.whiteToPlay then -evaluation else evaluation
-				blackEvalFill.Size = UDim2.fromScale(1, 0.5 + blackEvaluation / 1800)
+				evalScale:set(0.5 + blackEvaluation / 1800)
 			end
 			waitForRender()
 		end, aiMoveTimeInMilliseconds)
@@ -333,6 +360,7 @@ local function makeGui(initialFen)
 	aiSelfPlayButton.Position = UDim2.fromScale(0.75, 0.8)
 	aiSelfPlayButton.Text = "AI vs AI"
 	aiSelfPlayButton.FontFace = Config.FONT
+
 	local aiSelfPlaying = false
 	aiSelfPlayButton.TextColor3 = if aiSelfPlaying then Config.BUTTON_ENABLED_COLOUR else Config.BUTTON_DISABLED_COLOUR
 	aiSelfPlayButton.Activated:Connect(function()
@@ -355,10 +383,10 @@ local function makeGui(initialFen)
 
 		sideOfHuman = state.whiteToPlay
 	end)
-	aiSelfPlayButton.Parent = gui
 
 	local function getHoveringSquare(input): (number?, ImageLabel?)
-		for squareMoveTo, label in labels do
+		for squareMoveTo, labelInfo in labels do
+			local label = labelInfo.label
 			if
 				label.AbsolutePosition.X <= input.Position.X
 				and input.Position.X <= label.AbsolutePosition.X + label.AbsoluteSize.X
@@ -371,25 +399,28 @@ local function makeGui(initialFen)
 		return nil, nil
 	end
 
-	local promotionFrame = Instance.new("Frame")
-	promotionFrame.Name = "Promotion"
+	local promotionFrame = scope:New("Frame")({
+		Name = "Promotion",
+		Position = UDim2.fromScale(0.03, 0.3),
+		Size = UDim2.fromScale(0.2, 0.2),
+		Visible = false,
+
+		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
+			AspectRatio = 4,
+		}),
+	})
 	local promotionButtons = {}
 	local pieceColourOffset = if state.whiteToPlay then 6 else 0
 	for piece = 2 + pieceColourOffset, 5 + pieceColourOffset do
-		local button = Instance.new("ImageButton")
-		button.Name = Notation.PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
-		button.Image = Config.PIECE_TEXTURES[piece]
-		button.Size = UDim2.fromScale(1 / 4, 1)
-		button.Position = UDim2.fromScale((piece - 2 - pieceColourOffset) / 4, 0)
-		button.Parent = promotionFrame
-
+		local button = scope:New("ImageButton")({
+			Name = Notation.PIECE_ENUM_TO_NAME[piece - pieceColourOffset],
+			Image = Config.PIECE_TEXTURES[piece],
+			Size = UDim2.fromScale(1 / 4, 1),
+			Position = UDim2.fromScale((piece - 2 - pieceColourOffset) / 4, 0),
+			Parent = promotionFrame,
+		})
 		promotionButtons[button] = Notation.PIECE_ENUM_TO_NAME[piece - pieceColourOffset]
 	end
-	constrain(promotionFrame, 4)
-	promotionFrame.Position = UDim2.fromScale(0.03, 0.3)
-	promotionFrame.Size = UDim2.fromScale(0.2, 0.2)
-	promotionFrame.Visible = false
-	promotionFrame.Parent = gui
 
 	local function tryAskPromotion(squareMoveTo)
 		local thread = coroutine.running()
@@ -478,16 +509,17 @@ local function makeGui(initialFen)
 	end
 
 	local draggedFrom: ImageLabel?
-	local pieceDragImage = Instance.new("ImageLabel")
-	pieceDragImage.Name = "Drag"
-	pieceDragImage.BackgroundTransparency = 1
-	pieceDragImage.AnchorPoint = Vector2.new(0.5, 0.5)
+	local pieceDragImage = scope:New("ImageLabel")({
+		Name = "Drag",
+		BackgroundTransparency = 1,
+		AnchorPoint = Vector2.new(0.5, 0.5),
+
+		Size = UDim2.fromOffset(boardFrame.AbsoluteSize.X / 8, boardFrame.AbsoluteSize.Y / 8),
+		ZIndex = 3,
+	})
 	boardFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
 		pieceDragImage.Size = UDim2.fromOffset(boardFrame.AbsoluteSize.X / 8, boardFrame.AbsoluteSize.Y / 8)
 	end)
-	pieceDragImage.Size = UDim2.fromOffset(boardFrame.AbsoluteSize.X / 8, boardFrame.AbsoluteSize.Y / 8)
-	pieceDragImage.ZIndex = 3
-	pieceDragImage.Parent = gui
 
 	local function dragEnd()
 		if not draggedFrom then
@@ -563,6 +595,24 @@ local function makeGui(initialFen)
 		dragEnd()
 		humanMadeMove(input)
 	end)
+
+	scope:New("ScreenGui")({
+		Name = "Chess",
+
+		Parent = playerGui,
+
+		[Fusion.Children] = {
+			boardFrame,
+			makeEvalBar(evalScale, evalBarVisible),
+			rotateButton,
+			fenBox,
+			pieceDragImage,
+			aiMoveTimeBox,
+			promotionFrame,
+			undoButton,
+			aiSelfPlayButton,
+		},
+	})
 end
 
 Engine.uci(print)
