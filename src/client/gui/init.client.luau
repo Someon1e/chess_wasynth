@@ -248,9 +248,20 @@ local function makeGui(initialFen)
 		TextColor3 = Color3.fromRGB(232, 232, 232),
 		Position = UDim2.fromScale(0.85, 0.797),
 
-		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
-			AspectRatio = 3,
-		}),
+		[Fusion.Children] = {
+			scope:New("TextLabel")({
+				Text = "AI Move Time",
+				FontFace = Config.FONT,
+				TextScaled = true,
+				Size = UDim2.fromScale(0.6, 0.5),
+				Position = UDim2.fromScale(0, 1.1),
+				BackgroundColor3 = Color3.fromRGB(0, 0, 30),
+				TextColor3 = Color3.fromRGB(232, 232, 232),
+			}),
+			scope:New("UIAspectRatioConstraint")({
+				AspectRatio = 3,
+			}),
+		},
 
 		[Fusion.OnEvent("FocusLost")] = function()
 			local number = tonumber(aiMoveTimeBox.Text)
@@ -260,16 +271,6 @@ local function makeGui(initialFen)
 			aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
 		end,
 	})
-
-	local aiMoveTimeLabel = Instance.new("TextLabel")
-	aiMoveTimeLabel.Text = "AI Move Time"
-	aiMoveTimeLabel.FontFace = Config.FONT
-	aiMoveTimeLabel.TextScaled = true
-	aiMoveTimeLabel.Size = UDim2.fromScale(0.6, 0.5)
-	aiMoveTimeLabel.Position = UDim2.fromScale(0, 1.1)
-	aiMoveTimeLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 30)
-	aiMoveTimeLabel.TextColor3 = Color3.fromRGB(232, 232, 232)
-	aiMoveTimeLabel.Parent = aiMoveTimeBox
 
 	local function highlightLegalMoves(from)
 		Engine.getLegalMoves(function(legalMove)
@@ -315,27 +316,30 @@ local function makeGui(initialFen)
 	end
 
 	local undoButton = makeButton("Undo")
-	undoButton.Position = UDim2.fromScale(0.75, 0.9)
-	undoButton.Text = "Undo"
-	undoButton.FontFace = Config.FONT
-	undoButton.Activated:Connect(function()
-		assert(#moveHistory % 2 == 0, "Incomplete turn")
-		local prevState = table.remove(stateHistory)
-		if not prevState then
-			return
-		end
+	scope:Hydrate(undoButton)({
+		Position = UDim2.fromScale(0.75, 0.9),
+		Text = "Undo",
+		FontFace = Config.FONT,
 
-		state = prevState
-		evalBarVisible:set(false)
-		table.remove(moveHistory)
-		table.remove(moveHistory)
-		for square, label in labels do
-			local piece = buffer.readu8(state.board, square)
-			label.Image = Config.PIECE_TEXTURES[piece] or ""
-		end
-		resetLabels()
-		fenBox.Text = Board.toFEN(state)
-	end)
+		[Fusion.OnEvent("Activated")] = function()
+			assert(#moveHistory % 2 == 0, "Incomplete turn")
+			local prevState = table.remove(stateHistory)
+			if not prevState then
+				return
+			end
+
+			state = prevState
+			evalBarVisible:set(false)
+			table.remove(moveHistory)
+			table.remove(moveHistory)
+			for square, label in labels do
+				local piece = buffer.readu8(state.board, square)
+				label.Image = Config.PIECE_TEXTURES[piece] or ""
+			end
+			resetLabels()
+			fenBox.Text = Board.toFEN(state)
+		end,
+	})
 
 	local evalScale = scope:Value(0.5)
 
@@ -357,32 +361,36 @@ local function makeGui(initialFen)
 	end
 
 	local aiSelfPlayButton = makeButton("AISelfPlay")
-	aiSelfPlayButton.Position = UDim2.fromScale(0.75, 0.8)
-	aiSelfPlayButton.Text = "AI vs AI"
-	aiSelfPlayButton.FontFace = Config.FONT
+	local aiSelfPlaying = scope:Value(false)
+	scope:Hydrate(aiSelfPlayButton)({
+		Position = UDim2.fromScale(0.75, 0.8),
+		Text = "AI vs AI",
+		FontFace = Config.FONT,
+		TextColor3 = scope:Computed(function(use)
+			return if use(aiSelfPlaying) then Config.BUTTON_ENABLED_COLOUR else Config.BUTTON_DISABLED_COLOUR
+		end),
 
-	local aiSelfPlaying = false
-	aiSelfPlayButton.TextColor3 = if aiSelfPlaying then Config.BUTTON_ENABLED_COLOUR else Config.BUTTON_DISABLED_COLOUR
-	aiSelfPlayButton.Activated:Connect(function()
-		sideOfHuman = nil
-		aiSelfPlaying = not aiSelfPlaying
+		[Fusion.OnEvent("Activated")] = function()
+			sideOfHuman = nil
+			aiSelfPlaying:set(not Fusion.peek(aiSelfPlaying))
 
-		if aiSelfPlaying then
-			aiSelfPlayButton.TextColor3 = Config.BUTTON_ENABLED_COLOUR
+			if Fusion.peek(aiSelfPlaying) then
+				aiSelfPlayButton.TextColor3 = Config.BUTTON_ENABLED_COLOUR
 
-			while aiSelfPlaying do
-				local move = getAIResponse()
-				if not move then
-					break
+				while Fusion.peek(aiSelfPlaying) do
+					local move = getAIResponse()
+					if not move then
+						break
+					end
+					playMove(move)
 				end
-				playMove(move)
+			else
+				aiSelfPlayButton.TextColor3 = Config.BUTTON_DISABLED_COLOUR
 			end
-		else
-			aiSelfPlayButton.TextColor3 = Config.BUTTON_DISABLED_COLOUR
-		end
 
-		sideOfHuman = state.whiteToPlay
-	end)
+			sideOfHuman = state.whiteToPlay
+		end,
+	})
 
 	local function getHoveringSquare(input): (number?, ImageLabel?)
 		for squareMoveTo, labelInfo in labels do
