@@ -2,8 +2,6 @@
 
 local WASM = {}
 
-local line = {}
-
 local messageListener: (string) -> ...any? = print
 
 local rust
