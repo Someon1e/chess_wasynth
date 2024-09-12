@@ -374,18 +374,12 @@ local function makeGui(initialFen)
 			sideOfHuman = nil
 			aiSelfPlaying:set(not Fusion.peek(aiSelfPlaying))
 
-			if Fusion.peek(aiSelfPlaying) then
-				aiSelfPlayButton.TextColor3 = Config.BUTTON_ENABLED_COLOUR
-
-				while Fusion.peek(aiSelfPlaying) do
-					local move = getAIResponse()
-					if not move then
-						break
-					end
-					playMove(move)
+			while Fusion.peek(aiSelfPlaying) do
+				local move = getAIResponse()
+				if not move then
+					break
 				end
-			else
-				aiSelfPlayButton.TextColor3 = Config.BUTTON_DISABLED_COLOUR
+				playMove(move)
 			end
 
 			sideOfHuman = state.whiteToPlay
