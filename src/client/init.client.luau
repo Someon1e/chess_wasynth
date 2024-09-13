@@ -334,7 +334,7 @@ local function makeGui(initialFen)
 			table.remove(moveHistory)
 			for square, label in labels do
 				local piece = buffer.readu8(state.board, square)
-				label.Image = Config.PIECE_TEXTURES[piece] or ""
+				label.image:set(Config.PIECE_TEXTURES[piece] or "")
 			end
 			resetLabels()
 			fenBox.Text = Board.toFEN(state)
