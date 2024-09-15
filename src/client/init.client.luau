@@ -185,7 +185,7 @@ local function makeGui(initialFen)
 	scope:Hydrate(rotateButton)({
 		Text = "Rotate",
 		FontFace = Config.FONT,
-		Position = UDim2.fromScale(0.85, 0.9),
+		Position = UDim2.fromScale(0.05, 0.8),
 
 		[Fusion.OnEvent("Activated")] = function()
 			if Fusion.peek(startCorner) == Enum.StartCorner.BottomLeft then
@@ -199,9 +199,9 @@ local function makeGui(initialFen)
 	local fenBox = scope:New("TextBox")({
 		Name = "FEN",
 		Text = initialFen,
-		FontFace = Config.FONT,
+		FontFace = Font.fromEnum(Enum.Font.RobotoMono),
 		TextScaled = true,
-		Size = UDim2.fromScale(0.2, 0.06),
+		Size = UDim2.fromScale(0.2, 0.05),
 		ClearTextOnFocus = false,
 		ZIndex = 2,
 		BackgroundColor3 = Color3.fromRGB(0, 0, 30),
@@ -209,7 +209,7 @@ local function makeGui(initialFen)
 		Position = UDim2.fromScale(0.75, 0.5),
 
 		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
-			AspectRatio = 6,
+			AspectRatio = 9,
 		}),
 	})
 	fenBox.FocusLost:Connect(function()
@@ -246,7 +246,7 @@ local function makeGui(initialFen)
 		ZIndex = 2,
 		BackgroundColor3 = Color3.fromRGB(0, 0, 30),
 		TextColor3 = Color3.fromRGB(232, 232, 232),
-		Position = UDim2.fromScale(0.85, 0.797),
+		Position = UDim2.fromScale(0.9, 0.8),
 
 		[Fusion.Children] = {
 			scope:New("TextLabel")({
@@ -254,7 +254,7 @@ local function makeGui(initialFen)
 				FontFace = Config.FONT,
 				TextScaled = true,
 				Size = UDim2.fromScale(0.6, 0.5),
-				Position = UDim2.fromScale(0, 1.1),
+				Position = UDim2.fromScale(0, 1),
 				BackgroundColor3 = Color3.fromRGB(0, 0, 30),
 				TextColor3 = Color3.fromRGB(232, 232, 232),
 			}),
@@ -317,7 +317,7 @@ local function makeGui(initialFen)
 
 	local undoButton = makeButton("Undo")
 	scope:Hydrate(undoButton)({
-		Position = UDim2.fromScale(0.75, 0.9),
+		Position = UDim2.fromScale(0.05, 0.7),
 		Text = "Undo",
 		FontFace = Config.FONT,
 
@@ -363,7 +363,7 @@ local function makeGui(initialFen)
 	local aiSelfPlayButton = makeButton("AISelfPlay")
 	local aiSelfPlaying = scope:Value(false)
 	scope:Hydrate(aiSelfPlayButton)({
-		Position = UDim2.fromScale(0.75, 0.8),
+		Position = UDim2.fromScale(0.9, 0.7),
 		Text = "AI vs AI",
 		FontFace = Config.FONT,
 		TextColor3 = scope:Computed(function(use)
