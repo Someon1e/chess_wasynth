@@ -599,18 +599,26 @@ local function makeGui(initialFen)
 	end)
 
 	scope:New("ScreenGui")({
-		Name = "Chess",
+		Name = "Board",
 
 		Parent = playerGui,
 
 		[Fusion.Children] = {
 			boardFrame,
+			pieceDragImage,
+			promotionFrame,
+		},
+	})
+	scope:New("ScreenGui")({
+		Name = "Controls",
+
+		Parent = playerGui,
+
+		[Fusion.Children] = {
 			makeEvalBar(evalScale, evalBarVisible),
 			rotateButton,
 			fenBox,
-			pieceDragImage,
 			aiMoveTimeBox,
-			promotionFrame,
 			undoButton,
 			aiSelfPlayButton,
 		},
