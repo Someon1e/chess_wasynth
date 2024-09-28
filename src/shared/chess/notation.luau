@@ -14,7 +14,7 @@ for x = 0, 7 do
 	end
 end
 
--- UCI (Universal Chess Interface) is a protocol for communciation between the engine and gui
+-- UCI (Universal Chess Interface) is a protocol for communication between the engine and gui
 -- https://www.chessprogramming.org/UCI
 function Notation.uciFrom(uciNotation)
 	return Notation.SQUARE_NAME_TO_NUMBER[string.sub(uciNotation, 1, 2)]
