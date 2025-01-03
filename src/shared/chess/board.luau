@@ -193,6 +193,26 @@ function Board.toFEN(state: boardState)
 	return table.concat(result)
 end
 
+function Board.isCaptureOrEnPassant(state: boardState, moveNotation)
+	local squareMoveFrom = Notation.uciFrom(moveNotation)
+	local squareMoveTo = Notation.uciTo(moveNotation)
+
+	if buffer.readu8(state.board, squareMoveTo) ~= 0 then
+		return true
+	end
+
+	local movingPiece = buffer.readu8(state.board, squareMoveFrom)
+	assert(movingPiece ~= 0, "Missing moving piece")
+	if
+		(movingPiece == Notation.WHITE_PAWN or movingPiece == Notation.BLACK_PAWN)
+		and squareMoveTo == oldEnPassantSquare
+	then
+		return true
+	end
+
+	return false
+end
+
 function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, onEnPassant)
 	state.fullMoveCounter += 0.5
 

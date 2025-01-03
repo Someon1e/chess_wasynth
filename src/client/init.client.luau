@@ -23,6 +23,10 @@ local pieceMoveSound = scope:New("Sound")({
 	SoundId = Config.PIECE_MOVE_SOUND,
 	Parent = workspace,
 })
+local pieceCaptureSound = scope:New("Sound")({
+	SoundId = Config.PIECE_CAPTURE_SOUND,
+	Parent = workspace,
+})
 
 -- Only used because the type checker is wrong
 local unneeded_assert = assert
@@ -297,10 +301,13 @@ local function makeGui(initialFen)
 	local squareMoveFrom: number?
 
 	local function playMove(moveNotation)
-		pieceMoveSound:Play()
-
 		table.insert(moveHistory, moveNotation)
 
+		if Board.isCaptureOrEnPassant(state, moveNotation) then
+			pieceCaptureSound:Play()
+		else
+			pieceMoveSound:Play()
+		end
 		Board.makeMove(state, moveNotation, function(squareMoveFrom, squareMoveTo)
 			labels[squareMoveTo].image:set(Fusion.peek(labels[squareMoveFrom].image))
 			labels[squareMoveFrom].image:set("")

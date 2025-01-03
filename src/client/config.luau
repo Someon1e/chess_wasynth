@@ -33,6 +33,7 @@ Config.PIECE_TEXTURES = {
 	[Notation.WHITE_KING] = "rbxassetid://7079123896",
 }
 
+Config.PIECE_CAPTURE_SOUND = "rbxassetid://12544690"
 Config.PIECE_MOVE_SOUND = "rbxassetid://6308606116"
 
 return table.freeze(Config)
