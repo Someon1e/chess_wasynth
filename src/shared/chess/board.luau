@@ -205,7 +205,7 @@ function Board.isCaptureOrEnPassant(state: boardState, moveNotation)
 	assert(movingPiece ~= 0, "Missing moving piece")
 	if
 		(movingPiece == Notation.WHITE_PAWN or movingPiece == Notation.BLACK_PAWN)
-		and squareMoveTo == oldEnPassantSquare
+		and squareMoveTo == state.enPassantSquare
 	then
 		return true
 	end
