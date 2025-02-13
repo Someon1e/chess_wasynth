@@ -270,7 +270,7 @@ local function makeGui(initialFen)
 		[Fusion.OnEvent("FocusLost")] = function()
 			local number = tonumber(aiMoveTimeBox.Text)
 			if number then
-				aiMoveTimeInMilliseconds = math.clamp(number, 100, 10000)
+				aiMoveTimeInMilliseconds = math.clamp(number, 100, 20 * 1000)
 			end
 			aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
 		end,
