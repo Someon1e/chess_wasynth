@@ -8,6 +8,7 @@ local chess = game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitFo
 local Engine = require(chess:WaitForChild("engine"))
 local Notation = require(chess:WaitForChild("notation"))
 local Board = require(chess:WaitForChild("board"))
+local Openings = require(chess:WaitForChild("openings"))
 
 local Fusion = require(script:WaitForChild("Fusion"))
 local scope = Fusion.scoped({
@@ -16,6 +17,7 @@ local scope = Fusion.scoped({
 	Hydrate = Fusion.Hydrate,
 	Computed = Fusion.Computed,
 })
+local START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
 local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
@@ -200,6 +202,49 @@ local function makeGui(initialFen)
 		end,
 	})
 
+	local openingNameLabelProps = {
+		Text = scope:Value(""),
+		Visible = scope:Value(false),
+	}
+	local function updateOpeningLabel()
+		if initialFen ~= START_FEN then
+			openingNameLabelProps.Visible:set(false)
+			openingNameLabelProps.Text:set("")
+			return
+		end
+		if #moveHistory == 0 then
+			openingNameLabelProps.Visible:set(true)
+			openingNameLabelProps.Text:set("Start position")
+			return
+		end
+		local openingData = Openings.getFromMoves(table.concat(moveHistory, " "))
+		if openingData then
+			openingNameLabelProps.Visible:set(true)
+			openingNameLabelProps.Text:set(openingData.name)
+		else
+			openingNameLabelProps.Visible:set(false)
+			openingNameLabelProps.Text:set("")
+		end
+	end
+	updateOpeningLabel()
+
+	local openingNameLabel = scope:New("TextLabel")({
+		Name = "Opening",
+		Text = openingNameLabelProps.Text,
+		FontFace = Config.FONT,
+		TextScaled = true,
+		Size = UDim2.fromScale(0.2, 0.05),
+		ZIndex = 2,
+		BackgroundColor3 = Color3.fromRGB(0, 0, 30),
+		TextColor3 = Color3.fromRGB(232, 232, 232),
+		Position = UDim2.fromScale(0.75, 0.4),
+		Visible = openingNameLabelProps.Visible,
+
+		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
+			AspectRatio = 9,
+		}),
+	})
+
 	local fenBox = scope:New("TextBox")({
 		Name = "FEN",
 		Text = initialFen,
@@ -235,6 +280,8 @@ local function makeGui(initialFen)
 			label.image:set(Config.PIECE_TEXTURES[piece] or "")
 		end
 		resetLabels()
+
+		updateOpeningLabel()
 	end)
 
 	local aiMoveTimeInMilliseconds = Config.DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS
@@ -302,6 +349,8 @@ local function makeGui(initialFen)
 
 	local function playMove(moveNotation)
 		table.insert(moveHistory, moveNotation)
+
+		updateOpeningLabel()
 
 		if Board.isCaptureOrEnPassant(state, moveNotation) then
 			pieceCaptureSound:Play()
@@ -625,6 +674,7 @@ local function makeGui(initialFen)
 			makeEvalBar(evalScale, evalBarVisible),
 			rotateButton,
 			fenBox,
+			openingNameLabel,
 			aiMoveTimeBox,
 			undoButton,
 			aiSelfPlayButton,
@@ -634,4 +684,4 @@ end
 
 Engine.uci(print)
 Engine.setOptionValue("Hash", "16")
-makeGui("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+makeGui(START_FEN)
