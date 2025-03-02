@@ -51,7 +51,7 @@ function Engine.getBestMove(initialFen: string, moves, updateEval: (mate: boolea
 	WASM.setListener(function(output)
 		print(output)
 
-		local move = string.match(output, "bestmove (.+)")
+		local move = string.match(output, "bestmove ([^ ]+)")
 		if move then
 			result = if move == "0000" then nil else move
 			WASM.setListener(print)
