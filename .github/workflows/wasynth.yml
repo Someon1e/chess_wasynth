@@ -1,0 +1,57 @@
+name: Compile Chess Engine
+permissions:
+  contents: write
+
+on:
+  - workflow_dispatch
+
+jobs:
+  build:
+    name: Convert Rust Chess to Luau
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone Rust Chess Repository
+        run: |
+          git clone https://github.com/Someon1e/chess.git
+
+      - name: Install Rust and Binaryen (wasm-opt)
+        run: |
+          rustup update stable
+          rustup target add wasm32-unknown-unknown
+          sudo apt update && sudo apt install -y binaryen
+
+      - name: Build Rust Chess to WASM
+        run: |
+          cd chess/engine
+          cargo build --release --target wasm32-unknown-unknown
+          cd ../..
+
+      - name: Run wasm-opt
+        run: |
+          wasm-opt -O4 chess/engine/target/wasm32-unknown-unknown/release/engine.wasm -o chess/engine/target/wasm32-unknown-unknown/release/engine-opt.wasm
+
+      - name: Download Wasynth (wasm2luau)
+        uses: robinraju/release-downloader@v1.10
+        id: wasynth-dl
+        with:
+          repository: "Rerumu/Wasynth"
+          latest: true
+          fileName: wasm2luau
+          tarBall: false
+          zipBall: false
+
+      - name: Convert WASM to Luau
+        run: |
+          chmod +x wasm2luau
+          ./wasm2luau chess/engine/target/wasm32-unknown-unknown/release/engine-opt.wasm > src/shared/chess/engine/wasm/compiled.luau
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/shared/chess/engine/wasm/compiled.luau
+          git commit -m "feat: Update chess engine"
+          git push
