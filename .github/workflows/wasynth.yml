@@ -15,7 +15,7 @@ jobs:
 
       - name: Clone Rust Chess Repository
         run: |
-          git clone https://github.com/Someon1e/chess.git
+          git clone https://github.com/Someon1e/encrustant.git
 
       - name: Install Rust and Binaryen (wasm-opt)
         run: |
@@ -25,28 +25,21 @@ jobs:
 
       - name: Build Rust Chess to WASM
         run: |
-          cd chess/engine
+          cd encrustant/encrustant
           cargo build --release --target wasm32-unknown-unknown
-          cd ../..
 
       - name: Run wasm-opt
         run: |
-          wasm-opt -O4 chess/engine/target/wasm32-unknown-unknown/release/engine.wasm -o chess/engine/target/wasm32-unknown-unknown/release/engine-opt.wasm
+          cd encrustant/encrustant/target/wasm32-unknown-unknown/release/
+          wasm-opt -O4 encrustant.wasm -o encrustant-opt.wasm
 
-      - name: Download Wasynth (wasm2luau)
-        uses: robinraju/release-downloader@v1.10
-        id: wasynth-dl
-        with:
-          repository: "Rerumu/Wasynth"
-          latest: true
-          fileName: wasm2luau
-          tarBall: false
-          zipBall: false
+      - name: Install Wasynth (wasm2luau)
+        run: |
+          cargo install --git https://github.com/Rerumu/Wasynth codegen-luau
 
       - name: Convert WASM to Luau
         run: |
-          chmod +x wasm2luau
-          ./wasm2luau chess/engine/target/wasm32-unknown-unknown/release/engine-opt.wasm > src/shared/chess/engine/wasm/compiled.luau
+          wasm2luau encrustant/encrustant/target/wasm32-unknown-unknown/release/encrustant-opt.wasm > src/shared/chess/engine/wasm/compiled.luau
 
       - name: Commit and Push Changes
         run: |
