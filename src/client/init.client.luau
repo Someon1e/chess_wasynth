@@ -409,7 +409,9 @@ local function makeGui(initialFen)
 				end
 			else
 				local blackEvaluation = if state.whiteToPlay then -evaluation else evaluation
-				evalScale:set(0.5 + blackEvaluation / 1800)
+				local winChance = 50 + 50 * (2 / (1 + math.exp(-0.004 * blackEvaluation)) - 1)
+
+				evalScale:set(winChance / 100)
 			end
 			waitForRender()
 		end, aiMoveTimeInMilliseconds)
