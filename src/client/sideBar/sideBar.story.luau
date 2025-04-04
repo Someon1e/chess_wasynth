@@ -8,6 +8,7 @@ local makeAIMoveTimeBox = require(script.Parent:WaitForChild("aiMoveTimeBox"))
 local makeAISelfPlayButton = require(script.Parent:WaitForChild("aiSelfPlayButton"))
 local makeOpeningLabel = require(script.Parent:WaitForChild("openingLabel"))
 local makeFenBox = require(script.Parent:WaitForChild("fenBox"))
+local makeMovesLabel = require(script.Parent:WaitForChild("movesLabel"))
 
 return function(parent)
 	local scope = Fusion.scoped({
@@ -22,6 +23,7 @@ return function(parent)
 	makeAIMoveTimeBox(scope, sideBar)
 	makeOpeningLabel(scope, sideBar)
 	makeFenBox(scope, sideBar)
+	makeMovesLabel(scope, sideBar)
 
 	return function()
 		Fusion.doCleanup(scope)

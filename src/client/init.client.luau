@@ -25,6 +25,7 @@ local makeAIMoveTimeBox = require(script:WaitForChild("sideBar"):WaitForChild("a
 local makeAISelfPlayButton = require(script:WaitForChild("sideBar"):WaitForChild("aiSelfPlayButton"))
 local makeOpeningLabel = require(script:WaitForChild("sideBar"):WaitForChild("openingLabel"))
 local makeFenBox = require(script:WaitForChild("sideBar"):WaitForChild("fenBox"))
+local makeMovesLabel = require(script:WaitForChild("sideBar"):WaitForChild("movesLabel"))
 
 local START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
@@ -134,6 +135,7 @@ local function makeGui(initialFen)
 	local sideOfHuman: boolean? = state.whiteToPlay
 
 	local moveHistory = {}
+
 	local stateHistory = {}
 
 	local startCorner = scope:Value(Enum.StartCorner.BottomLeft)
@@ -190,6 +192,9 @@ local function makeGui(initialFen)
 		})
 	)
 
+	local movesLabel = makeMovesLabel(scope, sideBar)
+	movesLabel.Text = table.concat(moveHistory, " ")
+
 	local openingLabel = makeOpeningLabel(scope, sideBar)
 
 	local function updateOpeningLabel()
@@ -237,6 +242,7 @@ local function makeGui(initialFen)
 		fenBox.Text = initialFen
 		sideOfHuman = state.whiteToPlay
 		table.clear(moveHistory)
+		movesLabel.Text = table.concat(moveHistory, " ")
 		table.clear(stateHistory)
 		for square, label in labels do
 			local piece = buffer.readu8(state.board, square)
@@ -287,6 +293,7 @@ local function makeGui(initialFen)
 
 	local function playMove(moveNotation)
 		table.insert(moveHistory, moveNotation)
+		movesLabel.Text = table.concat(moveHistory, " ")
 
 		updateOpeningLabel()
 
@@ -566,6 +573,7 @@ local function makeGui(initialFen)
 			evalBarVisible:set(false)
 			table.remove(moveHistory)
 			table.remove(moveHistory)
+			movesLabel.Text = table.concat(moveHistory, " ")
 			for square, label in labels do
 				local piece = buffer.readu8(state.board, square)
 				label.image:set(Config.PIECE_TEXTURES[piece] or "")

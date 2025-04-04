@@ -7,7 +7,7 @@ return function(scope, parent)
 		Size = UDim2.fromScale(0.9, 0.07),
 		ClearTextOnFocus = false,
 		ZIndex = 2,
-		Position = UDim2.fromScale(0.5, 0.35),
+		Position = UDim2.fromScale(0.5, 0.37),
 
 		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
 			AspectRatio = 9,
