@@ -17,6 +17,15 @@ local scope = Fusion.scoped({
 	Hydrate = Fusion.Hydrate,
 	Computed = Fusion.Computed,
 })
+
+local makeSideBar = require(script:WaitForChild("sideBar"))
+local makeUndoButton = require(script:WaitForChild("sideBar"):WaitForChild("undoButton"))
+local makeRotateButton = require(script:WaitForChild("sideBar"):WaitForChild("rotateButton"))
+local makeAIMoveTimeBox = require(script:WaitForChild("sideBar"):WaitForChild("aiMoveTimeBox"))
+local makeAISelfPlayButton = require(script:WaitForChild("sideBar"):WaitForChild("aiSelfPlayButton"))
+local makeOpeningLabel = require(script:WaitForChild("sideBar"):WaitForChild("openingLabel"))
+local makeFenBox = require(script:WaitForChild("sideBar"):WaitForChild("fenBox"))
+
 local START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
 local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
@@ -36,9 +45,9 @@ local unneeded_assert = assert
 local function makeBoardFrame(startCorner)
 	return scope:New("Frame")({
 		Name = "Board",
-		Size = UDim2.fromScale(0.85, 0.85),
+		Size = UDim2.fromScale(0.75, 0.9),
 		AnchorPoint = Vector2.new(0.5, 0.5),
-		Position = UDim2.fromScale(0.5, 0.5),
+		Position = UDim2.fromScale(0.4, 0.5),
 
 		[Fusion.Children] = {
 			scope:New("UIAspectRatioConstraint")({
@@ -101,7 +110,7 @@ local function makeEvalBar(evalScale, visible)
 		ClipsDescendants = true,
 		Size = UDim2.fromScale(0.02, 0.8),
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		Position = UDim2.fromScale(0.2, 0.1),
+		Position = UDim2.fromScale(0.1, 0.1),
 		ZIndex = 2,
 		Visible = visible,
 
@@ -114,22 +123,6 @@ local function makeEvalBar(evalScale, visible)
 			ZIndex = 2,
 		}),
 	})
-end
-
-local function makeButton(name)
-	local button = scope:New("TextButton")({
-		TextScaled = true,
-		Size = UDim2.fromScale(0.07, 0.07),
-		BackgroundColor3 = Color3.fromRGB(0, 0, 30),
-		TextColor3 = Color3.fromRGB(232, 232, 232),
-		Name = name,
-
-		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
-			AspectRatio = 2,
-		}),
-	})
-
-	return button
 end
 
 local function waitForRender()
@@ -187,80 +180,50 @@ local function makeGui(initialFen)
 
 	local evalBarVisible = scope:Value(false)
 
-	local rotateButton = makeButton("Rotate")
-	scope:Hydrate(rotateButton)({
-		Text = "Rotate",
-		FontFace = Config.FONT,
-		Position = UDim2.fromScale(0.05, 0.8),
+	local sideBar = makeSideBar(
+		scope,
+		scope:New("ScreenGui")({
+			Name = "SideBar",
 
-		[Fusion.OnEvent("Activated")] = function()
-			if Fusion.peek(startCorner) == Enum.StartCorner.BottomLeft then
-				startCorner:set(Enum.StartCorner.TopRight)
-			else
-				startCorner:set(Enum.StartCorner.BottomLeft)
-			end
-		end,
-	})
+			IgnoreGuiInset = true,
+			Parent = playerGui,
+		})
+	)
 
-	local openingNameLabelProps = {
-		Text = scope:Value(""),
-		Visible = scope:Value(false),
-	}
+	local openingLabel = makeOpeningLabel(scope, sideBar)
+
 	local function updateOpeningLabel()
 		if initialFen ~= START_FEN then
-			openingNameLabelProps.Visible:set(false)
-			openingNameLabelProps.Text:set("")
+			scope:Hydrate(openingLabel)({
+				Visible = false,
+				Text = "",
+			})
 			return
 		end
 		if #moveHistory == 0 then
-			openingNameLabelProps.Visible:set(true)
-			openingNameLabelProps.Text:set("Start position")
+			scope:Hydrate(openingLabel)({
+				Visible = true,
+				Text = "Start position",
+			})
 			return
 		end
 		local openingData = Openings.getFromMoves(table.concat(moveHistory, " "))
 		if openingData then
-			openingNameLabelProps.Visible:set(true)
-			openingNameLabelProps.Text:set(openingData.name)
+			scope:Hydrate(openingLabel)({
+				Visible = true,
+				Text = openingData.name,
+			})
 		else
-			openingNameLabelProps.Visible:set(false)
-			openingNameLabelProps.Text:set("")
+			scope:Hydrate(openingLabel)({
+				Visible = false,
+				Text = "",
+			})
 		end
 	end
 	updateOpeningLabel()
 
-	local openingNameLabel = scope:New("TextLabel")({
-		Name = "Opening",
-		Text = openingNameLabelProps.Text,
-		FontFace = Config.FONT,
-		TextScaled = true,
-		Size = UDim2.fromScale(0.2, 0.05),
-		ZIndex = 2,
-		BackgroundColor3 = Color3.fromRGB(0, 0, 30),
-		TextColor3 = Color3.fromRGB(232, 232, 232),
-		Position = UDim2.fromScale(0.75, 0.4),
-		Visible = openingNameLabelProps.Visible,
-
-		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
-			AspectRatio = 9,
-		}),
-	})
-
-	local fenBox = scope:New("TextBox")({
-		Name = "FEN",
-		Text = initialFen,
-		FontFace = Font.fromEnum(Enum.Font.RobotoMono),
-		TextScaled = true,
-		Size = UDim2.fromScale(0.2, 0.05),
-		ClearTextOnFocus = false,
-		ZIndex = 2,
-		BackgroundColor3 = Color3.fromRGB(0, 0, 30),
-		TextColor3 = Color3.fromRGB(232, 232, 232),
-		Position = UDim2.fromScale(0.75, 0.5),
-
-		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
-			AspectRatio = 9,
-		}),
-	})
+	local fenBox = makeFenBox(scope, sideBar)
+	fenBox.Text = initialFen
 	fenBox.FocusLost:Connect(function()
 		local isValid, newState = pcall(Board.fromFEN, fenBox.Text)
 		if not isValid then
@@ -287,33 +250,7 @@ local function makeGui(initialFen)
 	local aiMoveTimeInMilliseconds = Config.DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS
 
 	local aiMoveTimeBox
-	aiMoveTimeBox = scope:New("TextBox")({
-		Name = "AIMoveTime",
-		Text = tostring(aiMoveTimeInMilliseconds),
-		FontFace = Config.FONT,
-		TextScaled = true,
-		Size = UDim2.fromScale(0.07, 0.07),
-		ClearTextOnFocus = false,
-		ZIndex = 2,
-		BackgroundColor3 = Color3.fromRGB(0, 0, 30),
-		TextColor3 = Color3.fromRGB(232, 232, 232),
-		Position = UDim2.fromScale(0.9, 0.8),
-
-		[Fusion.Children] = {
-			scope:New("TextLabel")({
-				Text = "AI Move Time",
-				FontFace = Config.FONT,
-				TextScaled = true,
-				Size = UDim2.fromScale(0.6, 0.5),
-				Position = UDim2.fromScale(0, 1),
-				BackgroundColor3 = Color3.fromRGB(0, 0, 30),
-				TextColor3 = Color3.fromRGB(232, 232, 232),
-			}),
-			scope:New("UIAspectRatioConstraint")({
-				AspectRatio = 3,
-			}),
-		},
-
+	aiMoveTimeBox = scope:Hydrate(makeAIMoveTimeBox(scope, sideBar))({
 		[Fusion.OnEvent("FocusLost")] = function()
 			local number = tonumber(aiMoveTimeBox.Text)
 			if number then
@@ -322,6 +259,7 @@ local function makeGui(initialFen)
 			aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
 		end,
 	})
+	aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
 
 	local function highlightLegalMoves(from)
 		Engine.getLegalMoves(function(legalMove)
@@ -371,32 +309,6 @@ local function makeGui(initialFen)
 		fenBox.Text = Board.toFEN(state)
 	end
 
-	local undoButton = makeButton("Undo")
-	scope:Hydrate(undoButton)({
-		Position = UDim2.fromScale(0.05, 0.7),
-		Text = "Undo",
-		FontFace = Config.FONT,
-
-		[Fusion.OnEvent("Activated")] = function()
-			assert(#moveHistory % 2 == 0, "Incomplete turn")
-			local prevState = table.remove(stateHistory)
-			if not prevState then
-				return
-			end
-
-			state = prevState
-			evalBarVisible:set(false)
-			table.remove(moveHistory)
-			table.remove(moveHistory)
-			for square, label in labels do
-				local piece = buffer.readu8(state.board, square)
-				label.image:set(Config.PIECE_TEXTURES[piece] or "")
-			end
-			resetLabels()
-			fenBox.Text = Board.toFEN(state)
-		end,
-	})
-
 	local evalScale = scope:Value(0.5)
 
 	local function getAIResponse()
@@ -417,32 +329,6 @@ local function makeGui(initialFen)
 		end, aiMoveTimeInMilliseconds)
 		return result
 	end
-
-	local aiSelfPlayButton = makeButton("AISelfPlay")
-	local aiSelfPlaying = scope:Value(false)
-	scope:Hydrate(aiSelfPlayButton)({
-		Position = UDim2.fromScale(0.9, 0.7),
-		Text = "AI vs AI",
-		FontFace = Config.FONT,
-		TextColor3 = scope:Computed(function(use)
-			return if use(aiSelfPlaying) then Config.BUTTON_ENABLED_COLOUR else Config.BUTTON_DISABLED_COLOUR
-		end),
-
-		[Fusion.OnEvent("Activated")] = function()
-			sideOfHuman = nil
-			aiSelfPlaying:set(not Fusion.peek(aiSelfPlaying))
-
-			while Fusion.peek(aiSelfPlaying) do
-				local move = getAIResponse()
-				if not move then
-					break
-				end
-				playMove(move)
-			end
-
-			sideOfHuman = state.whiteToPlay
-		end,
-	})
 
 	local function getHoveringSquare(input): (number?, ImageLabel?)
 		for squareMoveTo, labelInfo in labels do
@@ -667,19 +553,69 @@ local function makeGui(initialFen)
 			promotionFrame,
 		},
 	})
+	local undoButton = makeUndoButton(scope, sideBar)
+	scope:Hydrate(undoButton)({
+		[Fusion.OnEvent("Activated")] = function()
+			assert(#moveHistory % 2 == 0, "Incomplete turn")
+			local prevState = table.remove(stateHistory)
+			if not prevState then
+				return
+			end
+
+			state = prevState
+			evalBarVisible:set(false)
+			table.remove(moveHistory)
+			table.remove(moveHistory)
+			for square, label in labels do
+				local piece = buffer.readu8(state.board, square)
+				label.image:set(Config.PIECE_TEXTURES[piece] or "")
+			end
+			resetLabels()
+			fenBox.Text = Board.toFEN(state)
+		end,
+	})
+
+	local rotateButton = makeRotateButton(scope, sideBar)
+	scope:Hydrate(rotateButton)({
+		[Fusion.OnEvent("Activated")] = function()
+			if Fusion.peek(startCorner) == Enum.StartCorner.BottomLeft then
+				startCorner:set(Enum.StartCorner.TopRight)
+			else
+				startCorner:set(Enum.StartCorner.BottomLeft)
+			end
+		end,
+	})
+
+	local aiSelfPlaying = scope:Value(false)
+	local aiSelfPlayButton = makeAISelfPlayButton(scope, sideBar)
+	scope:Hydrate(aiSelfPlayButton)({
+		TextColor3 = scope:Computed(function(use)
+			return if use(aiSelfPlaying) then Config.BUTTON_ENABLED_COLOUR else Config.BUTTON_DISABLED_COLOUR
+		end),
+
+		[Fusion.OnEvent("Activated")] = function()
+			sideOfHuman = nil
+			aiSelfPlaying:set(not Fusion.peek(aiSelfPlaying))
+
+			while Fusion.peek(aiSelfPlaying) do
+				local move = getAIResponse()
+				if not move then
+					break
+				end
+				playMove(move)
+			end
+
+			sideOfHuman = state.whiteToPlay
+		end,
+	})
+
 	scope:New("ScreenGui")({
-		Name = "Controls",
+		Name = "Evaluation",
 
 		Parent = playerGui,
 
 		[Fusion.Children] = {
 			makeEvalBar(evalScale, evalBarVisible),
-			rotateButton,
-			fenBox,
-			openingNameLabel,
-			aiMoveTimeBox,
-			undoButton,
-			aiSelfPlayButton,
 		},
 	})
 end
