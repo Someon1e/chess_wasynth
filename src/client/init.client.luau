@@ -304,6 +304,14 @@ local function makeGui(initialFen)
 	local squareMoveFrom: number?
 
 	local function playMove(moveNotation)
+		local clonedState = table.clone(state)
+		table.insert(gameHistory, {
+			state = clonedState,
+			evalScale = Fusion.peek(evalScale),
+			evalBarVisible = Fusion.peek(evalBarVisible),
+		})
+		clonedState.board = buffer.fromstring(buffer.tostring(state.board))
+
 		table.insert(moveHistory, moveNotation)
 		movesFrameData:set(table.clone(moveHistory))
 
@@ -468,14 +476,6 @@ local function makeGui(initialFen)
 			end
 		end
 
-		local clonedState = table.clone(state)
-		table.insert(gameHistory, {
-			state = clonedState,
-			evalScale = Fusion.peek(evalScale),
-			evalBarVisible = Fusion.peek(evalBarVisible),
-		})
-		clonedState.board = buffer.fromstring(buffer.tostring(state.board))
-
 		playMove(notation)
 		waitForRender()
 
@@ -588,7 +588,10 @@ local function makeGui(initialFen)
 	local undoButton = makeUndoButton(scope, sideBar)
 	scope:Hydrate(undoButton)({
 		[Fusion.OnEvent("Activated")] = function()
+			assert(#moveHistory == #gameHistory, "???")
 			assert(#moveHistory % 2 == 0, "Incomplete turn")
+
+			table.remove(gameHistory)
 			local prevData = table.remove(gameHistory)
 			if not prevData then
 				return
