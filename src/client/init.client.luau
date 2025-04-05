@@ -72,15 +72,23 @@ local function makeSquareGui(parent, state)
 			local piece = buffer.readu8(state.board, number)
 
 			local active = scope:Value(piece ~= 0)
+			local highlight = scope:Value(false)
 
 			local image = scope:Value(Config.PIECE_TEXTURES[piece] or "")
 			labels[number] = table.freeze({
 				label = scope:New("ImageLabel")({
 					LayoutOrder = number,
 					Name = Notation.SQUARE_NUMBER_TO_NAME[number],
-					BackgroundColor3 = if (y + x) % 2 == 0
-						then Config.DARK_SQUARE_COLOUR
-						else Config.LIGHT_SQUARE_COLOUR,
+					BackgroundColor3 = scope:Computed(function(use)
+						local squareColour = (
+							if (y + x) % 2 == 0 then Config.DARK_SQUARE_COLOUR else Config.LIGHT_SQUARE_COLOUR
+						)
+						if use(highlight) then
+							return squareColour:Lerp(Config.HIGHLIGHT_SQUARE_COLOUR, 0.83)
+						else
+							return squareColour
+						end
+					end),
 					Image = image,
 					BorderSizePixel = 0,
 					Active = active,
@@ -97,6 +105,7 @@ local function makeSquareGui(parent, state)
 
 					Parent = parent,
 				}),
+				highlight = highlight,
 				active = active,
 				image = image,
 			})
@@ -170,6 +179,7 @@ local function makeGui(initialFen)
 		for y = 7, 0, -1 do
 			for x = 0, 7 do
 				local label = labels[x + y * 8]
+				label.highlight:set(false)
 				label.active:set(buffer.readu8(state.board, x + y * 8) ~= 0)
 			end
 		end
@@ -302,16 +312,25 @@ local function makeGui(initialFen)
 		else
 			pieceMoveSound:Play()
 		end
+
+		resetLabels()
 		Board.makeMove(state, moveNotation, function(squareMoveFrom, squareMoveTo)
 			labels[squareMoveTo].image:set(Fusion.peek(labels[squareMoveFrom].image))
 			labels[squareMoveFrom].image:set("")
+
+			labels[squareMoveTo].highlight:set(true)
+			labels[squareMoveFrom].highlight:set(true)
 		end, function(promotionSquare, promoteInto)
 			labels[promotionSquare].image:set(Config.PIECE_TEXTURES[promoteInto])
+
+			labels[promotionSquare].highlight:set(true)
+			labels[squareMoveFrom].highlight:set(true)
 		end, function(captureSquare)
 			labels[captureSquare].image:set("")
-		end)
 
-		resetLabels()
+			labels[captureSquare].highlight:set(true)
+			labels[squareMoveFrom].highlight:set(true)
+		end)
 
 		fenBox.Text = Board.toFEN(state)
 	end
