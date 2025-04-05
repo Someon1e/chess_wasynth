@@ -6,7 +6,7 @@ return function(scope, parent)
 		Name = "Opening",
 		Size = UDim2.fromScale(0.9, 0.08),
 		ZIndex = 2,
-		Position = UDim2.fromScale(0.5, 0.2),
+		Position = UDim2.fromScale(0.5, 0.06),
 
 		[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
 			AspectRatio = 9,

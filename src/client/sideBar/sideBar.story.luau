@@ -8,12 +8,14 @@ local makeAIMoveTimeBox = require(script.Parent:WaitForChild("aiMoveTimeBox"))
 local makeAISelfPlayButton = require(script.Parent:WaitForChild("aiSelfPlayButton"))
 local makeOpeningLabel = require(script.Parent:WaitForChild("openingLabel"))
 local makeFenBox = require(script.Parent:WaitForChild("fenBox"))
-local makeMovesLabel = require(script.Parent:WaitForChild("movesLabel"))
+local makeMovesFrame = require(script.Parent:WaitForChild("movesFrame"))
 
 return function(parent)
 	local scope = Fusion.scoped({
 		New = Fusion.New,
 		Hydrate = Fusion.Hydrate,
+		Value = Fusion.Value,
+		ForValues = Fusion.ForValues,
 	})
 
 	local sideBar = makeSideBar(scope, parent)
@@ -23,7 +25,7 @@ return function(parent)
 	makeAIMoveTimeBox(scope, sideBar)
 	makeOpeningLabel(scope, sideBar)
 	makeFenBox(scope, sideBar)
-	makeMovesLabel(scope, sideBar)
+	makeMovesFrame(scope, sideBar, scope:Value({ "e2e4", "e7e5" }))
 
 	return function()
 		Fusion.doCleanup(scope)
