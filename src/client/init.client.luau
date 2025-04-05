@@ -146,7 +146,7 @@ local function makeGui(initialFen)
 
 	local moveHistory = {}
 
-	local stateHistory = {}
+	local gameHistory = {}
 
 	local startCorner = scope:Value(Enum.StartCorner.BottomLeft)
 
@@ -192,6 +192,7 @@ local function makeGui(initialFen)
 	end
 
 	local evalBarVisible = scope:Value(false)
+	local evalScale = scope:Value(0.5)
 
 	local sideBar = makeSideBar(
 		scope,
@@ -254,7 +255,7 @@ local function makeGui(initialFen)
 		sideOfHuman = state.whiteToPlay
 		table.clear(moveHistory)
 		movesFrameData:set(table.clone(moveHistory))
-		table.clear(stateHistory)
+		table.clear(gameHistory)
 		for square, label in labels do
 			local piece = buffer.readu8(state.board, square)
 			label.image:set(Config.PIECE_TEXTURES[piece] or "")
@@ -335,8 +336,6 @@ local function makeGui(initialFen)
 
 		fenBox.Text = Board.toFEN(state)
 	end
-
-	local evalScale = scope:Value(0.5)
 
 	local function getAIResponse()
 		local result = Engine.getBestMove(initialFen, table.concat(moveHistory, " "), function(mate, evaluation)
@@ -469,8 +468,14 @@ local function makeGui(initialFen)
 			end
 		end
 
-		table.insert(stateHistory, table.clone(state))
-		stateHistory[#stateHistory].board = buffer.fromstring(buffer.tostring(state.board))
+		local clonedState = table.clone(state)
+		table.insert(gameHistory, {
+			state = clonedState,
+			evalScale = Fusion.peek(evalScale),
+			evalBarVisible = Fusion.peek(evalBarVisible),
+		})
+		clonedState.board = buffer.fromstring(buffer.tostring(state.board))
+
 		playMove(notation)
 		waitForRender()
 
@@ -584,13 +589,15 @@ local function makeGui(initialFen)
 	scope:Hydrate(undoButton)({
 		[Fusion.OnEvent("Activated")] = function()
 			assert(#moveHistory % 2 == 0, "Incomplete turn")
-			local prevState = table.remove(stateHistory)
-			if not prevState then
+			local prevData = table.remove(gameHistory)
+			if not prevData then
 				return
 			end
 
-			state = prevState
-			evalBarVisible:set(false)
+			state = prevData.state
+			evalBarVisible:set(prevData.evalBarVisible)
+			evalScale:set(prevData.evalScale)
+
 			table.remove(moveHistory)
 			table.remove(moveHistory)
 			movesFrameData:set(table.clone(moveHistory))
