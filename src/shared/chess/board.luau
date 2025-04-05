@@ -281,7 +281,7 @@ function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, on
 				"Invalid promotion"
 			)
 			buffer.writeu8(state.board, squareMoveTo, movingPiece + promotionIncrease)
-			onPromotion(squareMoveTo, movingPiece + promotionIncrease)
+			onPromotion(squareMoveFrom, squareMoveTo, movingPiece + promotionIncrease)
 		else
 			local rankDistance = math.abs(Notation.squareRank(squareMoveFrom) - Notation.squareRank(squareMoveTo))
 			if rankDistance == 2 then
@@ -291,7 +291,7 @@ function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, on
 					- (if movingPiece == Notation.WHITE_PAWN then 8 else -8)
 				buffer.writeu8(state.board, captureSquare, 0)
 				state.halfMoveClock = 0
-				onEnPassant(captureSquare)
+				onEnPassant(squareMoveFrom, captureSquare)
 			end
 		end
 	end

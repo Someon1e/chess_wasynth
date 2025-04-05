@@ -330,12 +330,12 @@ local function makeGui(initialFen)
 
 			labels[squareMoveTo].highlight:set(true)
 			labels[squareMoveFrom].highlight:set(true)
-		end, function(promotionSquare, promoteInto)
+		end, function(squareMoveFrom, promotionSquare, promoteInto)
 			labels[promotionSquare].image:set(Config.PIECE_TEXTURES[promoteInto])
 
 			labels[promotionSquare].highlight:set(true)
 			labels[squareMoveFrom].highlight:set(true)
-		end, function(captureSquare)
+		end, function(squareMoveFrom, captureSquare)
 			labels[captureSquare].image:set("")
 
 			labels[captureSquare].highlight:set(true)
