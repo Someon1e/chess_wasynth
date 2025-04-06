@@ -188,7 +188,7 @@ function Board.toFEN(state: boardState)
 
 	table.insert(result, " ")
 
-	table.insert(result, math.floor(state.fullMoveCounter))
+	table.insert(result, state.fullMoveCounter)
 
 	return table.concat(result)
 end
@@ -214,7 +214,9 @@ function Board.isCaptureOrEnPassant(state: boardState, moveNotation)
 end
 
 function Board.makeMove(state: boardState, moveNotation, onMove, onPromotion, onEnPassant)
-	state.fullMoveCounter += 0.5
+	if not state.whiteToPlay then
+		state.fullMoveCounter += 1
+	end
 
 	local function teleportPiece(squareMoveFrom, squareMoveTo)
 		buffer.writeu8(state.board, squareMoveTo, buffer.readu8(state.board, squareMoveFrom))
