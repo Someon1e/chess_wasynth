@@ -5,10 +5,10 @@ local Config = require(script.Parent.Parent:WaitForChild("config"))
 return function(scope, parent, moves)
 	return scope:New("ScrollingFrame")({
 		Name = "Moves",
-		Size = UDim2.fromScale(0.8, 0.2),
+		Size = UDim2.fromScale(0.85, 0.3),
 		ZIndex = 2,
 		AnchorPoint = Vector2.new(0.5, 0.5),
-		Position = UDim2.fromScale(0.5, 0.21),
+		Position = UDim2.fromScale(0.5, 0.27),
 		AutomaticCanvasSize = Enum.AutomaticSize.XY,
 		BackgroundColor3 = Config.SECONDARY_BACKGROUND_COLOUR,
 		CanvasSize = UDim2.fromScale(0, 0),
@@ -18,7 +18,7 @@ return function(scope, parent, moves)
 			scope:New("UIGridLayout")({
 				HorizontalAlignment = Enum.HorizontalAlignment.Center,
 				FillDirectionMaxCells = 2,
-				CellSize = UDim2.fromScale(0.45, 0.3),
+				CellSize = UDim2.fromScale(0.45, 0.28),
 			}),
 
 			scope:ForValues(moves, function(_, _, value)
@@ -26,11 +26,10 @@ return function(scope, parent, moves)
 					BorderSizePixel = 1,
 					Name = "Move",
 					Text = value,
-					Size = UDim2.fromScale(0.9, 0.2),
 					ZIndex = 2,
 
 					[Fusion.Children] = scope:New("UIAspectRatioConstraint")({
-						AspectRatio = 2,
+						AspectRatio = 2.4,
 					}),
 				})
 			end),

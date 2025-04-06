@@ -5,7 +5,7 @@ local baseBox = require(script.Parent:WaitForChild("baseBox"))
 return function(scope, parent)
 	local aiMoveTimeBox = scope:Hydrate(baseBox(scope, parent))({
 		Name = "AIMoveTime",
-		Size = UDim2.fromScale(0.3, 0.3),
+		Size = UDim2.fromScale(0.4, 0.4),
 		ClearTextOnFocus = false,
 		ZIndex = 2,
 		Position = UDim2.fromScale(0.75, 0.7),
