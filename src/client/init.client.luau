@@ -64,16 +64,15 @@ local function makeBoardFrame(startCorner)
 		},
 	})
 end
-local function makeSquareGui(parent, state)
+local function makeSquareGui(parent, board, highlight)
 	local labels = table.create(63)
 	for y = 7, 0, -1 do
 		for x = 0, 7 do
 			local number = x + y * 8
 
-			local piece = buffer.readu8(state.board, number)
+			local piece = buffer.readu8(board, number)
 
 			local active = scope:Value(piece ~= 0)
-			local highlight = scope:Value(false)
 
 			local image = scope:Value(Config.PIECE_TEXTURES[piece] or "")
 			labels[number] = table.freeze({
@@ -84,7 +83,7 @@ local function makeSquareGui(parent, state)
 						local squareColour = (
 							if (y + x) % 2 == 0 then Config.DARK_SQUARE_COLOUR else Config.LIGHT_SQUARE_COLOUR
 						)
-						if use(highlight) then
+						if table.find(use(highlight), number) then
 							return squareColour:Lerp(Config.HIGHLIGHT_SQUARE_COLOUR, 0.83)
 						else
 							return squareColour
@@ -151,7 +150,9 @@ local function makeGui(initialFen)
 	local startCorner = scope:Value(Enum.StartCorner.BottomLeft)
 
 	local boardFrame = makeBoardFrame(startCorner)
-	local labels = makeSquareGui(boardFrame, state)
+
+	local highlight = scope:Value({ nil, nil })
+	local labels = makeSquareGui(boardFrame, state.board, highlight)
 
 	local usedCircles, unusedCircles = table.create(27), table.create(27)
 	do
@@ -177,10 +178,16 @@ local function makeGui(initialFen)
 	end
 
 	local function resetLabels()
+		local lastMove = moveHistory[#moveHistory]
+		if lastMove then
+			highlight:set({ Notation.uciFrom(lastMove), Notation.uciTo(lastMove) })
+		else
+			highlight:set({ nil, nil })
+		end
+
 		for y = 7, 0, -1 do
 			for x = 0, 7 do
 				local label = labels[x + y * 8]
-				label.highlight:set(false)
 				label.active:set(buffer.readu8(state.board, x + y * 8) ~= 0)
 			end
 		end
@@ -272,14 +279,14 @@ local function makeGui(initialFen)
 		[Fusion.OnEvent("FocusLost")] = function()
 			local number = tonumber(aiMoveTimeBox.Text)
 			if number then
-				aiMoveTimeInMilliseconds = math.clamp(number, 100, 20 * 1000)
+				aiMoveTimeInMilliseconds = math.clamp(number, 10, 20 * 1000)
 			end
 			aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
 		end,
 	})
 	aiMoveTimeBox.Text = tostring(aiMoveTimeInMilliseconds)
 
-	local function highlightLegalMoves(from)
+	local function circleLegalMoves(from)
 		Engine.getLegalMoves(function(legalMove)
 			local legalMoveFrom = Notation.uciFrom(legalMove)
 			if legalMoveFrom ~= from then
@@ -324,22 +331,14 @@ local function makeGui(initialFen)
 		end
 
 		resetLabels()
+		highlight:set({ Notation.uciFrom(moveNotation), Notation.uciTo(moveNotation) })
 		Board.makeMove(state, moveNotation, function(squareMoveFrom, squareMoveTo)
 			labels[squareMoveTo].image:set(Fusion.peek(labels[squareMoveFrom].image))
 			labels[squareMoveFrom].image:set("")
-
-			labels[squareMoveTo].highlight:set(true)
-			labels[squareMoveFrom].highlight:set(true)
 		end, function(squareMoveFrom, promotionSquare, promoteInto)
 			labels[promotionSquare].image:set(Config.PIECE_TEXTURES[promoteInto])
-
-			labels[promotionSquare].highlight:set(true)
-			labels[squareMoveFrom].highlight:set(true)
 		end, function(squareMoveFrom, captureSquare)
 			labels[captureSquare].image:set("")
-
-			labels[captureSquare].highlight:set(true)
-			labels[squareMoveFrom].highlight:set(true)
 		end)
 
 		fenBox.Text = Board.toFEN(state)
@@ -552,7 +551,7 @@ local function makeGui(initialFen)
 			if hoveringSquare ~= squareMoveFrom then
 				resetLabels()
 				squareMoveFrom = hoveringSquare
-				highlightLegalMoves(squareMoveFrom)
+				circleLegalMoves(squareMoveFrom)
 			end
 		end
 	end)
