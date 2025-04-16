@@ -5,7 +5,7 @@ local Config = {}
 local Notation =
 	require(game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("chess"):WaitForChild("notation"))
 
-Config.DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS = 1000
+Config.DEFAULT_AI_MOVE_TIME_IN_MILLISECONDS = 500
 
 Config.LIGHT_SQUARE_COLOUR, Config.DARK_SQUARE_COLOUR = Color3.fromRGB(234, 233, 210), Color3.fromRGB(75, 115, 153)
 Config.HIGHLIGHT_SQUARE_COLOUR = Color3.fromRGB(202, 181, 234)
