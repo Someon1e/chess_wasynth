@@ -1,5 +1,5 @@
 local Fusion = require(script.Parent.Parent:WaitForChild("Fusion"))
-local baseLabel = require(script.Parent:WaitForChild("baseLabel"))
+local baseLabel = require(script.Parent.Parent:WaitForChild("baseLabel"))
 
 return function(scope, parent)
 	return scope:Hydrate(baseLabel(scope, parent))({

@@ -1,6 +1,6 @@
 --!strict
 
-local baseButton = require(script.Parent:WaitForChild("baseButton"))
+local baseButton = require(script.Parent.Parent:WaitForChild("baseButton"))
 
 return function(scope, parent)
 	return scope:Hydrate(baseButton(scope, parent))({

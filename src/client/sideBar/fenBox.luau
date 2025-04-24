@@ -1,5 +1,5 @@
 local Fusion = require(script.Parent.Parent:WaitForChild("Fusion"))
-local baseBox = require(script.Parent:WaitForChild("baseBox"))
+local baseBox = require(script.Parent.Parent:WaitForChild("baseBox"))
 
 return function(scope, parent)
 	return scope:Hydrate(baseBox(scope, parent))({

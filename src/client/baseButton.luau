@@ -1,5 +1,5 @@
-local Fusion = require(script.Parent.Parent:WaitForChild("Fusion"))
-local Config = require(script.Parent.Parent:WaitForChild("config"))
+local Fusion = require(script.Parent:WaitForChild("Fusion"))
+local Config = require(script.Parent:WaitForChild("config"))
 
 return function(scope, parent)
 	return scope:New("TextButton")({

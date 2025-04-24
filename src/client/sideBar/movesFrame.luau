@@ -1,5 +1,5 @@
 local Fusion = require(script.Parent.Parent:WaitForChild("Fusion"))
-local baseLabel = require(script.Parent:WaitForChild("baseLabel"))
+local baseLabel = require(script.Parent.Parent:WaitForChild("baseLabel"))
 local Config = require(script.Parent.Parent:WaitForChild("config"))
 
 return function(scope, parent, moves)

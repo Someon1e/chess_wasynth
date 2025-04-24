@@ -17,6 +17,7 @@ local scope = Fusion.scoped({
 	Hydrate = Fusion.Hydrate,
 	Computed = Fusion.Computed,
 	ForValues = Fusion.ForValues,
+	Observer = Fusion.Observer,
 })
 
 local makeSideBar = require(script:WaitForChild("sideBar"))
@@ -30,7 +31,8 @@ local makeMovesFrame = require(script:WaitForChild("sideBar"):WaitForChild("move
 
 local START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
-local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local player = game:GetService("Players").LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 
 local pieceMoveSound = scope:New("Sound")({
 	SoundId = Config.PIECE_MOVE_SOUND,
@@ -657,6 +659,34 @@ local function makeGui(initialFen)
 	})
 end
 
-Engine.uci(print)
+local loggerGui = scope:New("ScreenGui")({
+	Name = "Logs",
+	DisplayOrder = 2,
+	Parent = playerGui,
+	Enabled = false,
+})
+local sendBox, logger = require(script:WaitForChild("uciConsole"))(scope, loggerGui)
+Engine.watchOutput(logger.output)
+Engine.watchInput(logger.input)
+
+local adminIdModule = script:FindFirstChild("adminIds")
+if adminIdModule and table.find(require(adminIdModule), player.UserId) then
+	scope:Hydrate(sendBox)({
+		[Fusion.OnEvent("FocusLost")] = function(enterPressed)
+			if enterPressed then
+				Engine.send(sendBox.Text)
+				sendBox.Text = ""
+			end
+		end,
+	})
+else
+	scope:Hydrate(sendBox)({ Visible = false })
+end
+
+local Icon = require(script:WaitForChild("Icon"))
+Icon.new():setLabel("Logs"):bindToggleItem(loggerGui):bindToggleKey(Enum.KeyCode.Q)
+
+Engine.uci(function() end)
+
 Engine.setOptionValue("Hash", "16")
 makeGui(START_FEN)

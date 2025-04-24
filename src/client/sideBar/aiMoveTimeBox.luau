@@ -1,6 +1,6 @@
 local Fusion = require(script.Parent.Parent:WaitForChild("Fusion"))
-local baseLabel = require(script.Parent:WaitForChild("baseLabel"))
-local baseBox = require(script.Parent:WaitForChild("baseBox"))
+local baseLabel = require(script.Parent.Parent:WaitForChild("baseLabel"))
+local baseBox = require(script.Parent.Parent:WaitForChild("baseBox"))
 
 return function(scope, parent)
 	local aiMoveTimeBox = scope:Hydrate(baseBox(scope, parent))({

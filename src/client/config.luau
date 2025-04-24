@@ -20,6 +20,7 @@ Config.BUTTON_ENABLED_COLOUR = Color3.fromRGB(83, 202, 19)
 Config.BUTTON_DISABLED_COLOUR = Color3.fromRGB(255, 73, 76)
 
 Config.FONT = Font.fromName("Montserrat")
+Config.MONOSPACE = Font.fromName("RobotoMono")
 
 Config.PIECE_TEXTURES = {
 	[Notation.BLACK_PAWN] = "rbxassetid://7079123026",
